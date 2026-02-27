@@ -124,53 +124,66 @@ $isHighCargo = in_array($rol, ['Gerente', 'Subgerente de Servicios de Salud', 'S
             <?php if ($isRegenteOrGerente && !empty($ips_inventory)): ?>
             <!-- Monitoreo Consolidado IPS -->
             <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex justify-between items-center bg-gray-50/30 dark:bg-slate-900/50">
-                    <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic text-sm">📡 Central de Monitoreo Global de IPS (Florencia CEDIS)</h3>
-                    <div class="flex gap-2">
-                         <span class="text-[9px] font-black text-medical-500 uppercase flex items-center gap-1">🟢 Activo</span>
-                    </div>
+                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex justify-between items-center bg-gray-50/30">
+                    <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic text-xs">📡 Tablero de Control de Inventario Regional (IPS Municipios)</h3>
+                    <div class="text-[9px] bg-medical-500 text-white font-black px-3 py-1 rounded-full animate-pulse uppercase">Monitoreo 360°</div>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead class="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                    <table class="w-full text-left font-inter">
+                        <thead class="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100">
                             <tr>
-                                <th class="px-8 py-4">IPS Municipal</th>
-                                <th class="px-8 py-4">Suministro / Medicamento</th>
-                                <th class="px-8 py-4 text-center">Stock</th>
-                                <th class="px-8 py-4 text-center">Faltante</th>
-                                <th class="px-8 py-4 text-right">Suministro</th>
+                                <th class="px-6 py-4">Municipio</th>
+                                <th class="px-6 py-4">Insumo</th>
+                                <th class="px-6 py-4">Laboratorio</th>
+                                <th class="px-6 py-4 text-center">Cant. Físico</th>
+                                <th class="px-6 py-4 text-center">Stock Mín.</th>
+                                <th class="px-6 py-4 text-center">Faltante</th>
+                                <th class="px-6 py-4 text-right">Solicitud Sugerida</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
                             <?php foreach ($ips_inventory as $item): 
                                 $diff = $item['stock_minimo'] - $item['stock_actual'];
-                                $isCritical = $item['stock_actual'] < $item['stock_minimo'];
+                                $solicitada = ($diff > 0) ? ($item['stock_minimo'] * 1.5) : 0;
                             ?>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
-                                <td class="px-8 py-4">
-                                    <span class="px-3 py-1 bg-medical-500 text-white text-[9px] font-black rounded-full uppercase tracking-tighter"><?= $item['sede_nombre'] ?></span>
+                            <tr class="hover:bg-gray-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <span class="text-[10px] font-black text-slate-500 uppercase"><?= $item['sede_nombre'] ?></span>
                                 </td>
-                                <td class="px-8 py-4">
-                                    <div class="text-[11px] font-black text-gray-800 dark:text-white uppercase"><?= $item['nombre_generico'] ?></div>
-                                    <div class="text-[9px] text-gray-400 italic font-medium">LAB: <?= $item['laboratorio'] ?></div>
+                                <td class="px-6 py-4 font-bold text-[11px] text-gray-800 dark:text-white uppercase"><?= $item['nombre_generico'] ?></td>
+                                <td class="px-6 py-4 text-[9px] font-black text-gray-400 italic"><?= $item['laboratorio'] ?></td>
+                                <td class="px-6 py-4 text-center font-black text-sm text-slate-800 tabular-nums"><?= $item['stock_actual'] ?></td>
+                                <td class="px-6 py-4 text-center text-[11px] font-bold text-gray-400"><?= $item['stock_minimo'] ?></td>
+                                <td class="px-6 py-4 text-center font-black text-xs <?= $diff > 0 ? 'text-red-500 anim-pulse' : 'text-green-500' ?>">
+                                    <?= $diff > 0 ? $diff : '0' ?>
                                 </td>
-                                <td class="px-8 py-4 text-center font-black text-xs <?= $isCritical ? 'text-red-500' : 'text-gray-600' ?>">
-                                    <?= $item['stock_actual'] ?>
-                                </td>
-                                <td class="px-8 py-4 text-center">
-                                    <span class="text-[10px] font-black <?= $diff > 0 ? 'text-red-600 animate-pulse' : 'text-green-600' ?>">
-                                        <?= $diff > 0 ? "+ $diff" : "No requiere" ?>
-                                    </span>
-                                </td>
-                                <td class="px-8 py-4 text-right">
+                                <td class="px-6 py-4 text-right">
                                     <?php if ($diff > 0): ?>
-                                        <button class="px-4 py-2 bg-slate-900 text-white text-[9px] font-black rounded-xl hover:bg-black transition-all shadow-lg shadow-slate-900/20 uppercase tracking-widest">Despachar</button>
+                                        <span class="inline-block px-3 py-1 bg-slate-900 text-white text-[10px] font-black rounded-lg uppercase tracking-tighter italic">Despachar: <?= round($solicitada) ?></span>
+                                    <?php else: ?>
+                                        <span class="text-[9px] text-gray-300 font-bold uppercase italic">Abastecido</span>
                                     <?php endif; ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Sección de Requerimientos al Proveedor (Regente/Gerente) -->
+            <div class="bg-indigo-900 rounded-[2.5rem] p-10 text-white shadow-2xl shadow-indigo-900/30 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="max-w-xl">
+                    <h3 class="text-xs font-black text-indigo-300 uppercase tracking-[0.2em] mb-3 italic">Estrategia de Adquisición CEDIS</h3>
+                    <h2 class="text-3xl font-black tracking-tight leading-none mb-4 italic uppercase">Sugerencias de Pedido a Proveedores</h2>
+                    <p class="text-indigo-200 text-sm italic font-medium">Análisis de reposición estratégica para el Almacén Central de Florencia. El stock del Regente debe ser superior al de las 5 IPS para garantizar soberanía sanitaria regional.</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-xl p-6 rounded-3xl border border-white/20 w-full md:w-auto">
+                    <p class="text-[10px] font-black text-indigo-200 uppercase mb-2">Orden de Compra Proyectada</p>
+                    <div class="flex items-end gap-2">
+                        <span class="text-5xl font-black italic tracking-tighter">10</span>
+                        <span class="text-xs font-bold text-indigo-300 mb-2 italic">Proveedores Calificados</span>
+                    </div>
                 </div>
             </div>
             <?php endif; ?>
@@ -213,89 +226,6 @@ $isHighCargo = in_array($rol, ['Gerente', 'Subgerente de Servicios de Salud', 'S
             options: { cutout: '80%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10, weight: 'bold' } } } } }
         });
     </script>
-    <script src="../assets/js/theme-toggle.js"></script>
-</body>
-</html>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-transform hover:scale-[1.02]">
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Medicamentos</p>
-                    <p class="text-3xl font-black text-gray-800 dark:text-white"><?php echo count($inventory); ?></p>
-                </div>
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-transform hover:scale-[1.02]">
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Vencidos</p>
-                    <p class="text-3xl font-black text-red-500"><?php echo $vencidos; ?></p>
-                </div>
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-transform hover:scale-[1.02]">
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Stock Crítico</p>
-                    <p class="text-3xl font-black text-orange-500"><?php echo $stockCritico; ?></p>
-                </div>
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 transition-transform hover:scale-[1.02]">
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">IPS Activas</p>
-                    <p class="text-3xl font-black text-medical-500">5</p>
-                </div>
-            </div>
-
-            <!-- Table -->
-            <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700 flex justify-between items-center">
-                    <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic">Semaforización Preventiva</h3>
-                    <div class="text-[10px] bg-red-50 dark:bg-red-500/10 text-red-500 font-bold px-3 py-1 rounded-full">
-                        AUDITORÍA: < 90 DÍAS
-                    </div>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead class="bg-gray-50 dark:bg-slate-800/50 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                            <tr>
-                                <th class="px-8 py-4">Medicamento</th>
-                                <th class="px-8 py-4">Lote</th>
-                                <th class="px-8 py-4">Vencimiento</th>
-                                <th class="px-8 py-4">Stock</th>
-                                <th class="px-8 py-4">Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
-                            <?php foreach ($inventory as $i): ?>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
-                                <td class="px-8 py-4">
-                                    <p class="font-bold text-gray-800 dark:text-gray-200"><?php echo strtoupper($i['nombre_generico']); ?></p>
-                                    <p class="text-[10px] text-gray-400 italic">ID: #<?php echo str_pad($i['id'], 5, '0', STR_PAD_LEFT); ?></p>
-                                </td>
-                                <td class="px-8 py-4">
-                                    <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 text-[10px] font-mono font-bold rounded">
-                                        <?php echo $i['lote'] ?? 'N/A'; ?>
-                                    </span>
-                                </td>
-                                <td class="px-8 py-4">
-                                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        <?php echo $i['fecha_vencimiento'] ? date('d/m/Y', strtotime($i['fecha_vencimiento'])) : 'N/A'; ?>
-                                    </p>
-                                </td>
-                                <td class="px-8 py-4">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-sm font-black text-gray-800 dark:text-white"><?php echo $i['stock_actual']; ?></span>
-                                        <span class="text-[10px] text-gray-400 font-bold">UND</span>
-                                    </div>
-                                </td>
-                                <td class="px-8 py-4 text-xs font-bold">
-                                    <?php $status = InventoryController::getStatusBadge($i['stock_actual'], $i['stock_minimo'], $i['fecha_vencimiento']); 
-                                          if (strpos($status, 'VENCIDO') !== false || strpos($status, 'CRíTICO') !== false): ?>
-                                        <span class="text-red-500 bg-red-50 dark:bg-red-500/10 px-3 py-1 rounded-lg border border-red-100 dark:border-red-500/20">RETIRAR</span>
-                                    <?php else: ?>
-                                        <span class="text-medical-500 bg-medical-50 dark:bg-medical-500/10 px-3 py-1 rounded-lg border border-medical-100 dark:border-medical-500/20">ÓPTIMO</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
-    </div>
-
     <script src="../assets/js/theme-toggle.js"></script>
 </body>
 </html>
