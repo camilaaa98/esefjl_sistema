@@ -36,7 +36,7 @@ try {
         INSERT INTO inventario (sede_id, producto_id, stock_actual, stock_minimo, fecha_vencimiento, lote)
         VALUES (?, ?, 100000, 5000, '2028-12-31', 'LT-MAX-001')
         ON CONFLICT (sede_id, producto_id) DO UPDATE 
-        SET stock_actual = stock_actual + 100000, stock_minimo = 5000
+        SET stock_actual = inventario.stock_actual + 100000, stock_minimo = 5000
     ");
 
     foreach ($prodIds as $id) {
