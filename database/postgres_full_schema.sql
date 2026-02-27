@@ -57,6 +57,8 @@ CREATE TABLE IF NOT EXISTS productos (
     codigo_invima TEXT UNIQUE,
     nombre_generico TEXT NOT NULL,
     nombre_comercial TEXT,
+    concentracion_presentacion TEXT,
+    laboratorio TEXT,
     descripcion TEXT,
     categoria_id INTEGER REFERENCES categorias(id),
     unidad_medida TEXT

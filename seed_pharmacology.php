@@ -5,6 +5,10 @@ try {
     $db = Database::getInstance();
     $db->beginTransaction();
 
+    echo "⚙️ ACTUALIZANDO ESQUEMA DE PRODUCTOS...\n";
+    $db->exec("ALTER TABLE productos ADD COLUMN IF NOT EXISTS concentracion_presentacion TEXT;");
+    $db->exec("ALTER TABLE productos ADD COLUMN IF NOT EXISTS laboratorio TEXT;");
+
     echo "💊 CARGANDO CATÁLOGO FARMACÉUTICO PROFESIONAL...\n";
 
     // 1. Limpiar inventario y productos previos
