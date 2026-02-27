@@ -16,18 +16,13 @@ $isRegenteOrGerente = in_array($rol, ['Gerente', 'Regente Farmacia', 'Subgerente
 $inventory = InventoryController::getInventoryBySede($sede_id);
 $ips_inventory = $isRegenteOrGerente ? InventoryController::getAllIPSInventory() : [];
 $vencidos_count = count(InventoryController::getExpiredInventory());
+$can_supply_all = InventoryController::canSupplyAllIPS();
 $alerts = AlertController::getInactivityAlerts();
 
 $stockCritico = 0;
 foreach($inventory as $item) {
     if($item['stock_actual'] < $item['stock_minimo']) $stockCritico++;
 }
-
-// Simulación de datos para gráficas
-$data_labels = ["Ene", "Feb", "Mar", "Abr", "May", "Jun"];
-$data_entregas = [120, 450, 300, 700, 850, 1000];
-
-$isHighCargo = in_array($rol, ['Gerente', 'Subgerente de Servicios de Salud', 'Subgerente Administrativa y Financiera']);
 ?>
 <!DOCTYPE html>
 <html lang="es" class="light">
@@ -47,57 +42,23 @@ $isHighCargo = in_array($rol, ['Gerente', 'Subgerente de Servicios de Salud', 'S
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
     <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar -->
-        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6 shadow-sm">
-            <div class="flex items-center gap-3 mb-10">
-                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
-                <div>
-                    <h1 class="text-medical-500 font-extrabold text-lg leading-tight tracking-tighter">SISFARMA</h1>
-                    <span class="text-[10px] text-gray-400 dark:text-gray-500 font-bold tracking-widest uppercase">Gerencia Corporativa</span>
-                </div>
-            </div>
-
-            <nav class="flex-1 space-y-1">
-                <a href="dashboard.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">
-                    <span>🏠</span> Inicio
-                </a>
-                <?php if ($isHighCargo): ?>
-                    <a href="reportes.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                        <span>📊</span> Reportes Mensuales
-                    </a>
-                    <a href="asignacion_personal.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                        <span>🤝</span> Gestión de Talento
-                    </a>
-                <?php endif; ?>
-                <a href="historial.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                    <span>🔍</span> Auditoría Pública
-                </a>
-                <a href="vencidos.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                    <span>⚠️</span> Gestión de Vencidos
-                    <?php if ($vencidos_count > 0): ?>
-                        <span class="ml-auto bg-red-500 text-white text-[9px] px-2 py-0.5 rounded-full"><?= $vencidos_count ?></span>
-                    <?php endif; ?>
-                </a>
-            </nav>
-
-            <div class="mt-auto pt-6 border-t border-gray-100 dark:border-slate-700 text-center">
-                <button id="theme-toggle" class="w-full flex items-center justify-center gap-2 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-xs font-bold text-gray-600 dark:text-gray-300">
-                    🌓 Cambiar Tema
-                </button>
-                <p class="text-[9px] text-gray-400 mt-4 uppercase font-bold tracking-widest">ESE Fabio Jaramillo</p>
-            </div>
-        </aside>
+        <?php include '../includes/sidebar.php'; ?>
 
         <!-- Main -->
         <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
             <header class="flex flex-col items-center justify-center text-center gap-4">
                 <div>
-                    <h2 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight italic"><?php echo strtoupper($rol); ?></h2>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm font-medium italic">Sede de Operación: <?= strtoupper($_SESSION['sede']) ?></p>
+                    <h2 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight italic uppercase"><?php echo $rol; ?></h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm font-medium italic">Sede de Operación Central: <?= strtoupper($_SESSION['sede']) ?></p>
                 </div>
-                <div class="flex gap-2">
-                    <span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase tracking-tighter">Sincronización Cloud</span>
-                    <a href="../core/logout.php" class="px-3 py-1 bg-red-100 text-red-700 text-[10px] font-bold rounded-full uppercase tracking-tighter">Desconectar</a>
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black rounded-full uppercase tracking-tighter">Sincronización Cloud</span>
+                    <?php if ($can_supply_all): ?>
+                        <span class="px-3 py-1 bg-medical-500 text-white text-[10px] font-black rounded-full uppercase tracking-tighter shadow-lg shadow-medical-500/20 italic">Soberanía de Stock Garantizada ✅</span>
+                    <?php else: ?>
+                        <span class="px-3 py-1 bg-amber-500 text-white text-[10px] font-black rounded-full uppercase tracking-tighter italic">Alerta: Stock Central Limitado ⚡</span>
+                    <?php endif; ?>
+                    <a href="../core/logout.php" class="px-3 py-1 bg-red-100 text-red-700 text-[10px] font-black rounded-full uppercase tracking-tighter">Desconectar</a>
                 </div>
             </header>
 
