@@ -1,4 +1,35 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: login.php');
+    exit();
+}
+require_once __DIR__ . '/../core/Database.php';
+require_once __DIR__ . '/../core/InventoryController.php';
+require_once __DIR__ . '/../core/RequestController.php';
+
+$mensaje_res = "";
+$sede_id = $_SESSION['sede_id'];
+$db = Database::getInstance();
+
+// Procesar Pedidos
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['btnManualRequest'])) {
+        $res = RequestController::createAutomaticOrder($sede_id);
+        $mensaje_res = $res['message'];
+    }
+    
+    if (isset($_POST['btnSolicitudManual'])) {
+        $prod_id = $_POST['producto_id'];
+        $cant = $_POST['cantidad'];
+        $res = RequestController::createManualOrder($sede_id, $prod_id, $cant);
+        $mensaje_res = $res['message'];
+    }
+}
+
+$inventory = InventoryController::getInventoryBySede($sede_id);
+$productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico ASC")->fetchAll();
+?>
 <html lang="es" class="light">
 <head>
     <meta charset="UTF-8">
@@ -66,52 +97,79 @@
                 <div class="absolute -right-20 -top-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
             </header>
 
-            <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700 flex justify-between items-center bg-gray-50/50 dark:bg-slate-800/50">
-                    <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter">Inventario en Sede: <?= strtoupper($_SESSION['sede']) ?></h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead class="bg-gray-50 dark:bg-slate-800/50 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">
-                            <tr>
-                                <th class="px-8 py-5">Insumo / Medicamento</th>
-                                <th class="px-8 py-5 border-x border-gray-100 dark:border-slate-700">Stock Actual</th>
-                                <th class="px-8 py-5">Estado Operativo</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
-                            <?php foreach ($inventory as $i): ?>
-                            <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
-                                <td class="px-8 py-5">
-                                    <p class="font-bold text-gray-800 dark:text-gray-200"><?= strtoupper($i['nombre_generico']) ?></p>
-                                    <p class="text-[10px] text-gray-400">Lote: <span class="font-mono text-medical-500"><?= $i['lote'] ?? 'L-01' ?></span></p>
-                                </td>
-                                <td class="px-8 py-5 text-center border-x border-gray-100 dark:border-slate-700">
-                                    <span class="text-xl font-black text-gray-900 dark:text-white"><?= $i['stock_actual'] ?></span>
-                                    <span class="text-[9px] font-bold text-gray-400 block uppercase">Unidades</span>
-                                </td>
-                                <td class="px-8 py-5 text-center">
-                                    <?php 
-                                        $badge = InventoryController::getStatusBadge($i['stock_actual'], $i['stock_minimo'], $i['fecha_vencimiento']);
-                                        if (strpos($badge, 'VENCIDO') !== false || strpos($badge, 'CRíTICO') !== false):
-                                    ?>
-                                        <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-500/10 text-red-500 text-[10px] font-black rounded-full border border-red-100 dark:border-red-500/20 uppercase tracking-widest">Agotado / Crítico</span>
-                                    <?php else: ?>
-                                        <span class="inline-block px-4 py-1.5 bg-medical-50 dark:bg-medical-500/10 text-medical-500 text-[10px] font-black rounded-full border border-medical-100 dark:border-medical-500/20 uppercase tracking-widest">Disponible</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                            <?php if (empty($inventory)): ?>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Tabla de Inventario -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
+                    <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700 flex justify-between items-center bg-gray-50/50 dark:bg-slate-800/50">
+                        <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter">Estado de Stock Local</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left font-inter">
+                            <thead class="bg-gray-50 dark:bg-slate-800/50 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">
                                 <tr>
-                                    <td colspan="3" class="px-8 py-20 text-center">
-                                        <div class="opacity-30 mb-4 text-4xl">📭</div>
-                                        <p class="text-gray-400 font-bold italic tracking-tight uppercase">No hay inventario cargado en esta sede municipal.</p>
+                                    <th class="px-6 py-5">Insumo</th>
+                                    <th class="px-6 py-5">Stock</th>
+                                    <th class="px-6 py-5">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
+                                <?php foreach ($inventory as $i): ?>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                                    <td class="px-6 py-4">
+                                        <p class="font-black text-xs text-gray-800 dark:text-gray-200"><?= strtoupper($i['nombre_generico']) ?></p>
+                                        <p class="text-[9px] text-gray-400 italic"><?= $i['laboratorio'] ?> - <?= $i['concentracion_presentacion'] ?></p>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="text-sm font-black text-gray-900 dark:text-white"><?= $i['stock_actual'] ?></span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <?php 
+                                            echo InventoryController::getStatusBadge($i['stock_actual'], $i['stock_minimo'], $i['fecha_vencimiento']);
+                                        ?>
                                     </td>
                                 </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Formulario Solicitud Manual -->
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] shadow-sm border border-gray-100 dark:border-slate-700">
+                    <div class="mb-8">
+                        <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2 italic">Solicitud Especial Manual</h3>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Use este formulario para requerimientos extraordinarios no cubiertos por el sistema automático.</p>
+                    </div>
+                    
+                    <form method="POST" class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Seleccionar Insumo del Catálogo</label>
+                            <select name="producto_id" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-xs font-bold text-gray-700 dark:text-gray-300" required>
+                                <option value="">— Buscar en el Vademécum —</option>
+                                <?php foreach ($productos_todos as $p): ?>
+                                    <option value="<?= $p['id'] ?>"><?= strtoupper($p['nombre_generico']) ?> (<?= $p['laboratorio'] ?>)</option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Cantidad Requerida</label>
+                            <input type="number" name="cantidad" min="1" placeholder="Ej: 50" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-black dark:text-white" required>
+                        </div>
+
+                        <button type="submit" name="btnSolicitudManual" class="w-full py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-3xl shadow-xl transition-all transform hover:scale-[1.01] uppercase text-[10px] tracking-widest">
+                            📤 Radicar Solicitud Manual
+                        </button>
+                    </form>
+
+                    <div class="mt-8 pt-8 border-t border-gray-100 dark:border-slate-700">
+                        <div class="flex items-start gap-4 p-4 bg-blue-50 dark:bg-blue-500/5 rounded-2xl border border-blue-100 dark:border-blue-500/20">
+                            <span class="text-xl">ℹ️</span>
+                            <div class="text-[10px] text-blue-600 dark:text-blue-400 leading-relaxed italic">
+                                <strong>Nota Técnica:</strong> Los pedidos radicados ingresan a la cola de despacho del Regente en Florencia. El tiempo estimado es de 24-48 horas según disponibilidad de transporte.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
