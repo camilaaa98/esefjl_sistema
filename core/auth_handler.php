@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $data = json_decode(file_get_contents('php://input'), true);
-$username = $data['username'] ?? '';
-$password = $data['password'] ?? '';
+$username = trim($data['username'] ?? '');
+$password = trim($data['password'] ?? '');
 
 if (empty($username) || empty($password)) {
     echo json_encode(['success' => false, 'message' => 'Usuario y contraseña requeridos']);
@@ -24,7 +24,7 @@ if (empty($username) || empty($password)) {
 try {
     $db = Database::getInstance();
     $stmt = $db->prepare("
-        SELECT u.*, r.nombre AS rol_nombre, s.nombre AS sede_nombre 
+        SELECT u.*, r.nombre AS rol_nombre, s.nombre AS sede_nombre, s.id AS sid
         FROM usuarios u
         JOIN roles r ON u.rol_id = r.id
         JOIN sedes s ON u.sede_id = s.id
@@ -34,16 +34,19 @@ try {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
-        // Registro de sesión
-        $_SESSION['usuario_id'] = $user['id'];
-        $_SESSION['nombre'] = $user['nombres'] . ' ' . $user['apellidos'];
-        $_SESSION['rol'] = $user['rol_nombre'];
-        $_SESSION['sede'] = $user['sede_nombre'];
-        $_SESSION['sede_id'] = $user['sede_id'];
+        // Limpiar sesión anterior
+        session_regenerate_id(true);
+
+        // Registro de sesión estricto - siempre desde la BD
+        $_SESSION['usuario_id'] = (int)$user['id'];
+        $_SESSION['nombre']     = trim($user['nombres'] . ' ' . $user['apellidos']);
+        $_SESSION['rol']        = $user['rol_nombre'];
+        $_SESSION['sede']       = $user['sede_nombre'];
+        $_SESSION['sede_id']    = (int)$user['sid'];
 
         echo json_encode(['success' => true, 'redirect' => 'dashboard.php']);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Credenciales incorrectas']);
+        echo json_encode(['success' => false, 'message' => 'Credenciales incorrectas. Verifica tu usuario y contraseña.']);
     }
 } catch (PDOException $e) {
     echo json_encode(['success' => false, 'message' => 'Error en el servidor: ' . $e->getMessage()]);

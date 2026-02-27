@@ -8,11 +8,20 @@ require_once __DIR__ . '/../core/InventoryController.php';
 require_once __DIR__ . '/../core/AlertController.php';
 require_once __DIR__ . '/../core/Database.php';
 
-$sede_id = $_SESSION['sede_id'];
-$rol = $_SESSION['rol'];
+$sede_id = (int)$_SESSION['sede_id'];
+$rol = $_SESSION['rol'] ?? '';
 $db = Database::getInstance();
 
-$isRegenteOrGerente = in_array($rol, ['Gerente', 'Regente Farmacia', 'Subgerente de Servicios de Salud']);
+// ROLES DIRECTIVOS - solo ellos ven el monitoreo global e IPS
+$isRegenteOrGerente = in_array($rol, [
+    'Gerente',
+    'Regente Farmacia',
+    'Subgerente de Servicios de Salud',
+    'Subgerente Administrativa y Financiera',
+    'Administrador'
+]);
+// Usuario de sede IPS municipal
+$isIPS = ($rol === 'IPS (Municipio)');
 $inventory = InventoryController::getInventoryBySede($sede_id);
 $all_ips_data = $isRegenteOrGerente ? InventoryController::getAllIPSInventory() : [];
 
@@ -174,7 +183,7 @@ foreach($inventory as $item) {
             </div>
             <?php endif; ?>
 
-            <?php if ($rol == 'IPS (Municipio)'): ?>
+            <?php if ($isIPS): ?>
             <!-- Sección Exclusiva para IPS: Solicitudes de Pacientes -->
             <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
                 <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex flex-col md:flex-row items-center justify-between bg-medical-50/30 gap-4">

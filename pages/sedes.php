@@ -38,7 +38,14 @@ if ($selected_sede_id) {
     $stmtCount->execute([$selected_sede_id]);
     $total_items = $stmtCount->fetchColumn();
 
-    $stmtInv = $db->prepare("SELECT * FROM inventario WHERE sede_id = ? ORDER BY id ASC LIMIT ? OFFSET ?");
+    $stmtInv = $db->prepare("
+        SELECT i.*, p.nombre_generico, p.laboratorio, p.concentracion_presentacion
+        FROM inventario i
+        JOIN productos p ON i.producto_id = p.id
+        WHERE i.sede_id = ?
+        ORDER BY i.fecha_vencimiento ASC
+        LIMIT ? OFFSET ?
+    ");
     $stmtInv->execute([$selected_sede_id, $limit, $offset]);
     $sede_inventory = $stmtInv->fetchAll();
 }
@@ -113,15 +120,26 @@ $total_pages = ceil($total_items / $limit);
                                 <th class="px-8 py-4 w-16">Item</th>
                                 <th class="px-8 py-4">Insumo / Medicamento</th>
                                 <th class="px-8 py-4 text-center">Stock Físico</th>
-                                <th class="px-8 py-4 text-center">Referencia Mín.</th>
+                                <th class="px-8 py-4 text-center">Ref. Mín.</th>
+                                <th class="px-8 py-4 text-center">Vencimiento</th>
                                 <th class="px-8 py-4 text-center">Estatus</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
                             <?php 
                             $counter = $offset + 1;
+                            $today = date('Y-m-d');
+                            $warn_date = date('Y-m-d', strtotime('+3 months'));
                             foreach ($sede_inventory as $i): 
                                 $isCritical = $i['stock_actual'] < $i['stock_minimo'];
+                                $fv = $i['fecha_vencimiento'] ?? null;
+                                $venc_class = 'text-green-600';
+                                $venc_bg = 'bg-green-50 border-green-100';
+                                $venc_label = 'Vigente';
+                                if ($fv) {
+                                    if ($fv < $today) { $venc_class='text-red-600'; $venc_bg='bg-red-50 border-red-100'; $venc_label='VENCIDO'; }
+                                    elseif ($fv < $warn_date) { $venc_class='text-amber-700'; $venc_bg='bg-amber-50 border-amber-100'; $venc_label='Por vencer'; }
+                                }
                             ?>
                             <tr class="hover:bg-gray-50/50 transition-colors">
                                 <td class="px-8 py-4">
@@ -129,7 +147,7 @@ $total_pages = ceil($total_items / $limit);
                                 </td>
                                 <td class="px-8 py-4">
                                     <div class="text-[11px] font-black text-gray-800 dark:text-white uppercase italic"><?= $i['nombre_generico'] ?></div>
-                                    <div class="text-[9px] text-gray-400 font-bold">LAB: <?= $i['laboratorio'] ?></div>
+                                    <div class="text-[9px] text-gray-400 font-bold">LAB: <?= $i['laboratorio'] ?> | <?= $i['concentracion_presentacion'] ?? '' ?></div>
                                 </td>
                                 <td class="px-8 py-4 text-center tabular-nums font-black text-sm <?= $isCritical ? 'text-red-500' : 'text-slate-700' ?>">
                                     <?= number_format($i['stock_actual'], 0) ?>
@@ -138,8 +156,15 @@ $total_pages = ceil($total_items / $limit);
                                     <?= number_format($i['stock_minimo'], 0) ?>
                                 </td>
                                 <td class="px-8 py-4 text-center">
+                                    <?php if ($fv): ?>
+                                    <span class="px-3 py-1 text-[9px] font-black rounded-full uppercase border <?= $venc_bg ?> <?= $venc_class ?>">
+                                        <?= date('d/m/Y', strtotime($fv)) ?>
+                                    </span><br><span class="text-[8px] <?= $venc_class ?> font-bold italic"><?= $venc_label ?></span>
+                                    <?php else: ?><span class="text-gray-300 text-[9px]">—</span><?php endif; ?>
+                                </td>
+                                <td class="px-8 py-4 text-center">
                                     <span class="px-3 py-1 text-[9px] font-black rounded-full uppercase <?= $isCritical ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-green-50 text-green-600 border border-green-100' ?>">
-                                        <?= $isCritical ? 'Huelga de Stock' : 'Garantizado ✓' ?>
+                                        <?= $isCritical ? 'Bajo Stock' : 'OK ✓' ?>
                                     </span>
                                 </td>
                             </tr>
