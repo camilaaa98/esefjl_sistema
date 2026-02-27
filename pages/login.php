@@ -8,11 +8,24 @@
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f0f9f8 0%, #ffffff 100%); }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: url('../img/fondo.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6">
-    <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl shadow-medical-500/10 border border-gray-100 overflow-hidden transform transition-all hover:scale-[1.01]">
+<body class="min-h-screen p-6">
+    <div class="max-w-md w-full login-glass rounded-3xl shadow-2xl overflow-hidden transform transition-all hover:scale-[1.01]">
         <div class="p-8 md:p-12">
             <div class="flex justify-center mb-8">
                 <img src="../img/logoesefjl.jpg" alt="Logo" class="w-24 h-24 rounded-2xl shadow-lg ring-4 ring-medical-50">
