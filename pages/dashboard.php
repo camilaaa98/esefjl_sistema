@@ -72,27 +72,29 @@ foreach($inventory as $item) {
             </header>
 
             <!-- Stats Dynamic -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-<?= $isRegenteOrGerente ? '4' : '3' ?> gap-6">
                 <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl shadow-slate-900/20">
-                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Medicamentos en Stock</p>
+                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Stock de mi Sede</p>
                     <p class="text-4xl font-black tabular-nums"><?= count($inventory) ?></p>
                 </div>
                 <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700">
                     <p class="text-[9px] font-bold text-red-400 uppercase tracking-widest mb-1">Items Vencidos</p>
-                    <p class="text-4xl font-black text-red-500 tabular-nums"><?= $vencidos_count ?></p>
+                    <p class="text-4xl font-black text-red-500 tabular-nums">0</p>
                 </div>
                 <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700">
-                    <p class="text-[9px] font-bold text-orange-400 uppercase tracking-widest mb-1">Alertas de Stock</p>
+                    <p class="text-[9px] font-bold text-orange-400 uppercase tracking-widest mb-1">Stock Bajo Mínimo</p>
                     <p class="text-4xl font-black text-orange-500 tabular-nums"><?= $stockCritico ?></p>
                 </div>
+                <?php if ($isRegenteOrGerente): ?>
                 <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700">
                     <p class="text-[9px] font-bold text-medical-400 uppercase tracking-widest mb-1">Municipios (IPS)</p>
                     <p class="text-4xl font-black text-medical-500 tabular-nums">5</p>
                 </div>
+                <?php endif; ?>
             </div>
 
             <?php if ($isRegenteOrGerente && !empty($ips_inventory)): ?>
-            <!-- Monitoreo Consolidado IPS -->
+            <!-- Monitoreo Consolidado IPS (SOLO REGENTE/GERENTE) -->
             <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
                 <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex flex-col md:flex-row items-center justify-between bg-gray-50/30 gap-4">
                     <div class="text-center md:text-left">
@@ -171,45 +173,25 @@ foreach($inventory as $item) {
                 </div>
             </div>
             <?php endif; ?>
+
+            <?php if ($rol == 'IPS (Municipio)'): ?>
+            <!-- Sección Exclusiva para IPS: Solicitudes de Pacientes -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
+                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex flex-col md:flex-row items-center justify-between bg-medical-50/30 gap-4">
+                    <div class="text-center md:text-left">
+                        <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic text-xs">📋 Pacientes en Espera de Suministro (IPS <?= $_SESSION['sede'] ?>)</h3>
+                        <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic mt-1">Gestión local de entrega de medicamentos a usuarios</p>
+                    </div>
+                    <button class="px-6 py-2 bg-medical-500 text-white text-[10px] font-black rounded-xl uppercase tracking-widest shadow-lg shadow-medical-500/20">Registrar Entrega a Paciente</button>
+                </div>
+                <div class="p-12 text-center">
+                    <div class="text-4xl mb-4">🩺</div>
+                    <p class="text-gray-400 text-xs italic font-medium">No hay pacientes con fórmulas pendientes en este municipio hoy.</p>
+                </div>
+            </div>
+            <?php endif; ?>
         </main>
     </div>
-
-    <script>
-        // Config Charts
-        const ctxEntregas = document.getElementById('chartEntregas').getContext('2d');
-        new Chart(ctxEntregas, {
-            type: 'line',
-            data: {
-                labels: <?php echo json_encode($data_labels); ?>,
-                datasets: [{
-                    label: 'Medicamentos Entregados',
-                    data: <?php echo json_encode($data_entregas); ?>,
-                    borderColor: '#006D5B',
-                    backgroundColor: 'rgba(0, 109, 91, 0.1)',
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 6,
-                    pointBackgroundColor: '#fff',
-                    pointBorderWidth: 4
-                }]
-            },
-            options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
-        });
-
-        const ctxPedidos = document.getElementById('chartPedidos').getContext('2d');
-        new Chart(ctxPedidos, {
-            type: 'doughnut',
-            data: {
-                labels: ['Florencia', 'Solita', 'Solano', 'Milán', 'Getucha'],
-                datasets: [{
-                    data: [40, 15, 10, 20, 15],
-                    backgroundColor: ['#0f172a', '#006D5B', '#14b8a6', '#0ea5e9', '#6366f1'],
-                    borderWidth: 0
-                }]
-            },
-            options: { cutout: '80%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10, weight: 'bold' } } } } }
-        });
-    </script>
     <script src="../assets/js/theme-toggle.js"></script>
 </body>
 </html>
