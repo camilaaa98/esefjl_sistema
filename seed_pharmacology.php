@@ -8,42 +8,42 @@ try {
     echo "💊 CARGANDO CATÁLOGO FARMACÉUTICO PROFESIONAL...\n";
 
     // 1. Limpiar inventario y productos previos
-    $db->exec("DELETE FROM inventario; DELETE FROM productos;");
+    $db->exec("DELETE FROM inventario; DELETE FROM entregas; DELETE FROM productos; DELETE FROM categorias;");
 
-    // 2. Definición profesional de medicamentos
+    // 2. Insertar Categorías Profesionales
+    $cats = ['ANALGÉSICOS Y AINES', 'ANTIBIÓTICOS', 'CARDIOVASCULAR', 'DISPOSITIVOS MÉDICOS', 'PROTECCIÓN'];
+    $stmtCat = $db->prepare("INSERT INTO categorias (nombre) VALUES (?) ON CONFLICT DO NOTHING RETURNING id");
+    $catMap = [];
+    foreach ($cats as $c) {
+        $stmtCat->execute([$c]);
+        $catMap[$c] = $stmtCat->fetchColumn();
+        if (!$catMap[$c]) {
+            // Fallback si no hay RETURNING (algunos drivers)
+            $catMap[$c] = $db->query("SELECT id FROM categorias WHERE nombre = '$c'")->fetchColumn();
+        }
+    }
+
+    // 3. Definición profesional de medicamentos
     $productos = [
-        // Analgésicos y AINES (Diferentes dosis y laboratorios)
-        ['Ibuprofeno 400mg Tabletas', 'Analgésico', 'Caja x 20', 'MK'],
-        ['Ibuprofeno 400mg Tabletas', 'Analgésico', 'Caja x 30', 'GENFAR'],
-        ['Ibuprofeno 600mg Tabletas', 'Analgésico', 'Frasco x 50', 'BAYER'],
-        ['Acetaminofén 500mg Tabletas', 'Analgésico', 'Caja x 100', 'LAPROFF'],
-        ['Acetaminofén 150mg/5ml Jarabe', 'Analgésico Pediátrico', 'Frasco 120ml', 'MK'],
-        ['Diclofenaco 75mg/3ml Ampolla', 'Antiinflamatorio', 'Unidad (Inyectable)', 'GENFAR'],
-        
-        // Antibióticos
-        ['Amoxicilina 500mg Cápsulas', 'Antibiótico', 'Caja x 30', 'MK'],
-        ['Amoxicilina 500mg Cápsulas', 'Antibiótico', 'Caja x 15', 'ABBOTT'],
-        ['Ciprofloxacina 500mg Tableta', 'Antibiótico', 'Caja x 10', 'LAFRANCOL'],
-        
-        // Antihipertensivos
-        ['Losartán 50mg Tabletas', 'Cardiovascular', 'Caja x 30', 'HUMAX'],
-        ['Enalapril 20mg Tabletas', 'Cardiovascular', 'Caja x 20', 'GENFAR'],
-        
-        // Insumos Quirúrgicos
-        ['Jeringa 5cc con aguja 21G', 'Dispositivo Médico', 'Unidad estéril', 'BD'],
-        ['Gasa estéril 7.5x7.5cm', 'Dispositivo Médico', 'Paquete x 2', 'TEXPON'],
-        ['Guantes de látex Talle M', 'Protección', 'Caja x 100', 'TOP GLOVE']
+        ['Ibuprofeno 400mg Tabletas', 'ANALGÉSICOS Y AINES', 'Caja x 20', 'MK'],
+        ['Ibuprofeno 400mg Tabletas', 'ANALGÉSICOS Y AINES', 'Caja x 30', 'GENFAR'],
+        ['Ibuprofeno 600mg Tabletas', 'ANALGÉSICOS Y AINES', 'Frasco x 50', 'BAYER'],
+        ['Acetaminofén 500mg Tabletas', 'ANALGÉSICOS Y AINES', 'Caja x 100', 'LAPROFF'],
+        ['Amoxicilina 500mg Cápsulas', 'ANTIBIÓTICOS', 'Caja x 30', 'MK'],
+        ['Losartán 50mg Tabletas', 'CARDIOVASCULAR', 'Caja x 30', 'HUMAX'],
+        ['Jeringa 5cc con aguja 21G', 'DISPOSITIVOS MÉDICOS', 'Unidad estéril', 'BD'],
+        ['Guantes de látex Talle M', 'PROTECCIÓN', 'Caja x 100', 'TOP GLOVE']
     ];
 
-    $stmtProd = $db->prepare("INSERT INTO productos (nombre_generico, categoria, concentracion_presentacion, laboratorio) VALUES (?, ?, ?, ?)");
+    $stmtProd = $db->prepare("INSERT INTO productos (nombre_generico, categoria_id, concentracion_presentacion, laboratorio) VALUES (?, ?, ?, ?)");
     
     $productIds = [];
     foreach ($productos as $p) {
-        $stmtProd->execute($p);
+        $stmtProd->execute([$p[0], $catMap[$p[1]], $p[2], $p[3]]);
         $productIds[] = $db->lastInsertId();
     }
 
-    // 3. Cargar inventario diferenciado por sede
+    // 4. Cargar inventario diferenciado por sede
     $sedes = $db->query("SELECT id, nombre, tipo FROM sedes")->fetchAll();
     $stmtInv = $db->prepare("INSERT INTO inventario (sede_id, producto_id, stock_actual, stock_minimo, fecha_vencimiento, lote) VALUES (?, ?, ?, ?, ?, ?)");
 
@@ -51,10 +51,9 @@ try {
         echo "   -> Distribuyendo en sede: {$sede['nombre']}...\n";
         foreach ($productIds as $pId) {
             // Lógica de stock: La principal tiene mucho, los municipios poco
-            $stockBase = ($sede['tipo'] === 'PRINCIPAL') ? rand(500, 2000) : rand(10, 100);
-            $stockMin = ($sede['tipo'] === 'PRINCIPAL') ? 100 : rand(5, 20);
+            $stockBase = ($sede['tipo'] === 'PRINCIPAL') ? rand(500, 2000) : rand(0, 50);
+            $stockMin = ($sede['tipo'] === 'PRINCIPAL') ? 100 : rand(10, 20);
             
-            // Fecha de vencimiento futura aleatoria
             $venc = date('Y-m-d', strtotime('+' . rand(6, 36) . ' months'));
             $lote = "L-" . strtoupper(substr(md5(rand()), 0, 5));
 
@@ -63,7 +62,7 @@ try {
     }
 
     $db->commit();
-    echo "✅ ÉXITO: 14 productos cargados con stock diferenciado en todas las sedes.\n";
+    echo "✅ ÉXITO: Catálogo profesional cargado y distribuido.\n";
 
 } catch (Exception $e) {
     if (isset($db)) $db->rollBack();
