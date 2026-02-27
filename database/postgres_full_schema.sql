@@ -112,15 +112,28 @@ CREATE TABLE IF NOT EXISTS entregas (
 
 -- Semilla (Datos Iniciales)
 INSERT INTO roles (nombre) 
-VALUES ('Administrador'), ('Regente Farmacia'), ('Salud'), ('Administrativo'), ('Seguridad')
+VALUES 
+('Gerente'),
+('Subgerente de Servicios de Salud'),
+('Subgerente Administrativa y Financiera'),
+('Regente Farmacia'),
+('Salud'),
+('Administrativo'),
+('Seguridad'),
+('SECRETARIA DE SALUD DEPARTAMENTAL'),
+('PRESIDENTES JUNTA DIRECTIVA'),
+('REPRESENTANTE SECTOR ADMINISTRATIVO'),
+('REPRESENTANTE SECTOR SALUD'),
+('SECRETARIO TECNICO Y GERENTE DE LA ESE FABIO JARAMILLO LONDOÑO'),
+('REPRESENTANTE DE LOS USUARIOS')
 ON CONFLICT (nombre) DO NOTHING;
 
 INSERT INTO sedes (nombre, direccion, tipo) 
 VALUES 
-('Florencia (Principal)', 'Sede Central', 'PRINCIPAL'),
-('Solita', 'Calle Principal', 'MUNICIPIO'),
-('Solano', 'Calle Principal', 'MUNICIPIO'),
-('Milán', 'Calle 3 No. 6-72', 'MUNICIPIO'),
-('San Antonio de Getucha', 'Calle Principal', 'MUNICIPIO'),
-('Valparaíso', 'Calle 10 Carrera 3', 'MUNICIPIO')
+('Florencia (Principal)', 'Sede Central Administrativa', 'PRINCIPAL'),
+('Solita', 'Sede Hospitalaria IPS', 'MUNICIPIO'),
+('Solano', 'Sede Hospitalaria IPS', 'MUNICIPIO'),
+('Milán', 'Sede Hospitalaria IPS', 'MUNICIPIO'),
+('San Antonio de Getucha', 'Sede Hospitalaria IPS', 'MUNICIPIO'),
+('Valparaíso', 'Sede Hospitalaria IPS', 'MUNICIPIO')
 ON CONFLICT DO NOTHING;
