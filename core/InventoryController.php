@@ -66,6 +66,36 @@ class InventoryController {
         return $stmt->fetchAll();
     }
 
+    public static function canSupplyAllIPS() {
+        $db = Database::getInstance();
+        
+        // 1. Obtener suma de faltantes por producto en todas las IPS Municipales
+        $stmtFaltantes = $db->query("
+            SELECT i.producto_id, SUM(GREATEST(0, i.stock_minimo - i.stock_actual)) as total_faltante
+            FROM inventario i
+            JOIN sedes s ON i.sede_id = s.id
+            WHERE s.tipo = 'MUNICIPIO'
+            GROUP BY i.producto_id
+            HAVING SUM(GREATEST(0, i.stock_minimo - i.stock_actual)) > 0
+        ");
+        $faltantes = $stmtFaltantes->fetchAll();
+
+        if (empty($faltantes)) return true; // No hay faltantes en ninguna IPS
+
+        // 2. Comprobar si Florencia tiene stock para cubrir cada faltante
+        $florencia_id = $db->query("SELECT id FROM sedes WHERE nombre LIKE '%Florencia%' LIMIT 1")->fetchColumn();
+        
+        foreach ($faltantes as $f) {
+            $stmtCedis = $db->prepare("SELECT stock_actual FROM inventario WHERE sede_id = ? AND producto_id = ?");
+            $stmtCedis->execute([$florencia_id, $f['producto_id']]);
+            $stockCedis = $stmtCedis->fetchColumn() ?: 0;
+            
+            if ($stockCedis < $f['total_faltante']) return false;
+        }
+
+        return true;
+    }
+
     public static function seedInitialProducts() {
         // ... (Este método ya fue ejecutado o se reemplaza por mega_seed.php)
     }
