@@ -12,13 +12,17 @@ $sede_id = $_SESSION['sede_id'];
 $rol = $_SESSION['rol'];
 $db = Database::getInstance();
 
+$isRegenteOrGerente = in_array($rol, ['Gerente', 'Regente Farmacia', 'Subgerente de Servicios de Salud']);
 $inventory = InventoryController::getInventoryBySede($sede_id);
+$ips_inventory = $isRegenteOrGerente ? InventoryController::getAllIPSInventory() : [];
+$vencidos_count = count(InventoryController::getExpiredInventory());
 $alerts = AlertController::getInactivityAlerts();
+$stockCritico = 0;
+foreach($inventory as $i) if($i['stock_actual'] < $i['stock_minimo']) $stockCritico++;
 
-// Simulación de datos para gráficas (En el futuro vendrán de DB real de histórico)
+// Simulación de datos para gráficas
 $data_labels = ["Ene", "Feb", "Mar", "Abr", "May", "Jun"];
 $data_entregas = [120, 450, 300, 700, 850, 1000];
-$data_pedidos = [5, 12, 8, 15, 20, 25];
 
 $isHighCargo = in_array($rol, ['Gerente', 'Subgerente de Servicios de Salud', 'Subgerente Administrativa y Financiera']);
 ?>

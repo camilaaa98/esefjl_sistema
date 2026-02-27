@@ -39,6 +39,33 @@ class InventoryController {
         }
     }
 
+    public static function getAllIPSInventory() {
+        $db = Database::getInstance();
+        $stmt = $db->query("
+            SELECT s.nombre as sede_nombre, p.nombre_generico, p.laboratorio, i.stock_actual, i.stock_minimo, i.fecha_vencimiento
+            FROM inventario i
+            JOIN productos p ON i.producto_id = p.id
+            JOIN sedes s ON i.sede_id = s.id
+            WHERE s.tipo = 'MUNICIPIO' AND i.fecha_vencimiento >= CURRENT_DATE
+            ORDER BY s.nombre, p.nombre_generico
+        ");
+        return $stmt->fetchAll();
+    }
+
+    public static function getExpiredInventory() {
+        $db = Database::getInstance();
+        $stmt = $db->query("
+            SELECT i.*, p.nombre_generico, p.laboratorio, s.nombre as sede_nombre, prov.razon_social as proveedor_nombre
+            FROM inventario i
+            JOIN productos p ON i.producto_id = p.id
+            JOIN sedes s ON i.sede_id = s.id
+            LEFT JOIN proveedores prov ON p.laboratorio = prov.razon_social -- Simplificación para propósitos de demo
+            WHERE i.fecha_vencimiento < CURRENT_DATE
+            ORDER BY i.fecha_vencimiento DESC
+        ");
+        return $stmt->fetchAll();
+    }
+
     public static function seedInitialProducts() {
         // ... (Este método ya fue ejecutado o se reemplaza por mega_seed.php)
     }
