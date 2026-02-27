@@ -9,11 +9,11 @@ class InventoryController {
     public static function getInventoryBySede($sede_id) {
         $db = Database::getInstance();
         $stmt = $db->prepare("
-            SELECT i.*, p.nombre_generico, p.unidad_medida, c.nombre as categoria
+            SELECT i.*, p.nombre_generico, p.unidad_medida, c.nombre as categoria, p.laboratorio, p.concentracion_presentacion
             FROM inventario i
             JOIN productos p ON i.producto_id = p.id
             JOIN categorias c ON p.categoria_id = c.id
-            WHERE i.sede_id = ?
+            WHERE i.sede_id = ? AND i.fecha_vencimiento >= CURRENT_DATE
             ORDER BY i.fecha_vencimiento ASC
         ");
         $stmt->execute([$sede_id]);
