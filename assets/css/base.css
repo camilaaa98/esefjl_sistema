@@ -1,0 +1,64 @@
+:root {
+    /* Paleta Deep Pro - ESE Fabio Jaramillo (Médica/Institucional) */
+    --primary: #020c1b;
+    /* Navy Profundo Hospitalario */
+    --primary-light: #0a192f;
+    --secondary: #00796b;
+    /* Teal Médico Real */
+    --secondary-soft: rgba(0, 121, 107, 0.1);
+    --accent: #fbc02d;
+    /* Amarillo Institucional */
+    --text-main: #e0f2f1;
+    /* Blanco Médico Tealizado */
+    --text-dim: #80cbc4;
+    /* Gris Tealizado */
+    --white: #ffffff;
+    --glass: rgba(10, 25, 47, 0.85);
+    --border: rgba(0, 121, 107, 0.25);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Outfit', sans-serif;
+}
+
+body {
+    background: #020c1b;
+    /* Fondo ultra oscuro */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Scrollbar Profesional */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 10px;
+}
+
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    width: 100%;
+}
