@@ -23,106 +23,107 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="light">
 <head>
     <meta charset="UTF-8">
-    <title>Módulo de Entregas - ESE FJL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/base.css?v=1.2">
-    <style>
-        .app-shell { display: grid; grid-template-columns: 240px 1fr; height: 100vh; background: var(--primary); }
-        .sidebar { background: var(--primary-light); border-right: 1px solid var(--border); padding: 15px; display: flex; flex-direction: column; }
-        .main-view { overflow-y: auto; padding: 20px; background: var(--primary); }
-        
-        .nav-link { color: var(--text-dim); text-decoration: none; padding: 10px 15px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 5px; display: block; transition: var(--transition); }
-        .nav-link.active, .nav-link:hover { background: var(--secondary-soft); color: var(--secondary); border-left: 3px solid var(--secondary); }
-        
-        .form-container { max-width: 500px; margin: 20px auto; background: var(--primary-light); padding: 30px; border-radius: 15px; border: 1px solid var(--border); }
-        h2 { color: var(--secondary); margin-bottom: 25px; text-align: center; font-size: 1.2rem; }
-        
-        .form-group { margin-bottom: 20px; }
-        label { display: block; color: var(--text-dim); margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; }
-        .form-control { width: 100%; background: var(--primary); border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: var(--white); outline: none; transition: var(--transition); }
-        .form-control:focus { border-color: var(--secondary); box-shadow: 0 0 15px var(--secondary-soft); }
-        
-        .btn-submit { width: 100%; background: transparent; border: 1px solid var(--secondary); color: var(--secondary); padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: var(--transition); margin-top: 10px; }
-        .btn-submit:hover { background: var(--secondary-soft); box-shadow: 0 0 20px var(--secondary-soft); }
-        
-        .notif-box { background: rgba(100, 255, 218, 0.05); border-left: 4px solid var(--secondary); padding: 15px; border-radius: 8px; margin-top: 20px; }
-        .notif-box strong { color: var(--secondary); font-size: 0.8rem; }
-        .notif-box p { color: var(--text-main); font-size: 0.8rem; font-style: italic; margin-top: 5px; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de Entregas - SISFARMA PRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
 </head>
+<body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
 <body>
-    <div class="app-shell">
-        <aside class="sidebar">
-            <div style="margin-bottom: 30px; padding: 0 10px; text-align: center;">
-                <img src="../img/logoesefjl.jpg" width="60" style="margin: 0 auto; display: block;">
-                <h4 style="color:var(--secondary); font-size: 0.8rem; margin-top:10px; text-align: center;">SISFARMA PRO</h4>
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6 shadow-sm">
+            <div class="flex items-center gap-3 mb-10">
+                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
+                <div>
+                    <h1 class="text-medical-500 font-extrabold text-lg leading-tight tracking-tighter uppercase">SISFARMA</h1>
+                    <span class="text-[8px] text-gray-400 dark:text-gray-500 font-bold tracking-widest uppercase">ESE Fabio Jaramillo</span>
+                </div>
             </div>
 
-            <nav>
-                <a href="dashboard.php" class="nav-link">Panel Maestro</a>
-                <a href="solicitud_municipio.php" class="nav-link">Distribución IPS</a>
-                <a href="#" class="nav-link active">Módulo de Entregas</a>
-                <a href="historial.php" class="nav-link">Historial</a>
+            <nav class="flex-1 space-y-1">
+                <a href="dashboard.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
+                    <span>🏠</span> Inicio
+                </a>
+                <a href="registro_entrega.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">
+                    <span>💊</span> Módulo de Entregas
+                </a>
             </nav>
+
+            <div class="mt-auto pt-6 border-t border-gray-100 dark:border-slate-700 text-center">
+                <button id="theme-toggle" class="w-full flex items-center justify-center gap-2 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-xs font-bold text-gray-600 dark:text-gray-300">
+                    🌓 Cambiar Tema
+                </button>
+            </div>
         </aside>
 
-        <main class="main-view">
-            <div class="form-container">
-                <h2>REGISTRO TÉCNICO DE ENTREGA</h2>
+        <!-- Main content -->
+        <main class="flex-1 p-6 md:p-10 flex justify-center items-start">
+            <div class="max-w-xl w-full bg-white dark:bg-slate-800 p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-slate-700 mt-4">
+                <header class="text-center mb-10">
+                    <h2 class="text-2xl font-black text-gray-900 dark:text-white italic uppercase tracking-tighter leading-tight">Registro Técnico de Entrega</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm font-medium mt-1">Soporte Farmacológico Red IPS E.S.E FJL</p>
+                </header>
                 
                 <?php if ($resultado_entrega): ?>
-                    <div style="background:var(--secondary-soft); color:var(--secondary); padding:10px; border-radius:8px; margin-bottom:20px; text-align:center; font-weight:bold;">
-                        ENTREGA PROCESADA EXITOSAMENTE
+                    <div class="mb-8 p-4 bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30 rounded-2xl text-green-600 dark:text-green-400 text-center font-bold text-sm">
+                        ENTREGA PROCESADA EXITOSAMENTE ✓
                     </div>
                 <?php endif; ?>
 
-                <form method="POST">
-                    <div class="form-group">
-                        <label>Identificación del Ciudadano</label>
-                        <select name="paciente_id" class="form-control" required>
+                <form method="POST" class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Identificación del Ciudadano</label>
+                        <select name="paciente_id" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-bold text-gray-700 dark:text-gray-300" required>
                             <option value="">Seleccione Paciente...</option>
                             <?php foreach ($pacientes as $p): ?>
                                 <?php 
                                     $info_regimen = $p['regimen'] ?? 'SIN RÉGIMEN';
-                                    if ($p['es_desplazado']) $info_regimen = "EXENTO (Ley 1448 / Desplazado)";
+                                    if ($p['es_desplazado']) $info_regimen = "EXENTO (Ley 1448)";
                                     else if ($info_regimen == 'SUBSIDIADO') $info_regimen = "EXENTO (Subsidiado)";
                                 ?>
                                 <option value="<?php echo $p['documento']; ?>">
-                                    <?php echo $p['nombres'] . ' ' . $p['apellidos'] . ' [' . $info_regimen . ']'; ?>
+                                    <?php echo strtoupper($p['nombres'] . ' ' . $p['apellidos']) . ' — ' . $info_regimen; ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label>Insumo a Entregar</label>
-                        <select name="producto_id" class="form-control" required>
+                    <div class="space-y-2">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Insumo a Dispensar</label>
+                        <select name="producto_id" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-black text-medical-500 italic" required>
                             <option value="">Seleccione Medicamento...</option>
                             <?php foreach ($inventory as $i): ?>
-                                <option value="<?php echo $i['producto_id']; ?>"><?php echo strtoupper($i['nombre_generico']); ?> (Disp: <?php echo $i['stock_actual']; ?>)</option>
+                                <option value="<?php echo $i['producto_id']; ?>"><?php echo strtoupper($i['nombre_generico']); ?> (STOCK: <?php echo $i['stock_actual']; ?>)</option>
                             <?php endforeach; ?>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label>Cantidad Autorizada</label>
-                        <input type="number" name="cantidad" class="form-control" min="1" required placeholder="0">
+                    <div class="space-y-2">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Cantidad Autorizada</label>
+                        <input type="number" name="cantidad" min="1" placeholder="0" 
+                            class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-black dark:text-white" required>
                     </div>
 
-                    <button type="submit" class="btn-submit">REGISTRAR Y DISPARAR NOTIFICACIÓN</button>
+                    <button type="submit" class="w-full py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-3xl shadow-xl transition-all transform hover:scale-[1.01] uppercase text-xs tracking-widest">
+                        Registrar y Generar Alerta SMS
+                    </button>
                 </form>
 
                 <?php if ($resultado_entrega): ?>
-                    <div class="notif-box">
-                        <strong>LOG DE MENSAJERÍA AUTOMÁTICA:</strong>
-                        <p><?php echo $resultado_entrega['preview']; ?></p>
+                    <div class="mt-8 p-6 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-gray-100 dark:border-slate-700">
+                        <span class="block text-[10px] font-black text-medical-500 uppercase tracking-widest mb-3 italic">Log de Mensajería Automática</span>
+                        <p class="text-xs font-medium text-gray-600 dark:text-gray-400 leading-relaxed italic border-l-2 border-medical-500 pl-4"><?php echo $resultado_entrega['preview']; ?></p>
                     </div>
                 <?php endif; ?>
             </div>
         </main>
     </div>
+    <script src="../assets/js/theme-toggle.js"></script>
 </body>
 </html>

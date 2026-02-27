@@ -27,78 +27,125 @@ $mensaje = "";
         }
     }
     ?>
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Vinculación de Pacientes - SISFARMA PRO</title>
-        <link rel="stylesheet" href="../assets/css/base.css?v=1.2">
-        <style>
-            .form-card {
-                max-width: 600px;
-                margin: 40px auto;
-                background: var(--primary-light);
-                padding: 30px;
-                border-radius: 20px;
-                border: 1px solid var(--border);
-                box-shadow: var(--shadow);
-            }
-            .input-box { width: 100%; padding: 12px; margin: 8px 0; background: var(--primary); border: 1px solid var(--border); color: var(--text-main); border-radius: 8px; box-sizing: border-box; }
-            .btn-save { background: var(--secondary); color: var(--primary); padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-weight: 800; width: 100%; margin-top: 20px; transition: var(--transition); }
-            .btn-save:hover { filter: brightness(1.2); transform: translateY(-2px); }
-            .flex-row { display: flex; gap: 10px; }
-            .flex-row > * { flex: 1; }
-            label { display: block; margin-top: 10px; color: var(--text-dim); font-size: 0.9em; }
-        </style>
-    </head>
-    <body>
-        <div style="padding: 20px;">
-            <a href="dashboard.php" style="color:var(--secondary); text-decoration:none;">← Volver al Panel</a>
-        </div>
-        
-        <div class="form-card">
-            <div style="text-align: center;">
-                <img src="../img/logoesefjl.jpg" width="80" style="margin-bottom: 15px;">
-                <h1 style="margin:0;">VINCULACIÓN DE PACIENTES</h1>
-                <p style="color:var(--text-dim); margin-bottom: 25px;">Registro oficial de ciudadanos para la Red IPS</p>
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinculación de Pacientes - SISFARMA PRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Reutilizada -->
+        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6">
+            <div class="flex items-center gap-3 mb-10">
+                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
+                <div>
+                    <h1 class="text-medical-500 font-extrabold text-lg leading-tight tracking-tighter uppercase">SISFARMA</h1>
+                    <span class="text-[8px] text-gray-400 dark:text-gray-500 font-bold tracking-widest uppercase">ESE Fabio Jaramillo</span>
+                </div>
             </div>
-            
-            <?php if($mensaje): ?>
-                <div style="text-align:center; color:var(--secondary); margin-bottom: 20px; padding:10px; border:1px solid var(--secondary); border-radius:8px;"><?php echo $mensaje; ?></div>
-            <?php endif; ?>
-    
-            <form method="POST">
-                <div class="flex-row">
-                    <input type="text" name="documento" placeholder="Cédula de Ciudadanía" class="input-box" required>
-                    <input type="text" name="sisben" placeholder="Nivel Sisbén (ej: A1)" class="input-box">
-                </div>
+            <nav class="flex-1 space-y-1">
+                <a href="dashboard.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
+                    <span>🏠</span> Inicio
+                </a>
+                <a href="registro_paciente.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">
+                    <span>🏥</span> Vincular Paciente
+                </a>
+            </nav>
+        </aside>
+        
+        <!-- Main content -->
+        <main class="flex-1 p-6 md:p-10 flex justify-center items-center">
+            <div class="max-w-2xl w-full bg-white dark:bg-slate-800 p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-slate-700">
+                <header class="text-center mb-10">
+                    <div class="flex justify-center mb-6">
+                        <img src="../img/logoesefjl.jpg" alt="Logo" class="w-20 h-20 rounded-2xl shadow-lg ring-4 ring-medical-50 dark:ring-medical-500/10">
+                    </div>
+                    <h2 class="text-2xl font-black text-gray-900 dark:text-white italic uppercase tracking-tighter">Vinculación de Pacientes</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Registro oficial de ciudadanos para la Red Regional IPS</p>
+                </header>
                 
-                <div class="flex-row">
-                    <input type="text" name="nombres" placeholder="Nombres" class="input-box" required>
-                    <input type="text" name="apellidos" placeholder="Apellidos" class="input-box" required>
-                </div>
-                
-                <input type="text" name="celular" placeholder="Celular de Contacto (SMS)" class="input-box" required>
-                
-                <label>Entidad Promotora de Salud (EPS)</label>
-                <input type="text" name="eps" placeholder="Nombre de la EPS" class="input-box" required>
-                
-                <label>Régimen de Afiliación</label>
-                <select name="regimen" class="input-box" required>
-                    <option value="">Seleccione Régimen...</option>
-                    <option value="CONTRIBUTIVO">CONTRIBUTIVO (Genera Copago)</option>
-                    <option value="SUBSIDIADO">SUBSIDIADO (Exento)</option>
-                </select>
-    
-                <div style="margin-top: 15px; background: var(--secondary-soft); padding: 10px; border-radius: 8px; border-left: 4px solid var(--secondary);">
-                    <label style="color:var(--secondary); display:flex; align-items:center; cursor:pointer;">
-                        <input type="checkbox" name="es_desplazado" style="margin-right:10px;">
-                        ¿Es población desplazada? (Ley 1448 / Exención Total)
-                    </label>
-                </div>
-                
-                <button type="submit" class="btn-save">VINCULAR CIUDADANO</button>
-            </form>
-        </div>
-    </body>
+                <?php if($mensaje): ?>
+                    <div class="mb-8 p-4 bg-medical-50 dark:bg-medical-500/10 border border-medical-200 dark:border-medical-500/30 rounded-2xl text-medical-600 dark:text-medical-400 text-center font-bold text-sm">
+                        <?php echo $mensaje; ?>
+                    </div>
+                <?php endif; ?>
+        
+                <form method="POST" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Documento de Identidad</label>
+                            <input type="text" name="documento" placeholder="Cédula de Ciudadanía" 
+                                class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Nivel Sisbén</label>
+                            <input type="text" name="sisben" placeholder="Ej: A1, B4..." 
+                                class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white uppercase font-bold text-medical-500">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Nombres</label>
+                            <input type="text" name="nombres" placeholder="Nombres" 
+                                class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Apellidos</label>
+                            <input type="text" name="apellidos" placeholder="Apellidos" 
+                                class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white" required>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Celular de Contacto (SMS)</label>
+                        <input type="text" name="celular" placeholder="Número para notificaciones" 
+                            class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white" required>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">EPS Afiliada</label>
+                            <select name="eps" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-bold text-gray-700 dark:text-gray-300" required>
+                                <option value="">Seleccione EPS...</option>
+                                <option value="Nueva EPS">Nueva EPS</option>
+                                <option value="Sanitas">Sanitas</option>
+                                <option value="Asmet Salud">Asmet Salud</option>
+                                <option value="Fuerzas Militares">Fuerzas Militares</option>
+                                <option value="Policía Nacional">Policía Nacional</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Régimen</label>
+                            <select name="regimen" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-bold text-gray-700 dark:text-gray-300" required>
+                                <option value="">Seleccione Régimen...</option>
+                                <option value="CONTRIBUTIVO">CONTRIBUTIVO (Genera Copago)</option>
+                                <option value="SUBSIDIADO">SUBSIDIADO (Exento)</option>
+                                <option value="ESPECIAL">ESPECIAL</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                    <div class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-transparent hover:border-medical-200 transition-all group">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" name="es_desplazado" class="w-5 h-5 rounded border-gray-300 text-medical-500 focus:ring-medical-500 dark:bg-slate-800 dark:border-slate-700">
+                            <span class="text-[11px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-medical-600 transition-colors uppercase">¿Es población desplazada? (Ley 1448 / Exención)</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="w-full py-5 bg-medical-500 hover:bg-medical-600 text-white font-black rounded-3xl shadow-xl shadow-medical-500/20 transition-all transform hover:scale-[1.01] uppercase text-sm tracking-widest">
+                        Vinculación Oficial Digital
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="../assets/js/theme-toggle.js"></script>
+</body>
 </html>

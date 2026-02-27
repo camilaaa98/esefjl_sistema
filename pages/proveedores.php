@@ -47,69 +47,105 @@ $compras = $db->query("
     </style>
 </head>
 <body>
-    <div class="app-shell">
-        <aside class="sidebar">
-            <div style="margin-bottom: 30px; padding: 0 10px; text-align: center;">
-                <img src="../img/logoesefjl.jpg" width="60" style="margin: 0 auto; display: block;">
-                <h4 style="color:var(--secondary); font-size: 0.8rem; margin-top:10px; text-align: center;">SISFARMA PRO</h4>
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6 shadow-sm">
+            <div class="flex items-center gap-3 mb-10">
+                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
+                <div>
+                    <h1 class="text-medical-500 font-extrabold text-lg leading-tight tracking-tighter uppercase">SISFARMA</h1>
+                    <span class="text-[8px] text-gray-400 dark:text-gray-500 font-bold tracking-widest uppercase">ESE Fabio Jaramillo</span>
+                </div>
             </div>
 
-            <nav>
-                <a href="dashboard.php" class="nav-link">Panel Maestro</a>
-                <a href="solicitud_municipio.php" class="nav-link">Distribución IPS</a>
-                <a href="#" class="nav-link active">Proveedores</a>
-                <a href="historial.php" class="nav-link">Historial</a>
+            <nav class="flex-1 space-y-1">
+                <a href="dashboard.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
+                    <span>🏠</span> Inicio
+                </a>
+                <a href="proveedores.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">
+                    <span>🏭</span> Gestión Proveedores
+                </a>
             </nav>
+
+            <div class="mt-auto pt-6 border-t border-gray-100 dark:border-slate-700 text-center">
+                <button id="theme-toggle" class="w-full flex items-center justify-center gap-2 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-xs font-bold text-gray-600 dark:text-gray-300">
+                    🌓 Cambiar Tema
+                </button>
+            </div>
         </aside>
 
-        <main class="main-view">
-            <div class="header-flex">
-                <h2 style="color:white;">Gestión de Proveedores y Cartera</h2>
-                <button class="btn-action">+ NUEVO PROVEEDOR</button>
-            </div>
+        <!-- Main content -->
+        <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
+            <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight italic uppercase">Gestión de Proveedores y Cartera</h2>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm font-medium italic">Control de abastecimiento institucional y pagos CEDIS</p>
+                </div>
+                <button class="px-6 py-3 bg-medical-500 hover:bg-medical-600 text-white font-black rounded-2xl shadow-lg shadow-medical-500/20 transition-all uppercase text-xs tracking-widest">
+                    + Nuevo Proveedor
+                </button>
+            </header>
 
-            <div class="dashboard-grid">
-                <div class="data-card">
-                    <div class="card-title">HISTORIAL DE COMPRAS AL POR MAYOR</div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>FECHA</th>
-                                <th>RAZÓN SOCIAL</th>
-                                <th>TOTAL</th>
-                                <th>ESTADO</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($compras as $c): ?>
-                            <tr>
-                                <td><?php echo date('d/m/Y', strtotime($c['fecha_compra'])); ?></td>
-                                <td><?php echo strtoupper($c['razon_social']); ?></td>
-                                <td>$<?php echo number_format($c['total'], 0); ?></td>
-                                <td>
-                                    <span class="badge-status <?php echo $c['estado_pago'] == 'PAGADO' ? 'bg-paid' : 'bg-pending'; ?>">
-                                        <?php echo $c['estado_pago']; ?>
-                                    </span>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Columna principal -->
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
+                        <div class="p-6 border-b border-gray-50 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
+                            <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mt-1">Historial de Compras al por Mayor</span>
+                            <span class="text-[9px] font-black text-medical-500 uppercase italic">Control Patrimonial</span>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-slate-50 dark:bg-slate-900/50 border-b border-gray-100 dark:border-slate-700">
+                                    <tr>
+                                        <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Fecha</th>
+                                        <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Razón Social</th>
+                                        <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Total</th>
+                                        <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
+                                    <?php foreach ($compras as $c): ?>
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-all">
+                                        <td class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 font-mono">
+                                            <?= date('d/m/Y', strtotime($c['fecha_compra'])) ?>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="text-sm font-black text-gray-800 dark:text-white"><?= strtoupper($c['razon_social']) ?></span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm font-black text-medical-500">
+                                            $<?= number_format($c['total'], 0) ?>
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            <span class="px-3 py-1 text-[9px] font-black rounded-full uppercase <?= $c['estado_pago'] == 'PAGADO' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700' ?>">
+                                                <?= $c['estado_pago'] ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="data-card">
-                    <div class="card-title">DIRECTORIO ACTIVO</div>
-                    <div style="padding: 15px;">
-                        <?php foreach ($proveedores as $p): ?>
-                            <div style="padding: 10px; border-bottom: 1px solid var(--border); margin-bottom: 10px;">
-                                <div style="color:var(--secondary); font-size: 0.9rem; font-weight:bold;"><?php echo strtoupper($p['razon_social']); ?></div>
-                                <div style="color:var(--text-dim); font-size: 0.75rem;">NIT: <?php echo $p['nit']; ?></div>
-                            </div>
-                        <?php endforeach; ?>
+                <!-- Sidebar derecha -->
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] shadow-sm border border-gray-100 dark:border-slate-700">
+                        <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-6">Directorio Activo</h3>
+                        <div class="space-y-4">
+                            <?php foreach ($proveedores as $p): ?>
+                                <div class="p-4 bg-gray-50 dark:bg-slate-900 border border-transparent hover:border-medical-200 dark:hover:border-medical-500/30 rounded-2xl transition-all group">
+                                    <div class="text-sm font-black text-gray-800 dark:text-white group-hover:text-medical-500 transition-colors uppercase leading-tight"><?= strtoupper($p['razon_social']) ?></div>
+                                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">NIT: <?= $p['nit'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+    <script src="../assets/js/theme-toggle.js"></script>
 </body>
 </html>
