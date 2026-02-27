@@ -80,16 +80,19 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
                 </div>
             <?php endif; ?>
 
-            <header class="bg-medical-500 rounded-[30px] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl shadow-medical-500/20">
+            <header class="flex flex-col items-center justify-center text-center gap-4 relative overflow-hidden bg-slate-900 text-white p-12 rounded-[2.5rem] mb-12 shadow-2xl shadow-slate-900/40">
                 <div class="relative z-10">
-                    <h2 class="text-3xl md:text-4xl font-black mb-4 tracking-tighter italic uppercase">Abastecimiento IPS</h2>
-                    <p class="max-w-xl text-medical-50 font-medium leading-relaxed mb-8 opacity-90">
-                        Sincroniza el inventario local de la IPS con el CEDIS central para garantizar el stock de insumos críticos.
-                    </p>
+                    <span class="inline-block px-4 py-1.5 bg-medical-500 text-white text-[9px] font-black rounded-full uppercase tracking-widest mb-4 animate-pulse">Operación Municipal</span>
+                    <h2 class="text-4xl font-black tracking-tight leading-none mb-3 italic uppercase">Logística de Suministro IPS</h2>
+                    <p class="text-slate-300 text-sm italic font-medium">Gestión de stock inteligente para la sede: <span class="text-white underline decoration-2 underline-offset-4 decoration-medical-500"><?= strtoupper($_SESSION['sede']) ?></span></p>
+                </div>
+                
+                <!-- Botón Pedido Automático Centrado -->
+                <div class="mt-8 relative z-10">
                     <form method="POST">
-                        <button type="submit" name="btnManualRequest" 
-                            class="px-8 py-4 bg-white text-medical-500 font-black rounded-2xl shadow-xl hover:scale-105 transition-transform active:scale-95 uppercase tracking-widest text-xs">
-                            ⚡ Enviar Pedido Automático al CEDIS
+                        <button type="submit" name="btnManualRequest" class="group flex items-center gap-3 px-8 py-4 bg-white text-slate-900 font-extrabold rounded-2xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase text-xs tracking-widest">
+                            🚀 Generar Pedido Automático al CEDIS
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
                         </button>
                     </form>
                 </div>

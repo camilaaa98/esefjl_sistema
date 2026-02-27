@@ -90,7 +90,7 @@ $isHighCargo = in_array($rol, ['Gerente', 'Subgerente de Servicios de Salud', 'S
 
         <!-- Main -->
         <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
-            <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <header class="flex flex-col items-center justify-center text-center gap-4">
                 <div>
                     <h2 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight italic"><?php echo strtoupper($rol); ?></h2>
                     <p class="text-gray-500 dark:text-gray-400 text-sm font-medium italic">Sede de Operación: <?= strtoupper($_SESSION['sede']) ?></p>
@@ -124,8 +124,8 @@ $isHighCargo = in_array($rol, ['Gerente', 'Subgerente de Servicios de Salud', 'S
             <?php if ($isRegenteOrGerente && !empty($ips_inventory)): ?>
             <!-- Monitoreo Consolidado IPS -->
             <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex justify-between items-center bg-gray-50/30">
-                    <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic text-xs">📡 Tablero de Control de Inventario Regional (IPS Municipios)</h3>
+                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex flex-col items-center justify-center text-center bg-gray-50/30">
+                    <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic text-sm mb-2">📡 Tablero de Control de Inventario Regional (IPS Municipios)</h3>
                     <div class="text-[9px] bg-medical-500 text-white font-black px-3 py-1 rounded-full animate-pulse uppercase">Monitoreo 360°</div>
                 </div>
                 <div class="overflow-x-auto">

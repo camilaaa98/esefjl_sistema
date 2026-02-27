@@ -52,13 +52,13 @@ if (isset($_POST['btnBaja']) && $rol === 'Gerente') {
 
         <!-- Main -->
         <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
-            <header class="flex justify-between items-center">
+            <header class="flex flex-col items-center justify-center text-center">
                 <div>
                     <h2 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight italic uppercase">Módulo de Saneamiento y Bajas</h2>
                     <p class="text-gray-500 dark:text-gray-400 text-sm font-medium italic">Control de productos caducados y segregación de inventario</p>
                 </div>
                 <?php if (isset($_GET['msg'])): ?>
-                    <div class="bg-green-500 text-white px-6 py-2 rounded-2xl font-bold animate-bounce shadow-lg">✅ <?= $_GET['msg'] ?></div>
+                    <div class="mt-4 bg-green-500 text-white px-6 py-2 rounded-2xl font-bold animate-bounce shadow-lg">✅ <?= $_GET['msg'] ?></div>
                 <?php endif; ?>
             </header>
 
