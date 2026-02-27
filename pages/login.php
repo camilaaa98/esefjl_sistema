@@ -14,7 +14,8 @@
             background-size: cover;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Cambio a la izquierda */
+            padding-left: 5%; /* Espaciado lateral */
         }
         .login-glass {
             background: rgba(255, 255, 255, 0.85);
@@ -25,7 +26,7 @@
     </style>
 </head>
 <body class="min-h-screen p-6">
-    <div class="max-w-md w-full login-glass rounded-3xl shadow-2xl overflow-hidden transform transition-all hover:scale-[1.01]">
+    <div class="max-w-md w-full login-glass rounded-3xl shadow-2xl overflow-hidden transform transition-all hover:scale-[1.01] ml-4 md:ml-20">
         <div class="p-8 md:p-12">
             <div class="flex justify-center mb-8">
                 <img src="../img/logoesefjl.jpg" alt="Logo" class="w-24 h-24 rounded-2xl shadow-lg ring-4 ring-medical-50">

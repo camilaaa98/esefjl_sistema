@@ -30,15 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const btn = loginForm.querySelector('.btn-login');
-        const span = btn.querySelector('span');
-        const originalText = span.innerText;
+        // Selector actualizado para el botón de Tailwind
+        const btn = loginForm.querySelector('button[type="submit"]');
+        const loginError = document.getElementById('login-error');
+
+        const originalText = btn.innerText;
 
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
         btn.disabled = true;
-        span.innerText = 'AUTENTICANDO...';
+        btn.innerText = 'AUTENTICANDO...';
+        loginError.classList.add('hidden');
         playSound(800, 'square', 0.15);
 
         try {
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
 
             if (result.success) {
-                span.innerText = 'ACCESO CONCEDIDO';
+                btn.innerText = 'ACCESO CONCEDIDO';
                 playSound(1200, 'sine', 0.2);
                 setTimeout(() => window.location.href = result.redirect, 800);
             } else {
@@ -59,8 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             playSound(150, 'sawtooth', 0.4);
-            alert("Error: " + (error.message || "Credenciales inválidas"));
-            span.innerText = originalText;
+            loginError.innerText = error.message || "Credenciales inválidas";
+            loginError.classList.remove('hidden');
+            btn.innerText = originalText;
             btn.disabled = false;
         }
     });
