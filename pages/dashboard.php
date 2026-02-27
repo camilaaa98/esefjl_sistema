@@ -14,7 +14,16 @@ $db = Database::getInstance();
 
 $isRegenteOrGerente = in_array($rol, ['Gerente', 'Regente Farmacia', 'Subgerente de Servicios de Salud']);
 $inventory = InventoryController::getInventoryBySede($sede_id);
-$ips_inventory = $isRegenteOrGerente ? InventoryController::getAllIPSInventory() : [];
+$all_ips_data = $isRegenteOrGerente ? InventoryController::getAllIPSInventory() : [];
+
+// Paginación Manual para IPS Inventory
+$current_page_num = isset($_GET['p']) ? max(1, intval($_GET['p'])) : 1;
+$limit = 10;
+$offset = ($current_page_num - 1) * $limit;
+$total_ips_items = count($all_ips_data);
+$ips_inventory = array_slice($all_ips_data, $offset, $limit);
+$total_ips_pages = ceil($total_ips_items / $limit);
+
 $vencidos_count = count(InventoryController::getExpiredInventory());
 $can_supply_all = InventoryController::canSupplyAllIPS();
 $alerts = AlertController::getInactivityAlerts();
@@ -85,42 +94,56 @@ foreach($inventory as $item) {
             <?php if ($isRegenteOrGerente && !empty($ips_inventory)): ?>
             <!-- Monitoreo Consolidado IPS -->
             <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
-                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex flex-col items-center justify-center text-center bg-gray-50/30">
-                    <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic text-sm mb-2">📡 Tablero de Control de Inventario Regional (IPS Municipios)</h3>
-                    <div class="text-[9px] bg-medical-500 text-white font-black px-3 py-1 rounded-full animate-pulse uppercase">Monitoreo 360°</div>
+                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex flex-col md:flex-row items-center justify-between bg-gray-50/30 gap-4">
+                    <div class="text-center md:text-left">
+                        <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic text-xs">📡 Tablero de Control de Inventario Regional (IPS Municipios)</h3>
+                        <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic mt-1">Página <?= $current_page_num ?> de <?= $total_ips_pages ?> — <?= $total_ips_items ?> requerimientos activos</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <?php if ($current_page_num > 1): ?>
+                            <a href="?p=<?= $current_page_num - 1 ?>" class="px-4 py-2 bg-white dark:bg-slate-700 border border-gray-100 dark:border-slate-600 rounded-xl text-[9px] font-black uppercase hover:bg-gray-50 transition-all shadow-sm italic">Anterior</a>
+                        <?php endif; ?>
+                        <?php if ($current_page_num < $total_ips_pages): ?>
+                            <a href="?p=<?= $current_page_num + 1 ?>" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-[9px] font-black uppercase hover:scale-105 transition-all shadow-lg italic">Siguiente</a>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left font-inter">
                         <thead class="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100">
                             <tr>
+                                <th class="px-6 py-4 w-16">Item</th>
                                 <th class="px-6 py-4">Municipio</th>
                                 <th class="px-6 py-4">Insumo</th>
                                 <th class="px-6 py-4">Laboratorio</th>
                                 <th class="px-6 py-4 text-center">Cant. Físico</th>
-                                <th class="px-6 py-4 text-center">Stock Mín.</th>
                                 <th class="px-6 py-4 text-center">Faltante</th>
-                                <th class="px-6 py-4 text-right">Solicitud Sugerida</th>
+                                <th class="px-6 py-4 text-right">Sugerencia</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
-                            <?php foreach ($ips_inventory as $item): 
+                            <?php 
+                            $counter = $offset + 1;
+                            foreach ($ips_inventory as $item): 
                                 $diff = $item['stock_minimo'] - $item['stock_actual'];
                                 $solicitada = ($diff > 0) ? ($item['stock_minimo'] * 1.5) : 0;
                             ?>
                             <tr class="hover:bg-gray-50/50 transition-colors">
                                 <td class="px-6 py-4">
+                                    <span class="text-[10px] font-black text-gray-300 font-mono"><?= str_pad($counter++, 2, '0', STR_PAD_LEFT) ?></span>
+                                </td>
+                                <td class="px-6 py-4">
                                     <span class="text-[10px] font-black text-slate-500 uppercase"><?= $item['sede_nombre'] ?></span>
                                 </td>
                                 <td class="px-6 py-4 font-bold text-[11px] text-gray-800 dark:text-white uppercase"><?= $item['nombre_generico'] ?></td>
                                 <td class="px-6 py-4 text-[9px] font-black text-gray-400 italic"><?= $item['laboratorio'] ?></td>
-                                <td class="px-6 py-4 text-center font-black text-sm text-slate-800 tabular-nums"><?= $item['stock_actual'] ?></td>
-                                <td class="px-6 py-4 text-center text-[11px] font-bold text-gray-400"><?= $item['stock_minimo'] ?></td>
+                                <td class="px-6 py-4 text-center font-black text-sm text-slate-800 tabular-nums"><?= number_format($item['stock_actual'],0) ?></td>
                                 <td class="px-6 py-4 text-center font-black text-xs <?= $diff > 0 ? 'text-red-500 anim-pulse' : 'text-green-500' ?>">
-                                    <?= $diff > 0 ? $diff : '0' ?>
+                                    <?= $diff > 0 ? number_format($diff,0) : '0' ?>
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                     <?php if ($diff > 0): ?>
-                                        <span class="inline-block px-3 py-1 bg-slate-900 text-white text-[10px] font-black rounded-lg uppercase tracking-tighter italic">Despachar: <?= round($solicitada) ?></span>
+                                        <span class="inline-block px-3 py-1 bg-slate-900 text-white text-[10px] font-black rounded-lg uppercase tracking-tighter italic shadow-md">Despachar: <?= number_format(round($solicitada),0) ?></span>
                                     <?php else: ?>
                                         <span class="text-[9px] text-gray-300 font-bold uppercase italic">Abastecido</span>
                                     <?php endif; ?>
