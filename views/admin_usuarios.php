@@ -51,7 +51,7 @@ $usuarios = $db->query("
             </div>
 
             <nav>
-                <a href="dashboard.php" class="nav-link">Panel Maestro</a>
+                <a href="inicio.php" class="nav-link">Panel Maestro</a>
                 <a href="#" class="nav-link active">Gestión de Usuarios</a>
                 <a href="solicitud_municipio.php" class="nav-link">Distribución IPS</a>
                 <a href="historial.php" class="nav-link">Historial</a>

@@ -35,7 +35,7 @@ $pedidos = $db->query("
 </head>
 <body>
     <div class="container">
-        <a href="dashboard.php" style="color:var(--secondary); text-decoration:none;">← Volver</a>
+        <a href="inicio.php" style="color:var(--secondary); text-decoration:none;">← Volver</a>
         <h1 style="margin: 20px 0;">ORDENES DE DESPACHO PENDIENTES (CEDIS)</h1>
         
         <?php if (empty($pedidos)): ?>

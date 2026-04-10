@@ -1,4 +1,4 @@
-.dashboard-body {
+.Inicio-body {
     background: var(--primary);
     display: flex;
     overflow: hidden;
@@ -125,7 +125,7 @@
 }
 
 /* Grid and Cards */
-.dashboard-grid {
+.Inicio-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 25px;

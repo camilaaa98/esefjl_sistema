@@ -277,7 +277,7 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
 </head>
 <body>
 <div class="progress-bar" id="progressBar" style="width:7.14%"></div>
-<a href="dashboard.php" class="exit-btn">← SALIR AL PANEL</a>
+<a href="inicio.php" class="exit-btn">← SALIR AL PANEL</a>
 <div class="slide-number" id="slideNum">01</div>
 
 <div class="pres-wrap">
@@ -683,7 +683,7 @@ function update() {
     document.getElementById('prevBtn').disabled = cur === 0;
     document.getElementById('nextBtn').innerText = cur === total - 1 ? '🏁 FINALIZAR' : 'SIGUIENTE ▶';
     if(cur === total - 1 && document.getElementById('nextBtn').dataset.fin === '1') {
-        window.location.href = 'dashboard.php';
+        window.location.href = 'inicio.php';
     }
     if(cur === total - 1) { document.getElementById('nextBtn').dataset.fin = '1'; }
     else { document.getElementById('nextBtn').dataset.fin = '0'; }

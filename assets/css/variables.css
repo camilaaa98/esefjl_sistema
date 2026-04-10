@@ -1,0 +1,47 @@
+:root {
+    /* === ELITE MEDICAL 4.0 PALETTE === */
+    --primary-color: #004d40;    /* Esmeralda Profundo (Confianza) */
+    --primary-main: #00695c;     /* Verde Quirúrgico Moderno */
+    --primary-light: #26a69a;    /* Menta Electrónico */
+    
+    --secondary-color: #f9a825;  /* Oro Jaguar (Lujo Institucional) */
+    --accent-color: #00bfa5;     /* Turquesa Neón (Tecnología) */
+    
+    /* Neutros Premium */
+    --bg-base: #f8fafc;
+    --bg-surface: rgba(255, 255, 255, 0.85);
+    --text-primary: #1a202c;
+    --text-muted: #718096;
+    
+    /* Efectos Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-blur: blur(20px);
+    
+    /* Estados Semafóricos de Alta Visibilidad */
+    --status-red: #e53935;
+    --status-orange: #fb8c00;
+    --status-green: #43a047;
+    
+    /* Tipografía Corporativa */
+    --font-heading: 'Outfit', 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Sombras & Bordes Elite */
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-premium: 0 20px 40px -12px rgba(0, 77, 64, 0.15);
+    --radius-premium: 1.5rem;
+    --radius-card: 2rem;
+}
+
+[data-theme='dark'] {
+    --bg-base: #0f172a;
+    --bg-surface: rgba(30, 41, 59, 0.7);
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+
+

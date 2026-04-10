@@ -5,5 +5,5 @@
  */
 
 // URL de conexión real a Supabase (Session Pooler - Contraseña Corregida)
-define('DATABASE_URL', 'postgresql://postgres.blbbixrdmwhjywhlqjwx:Admin1004417452*@aws-0-us-west-2.pooler.supabase.com:5432/postgres'); 
+// define('DATABASE_URL', 'postgresql://postgres.blbbixrdmwhjywhlqjwx:Admin1004417452*@aws-0-us-west-2.pooler.supabase.com:5432/postgres'); 
 ?>

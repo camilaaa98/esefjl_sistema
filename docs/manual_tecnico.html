@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Técnico SISFARMA PRO - Ingeniería ESE Fabio Jaramillo</title>
+    <link rel="stylesheet" href="../assets/css/docs.css">
+    <style>
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.85em; overflow-x: auto; margin: 20px 0; border-left: 5px solid var(--secondary-color); }
+        .tech-tag { background: var(--primary-color); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold; text-transform: uppercase; }
+    </style>
+</head>
+<body class="manual-nav-body">
+    <nav class="manual-nav">
+        <h2>SISFARMA PRO</h2>
+        <p>Technical Engineering</p>
+        <hr>
+        <ul style="list-style:none; padding:0;">
+            <li><a href="#arquitectura">1. Arquitectura del Sistema</a></li>
+            <li><a href="#patrones">2. Patrones de Diseño (MVC)</a></li>
+            <li><a href="#db">3. Diccionario de Datos</a></li>
+            <li><a href="#seguridad">4. Protocolos de Ciberseguridad</a></li>
+            <li><a href="#despliegue">5. Despliegue y Escalabilidad</a></li>
+            <li><a href="#mantenimiento">6. Optimización y Backups</a></li>
+        </ul>
+    </nav>
+    <main class="manual-main">
+        <header class="manual-header" style="text-align: center; border-bottom: 3px solid var(--secondary-color); padding-bottom: 30px; margin-bottom: 50px;">
+            <p style="text-transform: uppercase; letter-spacing: 3px; font-weight: 900; color: #777; margin-bottom: 10px;">Departamento de Sistemas — ESE FJL</p>
+            <h1 style="font-size: 2.5em; margin: 15px 0;">Sisfarma Pro: Documentación de Ingeniería de Software</h1>
+            <p style="font-style: italic; color: #555;">Arquitectura Basada en Principios de Alta Disponibilidad y Resiliencia Territorial</p>
+            <div style="margin-top: 20px;">
+                <span class="tech-tag">PHP 8.2</span>
+                <span class="tech-tag">MVC Architecture</span>
+                <span class="tech-tag">PDO Layer</span>
+                <span class="tech-tag">Mobile-First UI</span>
+            </div>
+        </header>
+
+        <section id="arquitectura" class="content-card container">
+            <h2>1. Arquitectura General y Stack Tecnológico</h2>
+            <p>EL ecosistema SISFARMA PRO ha sido diseñado bajo una filosofía de <strong>"Simplicidad Robusta"</strong>, permitiendo su ejecución tanto en servidores locales WAMP de baja potencia como en infraestructuras cloud distribuidas.</p>
+            
+            <h3>Core Tecnológico:</h3>
+            <ul>
+                <li><strong>Procesamiento:</strong> PHP 8.2+ con motor Zend optimizado.</li>
+                <li><strong>Persistencia:</strong> Capa de abstracción de datos (PDO) compatible con SQLite y PostgreSQL.</li>
+                <li><strong>Frontend:</strong> Arquitectura "Native-Web" (ES2022 + CSS Custom Properties). Sin dependencias externas pesadas para garantizar carga instantánea en zonas de conectividad limitada (2G/3G).</li>
+                <li><strong>Identidad Visual:</strong> Sistema de diseño basado en la psicología del color médico (Forest Green & Ivory White).</li>
+            </ul>
+        </section>
+
+        <section id="patrones" class="content-card container">
+            <h2>2. Implementación del Patrón Modelo-Vista-Controlador (MVC)</h2>
+            <p>Para garantizar la mantenibilidad del software, se ha implementado una separación de responsabilidades estricta siguiendo el patrón MVC.</p>
+            
+            <div class="code-block">
+                // Ejemplo de Distribución de Archivos
+                /core
+                  /Models      -> (Abstracción de Datos: CRUD)
+                  /Controllers -> (Lógica de Negocio y Validación)
+                  Database.php -> (Singleton Pattern para Conexión)
+                  ViewHelper.php -> (Helper estático para UI)
+                /views         -> (Templates HTML limpios con lógica mínima)
+                /assets        -> (Activos estáticos CSS/JS segregados)
+            </div>
+
+            <h3>Flujo de Información:</h3>
+            <ol>
+                <li>El usuario interactúa con una <strong>Vista</strong> (Ej: registro_entrega.php).</li>
+                <li>La petición es capturada por un <strong>Controlador</strong> (DeliveryController.php), el cual valida permisos de sesión y sanitiza la entrada.</li>
+                <li>El controlador invoca al <strong>Modelo</strong> (DeliveryModel.php) para persistir la transacción en la DB.</li>
+                <li>El resultado es devuelto a la vista, formateado dinámicamente mediante el <strong>ViewHelper</strong>.</li>
+            </ol>
+        </section>
+
+        <section id="db" class="content-card container">
+            <h2>3. Diccionario de Datos y Modelo Relacional</h2>
+            <p>El esquema de base de datos está normalizado para evitar la redundancia y garantizar la integridad de los registros de pacientes y medicamentos.</p>
+
+            <h3>Entidades Principales:</h3>
+            
+            <table class="tech-table">
+                <thead>
+                    <tr><th>Tabla</th><th>Responsabilidad</th><th>Llave Primaria</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>usuarios</code></td>
+                        <td>Almacena credenciales (hashes bcrypt) y roles.</td>
+                        <td><code>id (PK)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>sedes</code></td>
+                        <td>Define las IPS municipales y sedes administrativas.</td>
+                        <td><code>id (PK)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>productos</code></td>
+                        <td>Catálogo maestro de medicamentos (Nombres genéricos).</td>
+                        <td><code>id (PK)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>inventario</code></td>
+                        <td>Relación transaccional: Producto + Sede + Stock + Vencimiento.</td>
+                        <td><code>id (PK)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>pacientes</code></td>
+                        <td>Directorio de ciudadanos vinculados (SIAU).</td>
+                        <td><code>documento (Unique)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>entregas</code></td>
+                        <td>Log de auditoría de cada despacho realizado.</td>
+                        <td><code>id (PK)</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Lógica Transaccíonar:</h3>
+            <p>Cada entrega de medicamento (<code>entregas</code>) dispara un trigger lógico que descuenta el stock de la tabla <code>inventario</code> filtrando por la <code>sede_id</code> de la sesión activa.</p>
+        </section>
+
+        <section id="seguridad" class="content-card container">
+            <h2>4. Protocolos de Ciberseguridad Industrial</h2>
+            <p>Dada la sensibilidad de los datos clínicos manejados por la ESE Fabio Jaramillo, se han integrado capas de seguridad proactiva.</p>
+            
+            <ul>
+                <li><strong>Protección SQLi:</strong> Blindaje total mediante <em>Prepared Statements</em> en todas las capas de persistencia.</li>
+                <li><strong>Hashing de Password:</strong> Uso de <code>password_hash()</code> con algoritmo BCRYPT, el estándar más robusto de la industria.</li>
+                <li><strong>Sanitización XSS:</strong> Filtrado mandatorio de entradas de usuario antes de la renderización en vistas.</li>
+                <li><strong>RBAC (Role Based Access Control):</strong> Verificación de privilegios a nivel de servidor en cada controlador de acción.</li>
+            </ul>
+
+            <div class="alert alert-important" style="background:#fdeded; border-left:5px solid #d32f2f; padding:15px; border-radius:10px;">
+                <strong>Advertencia de Seguridad:</strong> Nunca modifique los archivos de configuración (<code>core/config.php</code>) en entornos de producción sin una conexión SSL activa.
+            </div>
+        </section>
+
+        <section id="despliegue" class="content-card container">
+            <h2>5. Guía de Despliegue, Migración y Escalabilidad</h2>
+            <p>SISFARMA PRO está preparado para crecer al mismo ritmo que la ESE Fabio Jaramillo.</p>
+
+            <h3>Procedimiento de Despliegue en WAMP:</h3>
+            <ol>
+                <li>Habilitar el módulo <code>headers_module</code> y <code>rewrite_module</code> en Apache.</li>
+                <li>Asegurar que la versión de PHP sea 8.2.x para compatibilidad con el tipado de retornos.</li>
+                <li>Configurar el <code>docroot</code> apuntando a la carpeta raíz del proyecto.</li>
+            </ol>
+
+            <h3>Migración a la Nube (PostgreSQL / Supabase):</h3>
+            <p>Para escalar a una base de datos distribuida:</p>
+            <ol>
+                <li>Actualizar la clase <code>Database.php</code> cambiando el DSN de conexión de SQLite a PostgreSQL.</li>
+                <li>Ejecutar el script SQL de migración incluido en la carpeta <code>/sql</code>.</li>
+                <li>El sistema automáticamente adaptará las consultas gracias a la capa PDO.</li>
+            </ol>
+        </section>
+
+        <section id="mantenimiento" class="content-card container">
+            <h2>6. Protocolo de Mantenimiento y Backups</h2>
+            <p>La integridad de la información es el activo más valioso de la organización.</p>
+            
+            <h3>Políticas de Respaldo:</h3>
+            <ul>
+                <li><strong>Copia Fría:</strong> Respaldo diario del archivo <code>core/esefjl.db</code> (En caso de usar SQLite).</li>
+                <li><strong>Optimización de Índices:</strong> Ejecución mensual de <code>VACUUM</code> para compactar la base de datos y mejorar tiempos de respuesta en reportes de auditoría.</li>
+                <li><strong>Logs de Error:</strong> Monitoreo constante del archivo de errores para identificar patrones de fallas en la red de las IPS municipales.</li>
+            </ul>
+        </section>
+
+        <footer style="text-align: center; color: #888; font-size: 0.85em; margin-top: 80px; padding: 60px; border-top: 2px solid #eee; background: #fafafa;">
+            <p>&copy; 2026 ESE Fabio Jaramillo Londoño — Florencia, Caquetá.</p>
+            <p>Documentación de Ingeniería certificada por la Dirección de Sistemas e Innovación.</p>
+            <p><strong>Desarrollado y Documentado por: Camila Guevara</strong></p>
+        </footer>
+    </main>
+</body>
+</html>

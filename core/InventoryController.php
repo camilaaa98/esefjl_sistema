@@ -71,12 +71,12 @@ class InventoryController {
         
         // 1. Obtener suma de faltantes por producto en todas las IPS Municipales
         $stmtFaltantes = $db->query("
-            SELECT i.producto_id, SUM(GREATEST(0, i.stock_minimo - i.stock_actual)) as total_faltante
+            SELECT i.producto_id, SUM(MAX(0, i.stock_minimo - i.stock_actual)) as total_faltante
             FROM inventario i
             JOIN sedes s ON i.sede_id = s.id
             WHERE s.tipo = 'MUNICIPIO'
             GROUP BY i.producto_id
-            HAVING SUM(GREATEST(0, i.stock_minimo - i.stock_actual)) > 0
+            HAVING SUM(MAX(0, i.stock_minimo - i.stock_actual)) > 0
         ");
         $faltantes = $stmtFaltantes->fetchAll();
 

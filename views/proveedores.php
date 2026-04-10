@@ -13,7 +13,7 @@ $vencidos_count = count(InventoryController::getExpiredInventory());
 
 // Solo directivos pueden ver proveedores
 if (!in_array($rol, ['Gerente', 'Regente Farmacia', 'Subgerente Administrativa y Financiera'])) {
-    header('Location: dashboard.php');
+    header('Location: inicio.php');
     exit();
 }
 
@@ -34,8 +34,7 @@ $compras = $db->query("
     <title>Proveedores Estratégicos - SISFARMA PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
     <div class="flex flex-col md:flex-row min-h-screen">

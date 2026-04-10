@@ -53,35 +53,11 @@ $sedes = $db->query("SELECT * FROM sedes")->fetchAll();
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
     <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar -->
-        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6 shadow-sm">
-            <div class="flex items-center gap-3 mb-10">
-                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
-                <div>
-                    <h1 class="text-medical-500 font-extrabold text-lg leading-tight tracking-tighter">SISFARMA</h1>
-                    <span class="text-[10px] text-gray-400 dark:text-gray-500 font-bold tracking-widest uppercase">ESE Fabio Jaramillo</span>
-                </div>
-            </div>
-
-            <nav class="flex-1 space-y-1">
-                <a href="dashboard.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                    <span>🏠</span> Inicio
-                </a>
-                <a href="historial.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">
-                    <span>🔍</span> Auditoría Trazable
-                </a>
-            </nav>
-
-            <div class="mt-auto pt-6 border-t border-gray-100 dark:border-slate-700 text-center">
-                <button id="theme-toggle" class="w-full flex items-center justify-center gap-2 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-xs font-bold text-gray-600 dark:text-gray-300">
-                    🌓 Cambiar Tema
-                </button>
-            </div>
-        </aside>
+        <?php include '../includes/sidebar.php'; ?>
 
         <!-- Main -->
         <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">

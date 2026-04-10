@@ -41,7 +41,7 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300 min-h-screen">
     <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar Copy From Dashboard -->
+        <!-- Sidebar Copy From Inicio -->
         <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6 shadow-sm">
             <div class="flex items-center gap-3 mb-10">
                 <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
@@ -52,7 +52,7 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
             </div>
 
             <nav class="flex-1 space-y-1">
-                <a href="dashboard.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
+                <a href="inicio.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
                     <span>📊</span> Resumen Operativo
                 </a>
                 <a href="solicitud_municipio.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">

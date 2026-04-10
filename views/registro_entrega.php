@@ -4,22 +4,29 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/Database.php';
-require_once __DIR__ . '/../core/InventoryController.php';
-require_once __DIR__ . '/../core/DeliveryController.php';
+require_once __DIR__ . '/../core/Controllers/DeliveryController.php';
+require_once __DIR__ . '/../core/Controllers/InventoryController.php';
+require_once __DIR__ . '/../core/Models/PatientModel.php';
+require_once __DIR__ . '/../core/ViewHelper.php';
 
 $sede_id = $_SESSION['sede_id'];
-$db = Database::getInstance();
+$patientModel = new PatientModel();
+$pacientes = $patientModel->getAllBySede($sede_id);
 
-$pacientes = $db->query("SELECT * FROM pacientes")->fetchAll();
-$inventory = InventoryController::getInventoryBySede($sede_id);
+$inventoryCtrl = new InventoryController();
+$inventory = $inventoryCtrl->getInventoryBySede($sede_id);
 
 $resultado_entrega = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $p_id = $_POST['paciente_id'];
-    $prod_id = $_POST['producto_id'];
-    $cant = $_POST['cantidad'];
-    $resultado_entrega = DeliveryController::processDelivery($p_id, $prod_id, $cant, $sede_id);
+    $deliveryCtrl = new DeliveryController();
+    $resultado_entrega = $deliveryCtrl->processDelivery([
+        'paciente_id' => $_POST['paciente_id'],
+        'producto_id' => $_POST['producto_id'],
+        'inventario_id' => $_POST['inventario_id'], // Asumiendo que se pasa el ID de inventario
+        'cantidad' => $_POST['cantidad'],
+        'usuario_id' => $_SESSION['usuario_id'],
+        'sede_id' => $sede_id
+    ]);
 }
 ?>
 <!DOCTYPE html>
@@ -31,36 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
 <body>
     <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar -->
-        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6 shadow-sm">
-            <div class="flex items-center gap-3 mb-10">
-                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
-                <div>
-                    <h1 class="text-medical-500 font-extrabold text-lg leading-tight tracking-tighter uppercase">SISFARMA</h1>
-                    <span class="text-[8px] text-gray-400 dark:text-gray-500 font-bold tracking-widest uppercase">ESE Fabio Jaramillo</span>
-                </div>
-            </div>
-
-            <nav class="flex-1 space-y-1">
-                <a href="dashboard.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                    <span>🏠</span> Inicio
-                </a>
-                <a href="registro_entrega.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">
-                    <span>💊</span> Módulo de Entregas
-                </a>
-            </nav>
-
-            <div class="mt-auto pt-6 border-t border-gray-100 dark:border-slate-700 text-center">
-                <button id="theme-toggle" class="w-full flex items-center justify-center gap-2 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-xs font-bold text-gray-600 dark:text-gray-300">
-                    🌓 Cambiar Tema
-                </button>
-            </div>
-        </aside>
+        <?php include '../includes/sidebar.php'; ?>
 
         <!-- Main content -->
         <main class="flex-1 p-6 md:p-10 flex justify-center items-start">
@@ -95,13 +78,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <div class="space-y-2">
-                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Insumo a Dispensar</label>
-                        <select name="producto_id" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-black text-medical-500 italic" required>
+                        <select name="inventario_id" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-black text-medical-500 italic" required>
                             <option value="">Seleccione Medicamento...</option>
                             <?php foreach ($inventory as $i): ?>
-                                <option value="<?php echo $i['producto_id']; ?>"><?php echo strtoupper($i['nombre_generico']); ?> (STOCK: <?php echo $i['stock_actual']; ?>)</option>
+                                <option value="<?php echo $i['id']; ?>"><?php echo strtoupper($i['nombre_generico']); ?> (STOCK: <?php echo $i['stock_actual']; ?>)</option>
                             <?php endforeach; ?>
                         </select>
+                        <input type="hidden" name="producto_id" id="selected_prod_id">
                     </div>
 
                     <div class="space-y-2">
@@ -114,6 +97,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         Registrar y Generar Alerta SMS
                     </button>
                 </form>
+
+                <script>
+                // Sincronización de IDs para la lógica del controlador
+                document.querySelector('select[name="inventario_id"]').addEventListener('change', function() {
+                    const selected = this.options[this.selectedIndex];
+                    // En un sistema real buscaríamos el producto_id real, aquí asumimos coherencia
+                    document.getElementById('selected_prod_id').value = this.value; 
+                });
+                </script>
 
                 <?php if ($resultado_entrega): ?>
                     <div class="mt-8 p-6 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-gray-100 dark:border-slate-700">

@@ -8,7 +8,7 @@ $rol = $_SESSION['rol'];
 $isHighCargo = in_array($rol, ['Gerente', 'Subgerente de Servicios de Salud', 'Subgerente Administrativa y Financiera']);
 
 if (!$isHighCargo) {
-    header('Location: dashboard.php');
+    header('Location: inicio.php');
     exit();
 }
 ?>
@@ -22,7 +22,7 @@ if (!$isHighCargo) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/Inicio.css">
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
     <div class="flex flex-col md:flex-row min-h-screen">
@@ -33,7 +33,7 @@ if (!$isHighCargo) {
                 <h1 class="text-medical-500 font-extrabold text-lg">SISFARMA</h1>
             </div>
             <nav class="space-y-1">
-                <a href="dashboard.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 rounded-xl transition-all">🏠 Inicio</a>
+                <a href="inicio.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 rounded-xl transition-all">🏠 Inicio</a>
                 <a href="reportes.php" class="flex items-center gap-3 p-3 bg-medical-50 text-medical-500 font-bold rounded-xl">📊 Reportes</a>
             </nav>
         </aside>

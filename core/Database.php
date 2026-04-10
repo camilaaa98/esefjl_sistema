@@ -19,9 +19,9 @@ class Database {
             }
 
             if ($dbUrl) {
-                // Verificar si la extensión pgsql está cargada
-                if (!extension_loaded('pdo_pgsql')) {
-                    throw new Exception("La extensión 'pdo_pgsql' no está habilitada en PHP. Por favor, actívala en tu panel de WAMP.");
+                // Verificar si el driver pgsql está disponible en PDO
+                if (!in_array('pgsql', PDO::getAvailableDrivers())) {
+                    throw new Exception("La extensión 'pdo_pgsql' (o el driver pgsql para PDO) no está habilitada en PHP. Por favor, actívala en tu panel de WAMP.");
                 }
 
                 $parts = parse_url($dbUrl);
@@ -40,7 +40,10 @@ class Database {
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch (Exception $e) {
-            // Error amigable para el usuario
+            if (php_sapi_name() === 'cli') {
+                die("DATABASE ERROR: " . $e->getMessage() . "\n");
+            }
+            // Error amigable para el usuario en navegador
             die("<div style='background:#fdecea; color:#b71c1c; padding:20px; border-radius:10px; border:1px solid #ef9a9a; font-family:sans-serif;'>
                     <h3 style='margin-top:0;'>⚠️ Fallo en Conexión a Base de Datos</h3>
                     <p>{$e->getMessage()}</p>

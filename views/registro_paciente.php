@@ -4,29 +4,27 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/Database.php';
+require_once __DIR__ . '/../core/Controllers/PatientController.php';
+require_once __DIR__ . '/../core/ViewHelper.php';
 
 $mensaje = "";
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $doc = $_POST['documento'];
-        $nom = $_POST['nombres'];
-        $ape = $_POST['apellidos'] ?? ''; // Asegurando compatibilidad con el nuevo esquema
-        $cel = $_POST['celular'];
-        $eps = $_POST['eps'] ?? '';
-        $reg = $_POST['regimen'] ?? '';
-        $des = isset($_POST['es_desplazado']) ? 1 : 0;
-        $sis = $_POST['sisben'] ?? '';
-        
-        try {
-            $db = Database::getInstance();
-            $stmt = $db->prepare("INSERT INTO pacientes (documento, nombres, apellidos, celular, eps, regimen, es_desplazado, sisben) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$doc, $nom, $ape, $cel, $eps, $reg, $des, $sis]);
-            $mensaje = "✅ Ciudadano vinculado exitosamente a la Red de Salud.";
-        } catch (Exception $e) {
-            $mensaje = "❌ Error: " . $e->getMessage();
-        }
-    }
-    ?>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $patientCtrl = new PatientController();
+    $result = $patientCtrl->register([
+        'nombre_completo' => $_POST['nombres'] . ' ' . ($_POST['apellidos'] ?? ''),
+        'tipo_documento' => 'CC', // Valor por defecto para simplificar
+        'numero_documento' => $_POST['documento'],
+        'fecha_nacimiento' => '1900-01-01', // Valor temporal
+        'genero' => 'O', // Valor temporal
+        'direccion' => 'Sede: ' . ($_SESSION['sede'] ?? 'N/A'),
+        'telefono' => $_POST['celular'],
+        'entidad_salud' => $_POST['eps'] ?? '',
+        'sede_id' => $_SESSION['sede_id']
+    ]);
+    $mensaje = ($result['status'] === 'success') ? "✅ " : "❌ ";
+    $mensaje .= $result['message'];
+}
+?>
 <!DOCTYPE html>
 <html lang="es" class="light">
 <head>
@@ -36,28 +34,11 @@ $mensaje = "";
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
     <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar Reutilizada -->
-        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6">
-            <div class="flex items-center gap-3 mb-10">
-                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
-                <div>
-                    <h1 class="text-medical-500 font-extrabold text-lg leading-tight tracking-tighter uppercase">SISFARMA</h1>
-                    <span class="text-[8px] text-gray-400 dark:text-gray-500 font-bold tracking-widest uppercase">ESE Fabio Jaramillo</span>
-                </div>
-            </div>
-            <nav class="flex-1 space-y-1">
-                <a href="dashboard.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                    <span>🏠</span> Inicio
-                </a>
-                <a href="registro_paciente.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">
-                    <span>🏥</span> Vincular Paciente
-                </a>
-            </nav>
-        </aside>
+        <?php include '../includes/sidebar.php'; ?>
         
         <!-- Main content -->
         <main class="flex-1 p-6 md:p-10 flex justify-center items-center">

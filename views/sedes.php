@@ -60,13 +60,7 @@ $total_pages = ceil($total_items / $limit);
     <title>Sedes Municipales - SISFARMA PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
-        .sede-img { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .group:hover .sede-img { transform: scale(1.1); filter: brightness(0.7); }
-    </style>
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
     <div class="flex flex-col md:flex-row min-h-screen">

@@ -44,7 +44,7 @@ try {
         $_SESSION['sede']       = $user['sede_nombre'];
         $_SESSION['sede_id']    = (int)$user['sid'];
 
-        echo json_encode(['success' => true, 'redirect' => 'dashboard.php']);
+        echo json_encode(['success' => true, 'redirect' => 'inicio.php']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Credenciales incorrectas. Verifica tu usuario y contraseña.']);
     }

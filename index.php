@@ -7,11 +7,11 @@ session_start();
 
 // Si el usuario no está autenticado, redirigir al Login Extraordinario
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: pages/login.php');
+    header('Location: views/login.php');
     exit();
 }
 
-// Si está autenticado, llevar al Dashboard
-header('Location: pages/dashboard.php');
+// Si está autenticado, llevar al Inicio (Inicio anterior)
+header('Location: views/inicio.php');
 exit();
 ?>
