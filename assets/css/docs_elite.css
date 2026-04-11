@@ -1,0 +1,86 @@
+/* === ELITE DOCUMENTATION FRAMEWORK 4.0 === */
+:root {
+    --primary-doc: #1B5E20;
+    --accent-doc: #D4AF37;
+    --bg-doc: #FDFDFD;
+    --text-doc: #2C3E50;
+    --glass-doc: rgba(255, 255, 255, 0.9);
+}
+
+* { scroll-behavior: smooth; }
+
+body.academic-body {
+    background: var(--bg-doc);
+    line-height: 1.8;
+    color: var(--text-doc);
+    opacity: 0;
+    animation: pageReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pageReveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === ANIMACIONES DE SECCIÓN === */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === TRANSFORMACIONES 3D === */
+.content-card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.content-card:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(1deg) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+
+/* === TRANSICIONES CSS === */
+.manual-nav a {
+    position: relative;
+    transition: color 0.3s ease, padding-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.manual-nav a:hover {
+    color: var(--accent-doc);
+    padding-left: 10px;
+}
+
+.manual-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; width: 0; height: 2px;
+    background: var(--accent-doc);
+    transition: width 0.3s ease;
+}
+
+.manual-nav a:hover::after {
+    width: 100%;
+}
+
+/* === BADGES ANIMADAS === */
+.alert {
+    position: relative;
+    overflow: hidden;
+}
+
+.alert::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    to { left: 100%; }
+}
