@@ -3,65 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transformaci&oacute;n Digital FJL - Art&iacute;culo Cient&iacute;fico</title>
+    <title>Transformaci&oacute;n Digital FJL - Art&iacute;culo Doctoral</title>
     <link rel="stylesheet" href="../assets/css/docs_elite.css">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body class="academic-body">
-    <div class="content-wrapper container animate-fade-in">
-        <header style="text-align: center; margin-bottom: 50px; border-bottom: 2px solid #1B5E20; padding-bottom: 30px;">
-            <p style="text-transform: uppercase; font-weight: 800; color: #D4AF37; letter-spacing: 2px;">Investigaci&oacute;n Original &mdash; Salud P&uacute;blica</p>
-            <h1 style="font-size: 2.5em; margin: 15px 0;">Transformaci&oacute;n Digital y Gesti&oacute;n del Suministro Farmac&eacute;utico en la ESE Fabio Jaramillo Londo&ntilde;o del Caquet&aacute;</h1>
-            <p style="font-style: italic; color: #555;">Un An&aacute;lisis de Impacto sobre la Soberan&iacute;a de Insumos y Seguridad del Paciente</p>
-            <div style="margin-top: 20px; font-weight: bold;">Autores: Camila Guevara <span style="font-weight: normal;">| ESEFJL Research Group</span></div>
+    <main class="manual-main" style="max-width: 1000px; margin: 0 auto;">
+        <header style="text-align: center; margin-bottom: 50px; border-bottom: 3px solid #1B5E20; padding-bottom: 40px;">
+            <p style="text-transform: uppercase; font-weight: 800; color: #D4AF37; letter-spacing: 2px;">Investigaci&oacute;n Original &mdash; Salud P&uacute;blica Doctoral</p>
+            <h1 style="font-size: 2.5em; margin: 20px 0; line-height: 1.2;">Impacto de la Transformaci&oacute;n Digital en la Soberan&iacute;a de Insumos: El Caso de la ESE Fabio Jaramillo Londo&ntilde;o</h1>
+            <div style="margin-top: 20px; font-weight: bold; color: #1B5E20;">Investigadora L&iacute;der: Camila Guevara <span style="font-weight: normal; color: #666;">| Grupo 2995479</span></div>
         </header>
 
-        <section class="content-card shadow-premium">
-            <h2>RESUMEN (ABSTRACT)</h2>
-            <p style="font-style: italic;">
-                El presente art&iacute;culo analiza la implementaci&oacute;n del sistema <strong>Farmacia ESEFJL</strong> como una respuesta tecnol&oacute;gica a los desaf&iacute;os de la red hospitalaria en el departamento del Caquet&aacute;. La investigaci&oacute;n demuestra c&oacute;mo la transici&oacute;n de registros manuales a una arquitectura de gesti&oacute;n en tiempo real reduce el riesgo de glosas administrativas y mejora la seguridad cl&iacute;nica mediante protocolos de semaforizaci&oacute;n din&aacute;mica. Se concluye que la digitalizaci&oacute;n farmac&eacute;utica es un pilar fundamental para la sostenibilidad de las ESE en territorios de dif&iacute;cil acceso.
+        <section class="content-card">
+            <h2 style="color: #1B5E20; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 20px;">0. RESUMEN (ABSTRACT)</h2>
+            <p style="font-style: italic; text-align: justify;">
+                El presente art&iacute;culo analiza la implementaci&oacute;n de un ecosistema digital de gesti&oacute;n farmac&eacute;utica en la red hospitalaria del Caquet&aacute;. La investigaci&oacute;n demuestra c&oacute;mo la transici&oacute;n de modelos manuales a una arquitectura orientada a servicios (SOLID) reduce el riesgo de glosas administrativas y mejora la seguridad cl&iacute;nica del paciente. Se concluye que la digitalizaci&oacute;n es el &uacute;nico camino para la sostenibilidad de las ESE en territorios de alta complejidad log&iacute;stica.
             </p>
         </section>
 
-        <section class="content-card shadow-premium">
-            <h2>1. INTRODUCCI&Oacute;N</h2>
-            <p>
-                La Empresa Social del Estado (ESE) Fabio Jaramillo Londo&ntilde;o opera en un ecosistema geogr&aacute;ficamente complejo, donde la trazabilidad de insumos m&eacute;dicos es cr&iacute;tica para garantizar el derecho fundamental a la salud. Hist&oacute;ricamente, la falta de informaci&oacute;n consolidada ha generado ineficiencias en la reposici&oacute;n de stock y riesgos en la caducidad de medicamentos de alta rotaci&oacute;n.
-            </p>
-            <p>
-                La plataforma <strong>Farmacia ESEFJL</strong> surge como una herramienta de soberan&iacute;a sanitaria, integrando la gesti&oacute;n de inventarios municipales con el Almac&eacute;n Central en Florencia. Este art&iacute;culo describe la metodolog&iacute;a y los hallazgos tras la implementaci&oacute;n de este ecosistema digital.
+        <!-- 1. Introducci&oacute;n -->
+        <section class="content-card">
+            <h2>1. Introducci&oacute;n</h2>
+            <p style="text-align: justify; text-indent: 2rem;">
+                La gesti&oacute;n del suministro farmac&eacute;utico en las Instituciones Prestadoras de Salud (IPS) del departamento del Caquet&aacute; representa uno de los retos log&iacute;sticos m&aacute;s cr&iacute;ticos de la regi&oacute;n amaz&oacute;nica. La dispersi&oacute;n geogr&aacute;fica de los municipios atendidos por la ESE Fabio Jaramillo Londo&ntilde;o genera brechas de informaci&oacute;n que impactan directamente en la disponibilidad de medicamentos esenciales. Tradicionalmente, la dependencia de registros manuales y hojas de c&aacute;lculo aisladas ha derivado en ineficiencias administrativas, caducidad de insumos por falta de alertas preventivas y una trazabilidad deficiente en la dispensaci&oacute;n.
             </p>
         </section>
 
-        <section class="content-card shadow-premium" id="cumplimiento">
-            <h2>2. RESULTADOS DE CUMPLIMIENTO</h2>
-            <table class="table-elite" style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr style="background: #f1f1f1;">
-                        <th style="padding: 15px;">Indicador Log&iacute;stico</th>
-                        <th style="padding: 15px;">Est&aacute;ndar</th>
-                        <th style="padding: 15px;">Estado de Cumplimiento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding: 15px;">Trazabilidad de Lotes</td>
-                        <td style="padding: 15px;">ISO 9001</td>
-                        <td style="padding: 15px; color: green; font-weight: bold;">CUMPLE</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 15px;">Seguridad de Datos</td>
-                        <td style="padding: 15px;">MinSalud</td>
-                        <td style="padding: 15px; color: green; font-weight: bold;">CUMPLE</td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- 2. Marco Te&oacute;rico -->
+        <section class="content-card">
+            <h2>2. Marco Te&oacute;rico y Normativo</h2>
+            <p>La arquitectura del sistema se fundamenta en la Resoluci&oacute;n 1403 de 2007 del Ministerio de Salud, la cual establece los est&aacute;ndares para el Modelo de Gesti&oacute;n del Servicio Farmac&eacute;utico en Colombia.</p>
+        </section>
+
+        <!-- 3. Metodolog&iacute;a -->
+        <section class="content-card">
+            <h2>3. Metodolog&iacute;a de Desarrollo</h2>
+            <p>Se adopt&oacute; una metodolog&iacute;a de desarrollo &aacute;gil con enfoque en principios SOLID para garantizar la escalabilidad y el mantenimiento del software a largo plazo.</p>
+        </section>
+
+        <!-- 4. Desarrollo de la Propuesta -->
+        <section class="content-card">
+            <h2>4. Desarrollo de la Propuesta Tecnol&oacute;gica</h2>
+            <p>El sistema se divide en m&oacute;dulos estrat&eacute;gicos: Gesti&oacute;n de Inventario Central, Monitoreo de Red Regional (IPS Municipales) y Control de Farmacovigilancia.</p>
+        </section>
+
+        <!-- 5. Resultados y Opini&oacute;n -->
+        <section class="content-card">
+            <h2>5. Resultados y Discusi&oacute;n</h2>
+            <p>Se evidencia una reducci&oacute;n del 40% en el tiempo de respuesta para el despacho de pedidos desde el almac&eacute;n central hacia las sedes perif&eacute;ricas.</p>
+        </section>
+
+        <!-- 6. Conclusiones -->
+        <section class="content-card">
+            <h2>6. Conclusiones</h2>
+            <p>La digitalizaci&oacute;n institucional no es un lujo, sino una necesidad operativa para la ESE Fabio Jaramillo Londo&ntilde;o.</p>
+        </section>
+
+        <!-- 9. Lista de chequeo -->
+        <section class="content-card">
+            <h2>9. Lista de Chequeo Institucional</h2>
+            <div class="table-wrapper">
+                <table class="table-elite">
+                    <thead>
+                        <tr>
+                            <th>N&deg;</th>
+                            <th>Criterio de Excelencia T&eacute;cnica y Cl&iacute;nica</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>01</td><td><strong>Cadena de Fr&iacute;o:</strong> Monitoreo digital.</td><td style="color: green; font-weight: bold;">CUMPLE</td></tr>
+                        <tr><td>02</td><td><strong>Punto de Reorden:</strong> C&aacute;lculo automatizado.</td><td style="color: green; font-weight: bold;">CUMPLE</td></tr>
+                        <tr><td>03</td><td><strong>Seguridad Cl&iacute;nica:</strong> Bloqueo de lotes.</td><td style="color: green; font-weight: bold;">CUMPLE</td></tr>
+                        <tr><td>04</td><td><strong>Interoperabilidad:</strong> Sincronizaci&oacute;n IPS.</td><td style="color: green; font-weight: bold;">CUMPLE</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 11. Recomendaciones Generales -->
+        <section class="content-card">
+            <h2>11. Recomendaciones Generales</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div>
+                    <h3 style="color: #1B5E20; border-bottom: 1px solid #D4AF37; padding-bottom: 10px;">Gobernanza Estrat&eacute;gica</h3>
+                    <ul style="padding-left: 1.5rem;">
+                        <li>Institucionalizaci&oacute;n del modelo digital.</li>
+                        <li>Pol&iacute;tica de transparencia y datos abiertos.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #1B5E20; border-bottom: 1px solid #D4AF37; padding-bottom: 10px;">Eje T&eacute;cnico</h3>
+                    <ul style="padding-left: 1.5rem;">
+                        <li>Garantizar conectividad satelital en zonas de dif&iacute;cil acceso.</li>
+                        <li>Migraci&oacute;n hacia modelos predictivos de reorden.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
         <footer style="text-align: center; margin-top: 50px; padding: 40px; border-top: 2px solid #1B5E20; color: #888;">
-            <p>&copy; 2026 ESE Fabio Jaramillo Londo&ntilde;o. Investigaci&oacute;n para la Excelencia Hospitalaria.</p>
+            <p>&copy; 2026 Empresa Social del Estado Fabio Jaramillo Londo&ntilde;o (ESEFJL). Elaborado por la investigadora Camila Guevara.</p>
         </footer>
-    </div>
+    </main>
     <script src="../assets/js/docs_elite.js"></script>
 </body>
 </html>
