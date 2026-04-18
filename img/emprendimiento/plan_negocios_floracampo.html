@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLORACAMPO — Plan de Negocios | Centro de Acopio Campesino</title>
+  <meta name="description" content="Plan de Negocios FLORACAMPO — Centro de Acopio para Campesinos en Florencia, Caquetá. Análisis doctoral de viabilidad comercial, financiera y operacional." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════ TOKENS ═══════════════ */
+    :root {
+      --verde-1: #1B5E20;
+      --verde-2: #2E7D32;
+      --verde-3: #388E3C;
+      --verde-4: #4CAF50;
+      --verde-5: #A5D6A7;
+      --verde-6: #E8F5E9;
+      --naranja: #E65100;
+      --naranja-2: #FF6F00;
+      --naranja-lt: #FFF3E0;
+      --amarillo: #F9A825;
+      --gris-1: #212121;
+      --gris-2: #424242;
+      --gris-3: #757575;
+      --gris-4: #BDBDBD;
+      --gris-5: #F5F5F5;
+      --blanco: #FFFFFF;
+      --sombra: 0 4px 24px rgba(0,0,0,.12);
+      --radio: 12px;
+      --font-body: 'Inter', sans-serif;
+      --font-serif: 'Merriweather', serif;
+    }
+
+    /* ═══════════════ RESET & BASE ═══════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--gris-5);
+      color: var(--gris-1);
+      line-height: 1.7;
+    }
+    a { color: var(--verde-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ═══════════════ PORTADA ═══════════════ */
+    .portada {
+      background: linear-gradient(135deg, var(--verde-1) 0%, var(--verde-3) 60%, #81C784 100%);
+      color: var(--blanco);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .portada::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .portada-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 99px;
+      padding: 6px 20px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      backdrop-filter: blur(8px);
+    }
+    .portada-logo {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .portada-logo span { color: var(--amarillo); }
+    .portada-sub {
+      font-size: clamp(.9rem, 2.5vw, 1.15rem);
+      font-weight: 300;
+      opacity: .85;
+      max-width: 680px;
+      margin: 0 auto 40px;
+    }
+    .portada-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      max-width: 760px;
+      width: 100%;
+      margin-bottom: 48px;
+    }
+    .portada-meta-item {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radio);
+      padding: 16px 20px;
+      backdrop-filter: blur(8px);
+    }
+    .portada-meta-item .label { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; opacity: .7; }
+    .portada-meta-item .value { font-weight: 700; font-size: 1rem; margin-top: 4px; }
+    .portada-autores {
+      font-size: .85rem;
+      opacity: .75;
+      line-height: 2;
+    }
+    .portada-autores strong { opacity: 1; display: block; margin-bottom: 6px; font-size: .9rem; }
+    .portada-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .75rem;
+      opacity: .6;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ═══════════════ LAYOUT PRINCIPAL ═══════════════ */
+    .main-wrap {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* ═══════════════ SIDEBAR TOC ═══════════════ */
+    .sidebar {
+      background: var(--verde-1);
+      color: var(--blanco);
+      top: 0;
+      height: 100vh;
+      position: sticky;
+      overflow-y: auto;
+      padding: 32px 0;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 99px; }
+    .sidebar-brand {
+      padding: 0 24px 24px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      margin-bottom: 16px;
+    }
+    .sidebar-brand h2 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 900; }
+    .sidebar-brand p  { font-size: .7rem; opacity: .6; letter-spacing: .05em; margin-top: 4px; }
+    .toc-section { font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.45); padding: 0 24px; margin: 20px 0 8px; }
+    .toc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 24px;
+      font-size: .8rem;
+      color: rgba(255,255,255,.8);
+      transition: all .2s;
+      border-left: 3px solid transparent;
+    }
+    .toc-link:hover, .toc-link.active {
+      background: rgba(255,255,255,.08);
+      border-left-color: var(--amarillo);
+      color: var(--blanco);
+      text-decoration: none;
+    }
+    .toc-num {
+      font-size: .65rem;
+      font-weight: 700;
+      background: rgba(255,255,255,.15);
+      border-radius: 4px;
+      padding: 2px 6px;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    /* ═══════════════ CONTENIDO ═══════════════ */
+    .content {
+      padding: 48px 56px;
+      max-width: 900px;
+    }
+
+    /* ═══════════════ SECCIONES ═══════════════ */
+    .section { margin-bottom: 72px; }
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--verde-5);
+    }
+    .section-num {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: var(--verde-1);
+      color: var(--blanco);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: 900;
+      font-size: 1.25rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--verde-1);
+      line-height: 1.2;
+    }
+    .section-title small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 400;
+      color: var(--gris-3);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--verde-2);
+      margin: 32px 0 12px;
+    }
+    h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--gris-2);
+      margin: 20px 0 8px;
+    }
+    p {
+      font-size: .95rem;
+      color: var(--gris-2);
+      margin-bottom: 14px;
+      text-align: justify;
+    }
+
+    /* ═══════════════ CARDS ═══════════════ */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .card {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 20px;
+      border-left: 4px solid var(--verde-4);
+      box-shadow: var(--sombra);
+      transition: transform .2s;
+    }
+    .card:hover { transform: translateY(-3px); }
+    .card-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .card h4 { font-size: .9rem; color: var(--verde-1); margin: 0 0 8px; }
+    .card p  { font-size: .82rem; margin: 0; color: var(--gris-3); text-align: left; }
+
+    .card-accent { border-left-color: var(--naranja); }
+    .card-accent h4 { color: var(--naranja); }
+
+    /* ═══════════════ HIGHLIGHT BOX ═══════════════ */
+    .highlight {
+      background: var(--verde-6);
+      border-left: 4px solid var(--verde-3);
+      border-radius: 0 var(--radio) var(--radio) 0;
+      padding: 18px 22px;
+      margin: 20px 0;
+      font-size: .9rem;
+    }
+    .highlight strong { color: var(--verde-1); }
+
+    .alert-box {
+      background: var(--naranja-lt);
+      border-left: 4px solid var(--naranja);
+      border-radius: 0 var(--radio) var(--radio) 0;
+      padding: 18px 22px;
+      margin: 20px 0;
+    }
+    .alert-box strong { color: var(--naranja); }
+
+    /* ═══════════════ TABLAS ═══════════════ */
+    .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: var(--radio); box-shadow: var(--sombra); }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    thead tr { background: var(--verde-1); color: var(--blanco); }
+    thead th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: .8rem; letter-spacing: .04em; }
+    tbody tr { border-bottom: 1px solid #e0e0e0; }
+    tbody tr:nth-child(even) { background: var(--verde-6); }
+    tbody tr:hover { background: var(--verde-5); transition: background .15s; }
+    td { padding: 10px 16px; color: var(--gris-2); }
+    td.num { text-align: right; font-family: 'Fira Code', monospace; font-weight: 500; }
+    td.bold { font-weight: 700; color: var(--verde-1); }
+    tr.total-row { background: var(--naranja-lt) !important; }
+    tr.total-row td { font-weight: 700; color: var(--naranja); }
+    tr.subtotal-row { background: var(--verde-5) !important; }
+    tr.subtotal-row td { font-weight: 600; color: var(--verde-2); }
+
+    /* ═══════════════ DOFA MATRIX ═══════════════ */
+    .dofa-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .dofa-cell {
+      border-radius: var(--radio);
+      padding: 20px;
+      box-shadow: var(--sombra);
+    }
+    .dofa-cell.fortaleza { background: var(--verde-6); border: 2px solid var(--verde-4); }
+    .dofa-cell.debilidad { background: #fff3e0; border: 2px solid #FF9800; }
+    .dofa-cell.oportunidad { background: #e3f2fd; border: 2px solid #1976D2; }
+    .dofa-cell.amenaza { background: #fce4ec; border: 2px solid #E91E63; }
+    .dofa-cell h4 { font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 12px; }
+    .dofa-cell.fortaleza h4   { color: var(--verde-2); }
+    .dofa-cell.debilidad h4   { color: #E65100; }
+    .dofa-cell.oportunidad h4 { color: #1565C0; }
+    .dofa-cell.amenaza h4     { color: #C62828; }
+    .dofa-cell ul { padding-left: 18px; font-size: .82rem; color: var(--gris-2); }
+    .dofa-cell ul li { margin-bottom: 5px; }
+
+    /* DOFA Cruzada */
+    .dofa-cruzada-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .dc-cell {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 18px;
+      box-shadow: var(--sombra);
+      font-size: .82rem;
+    }
+    .dc-cell .dc-title {
+      font-weight: 700;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid currentColor;
+    }
+    .dc-fo .dc-title { color: var(--verde-2); border-color: var(--verde-4); }
+    .dc-fa .dc-title { color: #C62828; border-color: #ef9a9a; }
+    .dc-do .dc-title { color: #1565C0; border-color: #90caf9; }
+    .dc-da .dc-title { color: #E65100; border-color: #ffcc80; }
+    .dc-cell ul { padding-left: 16px; color: var(--gris-2); }
+    .dc-cell li { margin-bottom: 5px; }
+
+    /* ═══════════════ ORGANIGRAMA ═══════════════ */
+    .org-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 24px 0;
+    }
+    .org-node {
+      background: var(--verde-1);
+      color: var(--blanco);
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 600;
+      text-align: center;
+      min-width: 200px;
+      box-shadow: var(--sombra);
+    }
+    .org-connector {
+      width: 2px;
+      height: 24px;
+      background: var(--verde-4);
+    }
+    .org-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .org-node.mid { background: var(--verde-2); }
+    .org-node.low { background: var(--verde-3); font-size: .78rem; min-width: 140px; }
+    .org-h-line {
+      height: 2px;
+      background: var(--verde-4);
+      width: calc(100% - 60px);
+      margin-bottom: 0;
+    }
+
+    /* ═══════════════ FINANCIERO BADGES ═══════════════ */
+    .fin-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .fin-kpi {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--sombra);
+      border-top: 4px solid var(--verde-4);
+    }
+    .fin-kpi.orange { border-top-color: var(--naranja); }
+    .fin-kpi.blue   { border-top-color: #1976D2; }
+    .fin-kpi .kpi-val {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--verde-1);
+      display: block;
+    }
+    .fin-kpi.orange .kpi-val { color: var(--naranja); }
+    .fin-kpi.blue   .kpi-val { color: #1565C0; }
+    .fin-kpi .kpi-label { font-size: .72rem; color: var(--gris-3); text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
+
+    /* ═══════════════ CHIPS / TAGS ═══════════════ */
+    .chip-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .chip {
+      background: var(--verde-6);
+      color: var(--verde-1);
+      border: 1px solid var(--verde-5);
+      border-radius: 99px;
+      padding: 4px 14px;
+      font-size: .78rem;
+      font-weight: 500;
+    }
+    .chip.orange { background: var(--naranja-lt); color: var(--naranja); border-color: #ffcc80; }
+    .chip.blue   { background: #e3f2fd; color: #1565C0; border-color: #90caf9; }
+
+    /* ═══════════════ PROCESO STEPS ═══════════════ */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0;
+      margin: 24px 0;
+      position: relative;
+    }
+    .step {
+      text-align: center;
+      padding: 20px 12px;
+      position: relative;
+    }
+    .step::after {
+      content: '→';
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: var(--verde-4);
+      pointer-events: none;
+    }
+    .step:last-child::after { display: none; }
+    .step-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--verde-1);
+      color: var(--blanco);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin: 0 auto 10px;
+    }
+    .step-title { font-size: .8rem; font-weight: 600; color: var(--verde-1); }
+    .step-desc  { font-size: .72rem; color: var(--gris-3); margin-top: 4px; }
+
+    /* ═══════════════ TIMELINE ═══════════════ */
+    .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--verde-5); margin: 20px 0; }
+    .tl-item { position: relative; margin-bottom: 24px; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 4px;
+      width: 14px; height: 14px;
+      background: var(--verde-3);
+      border-radius: 50%;
+      border: 3px solid var(--blanco);
+      box-shadow: 0 0 0 2px var(--verde-3);
+    }
+    .tl-label { font-size: .75rem; font-weight: 700; color: var(--verde-2); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+    .tl-text  { font-size: .88rem; color: var(--gris-2); }
+
+    /* ═══════════════ FUENTES FINANCIACION ═══════════════ */
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .source-card {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 18px;
+      box-shadow: var(--sombra);
+      text-align: center;
+    }
+    .source-card .pct {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--verde-1);
+    }
+    .source-card .src-name { font-size: .82rem; font-weight: 600; margin: 6px 0 4px; }
+    .source-card .src-val  { font-size: .75rem; color: var(--gris-3); }
+
+    /* ═══════════════ RESPONSIVO ═══════════════ */
+    @media (max-width: 900px) {
+      .main-wrap { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .content { padding: 32px 20px; max-width: 100%; }
+      .dofa-grid, .dofa-cruzada-table { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     PORTADA
+════════════════════════════════════════════════════════════ -->
+<section class="portada" id="portada">
+  <div class="portada-badge">Plan de Negocios · 2025</div>
+  <div class="portada-logo">FLOR<span>CAMPO</span></div>
+  <p class="portada-sub">Centro de Acopio para Campesinos — Florencia, Caquetá<br>Transformando la cadena agrícola del Amazonas colombiano</p>
+
+  <div class="portada-meta">
+    <div class="portada-meta-item">
+      <div class="label">Ubicación</div>
+      <div class="value">Florencia, Caquetá</div>
+    </div>
+    <div class="portada-meta-item">
+      <div class="label">Naturaleza</div>
+      <div class="value">Empresa Social Agroindustrial</div>
+    </div>
+    <div class="portada-meta-item">
+      <div class="label">Inversión Inicial</div>
+      <div class="value">$549.5 M COP</div>
+    </div>
+    <div class="portada-meta-item">
+      <div class="label">Horizonte</div>
+      <div class="value">2025 – 2029 (5 años)</div>
+    </div>
+  </div>
+
+  <div class="portada-autores">
+    <strong>Presentado a: Norma Piedad Rivera Peña</strong>
+    Weimar Hoyos Ocaña &nbsp;·&nbsp; Wilder Santiago Restrepo Alape<br>
+    Brayan Andrés Hernández Ortiz &nbsp;·&nbsp; María Camila Guevara Ramírez
+    <br><br>
+    CENTRO TECNOLÓGICO DE LA AMAZONIA — REGIONAL CAQUETÁ<br>
+    ANÁLISIS Y DESARROLLO DE SOFTWARE · FLORENCIA, CAQUETÁ, 2025
+  </div>
+  <div class="portada-scroll">↓ &nbsp; Desplazar para leer</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     LAYOUT PRINCIPAL
+════════════════════════════════════════════════════════════ -->
+<div class="main-wrap">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" aria-label="Tabla de contenido">
+    <div class="sidebar-brand">
+      <h2>FLORACAMPO</h2>
+      <p>Plan de Negocios 2025</p>
+    </div>
+
+    <div class="toc-section">Contenido</div>
+    <a href="#s1" class="toc-link"><span class="toc-num">1</span> Resumen Ejecutivo</a>
+    <a href="#s2" class="toc-link"><span class="toc-num">2</span> Producto y/o Servicio</a>
+    <a href="#s2a" class="toc-link" style="padding-left:40px;font-size:.75rem">2.1 Necesidad Identificada</a>
+    <a href="#s2b" class="toc-link" style="padding-left:40px;font-size:.75rem">2.2 Producto</a>
+    <a href="#s2c" class="toc-link" style="padding-left:40px;font-size:.75rem">2.3 Objetivos</a>
+    <a href="#s2d" class="toc-link" style="padding-left:40px;font-size:.75rem">2.4 Ventajas Competitivas</a>
+    <a href="#s3" class="toc-link"><span class="toc-num">3</span> Análisis del Entorno</a>
+    <a href="#s4" class="toc-link"><span class="toc-num">4</span> Estudio de Mercado</a>
+    <a href="#s5" class="toc-link"><span class="toc-num">5</span> Plan Estratégico</a>
+    <a href="#s6" class="toc-link"><span class="toc-num">6</span> Plan de Marketing y Ventas</a>
+    <a href="#s7" class="toc-link"><span class="toc-num">7</span> Plan Operativo</a>
+    <a href="#s8" class="toc-link"><span class="toc-num">8</span> Gestión Humana</a>
+    <a href="#s9" class="toc-link"><span class="toc-num">9</span> Plan Financiero</a>
+    <a href="#s9a" class="toc-link" style="padding-left:40px;font-size:.75rem">9.1 Inversión</a>
+    <a href="#s9b" class="toc-link" style="padding-left:40px;font-size:.75rem">9.2 Egresos</a>
+    <a href="#s9c" class="toc-link" style="padding-left:40px;font-size:.75rem">9.3 Ingresos</a>
+    <a href="#s9d" class="toc-link" style="padding-left:40px;font-size:.75rem">9.4 Estado de Resultados</a>
+    <a href="#s9e" class="toc-link" style="padding-left:40px;font-size:.75rem">9.5 Fuentes de Financiación</a>
+    <a href="#anexos" class="toc-link"><span class="toc-num">A</span> Anexos</a>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="content" id="main-content">
+
+    <!-- ── SECCIÓN 1: RESUMEN EJECUTIVO ────────────────────────── -->
+    <section class="section" id="s1">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div>
+          <div class="section-title">Resumen Ejecutivo<small>Executive Summary</small></div>
+        </div>
+      </div>
+
+      <div class="fin-kpi-grid">
+        <div class="fin-kpi">
+          <span class="kpi-val">$900 M</span>
+          <div class="kpi-label">Ingresos año 1 (COP)</div>
+        </div>
+        <div class="fin-kpi orange">
+          <span class="kpi-val">$549.5 M</span>
+          <div class="kpi-label">Inversión inicial</div>
+        </div>
+        <div class="fin-kpi blue">
+          <span class="kpi-val">10 → 19</span>
+          <div class="kpi-label">Personal (año 1 → año 5)</div>
+        </div>
+        <div class="fin-kpi">
+          <span class="kpi-val">120 T</span>
+          <div class="kpi-label">kg/año Frutas (año 1)</div>
+        </div>
+      </div>
+
+      <p><strong>FLORACAMPO</strong> es una iniciativa de emprendimiento social con enfoque agroindustrial, concebida para resolver la fractura estructural que separa al pequeño productor rural del sur amazónico colombiano de los mercados formales de Florencia, Caquetá. El proyecto propone la creación de un <em>Centro de Acopio Campesino</em> que actúe como operador logístico, financiero y tecnológico entre las comunidades veredales y los compradores institucionales, comerciales y ciudadanos de la región.</p>
+
+      <p>La evidencia empírica disponible demuestra que más del 40 % de la producción agrícola del Caquetá se pierde antes de llegar al consumidor final, producto de la ausencia de infraestructura pos-cosecha, la intermediación especulativa y la volatilidad campal de los precios. FLORACAMPO ataca estos tres cuellos de botella de manera simultánea mediante: (i) infraestructura de almacenamiento refrigerado; (ii) una plataforma digital de trazabilidad —FLOR-Net—; y (iii) alianzas comerciales preacordadas con instituciones educativas, supermercados y programas de seguridad alimentaria de la Alcaldía y la Gobernación.</p>
+
+      <div class="highlight">
+        <strong>Proyección financiera clave:</strong> Para el año 2025 se proyectan ingresos de $900 millones COP con una tasa de crecimiento compuesta anual (CAGR) del 13,5 % hasta 2029, alcanzando $1.488 millones COP. El punto de equilibrio operacional se estima en el tercer año de operación, beneficiando directamente a más de 200 familias campesinas.
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 2: PRODUCTO Y/O SERVICIO ───────────────────── -->
+    <section class="section" id="s2">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div>
+          <div class="section-title">Producto y/o Servicio<small>Descripción de la oferta de valor</small></div>
+        </div>
+      </div>
+
+      <h3 id="s2a">2.1 Necesidad Identificada</h3>
+      <p>El municipio de Florencia concentra cerca del 32 % de la población rural del Caquetá, dispersa en 64 veredas con acceso vial deficiente. La economía campesina de la región enfrenta cuatro fallas de mercado estructurales:</p>
+      <div class="card-grid">
+        <div class="card card-accent">
+          <div class="card-icon">🛣️</div>
+          <h4>Falla logística</h4>
+          <p>Carreteras en mal estado y grupos ilegales dificultan el transporte desde el campo, encareciendo el flete hasta un 35 % del precio de venta.</p>
+        </div>
+        <div class="card card-accent">
+          <div class="card-icon">💸</div>
+          <h4>Falla en precios</h4>
+          <p>Los intermediarios capturan entre 40 % y 60 % del margen bruto, dejando al productor con ingresos que no cubren el costo de producción.</p>
+        </div>
+        <div class="card card-accent">
+          <div class="card-icon">🧊</div>
+          <h4>Falla pos-cosecha</h4>
+          <p>La ausencia de almacenamiento refrigerado genera pérdidas estimadas de $12.000/tonelada, equivalente al 18–22 % de la producción anual.</p>
+        </div>
+        <div class="card card-accent">
+          <div class="card-icon">📉</div>
+          <h4>Falla de información</h4>
+          <p>Sin plataformas de inteligencia de mercado, el campesino negocia en condición de asimetría informacional total frente al comprador.</p>
+        </div>
+      </div>
+
+      <h3 id="s2b">2.2 Producto / Servicio</h3>
+      <p>FLORACAMPO ofrece un <strong>sistema integrado de servicios logísticos y comerciales</strong> bajo el concepto de <em>infraestructura como servicio para el sector rural</em>. El catálogo de servicios se estructura en cinco módulos:</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">🚛</div>
+          <div class="step-title">Recolección</div>
+          <div class="step-desc">Rutas programadas en zonas veredales</div>
+        </div>
+        <div class="step">
+          <div class="step-icon">⚖️</div>
+          <div class="step-title">Clasificación</div>
+          <div class="step-desc">Categorización por calibre y calidad</div>
+        </div>
+        <div class="step">
+          <div class="step-icon">🧊</div>
+          <div class="step-title">Almacenamiento</div>
+          <div class="step-desc">Cámaras de frío y bodega técnica</div>
+        </div>
+        <div class="step">
+          <div class="step-icon">📦</div>
+          <div class="step-title">Empaque</div>
+          <div class="step-desc">Empaques sostenibles con trazabilidad QR</div>
+        </div>
+        <div class="step">
+          <div class="step-icon">🏪</div>
+          <div class="step-title">Distribución</div>
+          <div class="step-desc">Entrega directa a clientes institucionales</div>
+        </div>
+      </div>
+
+      <h3 id="s2c">2.3 Objetivos Estratégicos</h3>
+      <h4>2.3.1 Mediano Plazo (2025–2026)</h4>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-label">2025 — Q1–Q2</div>
+          <div class="tl-text">Constitución legal de la entidad, adecuación de la bodega principal y puesta en marcha de FLOR-Net versión 1.0 (gestión de inventarios y pedidos).</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">2025 — Q3–Q4</div>
+          <div class="tl-text">Firma de los primeros 10 contratos de suministro con restaurantes, hoteles e instituciones educativas de Florencia. Meta: 72 toneladas/año de frutas amazónicas.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">2026</div>
+          <div class="tl-text">Ampliación de cobertura a 15 nuevas veredas. Incorporación de Producto 3: tubérculos amazónicos (yuca, ñame, batata). Contratación de 2 nuevos operarios.</div>
+        </div>
+      </div>
+
+      <h4>2.3.2 Largo Plazo (2027–2029)</h4>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-label">2027</div>
+          <div class="tl-text">Obtención certificación INVIMA para exportación a mercados de Bogotá y Medellín. FLOR-Net versión 2.0 con módulo de e-commerce B2B.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">2028–2029</div>
+          <div class="tl-text">Expansión a un segundo punto de acopio en San Vicente del Caguán. Afiliación a la Red Nacional de Mercados Campesinos (RNMC). Planta de personal: 19 personas.</div>
+        </div>
+      </div>
+
+      <h3 id="s2d">2.4 Ventajas Competitivas</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🌿</div>
+          <h4>Origen verificado</h4>
+          <p>Trazabilidad QR campo–consumidor, un diferencial inédito en el mercado local florentino.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <h4>Precio justo certificado</h4>
+          <p>Margen fijo al productor establecido por acuerdo, eliminando la especulación intermediaria.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💻</div>
+          <h4>Plataforma FLOR-Net</h4>
+          <p>Herramienta digital propia para pedidos, inventarios y análisis de demanda en tiempo real.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">♻️</div>
+          <h4>Empaque sostenible</h4>
+          <p>Material biodegradable con identidad amazónica, alineado a tendencias de consumo responsable.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 3: ANÁLISIS DEL ENTORNO ────────────────────── -->
+    <section class="section" id="s3">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div>
+          <div class="section-title">Análisis del Entorno<small>Factores PESTEL</small></div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th>Síntesis diagnóstica</th>
+              <th>Impacto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bold">🏛️ Político-Institucional</td>
+              <td>Política de paz total del Gobierno Duque–Petro abre zonas históricamente vedadas al comercio. El Ejército Nacional participa activamente en mercados campesinos y transporte logístico. La Gobernación y la Alcaldía de Florencia tienen líneas presupuestales de seguridad alimentaria disponibles para convenios.</td>
+              <td><span class="chip">Alto ✅</span></td>
+            </tr>
+            <tr>
+              <td class="bold">💰 Económico</td>
+              <td>El PIB del Caquetá creció 3,2 % en 2024, impulsado por agropecuaria. La demanda urbana de alimentos frescos crece 8 %/año en Florencia. Tasas de interés Fondo Emprender: 0 % para proyectos rurales. Presión inflacionaria sobre insumos: 6 % anual proyectado.</td>
+              <td><span class="chip">Medio ⚠️</span></td>
+            </tr>
+            <tr>
+              <td class="bold">👥 Socio-Cultural</td>
+              <td>Más de 12.000 familias campesinas en el área de influencia. Cultura de subsistencia predominante pero con apertura creciente a asociatividad (ASOVIAGRO con 340 afiliados). Tendencia urbana al consumo responsable y productos locales ("km 0"). Inclusión de mujeres cabeza de hogar como productoras activas.</td>
+              <td><span class="chip">Alto ✅</span></td>
+            </tr>
+            <tr>
+              <td class="bold">🔬 Tecnológico</td>
+              <td>Cobertura 4G del 68 % en el casco urbano de Florencia y zonas suburbanas. Baja conectividad rural (solución: FLOR-Net funciona offline con sincronización diferida). Acceso a equipos de refrigeración industrial a 8 h de Bogotá. Capacitación digital: convenio SENA Caquetá para rutas TIC rurales.</td>
+              <td><span class="chip">Medio ⚠️</span></td>
+            </tr>
+            <tr>
+              <td class="bold">🌱 Ecológico-Ambiental</td>
+              <td>Florencia está en el borde amazónico (zona de amortiguación). El proyecto promueve BPA (Buenas Prácticas Agrícolas) y reduce deforestación por sustitución de cultivos de coca. Empaques 100 % biodegradables. Cumplimiento de la Resolución 2674/2013 de inocuidad alimentaria y normativa CORPORINOQUIA.</td>
+              <td><span class="chip">Alto ✅</span></td>
+            </tr>
+            <tr>
+              <td class="bold">⚖️ Legal-Normativo</td>
+              <td>Constitución bajo Ley 1014/2006 de Cultura del Emprendimiento. Registro CÁMARA COMERCIO del Caquetá. Permiso sanitario INVIMA. Ley 1429/2010: exención de renta año 1–2 para nuevas empresas. Código Sustantivo del Trabajo para nómina. Contratos de provisión con cláusulas de precio justo.</td>
+              <td><span class="chip">Medio ⚠️</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 4: ESTUDIO DE MERCADO ──────────────────────── -->
+    <section class="section" id="s4">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div>
+          <div class="section-title">Estudio de Mercado<small>Análisis sectorial, competidores y proyección de ventas</small></div>
+        </div>
+      </div>
+
+      <h3>4.1 Análisis del Sector</h3>
+      <p>El sector de comercialización agrícola en Caquetá factura aproximadamente $180.000 millones COP anuales (DANE, 2024), con una participación de intermediarios informales superior al 70 %. La brecha entre precio en finca y precio al consumidor es de 3,2× en promedio para frutas amazónicas, lo que evidencia un mercado altamente imperfecto con espacio amplio para un nuevo actor logístico eficiente.</p>
+
+      <h3>4.2 Mercado Objetivo</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🌾</div>
+          <h4>Productores rurales</h4>
+          <p>+200 familias campesinas en 40 veredas del área de influencia de Florencia.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏫</div>
+          <h4>Instituciones educativas</h4>
+          <p>Colegios, SENA Regional Caquetá y Universidad de la Amazonia — compras institucionales formales.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🍽️</div>
+          <h4>Hostelería y gastronomía</h4>
+          <p>La Calera Amazónica, La Pampa Parrilla Bar, Hotel Las Colinas y ≥30 establecimientos identificados.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛒</div>
+          <h4>Programas alimentarios</h4>
+          <p>SADER, ART, PAE (Programa de Alimentación Escolar), Banco de Alimentos Caquetá.</p>
+        </div>
+      </div>
+
+      <h3>4.3 Clientes Potenciales Iniciales</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Cliente</th><th>Tipo</th><th>Volumen estimado</th><th>Frecuencia</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SENA Regional Caquetá</td><td>Institución educativa</td><td>800 kg/mes</td><td>Semanal</td></tr>
+            <tr><td>Universidad de la Amazonia</td><td>Institución educativa</td><td>600 kg/mes</td><td>Quincenal</td></tr>
+            <tr><td>La Calera Amazónica</td><td>Restaurante</td><td>400 kg/mes</td><td>2x semana</td></tr>
+            <tr><td>La Pampa Parrilla Bar</td><td>Restaurante</td><td>300 kg/mes</td><td>Semanal</td></tr>
+            <tr><td>SADER Caquetá</td><td>Prog. seguridad alimentaria</td><td>2.000 kg/mes</td><td>Mensual</td></tr>
+            <tr><td>Supermercado Olimpo</td><td>Comercio local</td><td>1.500 kg/mes</td><td>2x semana</td></tr>
+            <tr><td>Tiendas de barrio (red)</td><td>Comercio informal</td><td>400 kg/mes</td><td>Diaria</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>4.4 Competidores</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Competidor</th><th>Tipo</th><th>Debilidad identificable</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bold">Intermediarios informales (galería municipal)</td>
+              <td>Tradicional</td>
+              <td>Sin trazabilidad, sin frío, precios volátiles, no facturan.</td>
+            </tr>
+            <tr>
+              <td class="bold">Corabastos (cadena Bogotá)</td>
+              <td>Mayorista formal</td>
+              <td>Distancia logística (14 h), no adaptado a frutas amazónicas exóticas.</td>
+            </tr>
+            <tr>
+              <td class="bold">Camioneros independientes</td>
+              <td>Logística spot</td>
+              <td>Sin INVIMA, sin refrigeración, alta variabilidad de precios y disponibilidad.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>4.5 Proyección de Ventas a 5 Años</h3>
+      <div class="highlight">
+        <strong>Supuestos del modelo:</strong> Crecimiento de unidades vendidas del 8 % anual; incremento de precio del 5 % anual (IPC proyectado); producto 1 = Frutas Amazónicas (Copoazú, Arazá, Sacha Inchi); producto 2 = Hortalizas de segunda transformación.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Concepto</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bold">Frutas Amazónicas (kg/año)</td>
+              <td class="num">72.000</td><td class="num">77.760</td><td class="num">83.981</td><td class="num">90.699</td><td class="num">97.955</td>
+            </tr>
+            <tr>
+              <td>Precio (COP/kg)</td>
+              <td class="num">$9.500</td><td class="num">$9.975</td><td class="num">$10.474</td><td class="num">$10.997</td><td class="num">$11.547</td>
+            </tr>
+            <tr class="subtotal-row">
+              <td class="bold">Ingreso P1</td>
+              <td class="num">$684.000.000</td><td class="num">$775.782.000</td><td class="num">$879.824.394</td><td class="num">$997.474.803</td><td class="num">$1.131.424.245</td>
+            </tr>
+            <tr>
+              <td class="bold">Hortalizas (kg/año)</td>
+              <td class="num">48.000</td><td class="num">51.840</td><td class="num">55.987</td><td class="num">60.466</td><td class="num">65.303</td>
+            </tr>
+            <tr>
+              <td>Precio (COP/kg)</td>
+              <td class="num">$4.500</td><td class="num">$4.725</td><td class="num">$4.961</td><td class="num">$5.209</td><td class="num">$5.470</td>
+            </tr>
+            <tr class="subtotal-row">
+              <td class="bold">Ingreso P2</td>
+              <td class="num">$216.000.000</td><td class="num">$244.944.000</td><td class="num">$277.769.507</td><td class="num">$314.986.494</td><td class="num">$357.197.410</td>
+            </tr>
+            <tr class="total-row">
+              <td class="bold">★ TOTAL VENTAS</td>
+              <td class="num">$900.000.000</td><td class="num">$1.020.726.000</td><td class="num">$1.157.593.901</td><td class="num">$1.312.461.297</td><td class="num">$1.488.621.655</td>
+            </tr>
+            <tr>
+              <td>CAGR ventas</td>
+              <td class="num">—</td><td class="num">13,4 %</td><td class="num">13,4 %</td><td class="num">13,4 %</td><td class="num">13,4 %</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 5: PLAN ESTRATÉGICO ────────────────────────── -->
+    <section class="section" id="s5">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div>
+          <div class="section-title">Plan Estratégico<small>Misión, Visión, Valores, DOFA y Análisis Cruzado</small></div>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h4>MISIÓN</h4>
+          <p>Conectar al campesino del sur amazónico colombiano con los mercados urbanos mediante un centro de acopio eficiente, justo y tecnológicamente habilitado, eliminando la intermediación especulativa y garantizando precios dignos.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🌄</div>
+          <h4>VISIÓN 2029</h4>
+          <p>Ser el principal operador logístico-agrícola del Caquetá, con presencia en tres municipios, certificación INVIMA para exportación y una comunidad de 500 productores activos en la plataforma FLOR-Net.</p>
+        </div>
+      </div>
+
+      <h3>5.3 Valores Corporativos</h3>
+      <div class="chip-list">
+        <span class="chip">🤝 Equidad</span>
+        <span class="chip">🌿 Sostenibilidad</span>
+        <span class="chip">🔍 Transparencia</span>
+        <span class="chip">💪 Empoderamiento rural</span>
+        <span class="chip">🔗 Asociatividad</span>
+        <span class="chip">📲 Innovación tecnológica</span>
+        <span class="chip">♾️ Responsabilidad ambiental</span>
+      </div>
+
+      <h3>5.4 Objetivos Estratégicos (jerarquizados)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Objetivo</th><th>Indicador</th><th>Meta 2025</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Establecer infraestructura operativa</td><td>Bodega habilitada / % capacidad</td><td>100 % en Q2</td></tr>
+            <tr><td>2</td><td>Implementar plataforma FLOR-Net</td><td>Usuarios activos (productores)</td><td>50 productores</td></tr>
+            <tr><td>3</td><td>Generar alianzas comerciales</td><td>Contratos firmados</td><td>10 contratos</td></tr>
+            <tr><td>4</td><td>Capacitar productores aliados</td><td>Campesinos certificados BPA</td><td>80 personas</td></tr>
+            <tr><td>5</td><td>Alcanzar sostenibilidad financiera parcial</td><td>Margen bruto positivo</td><td>AÑO 1 ≥ 15 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>5.5 Análisis DOFA</h3>
+      <div class="dofa-grid">
+        <div class="dofa-cell fortaleza">
+          <h4>🟢 Fortalezas</h4>
+          <ul>
+            <li>Equipo multidisciplinar con formación técnica en software y agronomía</li>
+            <li>Plataforma FLOR-Net: tecnología diferencial propia</li>
+            <li>Red de alianzas preestablecida con ASOVIAGRO y SENA</li>
+            <li>Empaques biodegradables con identidad territorial amazónica</li>
+            <li>Modelo de precio justo certificado: confianza del productor</li>
+          </ul>
+        </div>
+        <div class="dofa-cell debilidad">
+          <h4>🟠 Debilidades</h4>
+          <ul>
+            <li>Capital propio limitado; dependencia inicial de financiación externa</li>
+            <li>Baja experiencia en gestión empresarial formal del equipo fundador</li>
+            <li>Brecha digital en zonas rurales que dificulta adopción de FLOR-Net</li>
+            <li>Curva de aprendizaje en normas sanitarias INVIMA</li>
+            <li>Capacidad de almacenamiento limitada en fase inicial</li>
+          </ul>
+        </div>
+        <div class="dofa-cell oportunidad">
+          <h4>🔵 Oportunidades</h4>
+          <ul>
+            <li>Fondo Emprender SENA: financiación no reembolsable hasta $100 M</li>
+            <li>Política nacional de sustitución de cultivos ilícitos (inversión pública)</li>
+            <li>Creciente demanda de productos amazónicos en mercados nacionales e internacionales</li>
+            <li>Programas de alimentación escolar PAE: compra institucional garantizada</li>
+            <li>Expansión del turismo ecológico como canal de venta adicional</li>
+          </ul>
+        </div>
+        <div class="dofa-cell amenaza">
+          <h4>🔴 Amenazas</h4>
+          <ul>
+            <li>Presencia de grupos armados en zonas de recolección primaria</li>
+            <li>Volatilidad climática (sequías e inundaciones amazónicas)</li>
+            <li>Resistencia de intermediarios establecidos (riesgo de sabotaje logístico)</li>
+            <li>Inflación de insumos (combustible, energía) superior al 6 % anual</li>
+            <li>Burocracia y demoras en permisos INVIMA y registros sanitarios</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Matriz DOFA Cruzada</h3>
+      <div class="dofa-cruzada-table">
+        <div class="dc-cell dc-fo">
+          <div class="dc-title">Estrategia FO (Maxi–Maxi)</div>
+          <ul>
+            <li>Usar FLOR-Net + alianza SENA para postular al Fondo Emprender con un proyecto TIC-agrícola diferencial.</li>
+            <li>Aprovechar la red ASOVIAGRO para acceder rápidamente al mercado del PAE con volúmenes garantizados.</li>
+            <li>Posicionar el empaque biodegradable en el turismo ecológico como producto premium amazónico.</li>
+          </ul>
+        </div>
+        <div class="dc-cell dc-fa">
+          <div class="dc-title">Estrategia FA (Maxi–Mini)</div>
+          <ul>
+            <li>Diseñar rutas de recolección con escolta del Ejército Nacional para zonas de conflicto activo.</li>
+            <li>Diversificar proveedores por zona geográfica para mitigar impacto de eventos climáticos o de orden público.</li>
+            <li>Establecer cláusulas de precio ancladas a IPC para proteger márgenes ante inflación de insumos.</li>
+          </ul>
+        </div>
+        <div class="dc-cell dc-do">
+          <div class="dc-title">Estrategia DO (Mini–Maxi)</div>
+          <ul>
+            <li>Gestionar recursos del Fondo Emprender para cubrir brecha de capital e infraestructura en etapa inicial.</li>
+            <li>Implementar FLOR-Net con modo offline para superar limitación de conectividad rural.</li>
+            <li>Contratar a un asesor SENA para cumplimiento INVIMA sin costo adicional para la empresa.</li>
+          </ul>
+        </div>
+        <div class="dc-cell dc-da">
+          <div class="dc-title">Estrategia DA (Mini–Mini)</div>
+          <ul>
+            <li>Formalizar pólizas de seguro de carga para mitigar pérdidas por orden público o clima.</li>
+            <li>Crear un plan de contingencia financiera con reserva equivalente a 3 meses de egresos operativos.</li>
+            <li>Gestionar contratos con notaría para blindar acuerdos con aliados ante posibles presiones externas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Socios Clave</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Socio</th><th>Tipo</th><th>Aporte al proyecto</th></tr></thead>
+          <tbody>
+            <tr><td>ASOVIAGRO</td><td>Asociación campesina</td><td>Red de productores afiliados, confianza comunitaria</td></tr>
+            <tr><td>Red de Alianzas Agroforestales</td><td>Asociación campesina</td><td>Diversificación de cultivos y BPA</td></tr>
+            <tr><td>SENA Regional Caquetá</td><td>Entidad pública</td><td>Formación, Fondo Emprender, convenio TIC rural</td></tr>
+            <tr><td>Gobernación del Caquetá</td><td>Entidad pública</td><td>Convenios seguridad alimentaria, infraestructura vial</td></tr>
+            <tr><td>Alcaldía de Florencia</td><td>Entidad pública</td><td>Contratos PAE, permisos de operación, espacios feria</td></tr>
+            <tr><td>Ejército Nacional</td><td>Entidad pública</td><td>Escolta logística en zonas de riesgo, mercados campesinos</td></tr>
+            <tr><td>Agrosavia</td><td>ONG/Entidad investigación</td><td>Asistencia técnica en cultivos amazónicos</td></tr>
+            <tr><td>Corporación La Manigua</td><td>ONG</td><td>Inclusión social y género, comunicación comunitaria</td></tr>
+            <tr><td>Transportadores locales</td><td>Privado</td><td>Logística de última milla, preferencia campesinos</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 6: PLAN DE MARKETING Y VENTAS ──────────────── -->
+    <section class="section" id="s6">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <div>
+          <div class="section-title">Plan de Marketing y Ventas<small>Propuesta de valor, precios, promoción y canales</small></div>
+        </div>
+      </div>
+
+      <h3>6.1 Descripción del Producto / Servicio</h3>
+      <p>FLORACAMPO comercializa productos agrícolas amazónicos frescos y de segunda transformación bajo un modelo de <em>cadena corta de comercialización</em> (CCC), certificando el origen y el precio justo al productor en cada transacción. Los dos grandes líneas de producto son:</p>
+      <div class="chip-list">
+        <span class="chip">🍊 Copoazú fresco</span>
+        <span class="chip">🍋 Arazá fresco</span>
+        <span class="chip">🌰 Sacha Inchi</span>
+        <span class="chip">🥦 Hortalizas picadas</span>
+        <span class="chip">🥗 Ensaladas empacadas lista para cocinar</span>
+        <span class="chip orange">📦 Canastas institucionales semanales</span>
+      </div>
+
+      <h3>6.2 Precio del Producto</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Producto</th><th>Precio productor</th><th>Precio FLORACAMPO</th><th>Precio cliente</th><th>Margen operador</th></tr></thead>
+          <tbody>
+            <tr><td>Frutas Amazónicas (kg)</td><td class="num">$6.500</td><td class="num">$9.500</td><td class="num">$14.000–18.000</td><td class="num">32 %</td></tr>
+            <tr><td>Hortalizas frescas (kg)</td><td class="num">$2.800</td><td class="num">$4.500</td><td class="num">$7.000–9.000</td><td class="num">35 %</td></tr>
+            <tr><td>Canasta semanal (10 kg)</td><td class="num">—</td><td class="num">$85.000</td><td class="num">$110.000</td><td class="num">23 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>6.3 Estrategias de Promoción</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h4>Marketing digital</h4>
+          <p>Feed orgánico en Instagram y Facebook con storytelling de productores. TikTok con recetas amazónicas. Google My Business activo.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎪</div>
+          <h4>Ferias y mercados</h4>
+          <p>Participación en el Mercado Campesino de Florencia (mensual), Feria Agropecuaria del Caquetá y eventos institucionales SENA.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📧</div>
+          <h4>Venta institucional</h4>
+          <p>Representante comercial dedicado para presupuestos con restaurantes, hoteles e instituciones educativas.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤳</div>
+          <h4>Trazabilidad como marketing</h4>
+          <p>Código QR en cada empaque que lleva al consumidor a la historia del productor. Diferencial único en el mercado local.</p>
+        </div>
+      </div>
+
+      <h3>6.4 Canales de Venta</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-label">Canal 1 — Punto físico</div>
+          <div class="tl-text">Centro de acopio en zona accesible de Florencia con atención al público martes, jueves y sábado. Venta a consumidor final y minoristas.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Canal 2 — Plataforma digital FLOR-Net</div>
+          <div class="tl-text">Pedidos en línea con entrega a domicilio (radio 5 km de Florencia) o recoge en bodega. Integración con WhatsApp Business para pedidos ágiles.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Canal 3 — Alianzas institucionales</div>
+          <div class="tl-text">Contratos de suministro con SENA, Universidad de la Amazonia, PAE y hoteles. Facturación electrónica. Pago a 30 días.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-label">Canal 4 — Mercados y ferias</div>
+          <div class="tl-text">Stand propio en el Mercado Campesino municipal. Presencia quincenal en el centro de Florencia. Ventas en efectivo y transferencia.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 7: PLAN OPERATIVO Y ORGANIZACIONAL ─────────── -->
+    <section class="section" id="s7">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <div>
+          <div class="section-title">Plan Operativo y Organizacional<small>Procesos, producción, inventarios, calidad y servicio al cliente</small></div>
+        </div>
+      </div>
+
+      <h3>7.1 Gestión de Procesos</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">📋</div>
+          <div class="step-title">Pedido</div>
+          <div class="step-desc">Productor registra oferta en FLOR-Net</div>
+        </div>
+        <div class="step">
+          <div class="step-icon">🚛</div>
+          <div class="step-title">Recolección</div>
+          <div class="step-desc">Camión programado según ruta</div>
+        </div>
+        <div class="step">
+          <div class="step-icon">⚖️</div>
+          <div class="step-title">Recepción</div>
+          <div class="step-desc">Pesaje, inspección y registro</div>
+        </div>
+        <div class="step">
+          <div class="step-icon">🧊</div>
+          <div class="step-title">Almacén</div>
+          <div class="step-desc">Clasificación y conservación</div>
+        </div>
+        <div class="step">
+          <div class="step-icon">📦</div>
+          <div class="step-title">Despacho</div>
+          <div class="step-desc">Empaque, etiquetado y entrega</div>
+        </div>
+      </div>
+
+      <h3>7.2 Gestión de Producción</h3>
+      <p>La operación del Centro de Acopio no es manufacturera sino logística. La "producción" corresponde a la capacidad de procesamiento diario de productos agrícolas, que para el año 1 se estima en <strong>1.600 kg/día</strong> (6 días/semana), distribuidos en dos turnos de clasificación y empaque.</p>
+
+      <div class="highlight">
+        <strong>Capacidad instalada (año 1):</strong> Cámara de frío: 8 toneladas simultáneas · Bodega seca: 12 t · Línea de clasificación: 3 operarios/turno · Despachos diarios: 400–600 kg → clientes institucionales.
+      </div>
+
+      <h3>7.3 Gestión de Inventarios</h3>
+      <p>Se implementará el método <strong>FIFO</strong> (Primera en Entrar, Primera en Salir) para productos perecederos, con alertas automáticas en FLOR-Net cuando la merma supere el 3 % semanal. El inventario máximo recomendado es de 5 días de stock para frutas frescas y 10 días para hortalizas de segunda transformación.</p>
+
+      <h3>7.4 Gestión de Calidad</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h4>BPA verificadas</h4>
+          <p>Todos los productores aliados reciben capacitación y firma de protocolo de Buenas Prácticas Agrícolas.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🌡️</div>
+          <h4>Control de temperatura</h4>
+          <p>Registro automático de cadena de frío con alarmas al 85 % de temperatura máxima permitida.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔬</div>
+          <h4>Inocuidad INVIMA</h4>
+          <p>Cumplimiento de la Resolución 2674/2013. Registro sanitario vigente para empaque de segunda transformación.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h4>Indicadores clave</h4>
+          <p>Merma &lt;3 %, reclamos &lt;0,5 %, entrega a tiempo &gt;95 %, satisfacción clientes ≥4,2/5.</p>
+        </div>
+      </div>
+
+      <h3>7.5 Gestión de Servicio al Cliente</h3>
+      <p>Las relaciones con los clientes se fundamentan en tres pilares: <strong>transparencia de precios</strong> (publicación semanal de precios en FLOR-Net y WhatsApp Business), <strong>trazabilidad</strong> (QR en empaque) y <strong>servicio pos-venta</strong> (línea directa de atención para reclamos con SLA de 24 horas). Los clientes institucionales cuentan además con un gestor de cuenta dedicado.</p>
+    </section>
+
+    <!-- ── SECCIÓN 8: PLAN DE GESTIÓN HUMANA ──────────────────── -->
+    <section class="section" id="s8">
+      <div class="section-header">
+        <div class="section-num">8</div>
+        <div>
+          <div class="section-title">Plan de Gestión Humana<small>Organigrama, reclutamiento, personal y remuneración</small></div>
+        </div>
+      </div>
+
+      <h3>8.1 Organigrama</h3>
+      <div class="org-chart">
+        <div class="org-node">Director Operativo</div>
+        <div class="org-connector"></div>
+        <div style="width:2px;height:1px;background:var(--verde-4);margin:0 auto;"></div>
+        <div class="org-row">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+            <div class="org-node mid">Coordinador de Bodega</div>
+            <div class="org-connector"></div>
+            <div class="org-row">
+              <div class="org-node low">Operario Clasif. ×3</div>
+              <div class="org-node low">Técnico Agropecuario</div>
+              <div class="org-node low">Técnico Mantenimiento</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+            <div class="org-node mid">Asesor Comercial</div>
+            <div class="org-connector"></div>
+            <div class="org-row">
+              <div class="org-node low">Gestor Comunitario</div>
+              <div class="org-node low">Conductores ×2</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+            <div class="org-node mid">Desarrollador TI</div>
+            <div class="org-connector"></div>
+            <div class="org-row">
+              <div class="org-node low">Soporte FLOR-Net</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>8.2 Estrategia de Reclutamiento, Selección y Contratación</h3>
+      <p>La política de contratación de FLORACAMPO privilegia el <strong>talento local</strong> bajo tres criterios: residencia en Florencia o veredas aledañas, formación técnica o tecnológica afín al cargo, e historial de trabajo o vinculación con organizaciones campesinas. El proceso se realiza en cuatro fases: convocatoria pública, prueba técnica, entrevista por competencias y período de prueba de 2 meses.</p>
+
+      <h3>8.3 Personal y Nómina Proyectada</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Cargo</th><th>N°</th><th>Salario base/mes</th><th>Con prestaciones</th><th>Anual</th></tr></thead>
+          <tbody>
+            <tr><td>Director Operativo</td><td class="num">1</td><td class="num">$1.800.000</td><td class="num">$2.880.000</td><td class="num">$34.560.000</td></tr>
+            <tr><td>Coordinador de Bodega</td><td class="num">1</td><td class="num">$1.500.000</td><td class="num">$2.250.000</td><td class="num">$27.000.000</td></tr>
+            <tr><td>Operario Clasificación</td><td class="num">3</td><td class="num">$1.423.500</td><td class="num">$1.992.900 c/u</td><td class="num">$71.744.400</td></tr>
+            <tr><td>Conductor / Logística</td><td class="num">2</td><td class="num">$1.423.500</td><td class="num">$2.064.075 c/u</td><td class="num">$49.538.000</td></tr>
+            <tr><td>Asesor Comercial</td><td class="num">1</td><td class="num">$1.500.000</td><td class="num">$2.250.000</td><td class="num">$27.000.000</td></tr>
+            <tr><td>Gestor Comunitario</td><td class="num">1</td><td class="num">$1.423.500</td><td class="num">$1.992.900</td><td class="num">$23.914.800</td></tr>
+            <tr><td>Desarrollador TI</td><td class="num">1</td><td class="num">$1.700.000</td><td class="num">$2.635.000</td><td class="num">$31.620.000</td></tr>
+            <tr><td>Técnico Mantenimiento</td><td class="num">1</td><td class="num">$1.423.500</td><td class="num">$1.992.900</td><td class="num">$23.914.800</td></tr>
+            <tr class="total-row"><td class="bold">TOTAL NÓMINA AÑO 1</td><td class="num">10</td><td></td><td></td><td class="num">$274.166.100</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>8.4 Política de Remuneración y Compensaciones</h3>
+      <div class="highlight">
+        <strong>Factor de prestaciones aplicado:</strong> 1,40–1,60× sobre el salario base, incluyendo: cesantías, intereses a cesantías, prima de servicios, vacaciones, salud (8,5 %) y pensión (12 %) a cargo del empleador, ARL (riesgo III: 2,436 %) y caja de compensación (4 %). El incremento salarial anual se fijará en función del IPC certificado + 1 punto de productividad, con base 6 % proyectado para 2025–2029.
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN 9: PLAN FINANCIERO ─────────────────────────── -->
+    <section class="section" id="s9">
+      <div class="section-header">
+        <div class="section-num">9</div>
+        <div>
+          <div class="section-title">Plan Financiero<small>Inversión, egresos, ingresos, estado de resultados y financiación</small></div>
+        </div>
+      </div>
+
+      <!-- 9.1 INVERSIÓN -->
+      <h3 id="s9a">9.1 Flujo de Inversiones</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Rubro</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">ACTIVOS FIJOS</td></tr>
+            <tr><td>Infraestructura (bodega + adecuaciones)</td><td class="num">$120.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td>Equipos de frío y empaque</td><td class="num">$150.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td>Camiones de carga (2 unidades)</td><td class="num">$130.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">$65.000.000</td></tr>
+            <tr><td>Equipos de cómputo y redes</td><td class="num">$16.000.000</td><td class="num">$6.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td>Muebles y enseres</td><td class="num">$12.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">$4.000.000</td><td class="num">—</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Activos Fijos</td><td class="num">$428.000.000</td><td class="num">$6.000.000</td><td class="num">—</td><td class="num">$4.000.000</td><td class="num">$65.000.000</td></tr>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">ACTIVOS DIFERIDOS</td></tr>
+            <tr><td>Software FLOR-Net (licencia y desarrollo)</td><td class="num">$30.000.000</td><td class="num">$5.000.000</td><td class="num">$3.000.000</td><td class="num">$3.000.000</td><td class="num">$3.000.000</td></tr>
+            <tr><td>Constitución legal y permisos INVIMA</td><td class="num">$8.500.000</td><td class="num">—</td><td class="num">—</td><td class="num">$2.000.000</td><td class="num">—</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Activos Diferidos</td><td class="num">$38.500.000</td><td class="num">$5.000.000</td><td class="num">$3.000.000</td><td class="num">$5.000.000</td><td class="num">$3.000.000</td></tr>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">CAPITAL DE TRABAJO</td></tr>
+            <tr><td>Capital de trabajo inicial (3 meses op.)</td><td class="num">$68.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td>Caja menor y fondo de emergencia</td><td class="num">$15.000.000</td><td class="num">$5.000.000</td><td class="num">$5.000.000</td><td class="num">$5.000.000</td><td class="num">$5.000.000</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Capital de Trabajo</td><td class="num">$83.000.000</td><td class="num">$5.000.000</td><td class="num">$5.000.000</td><td class="num">$5.000.000</td><td class="num">$5.000.000</td></tr>
+            <tr class="total-row"><td class="bold">★ INVERSIÓN TOTAL</td><td class="num">$549.500.000</td><td class="num">$16.000.000</td><td class="num">$8.000.000</td><td class="num">$14.000.000</td><td class="num">$73.000.000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 9.2 EGRESOS -->
+      <h3 id="s9b">9.2 Flujo de Egresos Anuales</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Concepto</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr></thead>
+          <tbody>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">1. NÓMINA Y RECURSO HUMANO</td></tr>
+            <tr><td>Nómina total (prestaciones incluidas)</td><td class="num">$274.166.100</td><td class="num">$290.616.066</td><td class="num">$308.053.029</td><td class="num">$326.536.211</td><td class="num">$346.128.384</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Nómina</td><td class="num">$274.166.100</td><td class="num">$290.616.066</td><td class="num">$308.053.029</td><td class="num">$326.536.211</td><td class="num">$346.128.384</td></tr>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">2. COSTOS DE PRODUCCIÓN Y LOGÍSTICA</td></tr>
+            <tr><td>Materia prima e insumos (28 % de ventas)</td><td class="num">$252.000.000</td><td class="num">$285.803.280</td><td class="num">$324.126.292</td><td class="num">$367.489.163</td><td class="num">$416.814.063</td></tr>
+            <tr><td>Combustible y fletes</td><td class="num">$120.000.000</td><td class="num">$127.200.000</td><td class="num">$134.832.000</td><td class="num">$142.921.920</td><td class="num">$151.497.235</td></tr>
+            <tr><td>Energía eléctrica y mantenimiento</td><td class="num">$60.000.000</td><td class="num">$63.600.000</td><td class="num">$67.416.000</td><td class="num">$71.460.960</td><td class="num">$75.748.618</td></tr>
+            <tr><td>Seguros (carga, vehículos, infraest.)</td><td class="num">$30.000.000</td><td class="num">$31.500.000</td><td class="num">$33.075.000</td><td class="num">$34.728.750</td><td class="num">$36.465.188</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Producción</td><td class="num">$462.000.000</td><td class="num">$508.103.280</td><td class="num">$559.449.292</td><td class="num">$616.600.793</td><td class="num">$680.525.104</td></tr>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">3. COSTOS DE COMERCIALIZACIÓN</td></tr>
+            <tr><td>Publicidad y marketing digital</td><td class="num">$18.000.000</td><td class="num">$18.900.000</td><td class="num">$19.845.000</td><td class="num">$20.837.250</td><td class="num">$21.879.113</td></tr>
+            <tr><td>Empaques sostenibles</td><td class="num">$9.600.000</td><td class="num">$10.080.000</td><td class="num">$10.584.000</td><td class="num">$11.113.200</td><td class="num">$11.668.860</td></tr>
+            <tr><td>Distribución y entregas</td><td class="num">$12.000.000</td><td class="num">$12.600.000</td><td class="num">$13.230.000</td><td class="num">$13.891.500</td><td class="num">$14.586.075</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Comercialización</td><td class="num">$39.600.000</td><td class="num">$41.580.000</td><td class="num">$43.659.000</td><td class="num">$45.841.950</td><td class="num">$48.134.048</td></tr>
+            <tr class="total-row"><td class="bold">★ TOTAL EGRESOS ANUALES</td><td class="num">$775.766.100</td><td class="num">$840.299.346</td><td class="num">$911.161.321</td><td class="num">$988.978.954</td><td class="num">$1.074.787.536</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 9.3 INGRESOS -->
+      <h3 id="s9c">9.3 Flujo de Ingresos Anuales</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Concepto</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr></thead>
+          <tbody>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">Producto 1 — Frutas Amazónicas</td></tr>
+            <tr><td>Unidades vendidas (kg/año)</td><td class="num">72.000</td><td class="num">77.760</td><td class="num">83.981</td><td class="num">90.699</td><td class="num">97.955</td></tr>
+            <tr><td>Precio unitario (COP/kg)</td><td class="num">$9.500</td><td class="num">$9.975</td><td class="num">$10.474</td><td class="num">$10.997</td><td class="num">$11.547</td></tr>
+            <tr class="subtotal-row"><td class="bold">Total Ingresos P1</td><td class="num">$684.000.000</td><td class="num">$775.782.000</td><td class="num">$879.824.394</td><td class="num">$997.474.803</td><td class="num">$1.131.424.245</td></tr>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">Producto 2 — Hortalizas de Segunda Transformación</td></tr>
+            <tr><td>Unidades vendidas (kg/año)</td><td class="num">48.000</td><td class="num">51.840</td><td class="num">55.987</td><td class="num">60.466</td><td class="num">65.303</td></tr>
+            <tr><td>Precio unitario (COP/kg)</td><td class="num">$4.500</td><td class="num">$4.725</td><td class="num">$4.961</td><td class="num">$5.209</td><td class="num">$5.470</td></tr>
+            <tr class="subtotal-row"><td class="bold">Total Ingresos P2</td><td class="num">$216.000.000</td><td class="num">$244.944.000</td><td class="num">$277.769.507</td><td class="num">$314.986.494</td><td class="num">$357.197.410</td></tr>
+            <tr class="total-row"><td class="bold">★ TOTAL INGRESOS ANUALES</td><td class="num">$900.000.000</td><td class="num">$1.020.726.000</td><td class="num">$1.157.593.901</td><td class="num">$1.312.461.297</td><td class="num">$1.488.621.655</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 9.4 ESTADO DE RESULTADOS -->
+      <h3 id="s9d">9.4 Estado de Resultados Proyectado</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Concepto</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr></thead>
+          <tbody>
+            <tr class="subtotal-row"><td class="bold">TOTAL VENTAS E INGRESOS</td><td class="num">$900.000.000</td><td class="num">$1.020.726.000</td><td class="num">$1.157.593.901</td><td class="num">$1.312.461.297</td><td class="num">$1.488.621.655</td></tr>
+            <tr><td>(-) Costos de producción y logística</td><td class="num">($462.000.000)</td><td class="num">($508.103.280)</td><td class="num">($559.449.292)</td><td class="num">($616.600.793)</td><td class="num">($680.525.104)</td></tr>
+            <tr><td>(-) Costos de comercialización</td><td class="num">($39.600.000)</td><td class="num">($41.580.000)</td><td class="num">($43.659.000)</td><td class="num">($45.841.950)</td><td class="num">($48.134.048)</td></tr>
+            <tr class="subtotal-row"><td class="bold">= MARGEN BRUTO DE VENTAS</td><td class="num">$398.400.000</td><td class="num">$471.042.720</td><td class="num">$554.485.609</td><td class="num">$650.018.554</td><td class="num">$759.962.503</td></tr>
+            <tr><td>% Margen bruto</td><td class="num">44,3 %</td><td class="num">46,1 %</td><td class="num">47,9 %</td><td class="num">49,5 %</td><td class="num">51,1 %</td></tr>
+            <tr><td>(-) Gastos de administración (Nómina)</td><td class="num">($274.166.100)</td><td class="num">($290.616.066)</td><td class="num">($308.053.029)</td><td class="num">($326.536.211)</td><td class="num">($346.128.384)</td></tr>
+            <tr class="subtotal-row"><td class="bold">= UTILIDAD OPERACIONAL (UAII)</td><td class="num">$124.233.900</td><td class="num">$180.426.654</td><td class="num">$246.432.580</td><td class="num">$323.482.343</td><td class="num">$413.834.119</td></tr>
+            <tr><td>(-) Impuesto de renta (0 % años 1–2; 20 % año 3+)*</td><td class="num">$0</td><td class="num">$0</td><td class="num">($49.286.516)</td><td class="num">($64.696.469)</td><td class="num">($82.766.824)</td></tr>
+            <tr class="total-row"><td class="bold">★ UTILIDAD NETA</td><td class="num">$124.233.900</td><td class="num">$180.426.654</td><td class="num">$197.146.064</td><td class="num">$258.785.874</td><td class="num">$331.067.295</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.78rem;color:var(--gris-3);margin-top:-12px;">* Exención Ley 1429/2010 para nuevas empresas creadas en municipios PDET (años 1 y 2). Tasa aplicada desde año 3: 20 % sobre utilidad operacional positiva.</p>
+
+      <div class="alert-box">
+        <strong>⚠️ Nota sobre el resultado del año 1:</strong> La utilidad operacional positiva de $124 M en el primer año no cubre la inversión inicial de $549 M. El retorno de la inversión se estima en el <strong>año 4</strong>, cuando la utilidad acumulada supera el capital invertido. Se recomienda complementar con financiación no reembolsable (Fondo Emprender + ONG) para reducir la presión sobre el flujo de caja.
+      </div>
+
+      <!-- 9.5 FUENTES DE FINANCIACIÓN -->
+      <h3 id="s9e">9.5 Fuentes de Financiación</h3>
+      <div class="sources-grid">
+        <div class="source-card">
+          <div class="pct">36 %</div>
+          <div class="src-name">Fondo Emprender (SENA)</div>
+          <div class="src-val">$200.000.000 — No reembolsable</div>
+        </div>
+        <div class="source-card">
+          <div class="pct">27 %</div>
+          <div class="src-name">Recursos propios / socios</div>
+          <div class="src-val">$150.000.000 — Capital semilla</div>
+        </div>
+        <div class="source-card">
+          <div class="pct">18 %</div>
+          <div class="src-name">Crédito Finagro / Bancóldex</div>
+          <div class="src-val">$100.000.000 — Tasa preferencial rural</div>
+        </div>
+        <div class="source-card">
+          <div class="pct">11 %</div>
+          <div class="src-name">ONG y Cooperación Internacional</div>
+          <div class="src-val">$60.000.000 — Agrosavia / PNUD</div>
+        </div>
+        <div class="source-card">
+          <div class="pct">9 %</div>
+          <div class="src-name">Gobernación / Alcaldía</div>
+          <div class="src-val">$49.500.000 — Convenio seguridad alimentaria</div>
+        </div>
+      </div>
+      <div class="highlight">
+        <strong>Total financiación requerida año 1:</strong> $549.500.000 COP · 64 % recursos externos no reembolsables o blandos · 27 % capital propio · Tasa efectiva promedio ponderada (WACC): 6,2 %
+      </div>
+    </section>
+
+    <!-- ── SECCIÓN ANEXOS ──────────────────────────────────────── -->
+    <section class="section" id="anexos">
+      <div class="section-header">
+        <div class="section-num">A</div>
+        <div>
+          <div class="section-title">Anexos<small>Costos de fabricación mensual · Planta de personal · Referencias</small></div>
+        </div>
+      </div>
+
+      <h3>Anexo 1 — Costos de Fabricación Mensual (Referencia Año 1)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Concepto</th><th>Valor mensual (COP)</th><th>% sobre total</th></tr></thead>
+          <tbody>
+            <tr><td colspan="3" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">COSTOS INDIRECTOS O FIJOS</td></tr>
+            <tr><td>Nómina total (10 personas, con prestaciones)</td><td class="num">$22.847.175</td><td class="num">47,2 %</td></tr>
+            <tr><td>Distribución y logística base</td><td class="num">$10.000.000</td><td class="num">20,7 %</td></tr>
+            <tr class="subtotal-row"><td class="bold">Total Costos Fijos</td><td class="num">$32.847.175</td><td class="num">67,9 %</td></tr>
+            <tr><td colspan="3" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">COSTOS DIRECTOS O VARIABLES</td></tr>
+            <tr><td>Materia prima (estimado mensual: 28 % ventas)</td><td class="num">$21.000.000</td><td class="num">—</td></tr>
+            <tr><td>Mano de obra indirecta / jornales</td><td class="num">$3.500.000</td><td class="num">7,2 %</td></tr>
+            <tr><td>Publicidad y marketing digital</td><td class="num">$1.500.000</td><td class="num">3,1 %</td></tr>
+            <tr><td>Servicios públicos (energía, agua, telecom)</td><td class="num">$5.000.000</td><td class="num">10,3 %</td></tr>
+            <tr><td>Etiquetas, empaques y materiales</td><td class="num">$800.000</td><td class="num">1,7 %</td></tr>
+            <tr class="subtotal-row"><td class="bold">Total Costos Variables</td><td class="num">$10.800.000</td><td class="num">22,3 %</td></tr>
+            <tr class="total-row"><td class="bold">★ TOTAL COSTOS MENSUALES (sin MP variable)</td><td class="num">$48.347.175</td><td class="num">100 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Anexo 2 — Planta de Personal (Evolución 2025–2029)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Área / Cargo</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr></thead>
+          <tbody>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">ÁREA ADMINISTRATIVA</td></tr>
+            <tr><td>Director Operativo</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+            <tr><td>Coordinador de Bodega</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+            <tr><td>Asistente Administrativo</td><td class="num">—</td><td class="num">—</td><td class="num">1</td><td class="num">1</td><td class="num">2</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Administrativa</td><td class="num">2</td><td class="num">2</td><td class="num">3</td><td class="num">3</td><td class="num">4</td></tr>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">PRODUCCIÓN Y OPERACIONES</td></tr>
+            <tr><td>Operarios Clasificación</td><td class="num">3</td><td class="num">3</td><td class="num">4</td><td class="num">4</td><td class="num">5</td></tr>
+            <tr><td>Conductores / Logística</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">3</td><td class="num">3</td></tr>
+            <tr><td>Técnico Agropecuario</td><td class="num">—</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Producción</td><td class="num">5</td><td class="num">6</td><td class="num">7</td><td class="num">8</td><td class="num">9</td></tr>
+            <tr><td colspan="6" style="background:var(--verde-2);color:#fff;font-weight:700;padding:8px 16px;">MERCADEO, TI Y TRANSVERSALES</td></tr>
+            <tr><td>Asesor Comercial</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num">2</td><td class="num">2</td></tr>
+            <tr><td>Gestor Comunitario</td><td class="num">—</td><td class="num">1</td><td class="num">—</td><td class="num">1</td><td class="num">1</td></tr>
+            <tr><td>Desarrollador / TI</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+            <tr><td>Técnico Mantenimiento</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+            <tr><td>Coordinador de Calidad</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">1</td><td class="num">1</td></tr>
+            <tr class="subtotal-row"><td class="bold">Subtotal Transversales</td><td class="num">3</td><td class="num">4</td><td class="num">4</td><td class="num">6</td><td class="num">6</td></tr>
+            <tr class="total-row"><td class="bold">★ TOTAL PERSONAL</td><td class="num">10</td><td class="num">12</td><td class="num">14</td><td class="num">17</td><td class="num">19</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Anexo 3 — Referencias Bibliográficas (APA 7)</h3>
+      <div style="font-size:.85rem;line-height:1.9;color:var(--gris-2);background:var(--blanco);padding:24px;border-radius:var(--radio);box-shadow:var(--sombra);">
+        <p>DANE. (2024). <em>Encuesta Nacional Agropecuaria 2023</em>. Departamento Administrativo Nacional de Estadística. https://www.dane.gov.co/</p>
+        <p>FAO. (2022). <em>Pérdidas y desperdicio de alimentos en América Latina y el Caribe</em>. Organización de las Naciones Unidas para la Alimentación y la Agricultura.</p>
+        <p>Gobierno de Colombia. (2010). <em>Ley 1429 de 2010: Ley de Formalización y Primer Empleo</em>. Congreso de la República.</p>
+        <p>Gobierno de Colombia. (2006). <em>Ley 1014 de 2006: Ley de Fomento a la Cultura del Emprendimiento</em>. Congreso de la República.</p>
+        <p>INVIMA. (2013). <em>Resolución 2674 de 2013: Condiciones sanitarias de establecimientos de alimentos</em>. Instituto Nacional de Vigilancia de Medicamentos y Alimentos.</p>
+        <p>MADR. (2023). <em>Plan Sectorial de Desarrollo Agropecuario 2022–2026</em>. Ministerio de Agricultura y Desarrollo Rural. https://www.minagricultura.gov.co/</p>
+        <p>Porter, M. E. (1985). <em>Competitive strategy: Techniques for analyzing industries and competitors</em>. Free Press.</p>
+        <p>SENA. (2024). <em>Guía Fondo Emprender: Requisitos y convocatorias</em> (Ed. 2024). Servicio Nacional de Aprendizaje. https://www.fondoemprender.com/</p>
+        <p>Banco de la República. (2025). <em>Informe de política monetaria: Proyecciones macroeconómicas 2025</em>. https://www.banrep.gov.co/</p>
+      </div>
+    </section>
+
+    <footer style="text-align:center;padding:40px 0 60px;color:var(--gris-3);font-size:.8rem;border-top:1px solid var(--gris-4);margin-top:40px;">
+      <p><strong>FLORACAMPO</strong> — Centro de Acopio para Campesinos &nbsp;·&nbsp; Florencia, Caquetá, 2025</p>
+      <p style="margin-top:6px;">Centro Tecnológico de la Amazonia — Análisis y Desarrollo de Software &nbsp;·&nbsp; Regional Caquetá SENA</p>
+      <p style="margin-top:6px;font-style:italic;">Weimar Hoyos &nbsp;·&nbsp; Wilder Restrepo &nbsp;·&nbsp; Brayan Hernández &nbsp;·&nbsp; María Camila Guevara</p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // TOC activo en scroll
+  const links = document.querySelectorAll('.toc-link');
+  const sections = document.querySelectorAll('.section, .portada');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const id = e.target.id;
+        const active = document.querySelector(`.toc-link[href="#${id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
