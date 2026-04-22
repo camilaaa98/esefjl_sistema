@@ -1,0 +1,251 @@
+/* =============================================================
+   FARMACIA ESEFJL — Sistema de Animaciones & Transiciones v1.0
+   Aplica a: Sistema principal, Manuales, Artículo
+   Excluye: login.php (no importar este archivo en login)
+   ============================================================= */
+
+/* ─── 1. KEYFRAMES GLOBALES ─── */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(24px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    50%       { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.18); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-6px); }
+}
+
+@keyframes borderPulse {
+    0%, 100% { border-color: var(--accent-gold, #d4af37); }
+    50%       { border-color: transparent; }
+}
+
+/* ─── 2. TRANSICIONES GENERALES ─── */
+
+/* Todos los elementos interactivos tienen transición suave */
+a,
+button,
+input,
+select,
+textarea,
+.btn-institutional,
+.btn-gold,
+.card-clinical,
+.content-card,
+.toc-item a,
+.step,
+.sidebar-medical nav a,
+.manual-nav a,
+.tech-tag,
+.checklist-table tr {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease;
+}
+
+/* ─── 3. ANIMACIÓN DE ENTRADA — SECCIONES ─── */
+
+/* Las secciones del sistema aparecen con fade-in al cargar */
+section,
+.content-card,
+.card-clinical {
+    animation: fadeInUp 0.55s ease-out both;
+}
+
+/* Cabecera aparece desde arriba */
+header,
+.manual-header {
+    animation: slideDown 0.6s ease-out both;
+}
+
+/* Sidebar aparece desde la izquierda */
+.sidebar-medical,
+.manual-nav {
+    animation: fadeInLeft 0.5s ease-out both;
+}
+
+/* Tablas entran con scale */
+table,
+.checklist-table,
+.table-clinical-wrapper {
+    animation: scaleIn 0.5s ease-out both;
+}
+
+/* ─── 4. TRANSFORMACIONES — HOVER INTERACTIVO ─── */
+
+/* Cards del sistema se elevan al hacer hover */
+.card-clinical:hover,
+.content-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Botones se elevan y resplandecen */
+.btn-institutional:hover,
+.btn-gold:hover,
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+}
+
+/* Links de tabla de contenidos se deslizan */
+.toc-item a:hover {
+    transform: translateX(4px);
+}
+
+/* Filas de tabla — highlight suave */
+.checklist-table tbody tr:hover,
+.table-clinical tbody tr:hover {
+    background-color: rgba(212, 175, 55, 0.06);
+    transform: none; /* evitar movimiento en tablas */
+}
+
+/* Nav lateral — items se deslizan */
+.manual-nav a:hover,
+.sidebar-medical nav a:hover {
+    transform: translateX(6px);
+    padding-left: calc(1rem + 6px);
+}
+
+/* Tech tags rebotan suavemente */
+.tech-tag:hover {
+    transform: translateY(-3px) scale(1.08);
+    animation: pulse-glow 1.6s infinite;
+}
+
+/* Semáforo / alertas — entrance animada */
+.alert,
+.alert-important,
+.alert-info,
+[style*="border: 2px solid #ef5350"],
+[style*="border: 2px solid #ffca28"],
+[style*="border: 2px solid #66bb6a"] {
+    animation: fadeIn 0.7s ease-out both;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+[style*="border: 2px solid #ef5350"]:hover,
+[style*="border: 2px solid #ffca28"]:hover,
+[style*="border: 2px solid #66bb6a"]:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+}
+
+/* ─── 5. INPUTS Y FORMULARIOS ─── */
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    transform: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+    border-color: var(--accent-gold, #d4af37) !important;
+}
+
+/* ─── 6. SCROLL-DRIVEN (CSS nativo, sin JS) ─── */
+
+/* Elementos que entran al hacer scroll — usando animation-timeline si el navegador lo soporta */
+@supports (animation-timeline: scroll()) {
+    .section-title {
+        animation: fadeInLeft linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
+    }
+
+    .content-card {
+        animation: fadeInUp linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 25%;
+    }
+}
+
+/* ─── 7. DELAYS ESCALONADOS — Listas y secciones ─── */
+
+/* Primera sección sin delay */
+section:nth-child(1)  { animation-delay: 0.05s; }
+section:nth-child(2)  { animation-delay: 0.10s; }
+section:nth-child(3)  { animation-delay: 0.15s; }
+section:nth-child(4)  { animation-delay: 0.20s; }
+section:nth-child(5)  { animation-delay: 0.25s; }
+section:nth-child(6)  { animation-delay: 0.30s; }
+
+/* Items de listas en el TOC */
+.toc-item:nth-child(1)  { animation: fadeIn 0.4s 0.1s both; }
+.toc-item:nth-child(2)  { animation: fadeIn 0.4s 0.15s both; }
+.toc-item:nth-child(3)  { animation: fadeIn 0.4s 0.20s both; }
+.toc-item:nth-child(4)  { animation: fadeIn 0.4s 0.25s both; }
+.toc-item:nth-child(5)  { animation: fadeIn 0.4s 0.30s both; }
+.toc-item:nth-child(6)  { animation: fadeIn 0.4s 0.35s both; }
+.toc-item:nth-child(7)  { animation: fadeIn 0.4s 0.40s both; }
+.toc-item:nth-child(8)  { animation: fadeIn 0.4s 0.45s both; }
+.toc-item:nth-child(9)  { animation: fadeIn 0.4s 0.50s both; }
+.toc-item:nth-child(10) { animation: fadeIn 0.4s 0.55s both; }
+.toc-item:nth-child(11) { animation: fadeIn 0.4s 0.60s both; }
+
+/* ─── 8. CLASES DE UTILIDAD ─── */
+
+/* Se pueden aplicar en HTML si se necesitan manualmente */
+.anim-fade-in     { animation: fadeIn 0.6s ease-out both; }
+.anim-fade-up     { animation: fadeInUp 0.6s ease-out both; }
+.anim-fade-left   { animation: fadeInLeft 0.6s ease-out both; }
+.anim-fade-right  { animation: fadeInRight 0.6s ease-out both; }
+.anim-scale       { animation: scaleIn 0.5s ease-out both; }
+.anim-bounce      { animation: bounce-subtle 2s infinite; }
+.anim-pulse-glow  { animation: pulse-glow 2s infinite; }
+
+/* ─── 9. PREFERENCIAS DE MOVIMIENTO REDUCIDO ─── */
+/* Respeta a usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

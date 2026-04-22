@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -34,101 +34,75 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sisfarma Pro - Logística IPS</title>
+    <title>Sisfarma Pro - LogÃ­stica IPS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300 min-h-screen">
-    <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar Copy From Inicio -->
-        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col p-6 shadow-sm">
-            <div class="flex items-center gap-3 mb-10">
-                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg shadow-sm">
-                <div>
-                    <h1 class="text-medical-500 font-extrabold text-lg leading-tight">SISFARMA</h1>
-                    <span class="text-[10px] text-gray-400 dark:text-gray-500 font-bold tracking-widest uppercase">ESE Fabio Jaramillo</span>
-                </div>
-            </div>
-
-            <nav class="flex-1 space-y-1">
-                <a href="inicio.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                    <span>📊</span> Resumen Operativo
-                </a>
-                <a href="solicitud_municipio.php" class="flex items-center gap-3 p-3 bg-medical-50 dark:bg-medical-500/10 text-medical-500 font-bold rounded-xl transition-all">
-                    <span>🚚</span> Pedido de Insumos
-                </a>
-                <a href="registro_entrega.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-xl transition-all">
-                    <span>💊</span> Entregas Pacientes
-                </a>
-            </nav>
-
-            <div class="mt-auto pt-6 border-t border-gray-100 dark:border-slate-700">
-                <button id="theme-toggle" class="w-full flex items-center justify-center gap-2 p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-xs font-bold text-gray-600 dark:text-gray-300 transition-all">
-                    <span class="dark:hidden">🌙 Modo Oscuro</span>
-                    <span class="hidden dark:block">☀️ Modo Claro</span>
-                </button>
-                <a href="../core/logout.php" class="block text-center mt-2 text-[10px] font-bold text-red-500 tracking-widest">⏻ SALIR</a>
-            </div>
-        </aside>
+    <div class="main-wrapper">
+        <?php include '../includes/sidebar.php'; ?>
 
         <!-- Main Content -->
-        <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
+        <main class="content-area fade-in-institutional">
             <?php if ($mensaje_res): ?>
-                <div class="bg-medical-500 text-white p-4 rounded-2xl shadow-lg font-bold text-center animate-bounce">
-                    🎉 <?= $mensaje_res ?>
+                <div class="mb-8 bg-[#111111] text-[#d4af37] border border-[#d4af37]/30 p-4 rounded-2xl shadow-xl font-bold text-center animate-bounce">
+                    ðŸŽ‰ <?= $mensaje_res ?>
                 </div>
             <?php endif; ?>
 
-            <header class="flex flex-col items-center justify-center text-center gap-4 relative overflow-hidden bg-slate-900 text-white p-12 rounded-[2.5rem] mb-12 shadow-2xl shadow-slate-900/40">
+            <header class="flex flex-col items-center justify-center text-center gap-4 relative overflow-hidden bg-[#111111] text-white p-16 rounded-[3rem] mb-12 shadow-2xl border border-[#d4af37]/20">
                 <div class="relative z-10">
-                    <span class="inline-block px-4 py-1.5 bg-medical-500 text-white text-[9px] font-black rounded-full uppercase tracking-widest mb-4 animate-pulse">Operación Municipal</span>
-                    <h2 class="text-4xl font-black tracking-tight leading-none mb-3 italic uppercase">Logística de Suministro IPS</h2>
-                    <p class="text-slate-300 text-sm italic font-medium">Gestión de stock inteligente para la sede: <span class="text-white underline decoration-2 underline-offset-4 decoration-medical-500"><?= strtoupper($_SESSION['sede']) ?></span></p>
-                </div>
-                
-                <!-- Botón Pedido Automático Centrado -->
-                <div class="mt-8 relative z-10">
+                    <span class="inline-block px-5 py-2 bg-[#d4af37] text-black text-[9px] font-black rounded-full uppercase tracking-[0.2em] mb-6 animate-pulse">OperaciÃ³n Municipal Ã‰lite</span>
+                    <h2 class="text-4xl font-black tracking-tight leading-none mb-4 italic uppercase">LogÃ­stica de <span class="text-[#d4af37]">Suministro IPS</span></h2>
+                    <p class="text-slate-400 text-sm italic font-bold tracking-widest uppercase mb-10">GestiÃ³n de Stock Inteligente: <span class="text-[#d4af37] underline decoration-2 underline-offset-8"><?= strtoupper($_SESSION['sede']) ?></span></p>
+                    
+                    <!-- BotÃ³n Pedido AutomÃ¡tico Premium -->
                     <form method="POST">
-                        <button type="submit" name="btnManualRequest" class="group flex items-center gap-3 px-8 py-4 bg-white text-slate-900 font-extrabold rounded-2xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase text-xs tracking-widest">
-                            🚀 Generar Pedido Automático al CEDIS
-                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        <button type="submit" name="btnManualRequest" class="group relative flex items-center gap-4 px-10 py-5 bg-white text-[#111111] font-black rounded-2xl shadow-[0_20px_50px_rgba(255,255,255,0.1)] transition-all hover:bg-[#d4af37] hover:scale-105 active:scale-95 uppercase text-xs tracking-widest">
+                            ðŸš€ Generar Abastecimiento AutomÃ¡tico al CEDIS
+                            <span class="group-hover:translate-x-2 transition-transform">â†’</span>
                         </button>
                     </form>
                 </div>
-                <!-- Decor -->
-                <div class="absolute -right-20 -top-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+                
+                <!-- DecoraciÃ³n EstÃ©tica -->
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
+                <div class="absolute -left-20 -top-20 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
             </header>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Tabla de Inventario -->
-                <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden">
-                    <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700 flex justify-between items-center bg-gray-50/50 dark:bg-slate-800/50">
-                        <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter">Estado de Stock Local</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Tabla de Inventario Ã‰lite -->
+                <div class="bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 overflow-hidden">
+                    <div class="px-8 py-7 border-b border-slate-50 flex justify-between items-center bg-[#111111]">
+                        <h3 class="font-black text-[#d4af37] text-[10px] uppercase tracking-[0.3em] italic">Estado de Stock Operativo Local</h3>
+                        <span class="text-[8px] text-slate-500 font-bold uppercase">Sincronizado en Tiempo Real</span>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left font-inter">
-                            <thead class="bg-gray-50 dark:bg-slate-800/50 text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">
+                            <thead class="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">
                                 <tr>
-                                    <th class="px-6 py-5">Insumo</th>
-                                    <th class="px-6 py-5">Stock</th>
-                                    <th class="px-6 py-5">Estado</th>
+                                    <th class="px-8 py-6 text-left">Insumo Magistral</th>
+                                    <th class="px-8 py-6">Cant. Actual</th>
+                                    <th class="px-8 py-6">Estado</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
+                            <tbody class="divide-y divide-slate-50">
                                 <?php foreach ($inventory as $i): ?>
-                                <tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
-                                    <td class="px-6 py-4">
-                                        <p class="font-black text-xs text-gray-800 dark:text-gray-200"><?= strtoupper($i['nombre_generico']) ?></p>
-                                        <p class="text-[9px] text-gray-400 italic"><?= $i['laboratorio'] ?> - <?= $i['concentracion_presentacion'] ?></p>
+                                <tr class="hover:bg-slate-50 transition-all group">
+                                    <td class="px-8 py-5">
+                                        <p class="font-black text-sm text-[#111111] uppercase italic leading-none mb-1"><?= strtoupper($i['nombre_generico']) ?></p>
+                                        <p class="text-[9px] text-slate-400 font-bold tracking-tighter uppercase"><?= $i['laboratorio'] ?> | <?= $i['concentracion_presentacion'] ?></p>
                                     </td>
-                                    <td class="px-6 py-4 text-center">
-                                        <span class="text-sm font-black text-gray-900 dark:text-white"><?= $i['stock_actual'] ?></span>
+                                    <td class="px-8 py-5 text-center">
+                                        <span class="text-lg font-black text-[#111111] tabular-nums"><?= $i['stock_actual'] ?></span>
                                     </td>
-                                    <td class="px-6 py-4 text-center">
-                                        <?php 
-                                            echo InventoryController::getStatusBadge($i['stock_actual'], $i['stock_minimo'], $i['fecha_vencimiento']);
-                                        ?>
+                                    <td class="px-8 py-5 text-center">
+                                        <div class="scale-90 flex justify-center">
+                                            <?php 
+                                                echo InventoryController::getStatusBadge($i['stock_actual'], $i['stock_minimo'], $i['fecha_vencimiento']);
+                                            ?>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -137,47 +111,55 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
                     </div>
                 </div>
 
-                <!-- Formulario Solicitud Manual -->
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] shadow-sm border border-gray-100 dark:border-slate-700">
-                    <div class="mb-8">
-                        <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2 italic">Solicitud Especial Manual</h3>
-                        <p class="text-gray-500 text-[11px] leading-relaxed">Use este formulario para requerimientos extraordinarios no cubiertos por el sistema automático.</p>
+                <!-- Formulario Solicitud Manual Ã‰lite -->
+                <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 relative overflow-hidden">
+                    <div class="mb-10 relative z-10 border-l-4 border-l-[#d4af37] pl-6">
+                        <h3 class="text-[10px] font-black text-[#111111] uppercase tracking-[0.4em] mb-2 italic">Solicitud Especial Manual</h3>
+                        <p class="text-slate-400 text-[11px] font-bold leading-relaxed uppercase tracking-tighter">Requerimientos extraordinarios de VademÃ©cum</p>
                     </div>
                     
-                    <form method="POST" class="space-y-6">
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Seleccionar Insumo del Catálogo</label>
-                            <select name="producto_id" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-xs font-bold text-gray-700 dark:text-gray-300" required>
-                                <option value="">— Buscar en el Vademécum —</option>
+                    <form method="POST" class="space-y-8 relative z-10">
+                        <div class="space-y-3">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Seleccionar Insumo del CatÃ¡logo</label>
+                            <select name="producto_id" class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-[11px] font-black text-[#111111] uppercase italic cursor-pointer shadow-inner" required>
+                                <option value="" class="text-slate-300 italic">--- BUSCAR EN EL VADEMÃ‰CUM ---</option>
                                 <?php foreach ($productos_todos as $p): ?>
-                                    <option value="<?= $p['id'] ?>"><?= strtoupper($p['nombre_generico']) ?> (<?= $p['laboratorio'] ?>)</option>
+                                    <option value="<?= $p['id'] ?>" class="font-black"><?= strtoupper($p['nombre_generico']) ?> (<?= $p['laboratorio'] ?>)</option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Cantidad Requerida</label>
-                            <input type="number" name="cantidad" min="1" placeholder="Ej: 50" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-black dark:text-white" required>
+                        <div class="space-y-3">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Cantidad Requerida</label>
+                            <input type="number" name="cantidad" min="1" placeholder="CANTIDAD DE UNIDADES" class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-sm font-black text-[#111111] placeholder:text-slate-200 shadow-inner" required>
                         </div>
 
-                        <button type="submit" name="btnSolicitudManual" class="w-full py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-3xl shadow-xl transition-all transform hover:scale-[1.01] uppercase text-[10px] tracking-widest">
-                            📤 Radicar Solicitud Manual
+                        <button type="submit" name="btnSolicitudManual" class="w-full py-6 bg-[#111111] text-white font-black rounded-3xl shadow-[0_15px_40px_rgba(0,0,0,0.15)] transition-all transform hover:scale-[1.02] active:scale-95 uppercase text-[11px] tracking-[0.3em] border border-transparent hover:border-[#d4af37]/40 hover:text-[#d4af37]">
+                            ðŸ“¤ Radicar Solicitud de Despacho
                         </button>
                     </form>
 
-                    <div class="mt-8 pt-8 border-t border-gray-100 dark:border-slate-700">
-                        <div class="flex items-start gap-4 p-4 bg-blue-50 dark:bg-blue-500/5 rounded-2xl border border-blue-100 dark:border-blue-500/20">
-                            <span class="text-xl">ℹ️</span>
-                            <div class="text-[10px] text-blue-600 dark:text-blue-400 leading-relaxed italic">
-                                <strong>Nota Técnica:</strong> Los pedidos radicados ingresan a la cola de despacho del Regente en Florencia. El tiempo estimado es de 24-48 horas según disponibilidad de transporte.
+                    <div class="mt-12 pt-8 border-t border-slate-50 relative z-10">
+                        <div class="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 italic group hover:bg-[#111111] transition-all duration-500">
+                            <span class="text-2xl group-hover:rotate-12 transition-transform">ðŸ›Žï¸</span>
+                            <div class="text-[9px] text-slate-400 font-bold leading-relaxed uppercase tracking-widest group-hover:text-[#d4af37]">
+                                <strong class="text-slate-600 group-hover:text-white">Nota TÃ©cnica de LogÃ­stica:</strong><br>
+                                Las solicitudes manuales ingresan a la cola de auditorÃ­a del CEDIS central. Tiempo de trÃ¡nsito estimado: 24-72 horas hÃ¡biles.
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <footer class="mt-20 pt-8 border-t border-slate-100 text-[9px] font-bold text-slate-300 uppercase tracking-[0.5em] text-center pb-12 italic">
+                CONTROL DE LOGÃSTICA MUNICIPAL â€” SISFARMA Ã‰LITE v7.5
+            </footer>
         </main>
+    </div>
+    <script src="../assets/js/inicio.js"></script>
     </div>
 
     <script src="../assets/js/theme-toggle.js"></script>
+    <script src="../assets/js/animations.js" defer></script>
 </body>
 </html>

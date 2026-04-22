@@ -1,0 +1,65 @@
+﻿COMPORTAMIENTO ECONÃ“MICO Y RESILIENCIA EMPRESARIAL: UN ANÃLISIS DE LOS MICROCOMERCIANTES EN FLORENCIA (CAQUETÃ) EN EL ESCENARIO POSPANDEMIA
+
+INTRODUCCIÃ“N
+
+La crisis sanitaria global desencadenada por el COVID-19 no solo representÃ³ un desafÃ­o para la salud pÃºblica, sino que actuÃ³ como un catalizador de transformaciones estructurales en las dinÃ¡micas productivas de las ciudades intermedias. En el contexto particular de Florencia, CaquetÃ¡, el impacto se sintiÃ³ con una intensidad singular. AquÃ­, la economÃ­a no depende de grandes conglomerados industriales, sino del pulso diario de pequeÃ±os comerciantes y emprendedores que sostienen el tejido social de la regiÃ³n.
+
+Frente a esta coyuntura, el espÃ­ritu emprendedor dejÃ³ de ser una simple opciÃ³n de crecimiento para convertirse en una estrategia de supervivencia y resistencia. No es exagerado afirmar que la innovaciÃ³n y la generaciÃ³n de valor social (Solano, 2017) fueron las anclas que permitieron a muchos negocios mantenerse a flote cuando los mercados tradicionales colapsaron. El propÃ³sito de este trabajo no es solo documentar cifras, sino profundizar en los factores que definieron la sostenibilidad de estos negocios en un periodo crÃ­tico. Â¿QuÃ© variables permitieron que algunos se recuperaran mientras otros desaparecÃ­an? Esta pregunta guÃ­a nuestra investigaciÃ³n sobre el comportamiento econÃ³mico pospandemia en el municipio.
+
+METODOLOGÃA
+
+Para abordar este fenÃ³meno, trazamos una ruta de investigaciÃ³n cualitativa apoyada en un diseÃ±o descriptivo y analÃ­tico. Dado que el objetivo era capturar la esencia de la recuperaciÃ³n econÃ³mica en Florencia, centramos nuestro esfuerzo en una revisiÃ³n rigurosa de fuentes secundarias. No se tratÃ³ simplemente de acumular datos; buscamos sistematizar e interpretar la informaciÃ³n institucional y acadÃ©mica disponible para construir un relato coherente del fenÃ³meno.
+
+El despliegue de nuestra metodologÃ­a se organizÃ³ de la siguiente manera:
+
+En primer lugar, delimitamos el campo de estudio centrÃ¡ndonos en el periodo 2020-2024. Fue fundamental definir criterios de bÃºsqueda que priorizaran la validez cientÃ­fica y la relevancia regional. Solo integramos documentos que ofrecieran una mirada profunda sobre el impacto del COVID-19, la microeconomÃ­a del CaquetÃ¡ y las tÃ¡cticas de reactivaciÃ³n productiva.
+
+Posteriormente, realizamos un rastreo exhaustivo en repositorios acadÃ©micos como Scielo y Redalyc, ademÃ¡s de informes tÃ©cnicos de alto nivel provenientes del DANE, la CEPAL y la OIT. Para nosotros, la calidad de la fuente fue innegociable. Empleamos descriptores como "comercio local" y "sostenibilidad econÃ³mica" para filtrar el ruido informativo y llegar al nÃºcleo del problema.
+
+Un paso crucial fue el anÃ¡lisis de contenido. Lejos de quedarnos en la superficie, categorizamos los hallazgos en ejes temÃ¡ticos: desde la disrupciÃ³n en la producciÃ³n hasta la adopciÃ³n forzada de tecnologÃ­as. Finalmente, triangulamos esta informaciÃ³n con marcos teÃ³ricos sobre resiliencia empresarial. Este proceso de validaciÃ³n conceptual nos permitiÃ³ asegurar que nuestras conclusiones no fueran meras observaciones, sino sÃ­ntesis robustas respaldadas por la evidencia recolectada.
+
+RESULTADOS Y DISCUSIÃ“N
+
+1. El Impacto EconÃ³mico en el Terreno: Los Negocios en Florencia
+
+1.1. La contracciÃ³n del mercado y el cambio en el consumo
+El anÃ¡lisis de los datos recolectados pinta un panorama complejo. La pandemia no solo vaciÃ³ las calles; alterÃ³ profundamente la capacidad de gasto de la gente. En los momentos mÃ¡s Ã¡lgidos del confinamiento, la demanda local se desplomÃ³ drÃ¡sticamente. Lo que antes eran gastos recurrentes en peluquerÃ­as, comercio de ropa o servicios personales, se convirtiÃ³ en una prioridad absoluta por lo bÃ¡sico.
+
+Para el pequeÃ±o comerciante de Florencia, esta caÃ­da de ingresos â€”que en algunos casos llegÃ³ al 80% â€” fue un choque de realidad brutal. Nuestra ciudad, cuya economÃ­a late gracias a negocios familiares y de baja escala, mostrÃ³ una vulnerabilidad que no podemos ignorar. Al no contar con redes empresariales sÃ³lidas, los microcomerciantes fueron los primeros en sentir la fragilidad de depender del ingreso diario en un mercado congelado.
+
+1.2. El laberinto de la logÃ­stica y el abastecimiento
+No podemos dejar de lado la crisis logÃ­stica. Por nuestra ubicaciÃ³n geogrÃ¡fica y la dependencia de productos de otras regiones, Florencia sufriÃ³ especialmente la interrupciÃ³n de las cadenas de suministro. La escasez de insumos y el alza de precios devoraron los escasos mÃ¡rgenes de ganancia. Esta situaciÃ³n dejÃ³ al descubierto una falla crÃ­tica: la mayorÃ­a de nuestros pequeÃ±os negocios carecen de planes de contingencia para su cadena de suministro, dependiendo de muy pocos proveedores y volviÃ©ndose vulnerables ante cualquier cierre de vÃ­as o crisis de transporte.
+
+2. AdaptaciÃ³n: Entre la Necesidad y la TecnologÃ­a
+
+2.1. El reto de lo digital en el contexto local
+Se habla mucho de la digitalizaciÃ³n impulsada por la pandemia, pero en Florencia la realidad fue distinta. Si bien herramientas como WhatsApp y las redes sociales ayudaron a mitigar el impacto, no fueron una soluciÃ³n mÃ¡gica. La transiciÃ³n fue lenta y tropezÃ³ con barreras estructurales: desde la falta de alfabetizaciÃ³n digital hasta la desconfianza en los sistemas de pago virtual. En comparaciÃ³n con las grandes capitales, nuestras microempresas enfrentaron un camino mucho mÃ¡s empinado para digitalizar su operaciÃ³n y mantenerse competitivas.
+
+2.2. Reinventando el modelo de negocio sobre la marcha
+Lo que vimos fue una adaptaciÃ³n reactiva mÃ¡s que estratÃ©gica. Los comerciantes redujeron horarios o cambiaron sus lÃ­neas de productos simplemente para sobrevivir. Sin embargo, esta falta de planificaciÃ³n financiera y de gestiÃ³n de riesgos â€”evidente en la revisiÃ³n de los estudiosâ€” obstaculizÃ³ transformaciones mÃ¡s profundas. La mayorÃ­a de los emprendedores locales actuÃ³ con la valentÃ­a de la emergencia, pero sin las herramientas tÃ©cnicas para un cambio estructural sostenible.
+
+3. La Trampa de la Deuda y la Vulnerabilidad Financiera
+
+3.1. Problemas de fondo que la crisis sacÃ³ a la superficie
+La pandemia no inventÃ³ los problemas de Florencia; solo los hizo mÃ¡s visibles y dolorosos. La baja bancarizaciÃ³n y la informalidad laboral ya estaban ahÃ­. Al llegar la crisis, estas condiciones se convirtieron en muros infranqueables para acceder a ayudas estatales. Muchos comerciantes, al no tener registros contables o estar fuera del sistema tributario formal, quedaron excluidos de los beneficios que el gobierno central ofrecÃ­a.
+
+3.2. El costo de subsistir: El endeudamiento informal
+Ante la falta de crÃ©ditos formales, el 'gota a gota' y el endeudamiento informal se convirtieron en la Ãºnica salida para muchos. Pero este alivio inmediato trajo consigo ciclos de deuda asfixiantes. Cubrir costos fijos como el arriendo o los servicios con prÃ©stamos de altÃ­simo interÃ©s ha dejado una secuela financiera que aÃºn hoy, en 2026, sigue afectando la liquidez de muchos negocios locales.
+
+4. El Rol de las Instituciones: Luces y Sombras
+
+La respuesta del Estado, aunque bienintencionada, fue a menudo lenta e insuficiente para el microempresario de a pie. Los trÃ¡mites complejos y la falta de formalizaciÃ³n empresarial dejaron a muchos fuera de los subsidios y lÃ­neas de crÃ©dito. Si bien se vieron esfuerzos locales interesantes, como ferias de emprendimiento y campaÃ±as de promociÃ³n del comercio regional, estas acciones fueron temporales y no lograron sanar las heridas estructurales de competitividad y falta de apoyo tÃ©cnico.
+
+CONCLUSIONES
+
+La pandemia dejÃ³ cicatrices profundas en la economÃ­a florenciana, pero tambiÃ©n lecciones que no podemos ignorar. La fragilidad financiera de nuestros microcomerciantes quedÃ³ expuesta, demostrando que la supervivencia no depende solo de la voluntad, sino de la capacidad de adaptaciÃ³n tÃ©cnica y digital. La recuperaciÃ³n que estamos viviendo en 2026 es desigual; mientras algunos sectores han logrado florecer en la nueva normalidad, otros siguen luchando por alcanzar sus niveles de prepandemia. El fortalecimiento institucional y la formaciÃ³n en gestiÃ³n de crisis deben dejar de ser temas de escritorio para convertirse en realidades que protejan nuestro tejido empresarial ante futuras tormentas.
+
+REFERENCIAS BIBLIOGRAFICAS
+
+Allan, S. (2020). Impacto del COVID-19 en el Ãndice de Desarrollo Humano global. PNUD.
+Faieta, B., et al. (2020). Crisis sanitaria y repercusiones econÃ³micas del COVID-19 en AmÃ©rica Latina. Banco Interamericano de Desarrollo.
+OIT. (2020). Impacto del COVID-19 en el empleo informal y los ingresos laborales.
+Solano, L. (2017). El emprendimiento como estrategia de desarrollo socioeconÃ³mico en contextos de crisis. Revista Latinoamericana de InnovaciÃ³n y Desarrollo.
+Naciones Unidas. (2020). COVID-19 y gobernanza global: una crisis sin precedentes.
+DANE. (2024). Informes de coyuntura econÃ³mica regional - CaquetÃ¡.
+

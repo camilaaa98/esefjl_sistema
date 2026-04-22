@@ -1,22 +1,21 @@
-/* === ELITE MEDICAL 4.0 - GLOBAL DESIGN SYSTEM === */
+/* === PURE MEDICAL 7.0 - EXCELENCIA INSTITUCIONAL ESEFJL === */
 @import url('variables.css');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;700&display=swap');
+@import url('animations.css');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;700&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-body);
     background-color: var(--bg-base);
     color: var(--text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
     min-height: 100vh;
-    transition: background-color 0.4s ease;
 }
 
-/* === LAYOUT ESTRUCTURAL === */
+/* === LAYOUT INSTITUCIONAL === */
 .main-wrapper {
     display: flex;
     min-height: 100vh;
@@ -29,157 +28,141 @@ body {
     margin: 0 auto;
 }
 
-/* === GLASSMORPHISM / CARDS PREMUM === */
-.glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-premium);
-}
-
-.card-elite {
-    background: white;
+/* === SIDEBAR PROFESIONAL === */
+.sidebar-medical {
+    width: 300px;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-light);
+    height: 100vh;
+    position: sticky;
+    top: 0;
     padding: 2rem;
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(0,0,0,0.03);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.02);
 }
 
-.card-elite::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 6px; height: 100%;
-    background: var(--primary-main);
+/* === COMPONENTES ÉLITE === */
+.card-clinical {
+    background: var(--bg-surface);
+    padding: 2rem;
+    border-radius: var(--radius-premium);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-elite);
+    transition: all 0.3s ease;
 }
 
-.card-elite:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: var(--shadow-premium);
+.card-clinical:hover {
+    box-shadow: var(--shadow-focus);
+    transform: translateY(-4px);
 }
 
-/* === TIPOGRAFÍA ELITE === */
-h1, h2, h3, .font-heading {
-    font-family: var(--font-heading);
+.text-gradient-institutional {
+    background: linear-gradient(135deg, var(--primary-medical), var(--accent-gold-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-weight: 800;
-    letter-spacing: -0.02em;
 }
 
-.text-gradient {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+.text-gradient-gold {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* === BOTONES & ACCIONES === */
-.btn-elite {
-    padding: 1rem 2rem;
-    border-radius: 1.25rem;
+/* === CABECERAS === */
+h1, h2, h3, .font-heading {
+    font-family: var(--font-heading);
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    border: none;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    color: var(--primary-medical);
 }
 
-.btn-elite:hover {
-    transform: translateY(-3px);
-    filter: brightness(1.1);
-}
-
-.btn-primary-elite {
-    background: var(--primary-main);
+/* === BOTONES & ACCIONES === */
+.btn-institutional {
+    padding: 0.8rem 1.8rem;
+    background: var(--primary-medical);
     color: white;
-    box-shadow: 0 10px 20px rgba(0, 105, 92, 0.2);
-}
-
-/* === TABLAS DE ALTA DENSIDAD === */
-.table-elite-wrapper {
-    background: white;
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(0,0,0,0.02);
-}
-
-.table-elite {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-.table-elite th {
-    background: #fdfdfd;
-    padding: 1.5rem;
+    font-weight: 700;
+    border-radius: 1.2rem;
+    text-transform: uppercase;
     font-size: 0.75rem;
-    font-weight: 800;
+    letter-spacing: 0.1em;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--primary-medical);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn-institutional:hover {
+    background: #000;
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.btn-gold {
+    background: var(--accent-gold);
+    color: white;
+    border-color: var(--accent-gold);
+}
+
+.btn-gold:hover {
+    background: var(--accent-gold-dark);
+    border-color: var(--accent-gold-dark);
+    color: white;
+}
+
+/* === TABLAS CLÍNICAS === */
+.table-clinical-wrapper {
+    background: white;
+    border-radius: var(--radius-premium);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    box-shadow: var(--shadow-elite);
+}
+
+.table-clinical {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-clinical th {
+    background: #f8fafc;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-size: 0.7rem;
     text-transform: uppercase;
     color: var(--text-muted);
-    letter-spacing: 0.1em;
-    border-bottom: 2px solid #f1f5f9;
-}
-
-.table-elite td {
-    padding: 1.5rem;
-    border-bottom: 1px solid #f1f5f9;
-    font-size: 0.875rem;
-    transition: background-color 0.3s ease;
-}
-
-.table-elite tr:hover td {
-    background-color: #f8fafc;
-}
-
-/* === BADGES MÉDICOS === */
-.status-pill {
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    font-size: 0.7rem;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
 }
 
-.pill-red { background: rgba(229, 57, 53, 0.1); color: #e53935; border: 1px solid rgba(229, 57, 53, 0.2); }
-.pill-green { background: rgba(67, 160, 71, 0.1); color: #43a047; border: 1px solid rgba(67, 160, 71, 0.2); }
-
-/* === SIDEBAR GLASS === */
-.sidebar-glass {
-    min-width: 320px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(40px);
-    border-right: 1px solid rgba(0,0,0,0.05);
+.table-clinical td {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid #f1f5f9;
+    font-size: 0.875rem;
 }
 
-/* === ANIMACIONES (60FPS) === */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
+/* === ANIMACIONES === */
+.fade-in-institutional {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-up {
-    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* === RESPONSIVIDAD === */
+@media (max-width: 1024px) {
+    .sidebar-medical {
+        display: none;
+    }
 }
-
-/* === INTEGRIDAD DEL LOGIN (NO TOCAR) === */
-.login-body { 
-    background: url('../img/fondo.jpg') no-repeat center center fixed; 
-    background-size: cover;
-    display: flex; align-items: center; justify-content: center;
-}
-.login-glass {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(15px);
-    border-radius: 2.5rem;
-}
-

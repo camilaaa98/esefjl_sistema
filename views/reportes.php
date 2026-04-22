@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -26,71 +26,64 @@ if (!$isHighCargo) {
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
     <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar Reutilizada -->
-        <aside class="w-full md:w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 p-6 flex flex-col">
-            <div class="flex items-center gap-3 mb-10">
-                <img src="../img/logoesefjl.jpg" alt="Logo" class="w-10 h-10 rounded-lg">
-                <h1 class="text-medical-500 font-extrabold text-lg">SISFARMA</h1>
-            </div>
-            <nav class="space-y-1">
-                <a href="inicio.php" class="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 rounded-xl transition-all">🏠 Inicio</a>
-                <a href="reportes.php" class="flex items-center gap-3 p-3 bg-medical-50 text-medical-500 font-bold rounded-xl">📊 Reportes</a>
-            </nav>
-        </aside>
+        <?php include '../includes/sidebar.php'; ?>
 
         <!-- Main -->
-        <main class="flex-1 p-6 md:p-10 space-y-8">
+        <main class="flex-1 p-6 md:p-10 space-y-8 fade-in-institutional">
             <header>
-                <h2 class="text-3xl font-black text-gray-900 dark:text-white italic uppercase tracking-tighter">Central de Inteligencia y Reportes</h2>
-                <p class="text-gray-500 dark:text-gray-400 text-sm">Informes Consolidados para Secretaría de Salud y Entes de Control</p>
+                <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter">Central de Inteligencia y <span class="text-[#d4af37]">Reportes</span></h2>
+                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Monitoreo de Indicadores de Alta Gerencia</p>
             </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border border-gray-100">
-                    <h3 class="font-bold text-gray-800 mb-4 uppercase text-xs tracking-widest">Dispensación Mensual (Unidades)</h3>
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+                    <h3 class="font-black text-[#111111] mb-6 uppercase text-[10px] tracking-widest border-b border-[#d4af37]/20 pb-2">DispensaciÃ³n Mensual (Unidades)</h3>
                     <canvas id="chartMensual"></canvas>
                 </div>
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border border-gray-100">
-                    <h3 class="font-bold text-gray-800 mb-4 uppercase text-xs tracking-widest">Cumplimiento de Pedidos IPS</h3>
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+                    <h3 class="font-black text-[#111111] mb-6 uppercase text-[10px] tracking-widest border-b border-[#d4af37]/20 pb-2">Cumplimiento de Pedidos IPS</h3>
                     <canvas id="chartIPS"></canvas>
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-gray-100">
-                <h3 class="font-bold text-medical-500 mb-6 uppercase text-xs tracking-widest">Generación de Informes Oficiales</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <button class="p-4 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-medical-50 hover:border-medical-200 transition-all text-left">
-                        <span class="block text-xs font-black text-slate-400 uppercase">Período</span>
-                        <span class="text-sm font-bold text-slate-700">Informe Semanal</span>
+            <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+                <h3 class="font-black text-[#111111] mb-8 uppercase text-[10px] tracking-widest border-l-4 border-l-[#d4af37] pl-4">GeneraciÃ³n de Informes Oficiales</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <button class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-[#111111] hover:text-white transition-all text-left group">
+                        <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">LogÃ­stica Semanal</span>
+                        <span class="text-sm font-black uppercase italic group-hover:text-[#d4af37]">Informe Semanal</span>
                     </button>
-                    <button class="p-4 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-medical-50 hover:border-medical-200 transition-all text-left">
-                        <span class="block text-xs font-black text-slate-400 uppercase">Período</span>
-                        <span class="text-sm font-bold text-slate-700">Informe Trimestral</span>
+                    <button class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-[#111111] hover:text-white transition-all text-left group">
+                        <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">LogÃ­stica Trimestral</span>
+                        <span class="text-sm font-black uppercase italic group-hover:text-[#d4af37]">Informe Trimestral</span>
                     </button>
-                    <button class="p-4 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-medical-50 hover:border-medical-200 transition-all text-left">
-                        <span class="block text-xs font-black text-slate-400 uppercase">Período</span>
-                        <span class="text-sm font-bold text-slate-700">Cierre Anual 2026</span>
+                    <button class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-[#111111] hover:text-white transition-all text-left group">
+                        <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Cierre Consolidado</span>
+                        <span class="text-sm font-black uppercase italic group-hover:text-[#d4af37]">Cierre Anual 2026</span>
                     </button>
                 </div>
             </div>
         </main>
     </div>
     <script>
-        // Placeholder scripts para las gráficas
+        // Scripts para las grÃ¡ficas con colores corporativos Ã‰lite
         new Chart(document.getElementById('chartMensual'), {
             type: 'bar',
             data: {
                 labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],
-                datasets: [{ label: 'Entregas', data: [400, 600, 550, 800, 750], backgroundColor: '#006D5B' }]
-            }
+                datasets: [{ label: 'Entregas', data: [400, 600, 550, 800, 750], backgroundColor: '#111111', borderRadius: 8 }]
+            },
+            options: { plugins: { legend: { display: false } } }
         });
         new Chart(document.getElementById('chartIPS'), {
-            type: 'pie',
+            type: 'doughnut',
             data: {
-                labels: ['Solita', 'Solano', 'Milán', 'Valparaíso', 'Getucha'],
-                datasets: [{ data: [20, 15, 25, 20, 20], backgroundColor: ['#0f172a', '#006D5B', '#14b8a6', '#0ea5e9', '#6366f1'] }]
-            }
+                labels: ['Solita', 'Solano', 'MilÃ¡n', 'Valp.', 'Getucha'],
+                datasets: [{ data: [20, 15, 25, 20, 20], backgroundColor: ['#111111', '#d4af37', '#333333', '#c0c0c0', '#b8860b'] }]
+            },
+            options: { plugins: { legend: { position: 'bottom', labels: { font: { weight: '800', size: 9 } } } } }
         });
     </script>
+    <script src="../assets/js/animations.js" defer></script>
 </body>
 </html>

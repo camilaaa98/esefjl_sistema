@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -22,11 +22,11 @@ $total_items = 0;
 
 $img_map = [
     'Florencia' => 'AdministrativaFlorencia.jpg',
-    'Milán' => 'Milan.jpg',
+    'MilÃ¡n' => 'Milan.jpg',
     'San Antonio de Getucha' => 'SanAntonioGetucha.jpg',
     'Solano' => 'solano.jpg',
     'Solita' => 'solita.jpg',
-    'Valparaíso' => 'valparaiso.jpg'
+    'ValparaÃ­so' => 'valparaiso.jpg'
 ];
 
 if ($selected_sede_id) {
@@ -68,23 +68,23 @@ $total_pages = ceil($total_items / $limit);
 
         <!-- Main -->
         <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
-            <header class="flex flex-col items-center justify-center text-center gap-4">
+            <header class="flex flex-col items-center justify-center text-center gap-4 fade-in-institutional">
                 <div>
-                    <h2 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight italic uppercase">Directorio de Sedes Municipales</h2>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm font-medium italic">Seleccione una IPS para visualizar su estado de stock y solicitudes</p>
+                    <h2 class="text-3xl font-black text-[#111111] tracking-tight italic uppercase">Directorio de Sedes <span class="text-[#d4af37]">Municipales</span></h2>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">GestiÃ³n Regional de Insumos Ã‰lite</p>
                 </div>
             </header>
 
-            <!-- Grid de Sedes con Imágenes -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+            <!-- Grid de Sedes con ImÃ¡genes -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 fade-in-institutional" style="animation-delay: 0.1s">
                 <?php foreach ($sedes as $s): 
                     $img = $img_map[$s['nombre']] ?? 'AdministrativaFlorencia.jpg';
                 ?>
-                <a href="?sede_id=<?= $s['id'] ?>" class="group relative overflow-hidden h-40 rounded-3xl shadow-sm border <?= $selected_sede_id == $s['id'] ? 'ring-4 ring-medical-500 ring-offset-4' : 'border-gray-100' ?> transition-all">
-                    <img src="../img/sedes/<?= $img ?>" alt="<?= $s['nombre'] ?>" class="absolute inset-0 w-full h-full object-cover sede-img border border-white/20">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent p-6 flex flex-col justify-end">
+                <a href="?sede_id=<?= $s['id'] ?>" class="group relative overflow-hidden h-40 rounded-3xl shadow-lg border <?= $selected_sede_id == $s['id'] ? 'ring-4 ring-[#d4af37] ring-offset-4 scale-105' : 'border-slate-100' ?> transition-all duration-500">
+                    <img src="../img/sedes/<?= $img ?>" alt="<?= $s['nombre'] ?>" class="absolute inset-0 w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#111111] via-black/20 to-transparent p-6 flex flex-col justify-end">
                         <p class="font-black text-[11px] text-white uppercase tracking-tighter leading-tight italic drop-shadow-lg"><?= $s['nombre'] ?></p>
-                        <p class="text-[8px] text-medical-400 font-bold uppercase tracking-[0.2em] drop-shadow-md"><?= $s['tipo'] ?></p>
+                        <p class="text-[8px] text-[#d4af37] font-bold uppercase tracking-[0.2em] drop-shadow-md"><?= $s['tipo'] ?></p>
                     </div>
                 </a>
                 <?php endforeach; ?>
@@ -92,34 +92,34 @@ $total_pages = ceil($total_items / $limit);
 
             <?php if ($selected_sede_id && $selected_sede_data): ?>
             <!-- Inventario de la Sede Seleccionada -->
-            <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden animate-in fade-in slide-in-from-bottom-4">
-                <div class="px-8 py-6 border-b border-gray-50 dark:border-slate-700/50 flex flex-col md:flex-row items-center justify-between bg-slate-50/50 dark:bg-slate-900/50 gap-4">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden fade-in-institutional" style="animation-delay: 0.2s">
+                <div class="px-8 py-6 border-b border-slate-50 flex flex-col md:flex-row items-center justify-between bg-[#111111] gap-4">
                     <div class="text-center md:text-left">
-                        <h3 class="font-black text-gray-800 dark:text-white uppercase tracking-tighter italic text-xs">📍 Logística Local: <?= $selected_sede_data['nombre'] ?></h3>
-                        <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest italic">Página <?= $current_page_num ?> de <?= $total_pages ?> — Mostrando 10 de <?= $total_items ?> registros</p>
+                        <h3 class="font-black text-[#d4af37] uppercase tracking-tighter italic text-xs">ðŸ“ LogÃ­stica Ã‰lite: <?= $selected_sede_data['nombre'] ?></h3>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">PÃ¡gina <?= $current_page_num ?> de <?= $total_pages ?> â€” Registro Maestro de Insumos</p>
                     </div>
                     <div class="flex gap-2">
                         <?php if ($current_page_num > 1): ?>
-                            <a href="?sede_id=<?= $selected_sede_id ?>&p=<?= $current_page_num - 1 ?>" class="px-4 py-2 bg-white dark:bg-slate-700 border border-gray-100 dark:border-slate-600 rounded-xl text-[10px] font-black uppercase hover:bg-gray-50 transition-all shadow-sm italic">← Anterior</a>
+                            <a href="?sede_id=<?= $selected_sede_id ?>&p=<?= $current_page_num - 1 ?>" class="px-4 py-2 bg-white/10 border border-white/10 rounded-xl text-[10px] font-black uppercase text-white hover:bg-white/20 transition-all italic">â† Anterior</a>
                         <?php endif; ?>
                         <?php if ($current_page_num < $total_pages): ?>
-                            <a href="?sede_id=<?= $selected_sede_id ?>&p=<?= $current_page_num + 1 ?>" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase hover:scale-105 transition-all shadow-lg italic">Siguiente →</a>
+                            <a href="?sede_id=<?= $selected_sede_id ?>&p=<?= $current_page_num + 1 ?>" class="px-4 py-2 bg-[#d4af37] text-white rounded-xl text-[10px] font-black uppercase hover:scale-105 transition-all shadow-lg italic">Siguiente â†’</a>
                         <?php endif; ?>
                     </div>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
-                        <thead class="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                        <thead class="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest">
                             <tr>
-                                <th class="px-8 py-4 w-16">Item</th>
-                                <th class="px-8 py-4">Insumo / Medicamento</th>
-                                <th class="px-8 py-4 text-center">Stock Físico</th>
-                                <th class="px-8 py-4 text-center">Ref. Mín.</th>
-                                <th class="px-8 py-4 text-center">Vencimiento</th>
-                                <th class="px-8 py-4 text-center">Estatus</th>
+                                <th class="px-8 py-5 w-16">Item</th>
+                                <th class="px-8 py-5">Insumo / Medicamento</th>
+                                <th class="px-8 py-5 text-center">Stock Ã‰lite</th>
+                                <th class="px-8 py-5 text-center">MÃ­n.</th>
+                                <th class="px-8 py-5 text-center">Vencimiento</th>
+                                <th class="px-8 py-5 text-center">Estatus</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-50 dark:divide-slate-700">
+                        <tbody class="divide-y divide-slate-50">
                             <?php 
                             $counter = $offset + 1;
                             $today = date('Y-m-d');
@@ -127,38 +127,38 @@ $total_pages = ceil($total_items / $limit);
                             foreach ($sede_inventory as $i): 
                                 $isCritical = $i['stock_actual'] < $i['stock_minimo'];
                                 $fv = $i['fecha_vencimiento'] ?? null;
-                                $venc_class = 'text-green-600';
-                                $venc_bg = 'bg-green-50 border-green-100';
+                                $venc_class = 'text-slate-800';
+                                $venc_bg = 'bg-slate-50 border-slate-100';
                                 $venc_label = 'Vigente';
                                 if ($fv) {
                                     if ($fv < $today) { $venc_class='text-red-600'; $venc_bg='bg-red-50 border-red-100'; $venc_label='VENCIDO'; }
                                     elseif ($fv < $warn_date) { $venc_class='text-amber-700'; $venc_bg='bg-amber-50 border-amber-100'; $venc_label='Por vencer'; }
                                 }
                             ?>
-                            <tr class="hover:bg-gray-50/50 transition-colors">
-                                <td class="px-8 py-4">
-                                    <span class="text-[10px] font-black text-gray-300 font-mono"><?= str_pad($counter++, 2, '0', STR_PAD_LEFT) ?></span>
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="px-8 py-5">
+                                    <span class="text-[10px] font-black text-slate-300 font-mono"><?= str_pad($counter++, 2, '0', STR_PAD_LEFT) ?></span>
                                 </td>
-                                <td class="px-8 py-4">
-                                    <div class="text-[11px] font-black text-gray-800 dark:text-white uppercase italic"><?= $i['nombre_generico'] ?></div>
-                                    <div class="text-[9px] text-gray-400 font-bold">LAB: <?= $i['laboratorio'] ?> | <?= $i['concentracion_presentacion'] ?? '' ?></div>
+                                <td class="px-8 py-5">
+                                    <div class="text-[11px] font-black text-[#111111] uppercase italic"><?= $i['nombre_generico'] ?></div>
+                                    <div class="text-[9px] text-slate-400 font-bold uppercase">LAB: <?= $i['laboratorio'] ?></div>
                                 </td>
-                                <td class="px-8 py-4 text-center tabular-nums font-black text-sm <?= $isCritical ? 'text-red-500' : 'text-slate-700' ?>">
+                                <td class="px-8 py-5 text-center tabular-nums font-black text-sm <?= $isCritical ? 'text-red-500' : 'text-[#111111]' ?>">
                                     <?= number_format($i['stock_actual'], 0) ?>
                                 </td>
-                                <td class="px-8 py-4 text-center tabular-nums font-bold text-xs text-gray-400">
+                                <td class="px-8 py-5 text-center tabular-nums font-bold text-xs text-slate-300">
                                     <?= number_format($i['stock_minimo'], 0) ?>
                                 </td>
-                                <td class="px-8 py-4 text-center">
+                                <td class="px-8 py-5 text-center">
                                     <?php if ($fv): ?>
                                     <span class="px-3 py-1 text-[9px] font-black rounded-full uppercase border <?= $venc_bg ?> <?= $venc_class ?>">
                                         <?= date('d/m/Y', strtotime($fv)) ?>
-                                    </span><br><span class="text-[8px] <?= $venc_class ?> font-bold italic"><?= $venc_label ?></span>
-                                    <?php else: ?><span class="text-gray-300 text-[9px]">—</span><?php endif; ?>
+                                    </span><br><span class="text-[8px] <?= $venc_class ?> font-bold italic uppercase tracking-tighter"><?= $venc_label ?></span>
+                                    <?php else: ?><span class="text-slate-200 text-[9px]">â€”</span><?php endif; ?>
                                 </td>
-                                <td class="px-8 py-4 text-center">
-                                    <span class="px-3 py-1 text-[9px] font-black rounded-full uppercase <?= $isCritical ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-green-50 text-green-600 border border-green-100' ?>">
-                                        <?= $isCritical ? 'Bajo Stock' : 'OK ✓' ?>
+                                <td class="px-8 py-5 text-center">
+                                    <span class="px-3 py-1 text-[9px] font-black rounded-full uppercase <?= $isCritical ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-slate-900 text-white border border-black' ?>">
+                                        <?= $isCritical ? 'Bajo Stock' : 'Disponible' ?>
                                     </span>
                                 </td>
                             </tr>
@@ -171,5 +171,6 @@ $total_pages = ceil($total_items / $limit);
         </main>
     </div>
     <script src="../assets/js/theme-toggle.js"></script>
+    <script src="../assets/js/animations.js" defer></script>
 </body>
 </html>

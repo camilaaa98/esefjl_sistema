@@ -1,4 +1,8 @@
 /* ESEFJL - Scientific Documentation Styles */
+@import url('variables.css');
+@import url('animations.css');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@400;600&display=swap');
+
 :root {
     --primary-dark: #004d40;
     --primary-color: #00796b;
@@ -6,6 +10,7 @@
     --accent-gold: #c5a059;
     --bg-paper: #fdfdfd;
 }
+
 
 body.academic-body {
     background-color: #f0f2f1;

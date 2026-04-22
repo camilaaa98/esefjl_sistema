@@ -18,7 +18,7 @@ class InventoryModel {
             FROM inventario i
             JOIN productos p ON i.producto_id = p.id
             JOIN categorias c ON p.categoria_id = c.id
-            WHERE i.sede_id = ? AND i.fecha_vencimiento >= CURRENT_DATE
+            WHERE i.sede_id = ? AND (i.fecha_vencimiento IS NULL OR i.fecha_vencimiento >= DATE('now'))
             ORDER BY i.fecha_vencimiento ASC
         ");
         $stmt->execute([$sede_id]);

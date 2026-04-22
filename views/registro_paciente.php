@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'entidad_salud' => $_POST['eps'] ?? '',
         'sede_id' => $_SESSION['sede_id']
     ]);
-    $mensaje = ($result['status'] === 'success') ? "✅ " : "❌ ";
+    $mensaje = ($result['status'] === 'success') ? "âœ… " : "âŒ ";
     $mensaje .= $result['message'];
 }
 ?>
@@ -30,103 +30,116 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinculación de Pacientes - SISFARMA PRO</title>
+    <title>VinculaciÃ³n de Pacientes - SISFARMA PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
-<body class="bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
-    <div class="flex flex-col md:flex-row min-h-screen">
+    <div class="main-wrapper">
         <?php include '../includes/sidebar.php'; ?>
         
         <!-- Main content -->
-        <main class="flex-1 p-6 md:p-10 flex justify-center items-center">
-            <div class="max-w-2xl w-full bg-white dark:bg-slate-800 p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-slate-700">
-                <header class="text-center mb-10">
-                    <div class="flex justify-center mb-6">
-                        <img src="../img/logoesefjl.jpg" alt="Logo" class="w-20 h-20 rounded-2xl shadow-lg ring-4 ring-medical-50 dark:ring-medical-500/10">
+        <main class="content-area fade-in-institutional flex justify-center items-center py-12">
+            <div class="max-w-2xl w-full bg-white p-10 md:p-16 rounded-[4rem] shadow-2xl border border-slate-100 relative overflow-hidden">
+                <!-- DecoraciÃ³n -->
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#d4af37]/5 rounded-full blur-3xl"></div>
+
+                <header class="text-center mb-12 relative z-10">
+                    <div class="flex justify-center mb-8">
+                        <img src="../img/logoesefjl.jpg" alt="Logo" class="w-20 h-20 rounded-3xl shadow-2xl ring-4 ring-[#d4af37]/20">
                     </div>
-                    <h2 class="text-2xl font-black text-gray-900 dark:text-white italic uppercase tracking-tighter">Vinculación de Pacientes</h2>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm font-medium">Registro oficial de ciudadanos para la Red Regional IPS</p>
+                    <span class="inline-block px-4 py-1.5 bg-[#111111] text-[#d4af37] text-[8px] font-black rounded-full uppercase tracking-[0.4em] mb-6 border border-[#d4af37]/30">Censo Poblacional Regional</span>
+                    <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter leading-none mb-3">VinculaciÃ³n de <span class="text-[#d4af37]">Pacientes</span></h2>
+                    <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Empadronamiento Digital Red IPS ESE Fabio Jaramillo</p>
                 </header>
                 
                 <?php if($mensaje): ?>
-                    <div class="mb-8 p-4 bg-medical-50 dark:bg-medical-500/10 border border-medical-200 dark:border-medical-500/30 rounded-2xl text-medical-600 dark:text-medical-400 text-center font-bold text-sm">
+                    <div class="mb-10 p-5 bg-[#111111] text-[#d4af37] border border-[#d4af37]/30 rounded-3xl text-center font-black text-[10px] tracking-widest uppercase animate-pulse shadow-xl">
                         <?php echo $mensaje; ?>
                     </div>
                 <?php endif; ?>
         
-                <form method="POST" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Documento de Identidad</label>
-                            <input type="text" name="documento" placeholder="Cédula de Ciudadanía" 
-                                class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white" required>
+                <form method="POST" class="space-y-8 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Documento de Identidad</label>
+                            <input type="text" name="documento" placeholder="ID CIUDADANO" 
+                                class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase placeholder:text-slate-200 shadow-inner" required>
                         </div>
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Nivel Sisbén</label>
-                            <input type="text" name="sisben" placeholder="Ej: A1, B4..." 
-                                class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white uppercase font-bold text-medical-500">
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Nombres</label>
-                            <input type="text" name="nombres" placeholder="Nombres" 
-                                class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white" required>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Apellidos</label>
-                            <input type="text" name="apellidos" placeholder="Apellidos" 
-                                class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white" required>
+                        <div class="space-y-3">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Nivel SisbÃ©n IV</label>
+                            <input type="text" name="sisben" placeholder="CATEGORÃA (Ej: A1)" 
+                                class="w-full p-5 bg-white border border-[#d4af37]/30 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#d4af37] uppercase shadow-sm">
                         </div>
                     </div>
                     
-                    <div class="space-y-2">
-                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Celular de Contacto (SMS)</label>
-                        <input type="text" name="celular" placeholder="Número para notificaciones" 
-                            class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-medium dark:text-white" required>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Nombres Propios</label>
+                            <input type="text" name="nombres" placeholder="NOMBRES COMPLETOS" 
+                                class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase italic placeholder:text-slate-200 shadow-inner" required>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Apellidos ConsanguÃ­neos</label>
+                            <input type="text" name="apellidos" placeholder="APELLIDOS COMPLETOS" 
+                                class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase italic placeholder:text-slate-200 shadow-inner" required>
+                        </div>
                     </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">EPS Afiliada</label>
-                            <select name="eps" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-bold text-gray-700 dark:text-gray-300" required>
-                                <option value="">Seleccione EPS...</option>
-                                <option value="Nueva EPS">Nueva EPS</option>
-                                <option value="Sanitas">Sanitas</option>
-                                <option value="Asmet Salud">Asmet Salud</option>
-                                <option value="Fuerzas Militares">Fuerzas Militares</option>
-                                <option value="Policía Nacional">Policía Nacional</option>
+                    <div class="space-y-3">
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Terminal MÃ³vil de NotificaciÃ³n (SMS)</label>
+                        <input type="text" name="celular" placeholder="NÃšMERO DE TELÃ‰FONO" 
+                            class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-sm font-black text-[#111111] placeholder:text-slate-200 shadow-inner" required>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Entidad de Salud Responsable (EPS)</label>
+                            <select name="eps" class="w-full p-5 bg-white border border-[#d4af37]/20 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase cursor-pointer" required>
+                                <option value="" class="italic opacity-30">--- SELECCIONAR EPS ---</option>
+                                <option value="Nueva EPS">NUEVA EPS</option>
+                                <option value="Sanitas">SANITAS</option>
+                                <option value="Asmet Salud">ASMET SALUD</option>
+                                <option value="Fuerzas Militares">FUERZAS MILITARES</option>
+                                <option value="PolicÃ­a Nacional">POLICÃA NACIONAL</option>
                             </select>
                         </div>
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Régimen</label>
-                            <select name="regimen" class="w-full p-4 bg-gray-50 dark:bg-slate-900 border border-gray-100 dark:border-slate-700 rounded-2xl outline-none focus:ring-4 focus:ring-medical-500/10 focus:border-medical-500 transition-all text-sm font-bold text-gray-700 dark:text-gray-300" required>
-                                <option value="">Seleccione Régimen...</option>
-                                <option value="CONTRIBUTIVO">CONTRIBUTIVO (Genera Copago)</option>
-                                <option value="SUBSIDIADO">SUBSIDIADO (Exento)</option>
-                                <option value="ESPECIAL">ESPECIAL</option>
+                        <div class="space-y-3">
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">RÃ©gimen JurÃ­dico</label>
+                            <select name="regimen" class="w-full p-5 bg-white border border-[#d4af37]/20 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase cursor-pointer" required>
+                                <option value="" class="italic opacity-30">--- SELECCIONAR RÃ‰GIMEN ---</option>
+                                <option value="CONTRIBUTIVO">CONTRIBUTIVO (GENERA COPAGO)</option>
+                                <option value="SUBSIDIADO">SUBSIDIADO (EXENTO)</option>
+                                <option value="ESPECIAL">ESPECIAL JURÃDICO</option>
                             </select>
                         </div>
                     </div>
         
-                    <div class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-transparent hover:border-medical-200 transition-all group">
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" name="es_desplazado" class="w-5 h-5 rounded border-gray-300 text-medical-500 focus:ring-medical-500 dark:bg-slate-800 dark:border-slate-700">
-                            <span class="text-[11px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-medical-600 transition-colors uppercase">¿Es población desplazada? (Ley 1448 / Exención)</span>
+                    <div class="p-6 bg-slate-50 rounded-[2rem] border border-slate-100 hover:border-[#d4af37]/40 transition-all group/box">
+                        <label class="flex items-center gap-5 cursor-pointer">
+                            <input type="checkbox" name="es_desplazado" class="w-6 h-6 rounded-lg border-slate-200 text-[#111111] focus:ring-[#d4af37]">
+                            <span class="text-[9px] font-black text-slate-400 group-hover/box:text-[#111111] transition-colors uppercase tracking-[0.2em] italic">
+                                Â¿PoblaciÃ³n Desplazada / VÃ­ctima? <br>
+                                <span class="text-[8px] text-[#d4af37]">(ExenciÃ³n de pagos Ley 1448)</span>
+                            </span>
                         </label>
                     </div>
                     
-                    <button type="submit" class="w-full py-5 bg-medical-500 hover:bg-medical-600 text-white font-black rounded-3xl shadow-xl shadow-medical-500/20 transition-all transform hover:scale-[1.01] uppercase text-sm tracking-widest">
-                        Vinculación Oficial Digital
+                    <button type="submit" class="w-full py-6 bg-[#111111] text-white font-black rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all transform hover:scale-[1.02] active:scale-95 uppercase text-[11px] tracking-[0.4em] mt-8 border border-transparent hover:border-[#d4af37]/40 hover:text-[#d4af37]">
+                        Validar y Vincular al Sistema Ã‰lite
                     </button>
                 </form>
+
+                <footer class="mt-12 pt-8 border-t border-slate-50 text-[8px] font-bold text-slate-300 uppercase tracking-[0.5em] text-center italic">
+                    PROCEDIMIENTO DE VINCULACIÃ“N â€” SISFARMA Ã‰LITE v7.5
+                </footer>
             </div>
         </main>
     </div>
+    <script src="../assets/js/inicio.js"></script>
+    </div>
     <script src="../assets/js/theme-toggle.js"></script>
+    <script src="../assets/js/animations.js" defer></script>
 </body>
 </html>
