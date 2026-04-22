@@ -48,7 +48,7 @@ body {
     padding: 2rem;
     border-radius: var(--radius-premium);
     border: 1px solid var(--border-light);
-    box-shadow: var(--shadow-elite);
+    box-shadow: var(--shadow-pro);
     transition: all 0.3s ease;
 }
 
@@ -125,7 +125,7 @@ h1, h2, h3, .font-heading {
     border-radius: var(--radius-premium);
     border: 1px solid var(--border-light);
     overflow: hidden;
-    box-shadow: var(--shadow-elite);
+    box-shadow: var(--shadow-pro);
 }
 
 .table-clinical {

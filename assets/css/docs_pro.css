@@ -20,7 +20,14 @@ body.academic-body {
     border: 1px solid #f1f5f9;
 }
 
-h1#titulo {
+h1#titulo, h1#title, h2, h3, .section-title {
+    text-align: center !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1#titulo, h1#title {
     font-family: 'Outfit', sans-serif;
     font-size: 3.5rem;
     font-weight: 800;
@@ -28,8 +35,25 @@ h1#titulo {
     line-height: 1.1;
     letter-spacing: -2px;
     margin-bottom: 2rem;
-    border-left: 8px solid #00695c;
-    padding-left: 2rem;
+    border-left: none; /* Removed so it centers cleanly */
+    padding-left: 0;
+}
+
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #00695c;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+    border-bottom: 3px solid #d4af37;
+    padding-bottom: 15px;
+    max-width: fit-content;
+}
+
+.section-title::before {
+    display: none;
 }
 
 .authors {
@@ -56,29 +80,84 @@ h1#titulo {
     border-radius: 2rem;
 }
 
-.section-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: #00695c;
-    margin-top: 5rem;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+/* Updated Table of Contents Styles */
+.toc-container {
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    padding: 40px 50px;
+    margin: 40px auto 60px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    max-width: 800px;
 }
 
-.section-title::before {
-    content: '';
-    width: 24px;
-    height: 4px;
+.toc-title {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #0f172a;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 15px;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px 30px;
+}
+
+.toc-item a {
+    text-decoration: none;
+    color: #444;
+    font-size: 1em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: #f9fbfa;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.toc-item a:hover {
+    color: #00695c;
+    background: #fff;
+    border-color: #d4af37;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transform: translateY(-2px);
+}
+
+.toc-number {
+    font-weight: 900;
+    color: white;
     background: #d4af37;
-    border-radius: 2px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    margin-right: 12px;
 }
 
 p {
     margin-bottom: 2rem;
     text-align: justify;
+}
+
+header p {
+    text-align: center !important;
+    text-indent: 0 !important;
 }
 
 .checklist-table {
@@ -124,5 +203,5 @@ p {
         padding: 2rem;
         margin: 1rem;
     }
-    h1#titulo { font-size: 2rem; }
+    h1#titulo, h1#title { font-size: 2rem; }
 }

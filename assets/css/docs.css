@@ -1,4 +1,4 @@
-/* ESEFJL - Scientific Documentation Styles */
+/* ESEFJL - Professional Scientific Documentation Styles */
 @import url('variables.css');
 @import url('animations.css');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@400;600&display=swap');
@@ -130,14 +130,16 @@ header h1 {
     margin-right: 12px;
 }
 
-.section-title, h2, h3 {
-    text-align: center;
+.section-title, h1, h2, h3, .manual-nav h2 {
+    text-align: center !important;
     color: var(--primary-dark);
     font-weight: bold;
     margin-top: 50px;
     margin-bottom: 30px;
+    width: 100%;
 }
 
+h1 { font-size: 2.5em; }
 h2 { font-size: 1.8em; }
 h3 { font-size: 1.4em; color: var(--primary-color); }
 
@@ -148,6 +150,8 @@ h3 { font-size: 1.4em; color: var(--primary-color); }
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
+    width: auto !important;
+    max-width: fit-content;
 }
 
 header p, .manual-header p {

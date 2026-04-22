@@ -13,7 +13,7 @@
     --text-muted: #6b7280;         /* Texto secundario elegante */
     
     /* Sombras y Bordes Élite */
-    --shadow-elite: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-pro: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --shadow-focus: 0 20px 25px -5px rgba(212, 175, 55, 0.15); /* Brillo dorado sutil */
     --border-light: #e5e7eb;
     
