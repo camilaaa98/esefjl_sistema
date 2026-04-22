@@ -198,9 +198,68 @@ ul, ol {
 
 footer {
     margin-top: 100px;
-    text-align: center;
-    font-size: 0.75em;
+    text-align: center !important;
+    font-size: 0.85em;
     color: #777;
     border-top: 1px solid #eee;
     padding-top: 30px;
+    width: 100%;
+    display: block;
+}
+
+footer p {
+    text-align: center !important;
+    margin: 0 auto !important;
+    max-width: 800px;
+}
+
+/* Manual Navigation Styles */
+.manual-nav-body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-paper);
+}
+
+.manual-nav {
+    width: 250px;
+    background: #fff;
+    padding: 30px 20px;
+    border-right: 1px solid #e0e0e0;
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+}
+
+.manual-nav h2 {
+    color: var(--primary-dark);
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.manual-nav p {
+    font-size: 0.85em;
+    color: #888;
+    margin-bottom: 20px;
+    text-indent: 0;
+}
+
+.manual-nav a {
+    text-decoration: none;
+    color: #444;
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.9em;
+    transition: color 0.2s;
+}
+
+.manual-nav a:hover {
+    color: var(--primary-color);
+}
+
+.manual-main {
+    margin-left: 250px;
+    padding: 40px;
+    width: calc(100% - 250px);
 }
