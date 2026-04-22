@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual 'ESEFJL Pharmacy' - ESE Fabio Jaramillo Londoño</title>
+    <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body class="manual-nav-body">
+    <nav class="manual-nav">
+        <h2>ESEFJL Pharmacy</h2>
+        <p>Elite Institutional Manual</p>
+        <hr>
+        <ul style="list-style:none; padding:0;">
+            <li><a href="#intro">1. Institutional Philosophy</a></li>
+            <li><a href="#operativa">2. System Operation</a></li>
+            <li><a href="#farmaco">3. Pharmacovigilance (Traffic Light)</a></li>
+            <li><a href="#siau">4. Enrollment and SIAU</a></li>
+            <li><a href="#despacho">5. Dispatch Protocol</a></li>
+            <li><a href="#auditoria">6. Auditing and Billing Grievances</a></li>
+            <li><a href="#glossary">7. Glossary of Terms</a></li>
+        </ul>
+    </nav>
+    <main class="manual-main">
+        <header class="manual-header" style="text-align: center; border-bottom: 3px solid var(--primary-color); padding-bottom: 30px; margin-bottom: 50px;">
+            <p style="text-transform: uppercase; letter-spacing: 3px; font-weight: 900; color: var(--secondary-color); margin-bottom: 10px;">Republic of Colombia — Health Sector</p>
+            <h1 style="font-size: 2.8em; margin: 15px 0; letter-spacing: -1px;">User Manual: Pharmaceutical Management in High-Complexity ESE</h1>
+            <p style="font-style: italic; color: #555; font-size: 1.1em;">"Health Sovereignty and Excellence in Medical Supplies Dispensing"</p>
+            <div style="margin-top: 20px; font-weight: bold; color: var(--primary-dark);">Lead Researcher: Camila Guevara <span style="font-weight: normal; color: #888;">| Group 2995479</span></div>
+        </header>
+
+        <section id="intro" class="content-card container">
+            <h2>1. Institutional Philosophy and Technological Purpose</h2>
+            <p>The <strong>ESEFJL Pharmacy</strong> platform was designed to be the primary support for clinical safety at <strong>ESE Fabio Jaramillo Londoño</strong>. In our Amazonian context, managing medical supplies presents unique logistical challenges. This manual helps standardize operations as a public health mission.</p>
+            
+            <div class="alert alert-important" style="background: #fff8e1; border-left: 6px solid #ffca28; padding: 25px; border-radius: 12px; margin: 30px 0;">
+                <h4 style="margin-top:0;">Safety Mission:</h4>
+                <p>Our goal is <strong>Zero Tolerance</strong> for medication errors. Every entry in the system must be an exact reflection of the physical warehouse to guarantee safe and timely treatments.</p>
+            </div>
+
+            <h3>Operator Ethical Protocol</h3>
+            <p>Pharmacy staff are the final safety filter before medication reaches the citizen. Correct use of ESEFJL Pharmacy ensures:</p>
+            <ul>
+                <li><strong>Transparency:</strong> Every movement is recorded with the user's audit stamp.</li>
+                <li><strong>Efficiency:</strong> Waste reduction allows for greater investment in preventive health.</li>
+                <li><strong>Humanization:</strong> Expediting delivery reduces waiting times for vulnerable patients.</li>
+            </ul>
+        </section>
+
+        <section id="operativa" class="content-card container">
+            <h2>2. Comprehensive System Operation</h2>
+            <p>Navigation in ESEFJL Pharmacy has been designed to be intuitive yet rigorous. The standard workflow is divided into three critical phases:</p>
+
+            <div class="step">
+                <h3>Phase I: Authentication and Context Loading</h3>
+                <p>Upon logging in, the system automatically identifies your **Operational Branch**. This is vital, since the stock you view corresponds only to your current physical location. If you need to manage another branch, you must have Manager-level administrative permissions.</p>
+            </div>
+
+            <div class="step">
+                <h3>Phase II: Dashboard (Home Central)</h3>
+                <p>The "Home Central" is your command center. Here you must monitor the **Expiration Traffic Lights** and **Reorder Points**. An orange alert means you must initiate the request process to the Central Warehouse in Florencia immediately.</p>
+            </div>
+
+            <table>
+                <caption>Responsibility Matrix (RACI) by Role</caption>
+                <thead>
+                    <tr>
+                        <th>Process / Function</th>
+                        <th>Regent</th>
+                        <th>IPS Operator</th>
+                        <th>Management</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Batch Entry (Catalog)</strong></td>
+                        <td style="background:#e8f5e9; font-weight:bold;">Executes</td>
+                        <td>Consults</td>
+                        <td>Audits</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock Semaforization</strong></td>
+                        <td style="background:#e8f5e9; font-weight:bold;">Defines</td>
+                        <td style="background:#e8f5e9; font-weight:bold;">Monitors</td>
+                        <td>Consults</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Direct Dispensing</strong></td>
+                        <td>Audits</td>
+                        <td style="background:#e8f5e9; font-weight:bold;">Executes</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Write-off Approval</strong></td>
+                        <td>Proposes</td>
+                        <td>N/A</td>
+                        <td style="background:#e8f5e9; font-weight:bold;">Approves</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="farmaco" class="content-card container">
+            <h2>3. Pharmacovigilance Protocols and Weighting Alerte</h2>
+            <p>The ESE adopts international expiration control standards through dynamic visual alerts. ESEFJL Pharmacy automates this analysis every 24 hours.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="border: 2px solid #ef5350; padding: 20px; border-radius: 12px; background: #fff5f5;">
+                    <h4 style="color:#c62828; margin-top:0;">🛑 RED ALERT (Critical)</h4>
+                    <p><strong>Range:</strong> < 90 days to expiration.</p>
+                    <p><strong>Action:</strong> Segregate in the "Quarantine Area" and report for possible redistribution or immediate exit plan.</p>
+                </div>
+                <div style="border: 2px solid #ffca28; padding: 20px; border-radius: 12px; background: #fffdf2;">
+                    <h4 style="color:#f57f17; margin-top:0;">⚠️ ORANGE ALERT (Attention)</h4>
+                    <p><strong>Range:</strong> 90 - 180 days to expiration.</p>
+                    <p><strong>Action:</strong> Strictly apply FEFO protocol (First Expired, First Out) on the front shelf.</p>
+                </div>
+                <div style="border: 2px solid #66bb6a; padding: 20px; border-radius: 12px; background: #f2fff2;">
+                    <h4 style="color:#2e7d32; margin-top:0;">✅ GREEN ALERT (Safe)</h4>
+                    <p><strong>Range:</strong> > 180 days.</p>
+                    <p><strong>Action:</strong> Standard storage according to humidity and temperature conditions recommended by the laboratory.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="siau" class="content-card container">
+            <h2>4. Citizen Service and Enrollment (SIAU)</h2>
+            <p>Patient enrollment is the first link in the health chain. An incorrect record in the SIAU (Information and Citizen Service) can lead to severe administrative penalties.</p>
+            
+            <h3>Scheme and Billing Validation</h3>
+            <p>When registering a patient, the system requires classifying the health scheme. This automatically determines if the medication belongs to the <strong>PBS (Health Benefits Plan)</strong> or requires shared payment (Non-PBS/Copayment).</p>
+            
+            <ul class="step">
+                <li><strong>Law 1448 of 2011:</strong> If the patient is marked as "Vulnerable Population/Displaced", the system will automatically exempt the payment of copayments according to national mandates.</li>
+                <li><strong>Document Validation:</strong> The physical document must be verified before entering the number. Once registered, the patient's record becomes immutable to protect their pharmacy clinical history.</li>
+            </ul>
+        </section>
+
+        <section id="despacho" class="content-card container">
+            <h2>5. High-Precision Technical Dispatch Protocol</h2>
+            <p>The delivery record is the most important transaction in the system. Follow the **"5 Rights"** method integrated into ESEFJL Pharmacy:</p>
+            <ol>
+                <li><strong>Right Patient:</strong> Validation through identity card number in the dynamic search engine.</li>
+                <li><strong>Right Medication:</strong> Confirmation of the generic name and concentration (e.g., Acetaminophen 500mg).</li>
+                <li><strong>Right Quantity:</strong> Manual entry of units according to the physical medical prescription.</li>
+                <li><strong>Right Batch:</strong> The system automatically selects the batch with the closest expiration date (FEFO). Verify that it matches the physical box.</li>
+                <li><strong>Right Record:</strong> Upon clicking "Register Delivery", the transaction is irrevocable and the accounting discount is issued.</li>
+            </ol>
+            
+            <div class="alert alert-info">
+                <strong>Technical Note:</strong> ESEFJL Pharmacy generates an automatic messaging log (SMS/Email) notifying the central system about the delivery, ensuring that stock replenishment is activated without manual intervention.
+            </div>
+        </section>
+
+        <section id="auditoria" class="content-card container">
+            <h2>6. Auditing and Billing Grievances Management (Glosas)</h2>
+            <p>A "Glosa" is an invoice return due to data inconsistencies. ESEFJL Pharmacy mitigates this risk through **Preventive Auditing**.</p>
+            
+            <h3>Inconsistency Action Protocol:</h3>
+            <ul>
+                <li><strong>Stock Difference:</strong> If the system shows 0 but there is physical product, DO NOT perform the delivery. You must report to the Regent to adjust the batch entry.</li>
+                <li><strong>Medicine Not Listed:</strong> Contact the Florencia Warehouse to enable the ATC code for the medicine in your municipal branch.</li>
+                <li><strong>Typing Error:</strong> If you made a mistake in the quantity, inform the System Administrator in less than 1 hour to perform the corresponding technical cancellation.</li>
+            </ul>
+        </section>
+
+        <section id="glossary" class="content-card container">
+            <h2>7. Institutional Glossary of Terms</h2>
+            <dl>
+                <dt><strong>ATC (Anatomical Therapeutic Chemical):</strong></dt>
+                <dd>Hierarchical classification of drugs according to the organ or system on which they act.</dd>
+                
+                <dt><strong>CEDIS (Distribution Center):</strong></dt>
+                <dd>Central ESE warehouse in Florencia that supplies the entire departmental network.</dd>
+                
+                <dt><strong>FEFO (First Expired, First Out):</strong></dt>
+                <dd>Rotation protocol where the product that expires first leaves first.</dd>
+                
+                <dt><strong>SIAU:</strong></dt>
+                <dd>Information and Citizen Service, responsible for the initial patient enrollment.</dd>
+                
+                <dt><strong>UPC (Capitation Payment Unit):</strong></dt>
+                <dd>Annual value recognized for each of the affiliates to the health system.</dd>
+            </dl>
+        </section>
+
+        <footer style="text-align: center; color: #888; font-size: 0.9em; margin-top: 80px; padding: 60px; border-top: 2px solid var(--border-color); background: #fdfdfd;">
+            <p style="font-weight: bold; color: var(--primary-dark);">ESEFJL Pharmacy v2.5 — Territorial Pharmaceutical Management System</p>
+            <p>&copy; 2026 ESE Fabio Jaramillo Londoño. Document prepared under quality standards by Camila Guevara.</p>
+            <p><em>"Amazonian Technology for Life"</em></p>
+        </footer>
+    </main>
+</body>
+</html>

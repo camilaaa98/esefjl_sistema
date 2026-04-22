@@ -27,8 +27,8 @@
     <main class="manual-main">
         <header class="manual-header" style="text-align: center; border-bottom: 3px solid var(--secondary-color); padding-bottom: 30px; margin-bottom: 50px;">
             <p style="text-transform: uppercase; letter-spacing: 3px; font-weight: 900; color: #777; margin-bottom: 10px;">Departamento de Sistemas — ESE FJL</p>
-            <h1 style="font-size: 2.5em; margin: 15px 0;">Sisfarma Pro: Documentación de Ingeniería de Software</h1>
-            <p style="font-style: italic; color: #555;">Arquitectura Basada en Principios de Alta Disponibilidad y Resiliencia Territorial</p>
+            <h1 style="font-size: 2.5em; margin: 15px 0;">Sisfarma Pro: Documentación de Arquitectura de Software</h1>
+            <p style="font-style: italic; color: #555;">Diseño Basado en Principios de Alta Disponibilidad y Resiliencia en Territorios de Baja Conectividad</p>
             <div style="margin-top: 20px;">
                 <span class="tech-tag">PHP 8.2</span>
                 <span class="tech-tag">MVC Architecture</span>
@@ -37,9 +37,8 @@
             </div>
         </header>
 
-        <section id="arquitectura" class="content-card container">
             <h2>1. Arquitectura General y Stack Tecnológico</h2>
-            <p>EL ecosistema SISFARMA PRO ha sido diseñado bajo una filosofía de <strong>"Simplicidad Robusta"</strong>, permitiendo su ejecución tanto en servidores locales WAMP de baja potencia como en infraestructuras cloud distribuidas.</p>
+            <p>El ecosistema SISFARMA PRO ha sido estructurado bajo una filosofía de <strong>"Simplicidad Robusta"</strong>. El sistema permite una ejecución eficiente tanto en servidores locales (WAMP) como en infraestructuras distribuidas en la nube, optimizando el rendimiento en condiciones de hardware limitadas.</p>
             
             <h3>Core Tecnológico:</h3>
             <ul>
@@ -118,8 +117,8 @@
                 </tbody>
             </table>
 
-            <h3>Lógica Transaccíonar:</h3>
-            <p>Cada entrega de medicamento (<code>entregas</code>) dispara un trigger lógico que descuenta el stock de la tabla <code>inventario</code> filtrando por la <code>sede_id</code> de la sesión activa.</p>
+            <h3>Lógica Transaccional:</h3>
+            <p>Cada salida de medicamento registrada en la tabla <code>entregas</code> activa un proceso lógico (trigger o método de repositorio) que actualiza el stock en la tabla <code>inventario</code>, garantizando la integridad de los saldos por <code>sede_id</code>.</p>
         </section>
 
         <section id="seguridad" class="content-card container">
