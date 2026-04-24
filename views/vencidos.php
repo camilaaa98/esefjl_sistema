@@ -9,7 +9,7 @@ require_once __DIR__ . '/../core/InventoryController.php';
 $rol = $_SESSION['rol'];
 $vencidos = InventoryController::getExpiredInventory();
 
-// LÃ³gica de Baja (Solo Gerente)
+// Lógica de Baja (Solo Gerente)
 if (isset($_POST['btnBaja']) && $rol === 'Gerente') {
     require_once __DIR__ . '/../core/Database.php';
     $db = Database::getInstance();
@@ -24,7 +24,7 @@ if (isset($_POST['btnBaja']) && $rol === 'Gerente') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestiÃ³n de Vencidos - SISFARMA PRO</title>
+    <title>Gestión de Vencidos - SISFARMA PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -38,8 +38,8 @@ if (isset($_POST['btnBaja']) && $rol === 'Gerente') {
         <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
             <header class="flex flex-col items-center justify-center text-center fade-in-institutional">
                 <div>
-                    <h2 class="text-3xl font-black text-[#111111] tracking-tight italic uppercase">MÃ³dulo de Saneamiento y <span class="text-[#d4af37]">Bajas</span></h2>
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Control de Farmacovigilancia Ã‰lite</p>
+                    <h2 class="text-3xl font-black text-[#111111] tracking-tight italic uppercase">Módulo de Saneamiento y <span class="text-[#d4af37]">Bajas</span></h2>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Control de Farmacovigilancia Central</p>
                 </div>
                 <?php if (isset($_GET['msg'])): ?>
                     <div class="mt-4 bg-[#111111] text-[#d4af37] border border-[#d4af37]/30 px-6 py-2 rounded-2xl font-bold animate-bounce shadow-xl">âœ… <?= $_GET['msg'] ?></div>
@@ -48,7 +48,7 @@ if (isset($_POST['btnBaja']) && $rol === 'Gerente') {
 
             <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden fade-in-institutional" style="animation-delay: 0.1s">
                 <div class="p-6 border-b border-slate-50 flex justify-between items-center bg-[#111111]">
-                    <span class="text-[10px] font-black text-[#d4af37] uppercase tracking-widest underline decoration-2 underline-offset-4">Lista de Cuarentena (DestrucciÃ³n Autorizada)</span>
+                    <span class="text-[10px] font-black text-[#d4af37] uppercase tracking-widest underline decoration-2 underline-offset-4">Lista de Cuarentena (Destrucción Autorizada)</span>
                     <span class="text-[9px] font-black text-slate-400 italic">Excluido del inventario de suministro activo</span>
                 </div>
                 <div class="overflow-x-auto">
@@ -59,7 +59,7 @@ if (isset($_POST['btnBaja']) && $rol === 'Gerente') {
                                 <th class="px-8 py-5">Sede Origen</th>
                                 <th class="px-8 py-5 text-center">Cantidad</th>
                                 <th class="px-8 py-5">Vencimiento</th>
-                                <th class="px-8 py-5 text-right">AcciÃ³n Gerencial</th>
+                                <th class="px-8 py-5 text-right">Acción Gerencial</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-50">
@@ -72,11 +72,11 @@ if (isset($_POST['btnBaja']) && $rol === 'Gerente') {
                                 <td class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase italic"><?= $v['sede_nombre'] ?></td>
                                 <td class="px-8 py-5 text-center text-sm font-black text-red-600 tabular-nums"><?= $v['stock_actual'] ?> <span class="text-[10px] opacity-50">UND</span></td>
                                 <td class="px-8 py-5">
-                                    <span class="bg-red-50 text-red-600 border border-red-100 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-tighter italic shadow-sm">VenciÃ³: <?= date('d/M/Y', strtotime($v['fecha_vencimiento'])) ?></span>
+                                    <span class="bg-red-50 text-red-600 border border-red-100 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-tighter italic shadow-sm">Venció: <?= date('d/M/Y', strtotime($v['fecha_vencimiento'])) ?></span>
                                 </td>
                                 <td class="px-8 py-5 text-right">
                                     <?php if ($rol === 'Gerente'): ?>
-                                        <form method="POST" onsubmit="return confirm('Â¿Confirma la baja definitiva y destrucciÃ³n fÃ­sica del lote?')">
+                                        <form method="POST" onsubmit="return confirm('Â¿Confirma la baja definitiva y destrucción física del lote?')">
                                             <input type="hidden" name="inventario_id" value="<?= $v['id'] ?>">
                                             <button type="submit" name="btnBaja" class="bg-[#111111] text-white text-[10px] font-black px-5 py-2.5 rounded-xl hover:bg-black hover:text-[#d4af37] transition-all border border-transparent hover:border-[#d4af37]/30 shadow-lg uppercase tracking-widest">Autorizar Baja</button>
                                         </form>

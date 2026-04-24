@@ -16,5 +16,9 @@ class PatientRepository extends BaseRepository {
             $data['telefono'], $data['regimen'], $data['sede_id']
         ]);
     }
+
+    public function getAllBySede($sede_id) {
+        return $this->query("SELECT * FROM pacientes WHERE sede_id = ? ORDER BY nombres ASC", [$sede_id])->fetchAll();
+    }
 }
 ?>

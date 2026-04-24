@@ -1,6 +1,6 @@
 /**
  * Lógica del Inicio Pro - ESE Fabio Jaramillo
- * Implementación de WAAPI (Web Animation API) para interactividad Elite.
+ * Implementación de WAAPI (Web Animation API) para interactividad ESEFJL.
  */
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Animación Escalonada de Filas de Tabla (WAAPI)
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Manejo de Despacho Regional con Feedback Premium
     document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.btn-primary-elite');
+        const btn = e.target.closest('.btn-primary-ESEFJL');
         if (btn) {
             const row = btn.closest('tr');
             const municipio = row.querySelector('td:nth-child(2)').innerText;
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.group('Sisfarma Pro - Diagnóstico UI');
     console.log('✅ WAAPI: Activo');
-    console.log('✅ Rediseño Elite: Aplicado');
+    console.log('✅ Rediseño ESEFJL: Aplicado');
     console.groupEnd();
 });
 

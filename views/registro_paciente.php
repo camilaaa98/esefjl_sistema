@@ -4,7 +4,7 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/Controllers/PatientController.php';
+require_once __DIR__ . '/../core/PatientController.php';
 require_once __DIR__ . '/../core/ViewHelper.php';
 
 $mensaje = "";
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VinculaciÃ³n de Pacientes - SISFARMA PRO</title>
+    <title>Vinculación de Pacientes - SISFARMA PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Main content -->
         <main class="content-area fade-in-institutional flex justify-center items-center py-12">
             <div class="max-w-2xl w-full bg-white p-10 md:p-16 rounded-[4rem] shadow-2xl border border-slate-100 relative overflow-hidden">
-                <!-- DecoraciÃ³n -->
+                <!-- Decoración -->
                 <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#d4af37]/5 rounded-full blur-3xl"></div>
 
                 <header class="text-center mb-12 relative z-10">
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <img src="../img/logoesefjl.jpg" alt="Logo" class="w-20 h-20 rounded-3xl shadow-2xl ring-4 ring-[#d4af37]/20">
                     </div>
                     <span class="inline-block px-4 py-1.5 bg-[#111111] text-[#d4af37] text-[8px] font-black rounded-full uppercase tracking-[0.4em] mb-6 border border-[#d4af37]/30">Censo Poblacional Regional</span>
-                    <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter leading-none mb-3">VinculaciÃ³n de <span class="text-[#d4af37]">Pacientes</span></h2>
+                    <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter leading-none mb-3">Vinculación de <span class="text-[#d4af37]">Pacientes</span></h2>
                     <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Empadronamiento Digital Red IPS ESE Fabio Jaramillo</p>
                 </header>
                 
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase placeholder:text-slate-200 shadow-inner" required>
                         </div>
                         <div class="space-y-3">
-                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Nivel SisbÃ©n IV</label>
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Nivel Sisbén IV</label>
                             <input type="text" name="sisben" placeholder="CATEGORÃA (Ej: A1)" 
                                 class="w-full p-5 bg-white border border-[#d4af37]/30 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#d4af37] uppercase shadow-sm">
                         </div>
@@ -81,14 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase italic placeholder:text-slate-200 shadow-inner" required>
                         </div>
                         <div class="space-y-3">
-                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Apellidos ConsanguÃ­neos</label>
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Apellidos Consanguíneos</label>
                             <input type="text" name="apellidos" placeholder="APELLIDOS COMPLETOS" 
                                 class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase italic placeholder:text-slate-200 shadow-inner" required>
                         </div>
                     </div>
                     
                     <div class="space-y-3">
-                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Terminal MÃ³vil de NotificaciÃ³n (SMS)</label>
+                        <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Terminal Móvil de Notificación (SMS)</label>
                         <input type="text" name="celular" placeholder="NÃšMERO DE TELÃ‰FONO" 
                             class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-sm font-black text-[#111111] placeholder:text-slate-200 shadow-inner" required>
                     </div>
@@ -102,11 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <option value="Sanitas">SANITAS</option>
                                 <option value="Asmet Salud">ASMET SALUD</option>
                                 <option value="Fuerzas Militares">FUERZAS MILITARES</option>
-                                <option value="PolicÃ­a Nacional">POLICÃA NACIONAL</option>
+                                <option value="Policía Nacional">POLICÃA NACIONAL</option>
                             </select>
                         </div>
                         <div class="space-y-3">
-                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">RÃ©gimen JurÃ­dico</label>
+                            <label class="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] ml-2">Régimen Jurídico</label>
                             <select name="regimen" class="w-full p-5 bg-white border border-[#d4af37]/20 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-xs font-black text-[#111111] uppercase cursor-pointer" required>
                                 <option value="" class="italic opacity-30">--- SELECCIONAR RÃ‰GIMEN ---</option>
                                 <option value="CONTRIBUTIVO">CONTRIBUTIVO (GENERA COPAGO)</option>
@@ -120,19 +120,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label class="flex items-center gap-5 cursor-pointer">
                             <input type="checkbox" name="es_desplazado" class="w-6 h-6 rounded-lg border-slate-200 text-[#111111] focus:ring-[#d4af37]">
                             <span class="text-[9px] font-black text-slate-400 group-hover/box:text-[#111111] transition-colors uppercase tracking-[0.2em] italic">
-                                Â¿PoblaciÃ³n Desplazada / VÃ­ctima? <br>
-                                <span class="text-[8px] text-[#d4af37]">(ExenciÃ³n de pagos Ley 1448)</span>
+                                Â¿Población Desplazada / Víctima? <br>
+                                <span class="text-[8px] text-[#d4af37]">(Exención de pagos Ley 1448)</span>
                             </span>
                         </label>
                     </div>
                     
                     <button type="submit" class="w-full py-6 bg-[#111111] text-white font-black rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all transform hover:scale-[1.02] active:scale-95 uppercase text-[11px] tracking-[0.4em] mt-8 border border-transparent hover:border-[#d4af37]/40 hover:text-[#d4af37]">
-                        Validar y Vincular al Sistema Ã‰lite
+                        Validar y Vincular al Sistema Central
                     </button>
                 </form>
 
                 <footer class="mt-12 pt-8 border-t border-slate-50 text-[8px] font-bold text-slate-300 uppercase tracking-[0.5em] text-center italic">
-                    PROCEDIMIENTO DE VINCULACIÃ“N â€” SISFARMA Ã‰LITE v7.5
+                    PROCEDIMIENTO DE VINCULACIÃ“N â€” SISFARMA Central v7.5
                 </footer>
             </div>
         </main>

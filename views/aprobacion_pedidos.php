@@ -7,7 +7,7 @@ require_once __DIR__ . '/../core/Database.php';
 
 $db = Database::getInstance();
 
-// Procesar AprobaciÃ³n
+// Procesar Aprobación
 if (isset($_GET['approve'])) {
     $pedido_id = $_GET['approve'];
     $db->prepare("UPDATE pedidos_municipios SET estado = 'DESPACHADO' WHERE id = ?")->execute([$pedido_id]);
@@ -24,7 +24,7 @@ $pedidos = $db->query("
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Despacho EstratÃ©gico CEDIS - SISFARMA Ã‰LITE</title>
+    <title>Despacho Estratégico CEDIS - SISFARMA Central</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -37,7 +37,7 @@ $pedidos = $db->query("
         <main class="content-area fade-in-institutional">
             <header class="mb-12">
                 <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter">Centro de Despacho <span class="text-[#d4af37]">CEDIS</span></h2>
-                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mt-2">GestiÃ³n de Ã“rdenes de Reabastecimiento Regional</p>
+                <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mt-2">Gestión de Ã“rdenes de Reabastecimiento Regional</p>
             </header>
             
             <?php if (isset($_GET['msg']) && $_GET['msg'] === 'despachado'): ?>
@@ -73,7 +73,7 @@ $pedidos = $db->query("
             </div>
 
             <footer class="mt-20 pt-8 border-t border-slate-100 text-[9px] font-bold text-slate-300 uppercase tracking-[0.5em] text-center pb-12 italic">
-                CONTROL DE DESPACHOS CEDIS FLORENCIA â€” SISFARMA Ã‰LITE v7.5
+                CONTROL DE DESPACHOS CEDIS FLORENCIA â€” SISFARMA Central v7.5
             </footer>
         </main>
     </div>

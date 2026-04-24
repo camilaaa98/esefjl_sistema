@@ -31,7 +31,7 @@ $compras = $db->query("
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proveedores EstratÃ©gicos - SISFARMA PRO</title>
+    <title>Proveedores Estratégicos - SISFARMA PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -44,8 +44,8 @@ $compras = $db->query("
         <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto fade-in-institutional">
             <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div class="text-center md:text-left">
-                    <h2 class="text-3xl font-black text-[#111111] tracking-tight italic uppercase">GestiÃ³n Abastecimiento <span class="text-[#d4af37]">Global</span></h2>
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Directorio JurÃ­dico y Control de Cartera SISFARMA</p>
+                    <h2 class="text-3xl font-black text-[#111111] tracking-tight italic uppercase">Gestión Abastecimiento <span class="text-[#d4af37]">Global</span></h2>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Directorio Jurídico y Control de Cartera SISFARMA</p>
                 </div>
                 <button class="btn-institutional">
                     <span class="text-lg">ðŸ›’+</span>
@@ -59,7 +59,7 @@ $compras = $db->query("
                     <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
                         <div class="p-6 border-b border-slate-50 bg-[#111111] flex justify-between items-center">
                             <span class="text-[10px] font-black text-[#d4af37] uppercase tracking-widest leading-none underline decoration-2 underline-offset-4">Historial de Compras CEDIS</span>
-                            <span class="text-[9px] font-black text-slate-400 uppercase italic">ValidaciÃ³n TesorerÃ­a Ã‰lite</span>
+                            <span class="text-[9px] font-black text-slate-400 uppercase italic">Validación Tesorería Central</span>
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full text-left">
@@ -68,7 +68,7 @@ $compras = $db->query("
                                         <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Fecha Operativa</th>
                                         <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Entidad Proveedora</th>
                                         <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Suministros</th>
-                                        <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Estado AuditorÃ­a</th>
+                                        <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Estado Auditoría</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-50">
@@ -98,24 +98,24 @@ $compras = $db->query("
                         </div>
                     </div>
 
-                    <!-- Sugerencia de ReposiciÃ³n a Proveedor Premium -->
+                    <!-- Sugerencia de Reposición a Proveedor Premium -->
                     <div class="bg-[#111111] rounded-[2.5rem] p-10 text-white border border-[#d4af37]/20 relative overflow-hidden group">
                         <div class="absolute -right-10 -top-10 text-white/5 text-9xl font-black rotate-12 group-hover:rotate-0 transition-transform duration-700">BOX</div>
                         <h4 class="text-[10px] font-black text-[#d4af37] uppercase tracking-[0.4em] mb-8 flex items-center gap-3">
                             <span class="w-2 h-2 bg-[#d4af37] rounded-full animate-pulse"></span>
-                            Insumos CrÃ­ticos Pendientes de Compra
+                            Insumos Críticos Pendientes de Compra
                         </h4>
                         <div class="space-y-4">
                             <div class="flex items-center justify-between p-5 bg-white/5 rounded-2xl border border-white/10 hover:border-[#d4af37]/40 transition-all group/item">
                                 <div>
-                                    <p class="text-xs font-black uppercase tracking-widest text-white italic group-hover/item:text-[#d4af37]">Cilindros de OxÃ­geno Medicinal</p>
+                                    <p class="text-xs font-black uppercase tracking-widest text-white italic group-hover/item:text-[#d4af37]">Cilindros de Oxígeno Medicinal</p>
                                     <p class="text-[9px] text-gray-500 font-bold uppercase tracking-tighter mt-1">Proveedor Sugerido: CLINICAL GAS SAS</p>
                                 </div>
                                 <span class="text-sm font-black text-[#d4af37]">50 <span class="text-[9px] opacity-50 uppercase">Balas</span></span>
                             </div>
                             <div class="flex items-center justify-between p-5 bg-white/5 rounded-2xl border border-white/10 hover:border-[#d4af37]/40 transition-all group/item">
                                 <div>
-                                    <p class="text-xs font-black uppercase tracking-widest text-white italic group-hover/item:text-[#d4af37]">Kits CitologÃ­a EstÃ©ril</p>
+                                    <p class="text-xs font-black uppercase tracking-widest text-white italic group-hover/item:text-[#d4af37]">Kits Citología Estéril</p>
                                     <p class="text-[9px] text-gray-500 font-bold uppercase tracking-tighter mt-1">Proveedor Sugerido: MEDICAL SURGICAL LTDA</p>
                                 </div>
                                 <span class="text-sm font-black text-[#d4af37]">200 <span class="text-[9px] opacity-50 uppercase">Kits</span></span>
@@ -127,7 +127,7 @@ $compras = $db->query("
                 <!-- Sidebar derecha Premium -->
                 <div class="space-y-6">
                     <div class="bg-white p-8 rounded-[2.5rem] shadow-2xl border border-slate-100">
-                        <h3 class="text-[10px] font-black text-[#111111] uppercase tracking-[0.3em] mb-8 italic border-b-2 border-[#d4af37] pb-3">Directorio JurÃ­dico</h3>
+                        <h3 class="text-[10px] font-black text-[#111111] uppercase tracking-[0.3em] mb-8 italic border-b-2 border-[#d4af37] pb-3">Directorio Jurídico</h3>
                         <div class="space-y-5">
                             <?php foreach ($proveedores as $p): ?>
                                 <div class="p-5 bg-slate-50 border-l-4 border-l-[#111111] hover:border-l-[#d4af37] rounded-2xl transition-all group cursor-pointer hover:shadow-lg">

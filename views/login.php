@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -28,10 +28,10 @@
             <div class="relative z-10">
                 <p class="text-slate-200 text-sm font-medium leading-relaxed opacity-80">
                     Empresa Social del Estado Fabio Jaramillo Londoño. <br>
-                    <span class="text-[#d4af37] italic">"Revive la Salud ¡Luchando de Corazón!"</span>
+                    <span class="text-[#d4af37] italic">"Revive la Salud Â¡Luchando de Corazón!"</span>
                 </p>
                 <div class="mt-8 flex gap-4">
-                    <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] text-white font-bold uppercase tracking-widest border border-white/10">v7.0 Élite Premium</span>
+                    <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] text-white font-bold uppercase tracking-widest border border-white/10">v7.0 Central Premium</span>
                 </div>
             </div>
         </div>
@@ -58,22 +58,22 @@
                     <div class="relative">
                         <input type="password" id="password" required 
                             class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] outline-none transition-all text-slate-700 font-semibold"
-                            placeholder="••••••••">
+                            placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
                     </div>
                 </div>
 
                 <div id="login-error" class="hidden text-center text-xs font-bold text-red-600 bg-red-50 p-4 rounded-2xl border border-red-100 animate-shake">
-                    🚨 Credenciales no válidas. Verifica e intenta de nuevo.
+                    ðŸš¨ Credenciales no válidas. Verifica e intenta de nuevo.
                 </div>
 
                 <button type="submit" 
                     class="w-full py-5 bg-[#111111] text-white font-black rounded-2xl shadow-xl hover:bg-black border border-transparent hover:border-[#d4af37]/50 transform transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-[11px]">
-                    Autenticar Acceso Élite
+                    Autenticar Acceso Central
                 </button>
             </form>
 
             <div class="mt-12 pt-8 border-t border-slate-50 flex justify-between items-center bg-transparent">
-                <span class="text-[9px] text-slate-300 font-black uppercase tracking-widest italic">ESEFJL — Florencia, Caquetá</span>
+                <span class="text-[9px] text-slate-300 font-black uppercase tracking-widest italic">ESEFJL â€” Florencia, Caquetá</span>
                 <span class="text-[9px] text-slate-400 font-bold">NIT 900211468-3</span>
             </div>
         </div>

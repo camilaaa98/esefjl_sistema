@@ -1,5 +1,5 @@
 /**
- * ELITE DOCUMENTATION ENGINE 4.0
+ * ESEFJL DOCUMENTATION ENGINE 4.0
  * Implementación de WAAPI e Intersection Observer para interactividad premium.
  */
 document.addEventListener('DOMContentLoaded', () => {

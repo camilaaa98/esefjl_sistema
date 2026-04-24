@@ -1,23 +1,19 @@
 <?php
 /**
  * Controlador de Inventario - ESE Fabio Jaramillo
+ * Refactorizado para usar Repositorios (SOLID) y eliminar redundancias.
  */
 require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/Repositories/InventoryRepository.php';
 
 class InventoryController {
     
+    private static function getRepository() {
+        return new InventoryRepository(Database::getInstance());
+    }
+
     public static function getInventoryBySede($sede_id) {
-        $db = Database::getInstance();
-        $stmt = $db->prepare("
-            SELECT i.*, p.nombre_generico, p.unidad_medida, c.nombre as categoria, p.laboratorio, p.concentracion_presentacion
-            FROM inventario i
-            JOIN productos p ON i.producto_id = p.id
-            JOIN categorias c ON p.categoria_id = c.id
-            WHERE i.sede_id = ? AND i.fecha_vencimiento >= CURRENT_DATE
-            ORDER BY i.fecha_vencimiento ASC
-        ");
-        $stmt->execute([$sede_id]);
-        return $stmt->fetchAll();
+        return self::getRepository()->getInventoryBySede($sede_id);
     }
 
     public static function getStatusBadge($current, $min, $expiry = null) {
@@ -31,7 +27,7 @@ class InventoryController {
         }
 
         if ($current <= ($min * 0.25)) {
-            return '<span class="badge sema-red">STOCK CRíTICO</span>';
+            return '<span class="badge sema-red">STOCK CRÍTICO</span>';
         } elseif ($current < $min) {
             return '<span class="badge sema-yellow">STOCK BAJO</span>';
         } else {
@@ -40,49 +36,20 @@ class InventoryController {
     }
 
     public static function getAllIPSInventory() {
-        $db = Database::getInstance();
-        $stmt = $db->query("
-            SELECT s.nombre as sede_nombre, p.nombre_generico, p.laboratorio, i.stock_actual, i.stock_minimo, i.fecha_vencimiento
-            FROM inventario i
-            JOIN productos p ON i.producto_id = p.id
-            JOIN sedes s ON i.sede_id = s.id
-            WHERE s.tipo = 'MUNICIPIO' AND i.fecha_vencimiento >= CURRENT_DATE
-            ORDER BY s.nombre, p.nombre_generico
-        ");
-        return $stmt->fetchAll();
+        return self::getRepository()->getAllStock(); // O usar un método específico si se prefiere
     }
 
     public static function getExpiredInventory() {
-        $db = Database::getInstance();
-        $stmt = $db->query("
-            SELECT i.*, p.nombre_generico, p.laboratorio, s.nombre as sede_nombre, prov.razon_social as proveedor_nombre
-            FROM inventario i
-            JOIN productos p ON i.producto_id = p.id
-            JOIN sedes s ON i.sede_id = s.id
-            LEFT JOIN proveedores prov ON p.laboratorio = prov.razon_social -- Simplificación para propósitos de demo
-            WHERE i.fecha_vencimiento < CURRENT_DATE
-            ORDER BY i.fecha_vencimiento DESC
-        ");
-        return $stmt->fetchAll();
+        return self::getRepository()->getExpired();
     }
 
     public static function canSupplyAllIPS() {
+        $repo = self::getRepository();
+        $faltantes = $repo->getFaltantesMunicipales();
+
+        if (empty($faltantes)) return true;
+
         $db = Database::getInstance();
-        
-        // 1. Obtener suma de faltantes por producto en todas las IPS Municipales
-        $stmtFaltantes = $db->query("
-            SELECT i.producto_id, SUM(MAX(0, i.stock_minimo - i.stock_actual)) as total_faltante
-            FROM inventario i
-            JOIN sedes s ON i.sede_id = s.id
-            WHERE s.tipo = 'MUNICIPIO'
-            GROUP BY i.producto_id
-            HAVING SUM(MAX(0, i.stock_minimo - i.stock_actual)) > 0
-        ");
-        $faltantes = $stmtFaltantes->fetchAll();
-
-        if (empty($faltantes)) return true; // No hay faltantes en ninguna IPS
-
-        // 2. Comprobar si Florencia tiene stock para cubrir cada faltante
         $florencia_id = $db->query("SELECT id FROM sedes WHERE nombre LIKE '%Florencia%' LIMIT 1")->fetchColumn();
         
         foreach ($faltantes as $f) {
@@ -94,10 +61,6 @@ class InventoryController {
         }
 
         return true;
-    }
-
-    public static function seedInitialProducts() {
-        // ... (Este método ya fue ejecutado o se reemplaza por mega_seed.php)
     }
 }
 ?>

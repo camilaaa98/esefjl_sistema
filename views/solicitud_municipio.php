@@ -34,7 +34,7 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sisfarma Pro - LogÃ­stica IPS</title>
+    <title>Sisfarma Pro - Logística IPS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -53,26 +53,26 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
 
             <header class="flex flex-col items-center justify-center text-center gap-4 relative overflow-hidden bg-[#111111] text-white p-16 rounded-[3rem] mb-12 shadow-2xl border border-[#d4af37]/20">
                 <div class="relative z-10">
-                    <span class="inline-block px-5 py-2 bg-[#d4af37] text-black text-[9px] font-black rounded-full uppercase tracking-[0.2em] mb-6 animate-pulse">OperaciÃ³n Municipal Ã‰lite</span>
-                    <h2 class="text-4xl font-black tracking-tight leading-none mb-4 italic uppercase">LogÃ­stica de <span class="text-[#d4af37]">Suministro IPS</span></h2>
-                    <p class="text-slate-400 text-sm italic font-bold tracking-widest uppercase mb-10">GestiÃ³n de Stock Inteligente: <span class="text-[#d4af37] underline decoration-2 underline-offset-8"><?= strtoupper($_SESSION['sede']) ?></span></p>
+                    <span class="inline-block px-5 py-2 bg-[#d4af37] text-black text-[9px] font-black rounded-full uppercase tracking-[0.2em] mb-6 animate-pulse">Operación Municipal Central</span>
+                    <h2 class="text-4xl font-black tracking-tight leading-none mb-4 italic uppercase">Logística de <span class="text-[#d4af37]">Suministro IPS</span></h2>
+                    <p class="text-slate-400 text-sm italic font-bold tracking-widest uppercase mb-10">Gestión de Stock Inteligente: <span class="text-[#d4af37] underline decoration-2 underline-offset-8"><?= strtoupper($_SESSION['sede']) ?></span></p>
                     
-                    <!-- BotÃ³n Pedido AutomÃ¡tico Premium -->
+                    <!-- Botón Pedido Automático Premium -->
                     <form method="POST">
                         <button type="submit" name="btnManualRequest" class="group relative flex items-center gap-4 px-10 py-5 bg-white text-[#111111] font-black rounded-2xl shadow-[0_20px_50px_rgba(255,255,255,0.1)] transition-all hover:bg-[#d4af37] hover:scale-105 active:scale-95 uppercase text-xs tracking-widest">
-                            ðŸš€ Generar Abastecimiento AutomÃ¡tico al CEDIS
+                            ðŸš€ Generar Abastecimiento Automático al CEDIS
                             <span class="group-hover:translate-x-2 transition-transform">â†’</span>
                         </button>
                     </form>
                 </div>
                 
-                <!-- DecoraciÃ³n EstÃ©tica -->
+                <!-- Decoración Estética -->
                 <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
                 <div class="absolute -left-20 -top-20 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <!-- Tabla de Inventario Ã‰lite -->
+                <!-- Tabla de Inventario Central -->
                 <div class="bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 overflow-hidden">
                     <div class="px-8 py-7 border-b border-slate-50 flex justify-between items-center bg-[#111111]">
                         <h3 class="font-black text-[#d4af37] text-[10px] uppercase tracking-[0.3em] italic">Estado de Stock Operativo Local</h3>
@@ -111,16 +111,16 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
                     </div>
                 </div>
 
-                <!-- Formulario Solicitud Manual Ã‰lite -->
+                <!-- Formulario Solicitud Manual Central -->
                 <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 relative overflow-hidden">
                     <div class="mb-10 relative z-10 border-l-4 border-l-[#d4af37] pl-6">
                         <h3 class="text-[10px] font-black text-[#111111] uppercase tracking-[0.4em] mb-2 italic">Solicitud Especial Manual</h3>
-                        <p class="text-slate-400 text-[11px] font-bold leading-relaxed uppercase tracking-tighter">Requerimientos extraordinarios de VademÃ©cum</p>
+                        <p class="text-slate-400 text-[11px] font-bold leading-relaxed uppercase tracking-tighter">Requerimientos extraordinarios de Vademécum</p>
                     </div>
                     
                     <form method="POST" class="space-y-8 relative z-10">
                         <div class="space-y-3">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Seleccionar Insumo del CatÃ¡logo</label>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Seleccionar Insumo del Catálogo</label>
                             <select name="producto_id" class="w-full p-5 bg-slate-50 border border-slate-100 rounded-3xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-[11px] font-black text-[#111111] uppercase italic cursor-pointer shadow-inner" required>
                                 <option value="" class="text-slate-300 italic">--- BUSCAR EN EL VADEMÃ‰CUM ---</option>
                                 <?php foreach ($productos_todos as $p): ?>
@@ -143,8 +143,8 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
                         <div class="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 italic group hover:bg-[#111111] transition-all duration-500">
                             <span class="text-2xl group-hover:rotate-12 transition-transform">ðŸ›Žï¸</span>
                             <div class="text-[9px] text-slate-400 font-bold leading-relaxed uppercase tracking-widest group-hover:text-[#d4af37]">
-                                <strong class="text-slate-600 group-hover:text-white">Nota TÃ©cnica de LogÃ­stica:</strong><br>
-                                Las solicitudes manuales ingresan a la cola de auditorÃ­a del CEDIS central. Tiempo de trÃ¡nsito estimado: 24-72 horas hÃ¡biles.
+                                <strong class="text-slate-600 group-hover:text-white">Nota Técnica de Logística:</strong><br>
+                                Las solicitudes manuales ingresan a la cola de auditoría del CEDIS central. Tiempo de tránsito estimado: 24-72 horas hábiles.
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,7 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
             </div>
             
             <footer class="mt-20 pt-8 border-t border-slate-100 text-[9px] font-bold text-slate-300 uppercase tracking-[0.5em] text-center pb-12 italic">
-                CONTROL DE LOGÃSTICA MUNICIPAL â€” SISFARMA Ã‰LITE v7.5
+                CONTROL DE LOGÃSTICA MUNICIPAL â€” SISFARMA Central v7.5
             </footer>
         </main>
     </div>

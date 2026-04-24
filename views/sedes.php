@@ -22,11 +22,11 @@ $total_items = 0;
 
 $img_map = [
     'Florencia' => 'AdministrativaFlorencia.jpg',
-    'MilÃ¡n' => 'Milan.jpg',
+    'Milán' => 'Milan.jpg',
     'San Antonio de Getucha' => 'SanAntonioGetucha.jpg',
     'Solano' => 'solano.jpg',
     'Solita' => 'solita.jpg',
-    'ValparaÃ­so' => 'valparaiso.jpg'
+    'Valparaíso' => 'valparaiso.jpg'
 ];
 
 if ($selected_sede_id) {
@@ -71,11 +71,11 @@ $total_pages = ceil($total_items / $limit);
             <header class="flex flex-col items-center justify-center text-center gap-4 fade-in-institutional">
                 <div>
                     <h2 class="text-3xl font-black text-[#111111] tracking-tight italic uppercase">Directorio de Sedes <span class="text-[#d4af37]">Municipales</span></h2>
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">GestiÃ³n Regional de Insumos Ã‰lite</p>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Gestión Regional de Insumos Central</p>
                 </div>
             </header>
 
-            <!-- Grid de Sedes con ImÃ¡genes -->
+            <!-- Grid de Sedes con Imágenes -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 fade-in-institutional" style="animation-delay: 0.1s">
                 <?php foreach ($sedes as $s): 
                     $img = $img_map[$s['nombre']] ?? 'AdministrativaFlorencia.jpg';
@@ -95,8 +95,8 @@ $total_pages = ceil($total_items / $limit);
             <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden fade-in-institutional" style="animation-delay: 0.2s">
                 <div class="px-8 py-6 border-b border-slate-50 flex flex-col md:flex-row items-center justify-between bg-[#111111] gap-4">
                     <div class="text-center md:text-left">
-                        <h3 class="font-black text-[#d4af37] uppercase tracking-tighter italic text-xs">ðŸ“ LogÃ­stica Ã‰lite: <?= $selected_sede_data['nombre'] ?></h3>
-                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">PÃ¡gina <?= $current_page_num ?> de <?= $total_pages ?> â€” Registro Maestro de Insumos</p>
+                        <h3 class="font-black text-[#d4af37] uppercase tracking-tighter italic text-xs">ðŸ“ Logística Central: <?= $selected_sede_data['nombre'] ?></h3>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Página <?= $current_page_num ?> de <?= $total_pages ?> â€” Registro Maestro de Insumos</p>
                     </div>
                     <div class="flex gap-2">
                         <?php if ($current_page_num > 1): ?>
@@ -113,8 +113,8 @@ $total_pages = ceil($total_items / $limit);
                             <tr>
                                 <th class="px-8 py-5 w-16">Item</th>
                                 <th class="px-8 py-5">Insumo / Medicamento</th>
-                                <th class="px-8 py-5 text-center">Stock Ã‰lite</th>
-                                <th class="px-8 py-5 text-center">MÃ­n.</th>
+                                <th class="px-8 py-5 text-center">Stock Central</th>
+                                <th class="px-8 py-5 text-center">Mín.</th>
                                 <th class="px-8 py-5 text-center">Vencimiento</th>
                                 <th class="px-8 py-5 text-center">Estatus</th>
                             </tr>

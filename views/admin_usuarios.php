@@ -19,7 +19,7 @@ $usuarios = $db->query("
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestiÃ³n de Talento Humano - SISFARMA Ã‰LITE</title>
+    <title>Gestión de Talento Humano - SISFARMA Central</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -31,8 +31,8 @@ $usuarios = $db->query("
         <main class="content-area fade-in-institutional">
             <header class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
                 <div>
-                    <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter">GestiÃ³n de <span class="text-[#d4af37]">Talento Humano</span></h2>
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">AsignaciÃ³n de Responsabilidades y Roles IPS</p>
+                    <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter">Gestión de <span class="text-[#d4af37]">Talento Humano</span></h2>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Asignación de Responsabilidades y Roles IPS</p>
                 </div>
                 <button class="btn-institutional">
                     <span class="text-lg">ðŸ‘¤+</span>
@@ -74,7 +74,7 @@ $usuarios = $db->query("
             </div>
             
             <footer class="mt-20 pt-8 border-t border-slate-100 flex justify-between items-center text-[9px] font-bold text-slate-300 uppercase tracking-[0.4em] italic pb-12">
-                <div>CONTROL DE CONTROL DE TALENTO HUMANO â€” SISFARMA Ã‰LITE v7.5</div>
+                <div>CONTROL DE CONTROL DE TALENTO HUMANO â€” SISFARMA Central v7.5</div>
                 <div>AUTORIZADO POR SUBGERENTE ADMINISTRATIVA</div>
             </footer>
         </main>

@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/Controllers/InventoryController.php';
+require_once __DIR__ . '/../core/InventoryController.php';
 require_once __DIR__ . '/../core/ViewHelper.php';
 require_once __DIR__ . '/../core/Database.php';
 
@@ -20,10 +20,10 @@ $isDirectivo = in_array($rol, [
     'Administrador'
 ]);
 
-$inventoryCtrl = new InventoryController();
-$inventory = $inventoryCtrl->getInventoryBySede($sede_id);
-$all_ips_data = $isDirectivo ? $inventoryCtrl->getAllIPSInventory() : [];
-$vencidos_count = count($inventoryCtrl->getExpiredInventory());
+
+$inventory = InventoryController::getInventoryBySede($sede_id);
+$all_ips_data = $isDirectivo ? InventoryController::getAllIPSInventory() : [];
+$vencidos_count = count(InventoryController::getExpiredInventory());
 
 $stockCritico = 0;
 foreach($inventory as $item) {
@@ -53,7 +53,7 @@ foreach($inventory as $item) {
                     <div>
                         <h2 class="text-3xl font-black text-[#111111] tracking-tight uppercase">Panel de Gestión Administrativa</h2>
                         <p class="text-slate-400 text-xs font-bold uppercase tracking-[0.3em] flex items-center justify-center lg:justify-start gap-2">
-                             SEDE CENTRAL: FLORENCIA <span class="text-slate-200">|</span> SISFARMA ÉLITE v7.5 PREMIUM
+                             SEDE CENTRAL: FLORENCIA <span class="text-slate-200">|</span> SISFARMA Central v7.5 PREMIUM
                         </p>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ foreach($inventory as $item) {
                         </p>
                     </div>
                     <div class="w-full md:w-auto p-6 bg-white rounded-3xl shadow-soft border border-slate-100 text-center">
-                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Índice de Eficiencia</p>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Ãndice de Eficiencia</p>
                         <p class="text-5xl font-black text-[#111111] italic tracking-tighter">98.4</p>
                         <p class="text-[9px] font-bold text-[#d4af37] uppercase mt-2">Nivel de Excelencia</p>
                     </div>
@@ -101,7 +101,7 @@ foreach($inventory as $item) {
                 <!-- Card: Stock -->
                 <div class="card-clinical">
                     <div class="flex justify-between items-start mb-6">
-                        <div class="p-3 bg-slate-50 rounded-2xl text-2xl">📦</div>
+                        <div class="p-3 bg-slate-50 rounded-2xl text-2xl">ðŸ“¦</div>
                         <span class="status-pill bg-slate-900 text-white text-[9px] font-black py-1 px-3 rounded-full border border-slate-800 uppercase tracking-widest">Disponible</span>
                     </div>
                     <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Stock Maestro Sede</p>
@@ -114,7 +114,7 @@ foreach($inventory as $item) {
                 <!-- Card: Expired -->
                 <div class="card-clinical">
                     <div class="flex justify-between items-start mb-6">
-                        <div class="p-3 bg-red-50 rounded-2xl text-2xl">⌛</div>
+                        <div class="p-3 bg-red-50 rounded-2xl text-2xl">âŒ›</div>
                         <span class="status-pill <?= $vencidos_count > 0 ? 'bg-red-50 text-red-600' : 'bg-slate-50 text-slate-400' ?> text-[9px] font-black py-1 px-3 rounded-full border border-red-100 uppercase tracking-widest">Alertas</span>
                     </div>
                     <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Farmacovigilancia</p>
@@ -128,7 +128,7 @@ foreach($inventory as $item) {
                 <!-- Card: Deficit -->
                 <div class="card-clinical">
                     <div class="flex justify-between items-start mb-6">
-                        <div class="p-3 bg-slate-900 rounded-2xl text-2xl">⚠️</div>
+                        <div class="p-3 bg-slate-900 rounded-2xl text-2xl">âš ï¸</div>
                         <span class="status-pill bg-amber-50 text-amber-700 text-[9px] font-black py-1 px-3 rounded-full border border-amber-100 uppercase tracking-widest">Suministro</span>
                     </div>
                     <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Déficit Crítico</p>
@@ -147,7 +147,7 @@ foreach($inventory as $item) {
                 <div class="mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
                     <div>
                         <h3 class="text-2xl font-black text-slate-900 tracking-tight italic uppercase">Monitoreo Regional de Insumos</h3>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Sedes IPS Municipales — Red ESEFJL</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Sedes IPS Municipales â€” Red ESEFJL</p>
                     </div>
                     <button class="btn-institutional">Descargar Reporte Ejecutivo</button>
                 </div>
@@ -201,7 +201,7 @@ foreach($inventory as $item) {
             <?php endif; ?>
             
             <footer class="mt-20 pt-8 border-t border-slate-100 flex justify-between items-center text-[9px] font-bold text-slate-300 uppercase tracking-[0.4em] italic pb-12">
-                <div>E.S.E. FABIO JARAMILLO LONDOÑO — "Revive la Salud ¡Luchando de Corazón!"</div>
+                <div>E.S.E. FABIO JARAMILLO LONDOÃ‘O â€” "Revive la Salud Â¡Luchando de Corazón!"</div>
                 <div>Caquetá, Colombia</div>
             </footer>
         </main>

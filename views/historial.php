@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -49,7 +49,7 @@ $sedes = $db->query("SELECT * FROM sedes")->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuditorÃ­a de Movimientos - SISFARMA PRO</title>
+    <title>AuditorÃƒÂ­a de Movimientos - SISFARMA PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind-config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -63,12 +63,12 @@ $sedes = $db->query("SELECT * FROM sedes")->fetchAll();
         <main class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto">
             <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 fade-in-institutional">
                 <div>
-                    <h2 class="text-3xl font-black text-[#111111] tracking-tight italic uppercase">Trazabilidad <span class="text-[#d4af37]">HistÃ³rica</span></h2>
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Log de AuditorÃ­a para Farmacovigilancia Ã‰lite</p>
+                    <h2 class="text-3xl font-black text-[#111111] tracking-tight italic uppercase">Trazabilidad <span class="text-[#d4af37]">HistÃƒÂ³rica</span></h2>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Log de AuditorÃƒÂ­a para Farmacovigilancia Ãƒâ€°lite</p>
                 </div>
                 <div class="flex gap-2">
                     <button onclick="window.print()" class="px-5 py-2.5 bg-[#111111] text-white text-[10px] font-black rounded-xl shadow-lg hover:bg-black hover:text-[#d4af37] transition-all border border-transparent hover:border-[#d4af37]/30 uppercase tracking-widest">
-                        ðŸ–¨ï¸ Exportar Acta de AuditorÃ­a
+                        Ã°Å¸â€“Â¨Ã¯Â¸Â Exportar Acta de AuditorÃƒÂ­a
                     </button>
                 </div>
             </header>
@@ -76,7 +76,7 @@ $sedes = $db->query("SELECT * FROM sedes")->fetchAll();
             <!-- Barra de Herramientas Premium -->
             <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex flex-col md:flex-row gap-4 fade-in-institutional" style="animation-delay: 0.1s">
                 <div class="flex-1">
-                    <input type="text" id="searchInput" placeholder="ðŸ”Ž Buscar por paciente, insumo o sede..." 
+                    <input type="text" id="searchInput" placeholder="Ã°Å¸â€Å½ Buscar por paciente, insumo o sede..." 
                         class="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] transition-all text-sm font-medium text-slate-700">
                 </div>
                 <?php if ($rol === 'Administrador'): ?>
@@ -99,14 +99,14 @@ $sedes = $db->query("SELECT * FROM sedes")->fetchAll();
                 <div class="px-8 py-6 border-b border-slate-50 flex flex-col md:flex-row justify-between items-center bg-[#111111] gap-4">
                     <div class="text-center md:text-left">
                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Registros de Control Operativo</span>
-                        <span class="text-xs font-black text-[#d4af37] uppercase italic">PÃ¡gina <?= $current_page_num ?> de <?= $total_pages ?> â€” SISFARMA Ã‰LITE v7.5</span>
+                        <span class="text-xs font-black text-[#d4af37] uppercase italic">PÃƒÂ¡gina <?= $current_page_num ?> de <?= $total_pages ?> Ã¢â‚¬â€ SISFARMA Ãƒâ€°LITE v7.5</span>
                     </div>
                     <div class="flex gap-2">
                         <?php if ($current_page_num > 1): ?>
-                            <a href="?p=<?= $current_page_num - 1 ?><?= $filtro_sede ? "&sede=$filtro_sede" : "" ?>" class="px-4 py-2 bg-white/10 border border-white/10 rounded-xl text-[10px] font-black uppercase text-white hover:bg-white/20 transition-all italic">â† Anterior</a>
+                            <a href="?p=<?= $current_page_num - 1 ?><?= $filtro_sede ? "&sede=$filtro_sede" : "" ?>" class="px-4 py-2 bg-white/10 border border-white/10 rounded-xl text-[10px] font-black uppercase text-white hover:bg-white/20 transition-all italic">Ã¢â€ Â Anterior</a>
                         <?php endif; ?>
                         <?php if ($current_page_num < $total_pages): ?>
-                            <a href="?p=<?= $current_page_num + 1 ?><?= $filtro_sede ? "&sede=$filtro_sede" : "" ?>" class="px-4 py-2 bg-[#d4af37] text-white rounded-xl text-[10px] font-black uppercase hover:scale-105 transition-all shadow-lg italic">Siguiente â†’</a>
+                            <a href="?p=<?= $current_page_num + 1 ?><?= $filtro_sede ? "&sede=$filtro_sede" : "" ?>" class="px-4 py-2 bg-[#d4af37] text-white rounded-xl text-[10px] font-black uppercase hover:scale-105 transition-all shadow-lg italic">Siguiente Ã¢â€ â€™</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -141,7 +141,7 @@ $sedes = $db->query("SELECT * FROM sedes")->fetchAll();
                                 <td class="px-8 py-5 text-center text-sm font-black text-[#111111] tabular-nums"><?= $m['cantidad'] ?></td>
                                 <td class="px-8 py-5 text-[10px] font-black text-slate-600 uppercase italic leading-tight"><?= strtoupper($m['paciente']) ?></td>
                                 <td class="px-8 py-5 text-center">
-                                    <span class="px-3 py-1 bg-slate-900 text-white text-[8px] font-black rounded-full uppercase border border-black shadow-sm tracking-[0.1em]">Auditado âœ“</span>
+                                    <span class="px-3 py-1 bg-slate-900 text-white text-[8px] font-black rounded-full uppercase border border-black shadow-sm tracking-[0.1em]">Auditado Ã¢Å“â€œ</span>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
