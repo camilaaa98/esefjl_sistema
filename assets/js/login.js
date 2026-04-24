@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playSound(800, 'square', 0.15);
 
         try {
-            const response = await fetch('../core/auth_handler.php', {
+            const response = await fetch('../core/Infrastructure/auth_handler.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })

@@ -1,11 +1,11 @@
-﻿<?php
+<?php
 /**
- * inventario_central.php â€” Farmacia ESEFJL Â· ESE Fabio Jaramillo
- * CORREGIDO: columnas reales de la BD, XSS, codificación, filtros, badges.
+ * inventario_central.php — Farmacia ESEFJL · ESE Fabio Jaramillo
+ * CORREGIDO: columnas reales de la BD, XSS, codificaci�n, filtros, badges.
  */
 header('Content-Type: text/html; charset=utf-8');
 session_start();
-require_once '../core/Database.php';
+require_once '../core/Infrastructure/Database.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -15,17 +15,17 @@ if (!isset($_SESSION['usuario_id'])) {
 $db  = Database::getInstance();
 $rol = $_SESSION['rol'] ?? '';
 
-/* â”€â”€â”€ Determinar sede según rol â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Determinar sede seg�n rol ──────────────────────────── */
 $sede_id = (in_array($rol, ['Administrador', 'Gerente', 'Regente Farmacia']))
     ? null
     : ($_SESSION['sede_id'] ?? null);
 
-/* â”€â”€â”€ Filtros GET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Filtros GET ─────────────────────────────────────────── */
 $busqueda   = trim($_GET['q']    ?? '');
 $filtro_sede = (int)($_GET['sede'] ?? 0);
 $filtro_est  = $_GET['estado']   ?? '';
 
-/* â”€â”€â”€ Query corregida con columnas reales de la BD â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Query corregida con columnas reales de la BD ───────── */
 $sql = "
     SELECT
         i.id,
@@ -41,7 +41,7 @@ $sql = "
         i.fecha_vencimiento,
         s.nombre        AS sede_nombre,
         s.id            AS sede_id,
-        -- % sobre mínimo para el badge de estado
+        -- % sobre m�nimo para el badge de estado
         CASE
             WHEN i.fecha_vencimiento < DATE('now')                         THEN 'VENCIDO'
             WHEN i.fecha_vencimiento < DATE('now','+3 months')             THEN 'POR_VENCER'
@@ -89,28 +89,28 @@ $stmt = $db->prepare($sql);
 $stmt->execute($params);
 $stock = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/* â”€â”€â”€ Filtro post-query por estado (badge) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Filtro post-query por estado (badge) ─────────────────── */
 if ($filtro_est) {
     $stock = array_filter($stock, fn($r) => $r['estado'] === $filtro_est);
 }
 
-/* â”€â”€â”€ Totales para tarjetas de resumen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Totales para tarjetas de resumen ─────────────────────── */
 $totalRegistros  = count($stock);
 $totalVencidos   = count(array_filter($stock, fn($r) => $r['estado'] === 'VENCIDO'));
 $totalCriticos   = count(array_filter($stock, fn($r) => $r['estado'] === 'CRITICO'));
 $totalPorVencer  = count(array_filter($stock, fn($r) => $r['estado'] === 'POR_VENCER'));
 
-/* â”€â”€â”€ Sedes para el dropdown de filtro â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Sedes para el dropdown de filtro ─────────────────────── */
 $sedes = $db->query("SELECT id, nombre FROM sedes ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
 
-/* â”€â”€â”€ Helper badges â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Helper badges ─────────────────────────────────────────── */
 function badge(string $estado): string {
     return match($estado) {
         'VENCIDO'   => '<span class="badge badge-red">Vencido</span>',
         'POR_VENCER'=> '<span class="badge badge-orange">Por vencer</span>',
-        'CRITICO'   => '<span class="badge badge-red">Stock crítico</span>',
+        'CRITICO'   => '<span class="badge badge-red">Stock cr�tico</span>',
         'BAJO'      => '<span class="badge badge-yellow">Stock bajo</span>',
-        default     => '<span class="badge badge-green">Ã“ptimo</span>',
+        default     => '<span class="badge badge-green">Óptimo</span>',
     };
 }
 function e(string $v): string {
@@ -122,11 +122,11 @@ function e(string $v): string {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inventario Central Â· Farmacia ESEFJL</title>
+<title>Inventario Central · Farmacia ESEFJL</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="../assets/css/main.css">
 <style>
-/* â”€â”€ Badges â”€â”€ */
+/* ── Badges ── */
 .badge {
     display: inline-flex; align-items: center; gap: 4px;
     font-size: 9px; font-weight: 800; letter-spacing: .08em;
@@ -137,11 +137,11 @@ function e(string $v): string {
 .badge-orange { background:#ffedd5; color:#9a3412; border:1px solid #fed7aa; }
 .badge-red    { background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
 
-/* â”€â”€ Barra de progreso stock â”€â”€ */
+/* ── Barra de progreso stock ── */
 .stock-bar { height:4px; border-radius:4px; background:#e2e8f0; overflow:hidden; }
 .stock-bar-fill { height:100%; border-radius:4px; transition:width .4s; }
 
-/* â”€â”€ Tarjetas de resumen â”€â”€ */
+/* ── Tarjetas de resumen ── */
 .summary-card {
     background:#fff; border-radius:1.5rem;
     border:1px solid #f1f5f9; padding:1.5rem 1.8rem;
@@ -152,7 +152,7 @@ function e(string $v): string {
 .summary-lbl { font-size:.6rem; font-weight:800; text-transform:uppercase;
                letter-spacing:.15em; color:#94a3b8; }
 
-/* â”€â”€ Input búsqueda â”€â”€ */
+/* ── Input b�squeda ── */
 .search-wrap { position:relative; }
 .search-wrap input {
     padding:.65rem 1rem .65rem 2.6rem;
@@ -166,7 +166,7 @@ function e(string $v): string {
 }
 .search-wrap svg { position:absolute; left:.8rem; top:50%; transform:translateY(-50%); }
 
-/* â”€â”€ Select filtros â”€â”€ */
+/* ── Select filtros ── */
 select.filtro {
     padding:.6rem 1rem; border:1px solid #e2e8f0; border-radius:.85rem;
     font-size:.75rem; font-weight:600; background:#fff; cursor:pointer;
@@ -174,7 +174,7 @@ select.filtro {
 }
 select.filtro:focus { outline:none; border-color:#d4af37; }
 
-/* â”€â”€ Tabla â”€â”€ */
+/* ── Tabla ── */
 .tbl thead th {
     background:#f8fafc; font-size:.65rem; font-weight:900;
     text-transform:uppercase; letter-spacing:.12em; color:#94a3b8;
@@ -183,19 +183,19 @@ select.filtro:focus { outline:none; border-color:#d4af37; }
 .tbl tbody td { padding:.95rem 1.2rem; border-top:1px solid #f8fafc; }
 .tbl tbody tr:hover td { background:#fafbfc; }
 
-/* â”€â”€ Nombre medicamento â”€â”€ */
+/* ── Nombre medicamento ── */
 .med-name { font-weight:900; color:#111; font-size:.85rem; font-style:italic;
             text-transform:uppercase; line-height:1.2; }
 .med-sub  { font-size:.6rem; color:#94a3b8; font-weight:700;
             text-transform:uppercase; letter-spacing:.08em; margin-top:2px; }
 
-/* â”€â”€ Lote â”€â”€ */
+/* ── Lote ── */
 code.lote {
     font-size:.65rem; font-family:monospace; background:#111; color:#d4af37;
     padding:3px 9px; border-radius:.5rem; border:1px solid rgba(212,175,55,.2);
 }
 
-/* â”€â”€ Alerta vacía â”€â”€ */
+/* ── Alerta vac�a ── */
 .empty-state {
     text-align:center; padding:4rem 2rem; color:#94a3b8;
     font-size:.8rem; font-weight:600;
@@ -209,25 +209,25 @@ code.lote {
 
     <main class="content-area fade-in-institutional" style="overflow-y:auto;">
 
-        <!-- â”€â”€ Cabecera â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+        <!-- ── Cabecera ─────────────────────────────────── -->
         <header class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <div>
                 <h2 class="text-3xl font-black text-[#111] tracking-tighter italic uppercase">
                     Inventario <span class="text-[#d4af37]">Central</span>
                 </h2>
                 <p class="text-gray-400 font-bold uppercase text-[10px] tracking-[.3em] mt-1">
-                    Stock maestro Â· Red Hospitalaria ESEFJL
+                    Stock maestro · Red Hospitalaria ESEFJL
                 </p>
             </div>
             <div class="flex gap-2">
                 <a href="?<?= e(http_build_query(array_merge($_GET, ['export'=>'csv']))) ?>"
                    class="btn-institutional text-[10px]">
-                    â¬‡ Exportar CSV
+                    ⬇ Exportar CSV
                 </a>
             </div>
         </header>
 
-        <!-- â”€â”€ Tarjetas resumen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+        <!-- ── Tarjetas resumen ──────────────────────────── -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="summary-card">
                 <span class="summary-num text-[#111]"><?= $totalRegistros ?></span>
@@ -239,22 +239,22 @@ code.lote {
             </div>
             <div class="summary-card">
                 <span class="summary-num text-orange-500"><?= $totalPorVencer ?></span>
-                <span class="summary-lbl">Por vencer (90 días)</span>
+                <span class="summary-lbl">Por vencer (90 d�as)</span>
             </div>
             <div class="summary-card">
                 <span class="summary-num text-amber-600"><?= $totalCriticos ?></span>
-                <span class="summary-lbl">Stock crítico</span>
+                <span class="summary-lbl">Stock cr�tico</span>
             </div>
         </div>
 
-        <!-- â”€â”€ Filtros â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+        <!-- ── Filtros ───────────────────────────────────── -->
         <form method="GET" class="flex flex-wrap gap-3 mb-6">
             <div class="search-wrap flex-1 min-w-[200px]">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                      stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round">
                     <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
                 </svg>
-                <input type="text" name="q" placeholder="Buscar por nombre, loteâ€¦"
+                <input type="text" name="q" placeholder="Buscar por nombre, lote…"
                        value="<?= e($busqueda) ?>">
             </div>
 
@@ -271,29 +271,29 @@ code.lote {
 
             <select name="estado" class="filtro">
                 <option value="">Todos los estados</option>
-                <option value="OPTIMO"    <?= $filtro_est==='OPTIMO'    ?'selected':'' ?>>Ã“ptimo</option>
+                <option value="OPTIMO"    <?= $filtro_est==='OPTIMO'    ?'selected':'' ?>>Óptimo</option>
                 <option value="BAJO"      <?= $filtro_est==='BAJO'      ?'selected':'' ?>>Stock bajo</option>
-                <option value="CRITICO"   <?= $filtro_est==='CRITICO'   ?'selected':'' ?>>Stock crítico</option>
+                <option value="CRITICO"   <?= $filtro_est==='CRITICO'   ?'selected':'' ?>>Stock cr�tico</option>
                 <option value="POR_VENCER"<?= $filtro_est==='POR_VENCER'?'selected':'' ?>>Por vencer</option>
                 <option value="VENCIDO"   <?= $filtro_est==='VENCIDO'   ?'selected':'' ?>>Vencido</option>
             </select>
 
             <button type="submit" class="btn-institutional">Filtrar</button>
             <a href="inventario_central.php" class="btn-institutional"
-               style="background:#f8fafc;color:#64748b;border-color:#e2e8f0;">âœ• Limpiar</a>
+               style="background:#f8fafc;color:#64748b;border-color:#e2e8f0;">✕ Limpiar</a>
         </form>
 
-        <!-- â”€â”€ Tabla â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+        <!-- ── Tabla ─────────────────────────────────────── -->
         <section class="bg-white rounded-[1.8rem] border border-slate-100 shadow-xl overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full tbl">
                     <thead>
                         <tr>
                             <th>Medicamento / Insumo</th>
-                            <th>Categoría</th>
+                            <th>Categor�a</th>
                             <th>Sede</th>
                             <th class="text-center">Stock actual</th>
-                            <th class="text-center">Mínimo</th>
+                            <th class="text-center">M�nimo</th>
                             <th>Vencimiento</th>
                             <th>Lote</th>
                             <th class="text-center">Estado</th>
@@ -303,7 +303,7 @@ code.lote {
                     <?php if (empty($stock)): ?>
                         <tr><td colspan="8">
                             <div class="empty-state">
-                                ðŸ” No se encontraron registros con los filtros aplicados.
+                                🔍 No se encontraron registros con los filtros aplicados.
                             </div>
                         </td></tr>
                     <?php else: ?>
@@ -326,10 +326,10 @@ code.lote {
                                 <div class="med-sub">
                                     <?= e($item['nombre_comercial'] ?? '') ?>
                                     <?= $item['concentracion_presentacion']
-                                        ? 'Â· ' . e($item['concentracion_presentacion']) : '' ?>
+                                        ? '· ' . e($item['concentracion_presentacion']) : '' ?>
                                 </div>
                                 <div class="med-sub" style="color:#cbd5e1;">
-                                    Lab: <?= e($item['laboratorio'] ?? 'â€”') ?>
+                                    Lab: <?= e($item['laboratorio'] ?? '—') ?>
                                 </div>
                             </td>
                             <td>
@@ -348,7 +348,7 @@ code.lote {
                                             color:<?= $pct<25 ? '#dc2626' : ($pct<100 ? '#b45309' : '#111') ?>;">
                                     <?= (int)$item['stock_actual'] ?>
                                 </div>
-                                <!-- barra de progreso respecto al mínimo -->
+                                <!-- barra de progreso respecto al m�nimo -->
                                 <div class="stock-bar" style="width:60px;margin:4px auto 0;">
                                     <div class="stock-bar-fill"
                                          style="width:<?= $pct ?>%;background:<?= $barColor ?>;"></div>
@@ -362,7 +362,7 @@ code.lote {
                             <td>
                                 <?php
                                     $fv = $item['fecha_vencimiento'];
-                                    $fvFmt = $fv ? date('d/M/Y', strtotime($fv)) : 'â€”';
+                                    $fvFmt = $fv ? date('d/M/Y', strtotime($fv)) : '—';
                                     $fvColor = in_array($item['estado'], ['VENCIDO','POR_VENCER'])
                                         ? 'color:#dc2626;font-weight:900;'
                                         : 'color:#475569;font-weight:700;';
@@ -372,7 +372,7 @@ code.lote {
                                 </span>
                             </td>
                             <td>
-                                <code class="lote"><?= e($item['lote'] ?? 'â€”') ?></code>
+                                <code class="lote"><?= e($item['lote'] ?? '—') ?></code>
                             </td>
                             <td class="text-center">
                                 <?= badge($item['estado']) ?>
@@ -392,7 +392,7 @@ code.lote {
                     <?= $totalRegistros ?> registro<?= $totalRegistros !== 1 ? 's' : '' ?> encontrado<?= $totalRegistros !== 1 ? 's' : '' ?>
                 </span>
                 <span style="font-size:.6rem;color:#cbd5e1;font-weight:600;">
-                    Farmacia ESEFJL Â· ESE Fabio Jaramillo Londoño
+                    Farmacia ESEFJL · ESE Fabio Jaramillo Londo�o
                 </span>
             </div>
         </section>
@@ -401,7 +401,7 @@ code.lote {
 </div>
 
 <?php
-/* â”€â”€â”€ Exportar CSV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Exportar CSV ───────────────────────────────────────── */
 if (isset($_GET['export']) && $_GET['export'] === 'csv') {
     // Re-ejecutar sin filtro de export para limpiar la URL
     header('Content-Type: text/csv; charset=utf-8');
@@ -409,7 +409,7 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
     $out = fopen('php://output', 'w');
     fprintf($out, chr(0xEF).chr(0xBB).chr(0xBF)); // BOM UTF-8
     fputcsv($out, ['Medicamento','Presentacion','Laboratorio','Sede','Stock Actual',
-                   'Stock Mínimo','Lote','Vencimiento','Estado']);
+                   'Stock M�nimo','Lote','Vencimiento','Estado']);
     foreach ($stock as $r) {
         fputcsv($out, [
             $r['nombre_generico'],

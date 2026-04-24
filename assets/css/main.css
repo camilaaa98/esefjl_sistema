@@ -160,9 +160,28 @@ h1, h2, h3, .font-heading {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* === RESPONSIVIDAD === */
+/* === RESPONSIVIDAD AVANZADA === */
 @media (max-width: 1024px) {
     .sidebar-medical {
         display: none;
     }
+    .content-area {
+        padding: 1.5rem;
+    }
+    .grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 1rem;
+    }
+    .card-clinical {
+        padding: 1.5rem;
+    }
+    .table-clinical-wrapper {
+        overflow-x: auto;
+    }
+    h1 { font-size: 1.75rem; }
 }

@@ -1,4 +1,4 @@
-Ôªø<?php
+<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -37,7 +37,7 @@ if (!$isHighCargo) {
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
-                    <h3 class="font-black text-[#111111] mb-6 uppercase text-[10px] tracking-widest border-b border-[#d4af37]/20 pb-2">Dispensaci√≥n Mensual (Unidades)</h3>
+                    <h3 class="font-black text-[#111111] mb-6 uppercase text-[10px] tracking-widest border-b border-[#d4af37]/20 pb-2">DispensaciÛn Mensual (Unidades)</h3>
                     <canvas id="chartMensual"></canvas>
                 </div>
                 <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
@@ -47,14 +47,14 @@ if (!$isHighCargo) {
             </div>
 
             <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
-                <h3 class="font-black text-[#111111] mb-8 uppercase text-[10px] tracking-widest border-l-4 border-l-[#d4af37] pl-4">Generaci√≥n de Informes Oficiales</h3>
+                <h3 class="font-black text-[#111111] mb-8 uppercase text-[10px] tracking-widest border-l-4 border-l-[#d4af37] pl-4">GeneraciÛn de Informes Oficiales</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     <button class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-[#111111] hover:text-white transition-all text-left group">
-                        <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Log√≠stica Semanal</span>
+                        <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">LogÌstica Semanal</span>
                         <span class="text-sm font-black uppercase italic group-hover:text-[#d4af37]">Informe Semanal</span>
                     </button>
                     <button class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-[#111111] hover:text-white transition-all text-left group">
-                        <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Log√≠stica Trimestral</span>
+                        <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">LogÌstica Trimestral</span>
                         <span class="text-sm font-black uppercase italic group-hover:text-[#d4af37]">Informe Trimestral</span>
                     </button>
                     <button class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-[#111111] hover:text-white transition-all text-left group">
@@ -66,7 +66,7 @@ if (!$isHighCargo) {
         </main>
     </div>
     <script>
-        // Scripts para las gr√°ficas con colores corporativos Central
+        // Scripts para las gr·ficas con colores corporativos Central
         new Chart(document.getElementById('chartMensual'), {
             type: 'bar',
             data: {
@@ -78,7 +78,7 @@ if (!$isHighCargo) {
         new Chart(document.getElementById('chartIPS'), {
             type: 'doughnut',
             data: {
-                labels: ['Solita', 'Solano', 'Mil√°n', 'Valp.', 'Getucha'],
+                labels: ['Solita', 'Solano', 'Mil·n', 'Valp.', 'Getucha'],
                 datasets: [{ data: [20, 15, 25, 20, 20], backgroundColor: ['#111111', '#d4af37', '#333333', '#c0c0c0', '#b8860b'] }]
             },
             options: { plugins: { legend: { position: 'bottom', labels: { font: { weight: '800', size: 9 } } } } }

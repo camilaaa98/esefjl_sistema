@@ -2,7 +2,7 @@
 /**
  * Controlador de Entregas - ESE Fabio Jaramillo
  */
-require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/../Infrastructure/Database.php';
 
 class DeliveryController {
     

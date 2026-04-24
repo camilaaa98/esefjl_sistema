@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -19,16 +19,16 @@
             <div class="relative z-10">
                 <img src="../img/logoesefjl.jpg" alt="ESEFJL Logo" class="w-32 h-32 rounded-3xl shadow-2xl mb-8 ring-4 ring-white/10 grayscale-[0.2]">
                 <h1 class="text-4xl font-extrabold text-white leading-tight tracking-tighter">
-                    Excelencia en Gestión <br>
-                    <span class="text-[#d4af37]">Farmacéutica</span>
+                    Excelencia en Gesti�n <br>
+                    <span class="text-[#d4af37]">Farmac�utica</span>
                 </h1>
                 <div class="w-16 h-1.5 bg-[#d4af37] mt-6 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.4)]"></div>
             </div>
 
             <div class="relative z-10">
                 <p class="text-slate-200 text-sm font-medium leading-relaxed opacity-80">
-                    Empresa Social del Estado Fabio Jaramillo Londoño. <br>
-                    <span class="text-[#d4af37] italic">"Revive la Salud Â¡Luchando de Corazón!"</span>
+                    Empresa Social del Estado Fabio Jaramillo Londo�o. <br>
+                    <span class="text-[#d4af37] italic">"Revive la Salud ¡Luchando de Coraz�n!"</span>
                 </p>
                 <div class="mt-8 flex gap-4">
                     <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] text-white font-bold uppercase tracking-widest border border-white/10">v7.0 Central Premium</span>
@@ -39,7 +39,7 @@
         <!-- Lado Derecho: Formulario de Acceso -->
         <div class="flex-1 p-8 md:p-16 flex flex-col justify-center">
             <div class="mb-10 text-center md:text-left">
-                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Iniciar Sesión</h2>
+                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Iniciar Sesi�n</h2>
                 <p class="text-slate-400 text-sm font-medium mt-1 uppercase tracking-widest text-[10px]">Acceso Administrativo de Alta Seguridad</p>
             </div>
 
@@ -54,16 +54,16 @@
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-1">Contraseña</label>
+                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-1">Contrase�a</label>
                     <div class="relative">
                         <input type="password" id="password" required 
                             class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-[#d4af37]/10 focus:border-[#d4af37] outline-none transition-all text-slate-700 font-semibold"
-                            placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
+                            placeholder="••••••••">
                     </div>
                 </div>
 
                 <div id="login-error" class="hidden text-center text-xs font-bold text-red-600 bg-red-50 p-4 rounded-2xl border border-red-100 animate-shake">
-                    ðŸš¨ Credenciales no válidas. Verifica e intenta de nuevo.
+                    🚨 Credenciales no v�lidas. Verifica e intenta de nuevo.
                 </div>
 
                 <button type="submit" 
@@ -73,7 +73,7 @@
             </form>
 
             <div class="mt-12 pt-8 border-t border-slate-50 flex justify-between items-center bg-transparent">
-                <span class="text-[9px] text-slate-300 font-black uppercase tracking-widest italic">ESEFJL â€” Florencia, Caquetá</span>
+                <span class="text-[9px] text-slate-300 font-black uppercase tracking-widest italic">ESEFJL — Florencia, Caquet�</span>
                 <span class="text-[9px] text-slate-400 font-bold">NIT 900211468-3</span>
             </div>
         </div>

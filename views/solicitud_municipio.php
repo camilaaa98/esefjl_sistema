@@ -4,8 +4,8 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/Database.php';
-require_once __DIR__ . '/../core/InventoryController.php';
+require_once __DIR__ . '/../core/Infrastructure/Database.php';
+require_once __DIR__ . '/../core/Controllers/InventoryController.php';
 require_once __DIR__ . '/../core/RequestController.php';
 
 $mensaje_res = "";
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$inventory = InventoryController::getInventoryBySede($sede_id);
+$inventory = InventoryController::getInstance()->getInventoryBySede($sede_id);
 $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico ASC")->fetchAll();
 ?>
 <html lang="es" class="light">

@@ -4,9 +4,9 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/InventoryController.php';
-require_once __DIR__ . '/../core/ViewHelper.php';
-require_once __DIR__ . '/../core/Database.php';
+require_once __DIR__ . '/../core/Controllers/InventoryController.php';
+require_once __DIR__ . '/../core/Infrastructure/ViewHelper.php';
+require_once __DIR__ . '/../core/Infrastructure/Database.php';
 
 $sede_id = (int)$_SESSION['sede_id'];
 $rol = $_SESSION['rol'] ?? '';
@@ -21,9 +21,9 @@ $isDirectivo = in_array($rol, [
 ]);
 
 
-$inventory = InventoryController::getInventoryBySede($sede_id);
-$all_ips_data = $isDirectivo ? InventoryController::getAllIPSInventory() : [];
-$vencidos_count = count(InventoryController::getExpiredInventory());
+$inventory = InventoryController::getInstance()->getInventoryBySede($sede_id);
+$all_ips_data = $isDirectivo ? InventoryController::getInstance()->getAllIPSInventory() : [];
+$vencidos_count = count(InventoryController::getInstance()->getExpiredInventory());
 
 $stockCritico = 0;
 foreach($inventory as $item) {

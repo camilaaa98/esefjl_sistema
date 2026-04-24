@@ -1,9 +1,9 @@
-﻿<?php
+<?php
 session_start();
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'Administrador') {
     die("Acceso restringido: Solo para Administradores.");
 }
-require_once __DIR__ . '/../core/Database.php';
+require_once __DIR__ . '/../core/Infrastructure/Database.php';
 
 $db = Database::getInstance();
 $usuarios = $db->query("
@@ -19,7 +19,7 @@ $usuarios = $db->query("
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Talento Humano - SISFARMA Central</title>
+    <title>Gesti�n de Talento Humano - SISFARMA Central</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -31,11 +31,11 @@ $usuarios = $db->query("
         <main class="content-area fade-in-institutional">
             <header class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
                 <div>
-                    <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter">Gestión de <span class="text-[#d4af37]">Talento Humano</span></h2>
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Asignación de Responsabilidades y Roles IPS</p>
+                    <h2 class="text-3xl font-black text-[#111111] italic uppercase tracking-tighter">Gesti�n de <span class="text-[#d4af37]">Talento Humano</span></h2>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em]">Asignaci�n de Responsabilidades y Roles IPS</p>
                 </div>
                 <button class="btn-institutional">
-                    <span class="text-lg">ðŸ‘¤+</span>
+                    <span class="text-lg">👤+</span>
                     Vincular Nuevo Funcionario
                 </button>
             </header>
@@ -45,9 +45,9 @@ $usuarios = $db->query("
                     <div class="card-clinical bg-white border-l-4 border-l-[#111111] hover:border-l-[#d4af37] transition-all group">
                         <div class="flex justify-between items-start mb-6">
                             <div class="p-3 bg-slate-50 rounded-2xl group-hover:bg-[#111111] group-hover:text-[#d4af37] transition-colors">
-                                <span class="text-xl">ðŸ’¼</span>
+                                <span class="text-xl">💼</span>
                             </div>
-                            <span class="px-3 py-1 bg-slate-900 text-white text-[8px] font-black uppercase rounded-full border border-black shadow-sm">Auditado âœ“</span>
+                            <span class="px-3 py-1 bg-slate-900 text-white text-[8px] font-black uppercase rounded-full border border-black shadow-sm">Auditado ✓</span>
                         </div>
                         
                         <h3 class="text-sm font-black text-[#111111] uppercase italic mb-1 mb-2 border-b border-slate-50 pb-2"><?php echo strtoupper($u['nombres'] . ' ' . $u['apellidos']); ?></h3>
@@ -74,7 +74,7 @@ $usuarios = $db->query("
             </div>
             
             <footer class="mt-20 pt-8 border-t border-slate-100 flex justify-between items-center text-[9px] font-bold text-slate-300 uppercase tracking-[0.4em] italic pb-12">
-                <div>CONTROL DE CONTROL DE TALENTO HUMANO â€” SISFARMA Central v7.5</div>
+                <div>CONTROL DE CONTROL DE TALENTO HUMANO — SISFARMA Central v7.5</div>
                 <div>AUTORIZADO POR SUBGERENTE ADMINISTRATIVA</div>
             </footer>
         </main>

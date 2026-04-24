@@ -4,17 +4,17 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/DeliveryController.php';
-require_once __DIR__ . '/../core/InventoryController.php';
+require_once __DIR__ . '/../core/Controllers/DeliveryController.php';
+require_once __DIR__ . '/../core/Controllers/InventoryController.php';
 require_once __DIR__ . '/../core/Repositories/PatientRepository.php';
-require_once __DIR__ . '/../core/ViewHelper.php';
+require_once __DIR__ . '/../core/Infrastructure/ViewHelper.php';
 
 $sede_id = $_SESSION['sede_id'];
 $patientRepo = new PatientRepository(Database::getInstance());
 $pacientes = $patientRepo->getAllBySede($sede_id);
 
 
-$inventory = InventoryController::getInventoryBySede($sede_id);
+$inventory = InventoryController::getInstance()->getInventoryBySede($sede_id);
 
 $resultado_entrega = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

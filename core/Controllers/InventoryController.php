@@ -1,19 +1,34 @@
 <?php
 /**
  * Controlador de Inventario - ESE Fabio Jaramillo
- * Refactorizado para usar Repositorios (SOLID) y eliminar redundancias.
+ * Siguiendo principios SOLID (SRP, DIP).
+ * La clase depende de la abstracción del Repositorio.
  */
-require_once __DIR__ . '/Database.php';
-require_once __DIR__ . '/Repositories/InventoryRepository.php';
+require_once __DIR__ . '/../Infrastructure/Database.php';
+require_once __DIR__ . '/../Repositories/InventoryRepository.php';
 
 class InventoryController {
     
-    private static function getRepository() {
-        return new InventoryRepository(Database::getInstance());
+    private $repository;
+
+    /**
+     * Inyección de Dependencias para desacoplar el acceso a datos.
+     */
+    public function __construct(InventoryRepository $repository) {
+        $this->repository = $repository;
     }
 
-    public static function getInventoryBySede($sede_id) {
-        return self::getRepository()->getInventoryBySede($sede_id);
+    /**
+     * Factory Method para compatibilidad con llamadas rápidas (o usar un contenedor)
+     */
+    public static function getInstance() {
+        $db = Database::getInstance();
+        $repo = new InventoryRepository($db);
+        return new self($repo);
+    }
+
+    public function getInventoryBySede($sede_id) {
+        return $this->repository->getInventoryBySede($sede_id);
     }
 
     public static function getStatusBadge($current, $min, $expiry = null) {
@@ -35,18 +50,16 @@ class InventoryController {
         }
     }
 
-    public static function getAllIPSInventory() {
-        return self::getRepository()->getAllStock(); // O usar un método específico si se prefiere
+    public function getAllIPSInventory() {
+        return $this->repository->getAllStock();
     }
 
-    public static function getExpiredInventory() {
-        return self::getRepository()->getExpired();
+    public function getExpiredInventory() {
+        return $this->repository->getExpired();
     }
 
-    public static function canSupplyAllIPS() {
-        $repo = self::getRepository();
-        $faltantes = $repo->getFaltantesMunicipales();
-
+    public function canSupplyAllIPS() {
+        $faltantes = $this->repository->getFaltantesMunicipales();
         if (empty($faltantes)) return true;
 
         $db = Database::getInstance();

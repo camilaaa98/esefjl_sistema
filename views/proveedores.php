@@ -4,12 +4,12 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/Database.php';
-require_once __DIR__ . '/../core/InventoryController.php';
+require_once __DIR__ . '/../core/Infrastructure/Database.php';
+require_once __DIR__ . '/../core/Controllers/InventoryController.php';
 
 $db = Database::getInstance();
 $rol = $_SESSION['rol'];
-$vencidos_count = count(InventoryController::getExpiredInventory());
+$vencidos_count = count(InventoryController::getInstance()->getExpiredInventory());
 
 // Solo directivos pueden ver proveedores
 if (!in_array($rol, ['Gerente', 'Regente Farmacia', 'Subgerente Administrativa y Financiera'])) {

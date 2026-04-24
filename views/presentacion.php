@@ -1,18 +1,18 @@
-﻿<?php
+<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
 
-// Paths de las imágenes generadas por IA en el directorio de artefactos
+// Paths de las im�genes generadas por IA en el directorio de artefactos
 $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacbc51439/';
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Sustentación ULTRA-PRO â€” SISFARMA PRO | ESE FJL</title>
+    <title>Sustentaci�n ULTRA-PRO — SISFARMA PRO | ESE FJL</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/base.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
@@ -146,7 +146,7 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
             border: 1px solid var(--border);
         }
 
-        /* Semáforo visual slide */
+        /* Sem�foro visual slide */
         .sema-bars { display: flex; flex-direction: column; gap: 15px; padding: 30px; width: 100%; }
         .sema-row { display: flex; align-items: center; gap: 15px; font-size: 0.9rem; color: var(--text-main); }
         .sema-dot { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 10px currentColor; }
@@ -277,7 +277,7 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
 </head>
 <body>
 <div class="progress-bar" id="progressBar" style="width:7.14%"></div>
-<a href="inicio.php" class="exit-btn">â† SALIR AL PANEL</a>
+<a href="inicio.php" class="exit-btn">← SALIR AL PANEL</a>
 <div class="slide-number" id="slideNum">01</div>
 
 <div class="pres-wrap">
@@ -286,9 +286,9 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
         <!-- SLIDE 1: PORTADA -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">ESE Fabio Jaramillo Londoño Â· Proyecto Institucional Â· 2026</div>
+                <div class="slide-tag">ESE Fabio Jaramillo Londo�o · Proyecto Institucional · 2026</div>
                 <h1 class="slide-title">SISFARMA<br><span>PRO</span></h1>
-                <p class="slide-sub">Gestión integral de inventarios y despacho de medicamentos para la Red IPS de la ESE Fabio Jaramillo Londoño.</p>
+                <p class="slide-sub">Gesti�n integral de inventarios y despacho de medicamentos para la Red IPS de la ESE Fabio Jaramillo Londo�o.</p>
                 <div class="stat-row" style="margin-top:30px;">
                     <div class="stat-item"><div class="stat-num">5</div><div class="stat-lbl">Sedes Municipales</div></div>
                     <div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl">Control de Lotes</div></div>
@@ -298,30 +298,30 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
             <div class="slide-visual">
                 <img src="../img/logoesefjl.jpg" alt="ESE FJL Logo" style="object-fit: contain; padding: 40px; background: white; border-radius: 20px;">
                 <div class="visual-overlay"></div>
-                <div class="visual-label">Sede Administrativa â€” Florencia, Caquetá</div>
+                <div class="visual-label">Sede Administrativa — Florencia, Caquet�</div>
             </div>
         </div>
 
         <!-- SLIDE 2: DIAGRAMA DE FLUJO -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">Operación</div>
+                <div class="slide-tag">Operaci�n</div>
                 <h1 class="slide-title">Operatividad del<br><span>Servicio</span></h1>
-                <p class="slide-sub">Flujo de procesos desde la recepción técnica en CEDIS hasta la entrega definitiva al usuario final.</p>
+                <p class="slide-sub">Flujo de procesos desde la recepci�n t�cnica en CEDIS hasta la entrega definitiva al usuario final.</p>
                 <ul class="feat-list">
-                    <li><span class="icon">ðŸ“‹</span><strong>Ingreso:</strong> Control de facturación y lotes.</li>
-                    <li><span class="icon">ðŸš›</span><strong>Traslado:</strong> Despacho interno a municipios.</li>
-                    <li><span class="icon">ðŸ‘¤</span><strong>Suministro:</strong> Entrega directa al paciente.</li>
+                    <li><span class="icon">📋</span><strong>Ingreso:</strong> Control de facturaci�n y lotes.</li>
+                    <li><span class="icon">🚛</span><strong>Traslado:</strong> Despacho interno a municipios.</li>
+                    <li><span class="icon">👤</span><strong>Suministro:</strong> Entrega directa al paciente.</li>
                 </ul>
             </div>
             <div class="slide-visual">
                 <div class="mermaid">
                 graph TD
-                    A[CEDIS: Recepción Técnica] --> B{Solicitud Pedido}
+                    A[CEDIS: Recepci�n T�cnica] --> B{Solicitud Pedido}
                     B -->|Aprobado| C[Traslado a Sede]
                     C --> D[Sede: Ingreso Local]
                     D --> E[Suministro a Paciente]
-                    E --> F[Registro de Auditoría]
+                    E --> F[Registro de Auditor�a]
                     style A fill:#64ffda11,stroke:#64ffda
                     style B fill:#64ffda11,stroke:#64ffda
                     style E fill:#64ffda11,stroke:#64ffda
@@ -333,8 +333,8 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
         <div class="slide">
             <div class="slide-content">
                 <div class="slide-tag">Red Hospitalaria</div>
-                <h1 class="slide-title">Distribución<br><span>Municipal</span></h1>
-                <p class="slide-sub">Integración del nodo central administrativo con las sedes operativas en los municipios del departamento.</p>
+                <h1 class="slide-title">Distribuci�n<br><span>Municipal</span></h1>
+                <p class="slide-sub">Integraci�n del nodo central administrativo con las sedes operativas en los municipios del departamento.</p>
                 <div class="stat-row">
                     <div class="stat-item"><div class="stat-num">5</div><div class="stat-lbl">Municipios</div></div>
                     <div class="stat-item"><div class="stat-num">Central</div><div class="stat-lbl">CEDIS</div></div>
@@ -351,7 +351,7 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
                     I2[IPS Solano]
                     I3[IPS Milan]
                     I4[IPS Getucha]
-                    I5[IPS Valparaíso]
+                    I5[IPS Valpara�so]
                     end
                     C --> I1
                     C --> I2
@@ -368,11 +368,11 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
             <div class="slide-content">
                 <div class="slide-tag">Roles y Funciones</div>
                 <h1 class="slide-title">Casos de<br><span>Uso</span></h1>
-                <p class="slide-sub">Definición de responsabilidades y acciones por cada perfil de usuario dentro del ecosistema SISFARMA.</p>
+                <p class="slide-sub">Definici�n de responsabilidades y acciones por cada perfil de usuario dentro del ecosistema SISFARMA.</p>
                 <ul class="feat-list">
-                    <li><strong>Admin:</strong> Auditoría y gestión global.</li>
-                    <li><strong>Regente:</strong> Control técnico e inventario.</li>
-                    <li><strong>Jefe IPS:</strong> Dispensación y pedidos mensuales.</li>
+                    <li><strong>Admin:</strong> Auditor�a y gesti�n global.</li>
+                    <li><strong>Regente:</strong> Control t�cnico e inventario.</li>
+                    <li><strong>Jefe IPS:</strong> Dispensaci�n y pedidos mensuales.</li>
                 </ul>
             </div>
             <div class="slide-visual">
@@ -394,66 +394,66 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
         <!-- SLIDE 5: EL PROBLEMA -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">01 â€” Diagnóstico Actual</div>
+                <div class="slide-tag">01 — Diagn�stico Actual</div>
                 <h1 class="slide-title">Limitaciones del<br><span>Sistema Manual</span></h1>
-                <p class="slide-sub">El manejo artesanal de inventarios genera riesgos críticos para la prestación del servicio de salud.</p>
+                <p class="slide-sub">El manejo artesanal de inventarios genera riesgos cr�ticos para la prestaci�n del servicio de salud.</p>
                 <ul class="feat-list">
-                    <li><span class="icon">âš ï¸</span><div><strong>Pérdida por Vencimiento</strong><br><small style="color:var(--text-dim)">Lotes vencidos por falta de alertas proactivas.</small></div></li>
-                    <li><span class="icon">ðŸ’°</span><div><strong>Riesgo Sancionatorio</strong><br><small style="color:var(--text-dim)">Incongruencias en reportes para la red de vigilancia.</small></div></li>
-                    <li><span class="icon">ðŸ“‹</span><div><strong>Vacíos de Información</strong><br><small style="color:var(--text-dim)">Dificultad para rastrear el destino final de cada insumo.</small></div></li>
+                    <li><span class="icon">⚠️</span><div><strong>P�rdida por Vencimiento</strong><br><small style="color:var(--text-dim)">Lotes vencidos por falta de alertas proactivas.</small></div></li>
+                    <li><span class="icon">💰</span><div><strong>Riesgo Sancionatorio</strong><br><small style="color:var(--text-dim)">Incongruencias en reportes para la red de vigilancia.</small></div></li>
+                    <li><span class="icon">📋</span><div><strong>Vac�os de Informaci�n</strong><br><small style="color:var(--text-dim)">Dificultad para rastrear el destino final de cada insumo.</small></div></li>
                 </ul>
             </div>
             <div class="slide-visual">
                 <img src="../img/GrupoTrabajoSP.jpg" alt="Equipo de Trabajo">
                 <div class="visual-overlay"></div>
-                <div class="visual-label">Equipo de Trabajo â€” ESE Fabio Jaramillo Londoño</div>
+                <div class="visual-label">Equipo de Trabajo — ESE Fabio Jaramillo Londo�o</div>
             </div>
         </div>
 
-        <!-- SLIDE 6: LA SOLUCIÃ“N -->
+        <!-- SLIDE 6: LA SOLUCIÓN -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">02 â€” Sisfarma PRO</div>
-                <h1 class="slide-title">Solución<br><span>Estandarizada</span></h1>
-                <p class="slide-sub">Herramienta digital diseñada para garantizar la trazabilidad total y el cumplimiento normativo institucional.</p>
+                <div class="slide-tag">02 — Sisfarma PRO</div>
+                <h1 class="slide-title">Soluci�n<br><span>Estandarizada</span></h1>
+                <p class="slide-sub">Herramienta digital dise�ada para garantizar la trazabilidad total y el cumplimiento normativo institucional.</p>
                 <ul class="feat-list">
-                    <li><span class="icon">ðŸš¨</span><div><strong>Alertas de Vigencia</strong><br><small style="color:var(--text-dim)">Notificaciones automáticas según semaforización técnica.</small></div></li>
-                    <li><span class="icon">ðŸ“²</span><div><strong>Soporte Digital</strong><br><small style="color:var(--text-dim)">Registro inmediato de cada movimiento en bodega.</small></div></li>
-                    <li><span class="icon">ðŸ“Š</span><div><strong>Generación de Reportes</strong><br><small style="color:var(--text-dim)">Consolidados listos para auditorías internas y externas.</small></div></li>
+                    <li><span class="icon">🚨</span><div><strong>Alertas de Vigencia</strong><br><small style="color:var(--text-dim)">Notificaciones autom�ticas seg�n semaforizaci�n t�cnica.</small></div></li>
+                    <li><span class="icon">📲</span><div><strong>Soporte Digital</strong><br><small style="color:var(--text-dim)">Registro inmediato de cada movimiento en bodega.</small></div></li>
+                    <li><span class="icon">📊</span><div><strong>Generaci�n de Reportes</strong><br><small style="color:var(--text-dim)">Consolidados listos para auditor�as internas y externas.</small></div></li>
                 </ul>
             </div>
             <div class="slide-visual">
                 <img src="../img/Gerente.jpg" alt="Gerencia">
                 <div class="visual-overlay"></div>
-                <div class="visual-label">Gerencia Institucional â€” Liderando el Proyecto</div>
+                <div class="visual-label">Gerencia Institucional — Liderando el Proyecto</div>
             </div>
         </div>
 
         <!-- SLIDE 7: ARQUITECTURA -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">Diseño de Red</div>
-                <h1 class="slide-title">Infraestructura<br><span>CEDIS â€” IPS</span></h1>
-                <p class="slide-sub">Modelo de distribución centralizada para optimizar recursos y garantizar el abastecimiento regional.</p>
+                <div class="slide-tag">Dise�o de Red</div>
+                <h1 class="slide-title">Infraestructura<br><span>CEDIS — IPS</span></h1>
+                <p class="slide-sub">Modelo de distribuci�n centralizada para optimizar recursos y garantizar el abastecimiento regional.</p>
                 <ul class="feat-list">
-                    <li><span class="icon">ðŸ›ï¸</span><div><strong>Punto Central (Florencia)</strong><br><small style="color:var(--text-dim)">Coordinación de compras y control de stock nacional.</small></div></li>
-                    <li><span class="icon">ðŸ¥</span><div><strong>Sedes Municipales</strong><br><small style="color:var(--text-dim)">Suministro local y reporte de necesidades en tiempo real.</small></div></li>
-                    <li><span class="icon">âš¡</span><div><strong>Sincronización Asíncrona</strong><br><small style="color:var(--text-dim)">Funcionamiento garantizado incluso en zonas de baja conectividad.</small></div></li>
+                    <li><span class="icon">🏛️</span><div><strong>Punto Central (Florencia)</strong><br><small style="color:var(--text-dim)">Coordinaci�n de compras y control de stock nacional.</small></div></li>
+                    <li><span class="icon">🏥</span><div><strong>Sedes Municipales</strong><br><small style="color:var(--text-dim)">Suministro local y reporte de necesidades en tiempo real.</small></div></li>
+                    <li><span class="icon">⚡</span><div><strong>Sincronizaci�n As�ncrona</strong><br><small style="color:var(--text-dim)">Funcionamiento garantizado incluso en zonas de baja conectividad.</small></div></li>
                 </ul>
             </div>
             <div class="slide-visual">
                 <img src="../img/fondo.jpg" alt="Fondo Institucional" class="bg-slide-img" style="opacity: 0.3;">
                 <div class="arch-grid" style="position: relative; z-index: 1;">
                     <div class="arch-node" style="border-color: var(--secondary);">
-                        <div class="arch-icon">ðŸ›ï¸</div>
-                        <div class="arch-label"><strong>CEDIS â€” Florencia</strong><span>Nodo Administrativo Principal</span></div>
+                        <div class="arch-icon">🏛️</div>
+                        <div class="arch-label"><strong>CEDIS — Florencia</strong><span>Nodo Administrativo Principal</span></div>
                     </div>
-                    <div style="text-align:center; color: var(--secondary); font-size: 1.5rem;">â†•</div>
+                    <div style="text-align:center; color: var(--secondary); font-size: 1.5rem;">↕</div>
                     <?php
-                    $ips = ['Solita', 'Solano', 'Milán', 'Getuchá', 'Valparaíso'];
+                    $ips = ['Solita', 'Solano', 'Mil�n', 'Getuch�', 'Valpara�so'];
                     foreach ($ips as $i): ?>
                     <div class="arch-node">
-                        <div class="arch-icon">ðŸ¥</div>
+                        <div class="arch-icon">🏥</div>
                         <div class="arch-label"><strong>IPS <?= $i ?></strong><span>Nodo Municipal</span></div>
                     </div>
                     <?php endforeach; ?>
@@ -464,20 +464,20 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
         <!-- SLIDE 8: STACK -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">04 â€” Especificación Técnica</div>
-                <h1 class="slide-title">Estructura<br><span>Tecnológica</span></h1>
-                <p class="slide-sub">Selección de herramientas para garantizar estabilidad, portabilidad y bajo mantenimiento en el entorno hospitalario.</p>
+                <div class="slide-tag">04 — Especificaci�n T�cnica</div>
+                <h1 class="slide-title">Estructura<br><span>Tecnol�gica</span></h1>
+                <p class="slide-sub">Selecci�n de herramientas para garantizar estabilidad, portabilidad y bajo mantenimiento en el entorno hospitalario.</p>
                 <ul class="feat-list">
-                    <li><span class="icon">âš™ï¸</span><div><strong>Lenguaje: PHP 8.x</strong><br><small style="color:var(--text-dim)">Lógica de servidor robusta y escalable.</small></div></li>
-                    <li><span class="icon">ðŸ—ƒï¸</span><div><strong>Motor: SQLite</strong><br><small style="color:var(--text-dim)">Base de datos portable que no requiere servidor externo.</small></div></li>
-                    <li><span class="icon">ðŸŽ¨</span><div><strong>Interfaz: CSS3 + JS</strong><br><small style="color:var(--text-dim)">Diseño limpio sin librerías externas pesadas.</small></div></li>
+                    <li><span class="icon">⚙️</span><div><strong>Lenguaje: PHP 8.x</strong><br><small style="color:var(--text-dim)">L�gica de servidor robusta y escalable.</small></div></li>
+                    <li><span class="icon">🗃️</span><div><strong>Motor: SQLite</strong><br><small style="color:var(--text-dim)">Base de datos portable que no requiere servidor externo.</small></div></li>
+                    <li><span class="icon">🎨</span><div><strong>Interfaz: CSS3 + JS</strong><br><small style="color:var(--text-dim)">Dise�o limpio sin librer�as externas pesadas.</small></div></li>
                 </ul>
             </div>
             <div class="slide-visual">
                 <div style="padding: 30px; width: 100%; text-align: center;">
-                    <div style="font-size:5rem; margin-bottom:20px;">ðŸ’»</div>
+                    <div style="font-size:5rem; margin-bottom:20px;">💻</div>
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left;">
-                        <?php foreach(['PHP 8.x' => 'âš™ï¸', 'SQLite' => 'ðŸ—ƒï¸', 'CSS Pro' => 'ðŸŽ¨', 'WAMP' => 'ðŸ–¥ï¸'] as $tech => $icon): ?>
+                        <?php foreach(['PHP 8.x' => '⚙️', 'SQLite' => '🗃️', 'CSS Pro' => '🎨', 'WAMP' => '🖥️'] as $tech => $icon): ?>
                         <div style="background: rgba(100,255,218,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 12px;">
                             <div><?= $icon ?></div>
                             <div style="color: var(--secondary); font-weight: 700; font-size: 0.9rem;"><?= $tech ?></div>
@@ -491,21 +491,21 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
         <!-- SLIDE 9: RIESGOS -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">05 â€” Continuidad</div>
-                <h1 class="slide-title">Garantía de<br><span>Operación</span></h1>
-                <p class="slide-sub">Protocolos técnicos diseñados para mantener el servicio ante fallas de conectividad externa.</p>
+                <div class="slide-tag">05 — Continuidad</div>
+                <h1 class="slide-title">Garant�a de<br><span>Operaci�n</span></h1>
+                <p class="slide-sub">Protocolos t�cnicos dise�ados para mantener el servicio ante fallas de conectividad externa.</p>
                 <ul class="feat-list">
-                    <li><span class="icon">ðŸ“¶</span><div><strong>Persistencia Local</strong><br><small style="color:var(--text-dim)">Capacidad de registro de datos sin dependencia de internet.</small></div></li>
-                    <li><span class="icon">ðŸ”„</span><div><strong>Sincronización</strong><br><small style="color:var(--text-dim)">Los registros pendientes se actualizan automáticamente al restaurar servicio.</small></div></li>
-                    <li><span class="icon">ðŸ“</span><div><strong>Registro de Eventos</strong><br><small style="color:var(--text-dim)">Auditoría completa de movimientos en cualquier condición de red.</small></div></li>
+                    <li><span class="icon">📶</span><div><strong>Persistencia Local</strong><br><small style="color:var(--text-dim)">Capacidad de registro de datos sin dependencia de internet.</small></div></li>
+                    <li><span class="icon">🔄</span><div><strong>Sincronizaci�n</strong><br><small style="color:var(--text-dim)">Los registros pendientes se actualizan autom�ticamente al restaurar servicio.</small></div></li>
+                    <li><span class="icon">📁</span><div><strong>Registro de Eventos</strong><br><small style="color:var(--text-dim)">Auditor�a completa de movimientos en cualquier condici�n de red.</small></div></li>
                 </ul>
             </div>
             <div class="slide-visual">
                 <div style="padding: 30px; text-align: center; width: 100%;">
-                    <div style="font-size:5rem; margin-bottom:20px;">âš¡</div>
-                    <div style="background: rgba(255,82,82,0.1); border: 1px solid #ff5252; border-radius: 12px; padding: 15px; margin-bottom: 10px; color:#ff5252; font-weight:700;">âš ï¸ API FALLA</div>
-                    <div style="color: var(--text-dim); font-size: 1.5rem;">â†“</div>
-                    <div style="background: rgba(100,255,218,0.1); border: 1px solid var(--secondary); border-radius: 12px; padding: 15px; color:var(--secondary); font-weight:700;">âœ… MODO LOCAL ACTIVO</div>
+                    <div style="font-size:5rem; margin-bottom:20px;">⚡</div>
+                    <div style="background: rgba(255,82,82,0.1); border: 1px solid #ff5252; border-radius: 12px; padding: 15px; margin-bottom: 10px; color:#ff5252; font-weight:700;">⚠️ API FALLA</div>
+                    <div style="color: var(--text-dim); font-size: 1.5rem;">↓</div>
+                    <div style="background: rgba(100,255,218,0.1); border: 1px solid var(--secondary); border-radius: 12px; padding: 15px; color:var(--secondary); font-weight:700;">✅ MODO LOCAL ACTIVO</div>
                     <div style="color: var(--text-dim); font-size: 0.8rem; margin-top:10px;">El paciente recibe su medicamento. Sin interrupciones.</div>
                 </div>
             </div>
@@ -514,23 +514,23 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
         <!-- SLIDE 10: ROLES -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">06 â€” Gestión de Accesos</div>
+                <div class="slide-tag">06 — Gesti�n de Accesos</div>
                 <h1 class="slide-title">Control de<br><span>Perfiles</span></h1>
-                <p class="slide-sub">Accesos restringidos por nivel de responsabilidad y ubicación geográfica para garantizar seguridad.</p>
+                <p class="slide-sub">Accesos restringidos por nivel de responsabilidad y ubicaci�n geogr�fica para garantizar seguridad.</p>
                 <ul class="feat-list">
-                    <li><span class="icon">ðŸ”‘</span><div><strong>Coordinación Central</strong><br><small style="color:var(--text-dim)">Supervisión total y configuración de parámetros.</small></div></li>
-                    <li><span class="icon">ðŸ‘©â€âš•ï¸</span><div><strong>Servicios Farmacéuticos IPS</strong><br><small style="color:var(--text-dim)">Gestión de stock municipal y dispensación.</small></div></li>
-                    <li><span class="icon">ðŸ’Š</span><div><strong>Auditoría Técnica</strong><br><small style="color:var(--text-dim)">Validación de movimientos y existencias reales.</small></div></li>
+                    <li><span class="icon">🔑</span><div><strong>Coordinaci�n Central</strong><br><small style="color:var(--text-dim)">Supervisi�n total y configuraci�n de par�metros.</small></div></li>
+                    <li><span class="icon">👩‍⚕️</span><div><strong>Servicios Farmac�uticos IPS</strong><br><small style="color:var(--text-dim)">Gesti�n de stock municipal y dispensaci�n.</small></div></li>
+                    <li><span class="icon">💊</span><div><strong>Auditor�a T�cnica</strong><br><small style="color:var(--text-dim)">Validaci�n de movimientos y existencias reales.</small></div></li>
                 </ul>
             </div>
             <div class="slide-visual">
                 <div style="padding: 25px; width: 100%;">
                     <?php
                     $users = [
-                        ['ðŸ›ï¸', 'ADMINISTRADOR', 'Florencia â€” CEDIS', '#64ffda'],
-                        ['ðŸ‘©â€âš•ï¸', 'JEFE ENFERMERÃA', 'Solita IPS', '#8892b0'],
-                        ['ðŸ‘©â€âš•ï¸', 'JEFE ENFERMERÃA', 'Solano IPS', '#8892b0'],
-                        ['ðŸ‘©â€âš•ï¸', 'JEFE ENFERMERÃA', 'Milán IPS', '#8892b0'],
+                        ['🏛️', 'ADMINISTRADOR', 'Florencia — CEDIS', '#64ffda'],
+                        ['👩‍⚕️', 'JEFE ENFERMERÍA', 'Solita IPS', '#8892b0'],
+                        ['👩‍⚕️', 'JEFE ENFERMERÍA', 'Solano IPS', '#8892b0'],
+                        ['👩‍⚕️', 'JEFE ENFERMERÍA', 'Mil�n IPS', '#8892b0'],
                     ];
                     foreach ($users as $u): ?>
                     <div style="display:flex; align-items:center; gap:12px; padding:10px; border-bottom: 1px solid var(--border);">
@@ -541,7 +541,7 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
                         </div>
                     </div>
                     <?php endforeach; ?>
-                    <div style="text-align:center; color:var(--text-dim); font-size:0.8rem; margin-top:10px;">+ 2 sedes más...</div>
+                    <div style="text-align:center; color:var(--text-dim); font-size:0.8rem; margin-top:10px;">+ 2 sedes m�s...</div>
                 </div>
             </div>
         </div>
@@ -549,22 +549,22 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
         <!-- SLIDE 11: ROADMAP -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">07 â€” Cronograma de Trabajo</div>
-                <h1 class="slide-title">Etapas de<br><span>Implementación</span></h1>
-                <p class="slide-sub">Ruta técnica para la puesta en marcha definitiva del sistema en toda la red hospitalaria.</p>
+                <div class="slide-tag">07 — Cronograma de Trabajo</div>
+                <h1 class="slide-title">Etapas de<br><span>Implementaci�n</span></h1>
+                <p class="slide-sub">Ruta t�cnica para la puesta en marcha definitiva del sistema en toda la red hospitalaria.</p>
                 <ul class="feat-list">
-                    <li><span class="icon">âœ…</span><div><strong>Fase 1:</strong> Análisis de requisitos y entorno local</div></li>
-                    <li><span class="icon">âœ…</span><div><strong>Fase 2:</strong> Desarrollo de módulos de inventario</div></li>
-                    <li><span class="icon">ðŸ”„</span><div><strong>Fase 3:</strong> Despliegue en red IPS y alertas</div></li>
-                    <li><span class="icon">â³</span><div><strong>Fase 4:</strong> Pruebas finales y entrega técnica</div></li>
+                    <li><span class="icon">✅</span><div><strong>Fase 1:</strong> An�lisis de requisitos y entorno local</div></li>
+                    <li><span class="icon">✅</span><div><strong>Fase 2:</strong> Desarrollo de m�dulos de inventario</div></li>
+                    <li><span class="icon">🔄</span><div><strong>Fase 3:</strong> Despliegue en red IPS y alertas</div></li>
+                    <li><span class="icon">⏳</span><div><strong>Fase 4:</strong> Pruebas finales y entrega t�cnica</div></li>
                 </ul>
             </div>
             <div class="slide-visual">
                 <div class="roadmap" style="position: relative; z-index: 1;">
-                    <div class="road-item done"><span style="font-size:1.2rem;">âœ…</span><div><div style="color:var(--secondary); font-size:0.85rem; font-weight:700;">Semana 1</div><div style="color:var(--text-dim); font-size:0.75rem;">Taller y Stack Tecnológico</div></div><span class="road-badge badge-done">LISTO</span></div>
-                    <div class="road-item done"><span style="font-size:1.2rem;">âœ…</span><div><div style="color:var(--secondary); font-size:0.85rem; font-weight:700;">Semana 2</div><div style="color:var(--text-dim); font-size:0.75rem;">Inventario y Distribución Core</div></div><span class="road-badge badge-done">LISTO</span></div>
-                    <div class="road-item active-road"><span style="font-size:1.2rem;">ðŸ”„</span><div><div style="color:var(--accent); font-size:0.85rem; font-weight:700;">Semana 3</div><div style="color:var(--text-dim); font-size:0.75rem;">Red IPS + Alertas de Salud</div></div><span class="road-badge badge-active">EN CURSO</span></div>
-                    <div class="road-item pending"><span style="font-size:1.2rem;">â³</span><div><div style="font-size:0.85rem; font-weight:700;">Semana 4</div><div style="color:var(--text-dim); font-size:0.75rem;">Auditoría y Despliegue Final</div></div><span class="road-badge badge-pend">PRÃ“XIMO</span></div>
+                    <div class="road-item done"><span style="font-size:1.2rem;">✅</span><div><div style="color:var(--secondary); font-size:0.85rem; font-weight:700;">Semana 1</div><div style="color:var(--text-dim); font-size:0.75rem;">Taller y Stack Tecnol�gico</div></div><span class="road-badge badge-done">LISTO</span></div>
+                    <div class="road-item done"><span style="font-size:1.2rem;">✅</span><div><div style="color:var(--secondary); font-size:0.85rem; font-weight:700;">Semana 2</div><div style="color:var(--text-dim); font-size:0.75rem;">Inventario y Distribuci�n Core</div></div><span class="road-badge badge-done">LISTO</span></div>
+                    <div class="road-item active-road"><span style="font-size:1.2rem;">🔄</span><div><div style="color:var(--accent); font-size:0.85rem; font-weight:700;">Semana 3</div><div style="color:var(--text-dim); font-size:0.75rem;">Red IPS + Alertas de Salud</div></div><span class="road-badge badge-active">EN CURSO</span></div>
+                    <div class="road-item pending"><span style="font-size:1.2rem;">⏳</span><div><div style="font-size:0.85rem; font-weight:700;">Semana 4</div><div style="color:var(--text-dim); font-size:0.75rem;">Auditor�a y Despliegue Final</div></div><span class="road-badge badge-pend">PRÓXIMO</span></div>
                 </div>
             </div>
         </div>
@@ -572,11 +572,11 @@ $img_base = 'https://antigravity.google/artifacts/5e0c7d69-9292-44b4-96a7-00cacb
         <!-- SLIDE 11: TABLAS DB -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">09 â€” Estructura de Datos</div>
+                <div class="slide-tag">09 — Estructura de Datos</div>
                 <h1 class="slide-title">Base de Datos<br><span>SQLite</span></h1>
                 <p class="slide-sub">Modelo persistente y ligero optimizado para la red de salud.</p>
                 <ul class="feat-list">
-                    <li><strong>productos:</strong> Catálogo maestro de medicamentos.</li>
+                    <li><strong>productos:</strong> Cat�logo maestro de medicamentos.</li>
                     <li><strong>inventario:</strong> Stock por sede y lotes.</li>
                     <li><strong>sedes:</strong> Florencia y las 5 IPS Municipales.</li>
                     <li><strong>usuarios:</strong> Control de acceso por roles.</li>
@@ -608,11 +608,11 @@ CREATE TABLE sedes (
         <!-- SLIDE 12: RELACIONES DB -->
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">10 â€” Relaciones</div>
+                <div class="slide-tag">10 — Relaciones</div>
                 <h1 class="slide-title">Modelo de<br><span>Relaciones</span></h1>
                 <p class="slide-sub">Integridad referencial total entre CEDIS, IPS, Inventario y Entregas.</p>
                 <div class="stat-item" style="margin-top:20px;">
-                    <div class="stat-num">âˆž</div>
+                    <div class="stat-num">∞</div>
                     <div class="stat-lbl">Relaciones Escalables</div>
                 </div>
             </div>
@@ -628,12 +628,12 @@ CREATE TABLE sedes (
             </div>
         </div>
 
-        <!-- SLIDE 14: CONCLUSIÃ“N -->
+        <!-- SLIDE 14: CONCLUSIÓN -->
         <div class="slide">
             <div class="slide-content">
                 <div class="slide-tag">Cierre</div>
                 <h1 class="slide-title">Compromiso<br><span>Institucional</span></h1>
-                <p class="slide-sub">SISFARMA PRO es una solución robusta enfocada en la eficiencia operativa y el bienestar del ciudadano.</p>
+                <p class="slide-sub">SISFARMA PRO es una soluci�n robusta enfocada en la eficiencia operativa y el bienestar del ciudadano.</p>
                 <div class="stat-row" style="margin-top: 30px;">
                     <div class="stat-item"><div class="stat-num">5</div><div class="stat-lbl">Sedes</div></div>
                     <div class="stat-item"><div class="stat-num">7</div><div class="stat-lbl">Perfiles</div></div>
@@ -641,11 +641,11 @@ CREATE TABLE sedes (
             </div>
             <div class="slide-visual">
                 <div style="text-align:center; padding: 30px;">
-                    <div style="font-size:6rem;">âœ…</div>
+                    <div style="font-size:6rem;">✅</div>
                     <h2 style="color:var(--secondary); font-size:1.5rem; margin: 20px 0;">SISTEMA OPERATIVO</h2>
-                    <p style="color:var(--text-dim); font-size:0.9rem; line-height:1.6;">Software adaptable, resiliente y diseñado para fortalecer la prestación del servicio farmacéutico en la ESE.</p>
+                    <p style="color:var(--text-dim); font-size:0.9rem; line-height:1.6;">Software adaptable, resiliente y dise�ado para fortalecer la prestaci�n del servicio farmac�utico en la ESE.</p>
                     <div style="margin-top:20px; border-top: 1px solid var(--border); padding-top: 15px; color: var(--text-dim); font-size:0.75rem;">
-                        ESE Fabio Jaramillo Londoño Â· Gestión 2026
+                        ESE Fabio Jaramillo Londo�o · Gesti�n 2026
                     </div>
                 </div>
             </div>
@@ -656,9 +656,9 @@ CREATE TABLE sedes (
 
 <!-- NAV BAR -->
 <div class="nav-bar">
-    <button class="nav-btn" id="prevBtn" onclick="navTo(-1)">â—€ ANTERIOR</button>
+    <button class="nav-btn" id="prevBtn" onclick="navTo(-1)">◀ ANTERIOR</button>
     <div class="slide-counter" id="counter">1 / 14</div>
-    <button class="nav-btn" id="nextBtn" onclick="navTo(1)">SIGUIENTE â–¶</button>
+    <button class="nav-btn" id="nextBtn" onclick="navTo(1)">SIGUIENTE ▶</button>
 </div>
 
 <script>
@@ -681,7 +681,7 @@ function update() {
     document.getElementById('counter').innerText = `${cur + 1} / ${total}`;
     document.getElementById('slideNum').innerText = String(cur + 1).padStart(2, '0');
     document.getElementById('prevBtn').disabled = cur === 0;
-    document.getElementById('nextBtn').innerText = cur === total - 1 ? 'ðŸ FINALIZAR' : 'SIGUIENTE â–¶';
+    document.getElementById('nextBtn').innerText = cur === total - 1 ? '🏁 FINALIZAR' : 'SIGUIENTE ▶';
     if(cur === total - 1 && document.getElementById('nextBtn').dataset.fin === '1') {
         window.location.href = 'inicio.php';
     }

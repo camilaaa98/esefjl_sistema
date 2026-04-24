@@ -2,7 +2,7 @@
 /**
  * Controlador de Pedidos y Suministro IPS - SISFARMA PRO
  */
-require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/../Infrastructure/Database.php';
 
 class RequestController {
 

@@ -3,7 +3,7 @@
  * Controlador de Municipios - ESE Fabio Jaramillo
  * Gestiona el flujo de información "a un clic" desde municipios a sede principal.
  */
-require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/../Infrastructure/Database.php';
 
 class MunicipalityController {
 

@@ -4,14 +4,14 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/InventoryController.php';
+require_once __DIR__ . '/../core/Controllers/InventoryController.php';
 
 $rol = $_SESSION['rol'];
-$vencidos = InventoryController::getExpiredInventory();
+$vencidos = InventoryController::getInstance()->getExpiredInventory();
 
 // Lógica de Baja (Solo Gerente)
 if (isset($_POST['btnBaja']) && $rol === 'Gerente') {
-    require_once __DIR__ . '/../core/Database.php';
+    require_once __DIR__ . '/../core/Infrastructure/Database.php';
     $db = Database::getInstance();
     $id = $_POST['inventario_id'];
     $db->prepare("DELETE FROM inventario WHERE id = ?")->execute([$id]);

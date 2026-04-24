@@ -4,12 +4,12 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit();
 }
-require_once __DIR__ . '/../core/Database.php';
-require_once __DIR__ . '/../core/InventoryController.php';
+require_once __DIR__ . '/../core/Infrastructure/Database.php';
+require_once __DIR__ . '/../core/Controllers/InventoryController.php';
 
 $db = Database::getInstance();
 $sedes = $db->query("SELECT * FROM sedes ORDER BY nombre ASC")->fetchAll();
-$vencidos_count = count(InventoryController::getExpiredInventory());
+$vencidos_count = count(InventoryController::getInstance()->getExpiredInventory());
 
 $current_page_num = isset($_GET['p']) ? max(1, intval($_GET['p'])) : 1;
 $limit = 10;
