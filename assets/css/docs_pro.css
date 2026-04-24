@@ -6,8 +6,8 @@
 body.academic-body {
     background-color: #f8fafc;
     color: #334155;
-    font-family: 'Inter', sans-serif;
-    line-height: 1.8;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 2; /* APA standard: double spacing */
 }
 
 .container {
@@ -61,8 +61,9 @@ h1#titulo, h1#title {
     padding: 2rem;
     background: #f1f5f9;
     border-radius: 1.5rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #475569;
+    text-align: center;
 }
 
 .authors strong {
@@ -155,8 +156,11 @@ p {
     text-align: justify;
 }
 
-li {
+.references-list li {
     text-align: justify;
+    margin-bottom: 15px;
+    padding-left: 1.27cm; /* APA hanging indent */
+    text-indent: -1.27cm;
 }
 
 .abstract-text {
