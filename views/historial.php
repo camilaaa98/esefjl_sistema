@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
@@ -94,7 +94,7 @@ $sedes = $db->query("SELECT * FROM sedes")->fetchAll();
                 <?php endif; ?>
             </div>
 
-            <!-- Tabla de AuditorÃ­a Elite -->
+            <!-- Tabla de Auditoría ESEFJL -->
             <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden fade-in-institutional" style="animation-delay: 0.2s">
                 <div class="px-8 py-6 border-b border-slate-50 flex flex-col md:flex-row justify-between items-center bg-[#111111] gap-4">
                     <div class="text-center md:text-left">

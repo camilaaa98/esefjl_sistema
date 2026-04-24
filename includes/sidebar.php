@@ -16,7 +16,7 @@ $isDirectivo = in_array($rol, [
             <img src="../img/logoesefjl.jpg" alt="Logo ESEFJL" class="w-24 h-24 mx-auto rounded-3xl shadow-2xl border border-slate-100 mb-6 grayscale-[0.2]">
             <div class="absolute inset-0 rounded-3xl border-2 border-[#d4af37]/20 pointer-events-none"></div>
         </div>
-        <h1 class="text-[10px] font-black tracking-[0.4em] text-[#111111] uppercase">ESEFJL <span class="text-[#d4af37]">Admin Élite</span></h1>
+        <h1 class="text-[10px] font-black tracking-[0.4em] text-[#111111] uppercase">ESEFJL <span class="text-[#d4af37]">Admin Central</span></h1>
     </div>
 
     <!-- Navigation -->

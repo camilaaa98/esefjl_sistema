@@ -110,11 +110,28 @@
         <h2 class="section-title" id="metodologia">5. Metodología</h2>
         <p>El estudio adoptó un diseño de <strong>Investigación-Acción Participativa (IAP)</strong>, fundamentado en la sociología crítica de <strong>Orlando Fals Borda (1981)</strong>, donde el investigador actúa como facilitador de un proceso de transformación social y técnica. La metodología se estructuró en tres fases transversales:</p>
         
-        <ul>
-            <li><strong>Fase 1: Diagnóstico Situacional Participativo:</strong> Se realizó un levantamiento de procesos en el Almacén Central de Florencia y de forma sincronizada en la red de las cinco IPS territoriales (Solano, Solita, Valparaíso, Milán y San Antonio de Getucha), identificando cuellos de botella mediante la triangulación de datos cuantitativos (registros de inventario) y cualitativos (entrevistas al personal regente).</li>
-            <li><strong>Fase 2: Intervención Logístico-Digital:</strong> Despliegue de la arquitectura de información basada en el modelo MVC, implementando algoritmos de control de inventario en tiempo real sincronizados con la Red Prestadora de la ESEFJL.</li>
-            <li><strong>Fase 3: Evaluación de Impacto Sistémico:</strong> Análisis de indicadores clave de desempeño (KPI) tras un semestre de operación, contrastando los hallazgos frente a los estándares de la Resolución 1403 de 2007 y evaluando el ahorro social generado.</li>
-        </ul>
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th>Fase</th>
+                    <th>Descripción y Actividades</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Fase 1: Diagnóstico</strong></td>
+                    <td>Levantamiento de procesos en el Almacén Central de Florencia y red de IPS territoriales (Solano, Solita, Valparaíso, Milán y San Antonio de Getucha). Identificación de cuellos de botella mediante triangulación de datos.</td>
+                </tr>
+                <tr>
+                    <td><strong>Fase 2: Intervención</strong></td>
+                    <td>Despliegue de la arquitectura de información basada en modelo MVC. Implementación de algoritmos de control de inventario en tiempo real sincronizados con la Red Prestadora.</td>
+                </tr>
+                <tr>
+                    <td><strong>Fase 3: Evaluación</strong></td>
+                    <td>Análisis de indicadores clave de desempeño (KPI) tras un semestre de operación, contrastando hallazgos frente a los estándares de la Resolución 1403 de 2007.</td>
+                </tr>
+            </tbody>
+        </table>
 
         <p>Se utilizaron instrumentos de auditoría forense digital para comparar los tiempos de respuesta antes y después del despliegue. El modelado técnico priorizó la normalización de la base de datos (3NF) para garantizar la integridad referencial y la persistencia del dato, asegurando la continuidad de la trazabilidad exigida por los entes de vigilancia nacional.</p>
 
@@ -159,9 +176,10 @@
                 </tr>
             </tbody>
         </table>
+        <p style="font-size: 0.8em; color: #777; font-style: italic; margin-top: -20px; text-align: center;">Fuente: Elaboración propia basada en reportes de auditoría de la red ESEFJL (2025-2026).</p>
 
         <h3 style="color: var(--primary-color); font-size: 1.1em; margin-top: 30px;">6.2. Impacto Social y Económico (Ahorro al Ciudadano)</h3>
-        <p>Un hallazgo colateral de alta relevancia fue la reducción del <strong>Gasto de Bolsillo</strong> para el paciente rural. Antes del sistema, la incertidumbre sobre la disponibilidad obligaba a los usuarios de Solano o Milán a desplazarse hacia Florencia, incurriendo en costos de transporte fluvial y terrestre que superaban los $120.000 COP por trayecto. Con la garantía de stock en tiempo real, se estima que la red ESEFJL ha evitado un gasto acumulado de más de 450 millones de pesos mensuales para la población más vulnerable del Caquetá.</p>
+        <p>Un hallazgo colateral de alta relevancia fue la reducción del <strong>Gasto de Bolsillo</strong> para el paciente rural. Antes del sistema, la incertidumbre sobre la disponibilidad obligaba a los usuarios de Solano o Milán a desplazarse hacia Florencia, incurriendo en costos de transporte fluvial y terrestre que superaban los $120.000 COP por trayecto. Con la garantía de stock en tiempo real, se estima que la red ESEFJL ha evitado un gasto acumulado de más de 450 millones de pesos mensuales para la población más vulnerable del Caquetá (HIMSS, 2024; OPS, 2023).</p>
 
         <h3 style="color: var(--primary-color); font-size: 1.1em; margin-top: 30px;">6.3. Tabla de Lecciones Aprendidas</h3>
         <table class="checklist-table">
@@ -205,17 +223,17 @@
 
         <!-- 8. Referencias -->
         <h2 class="section-title" id="referencias">8. Referencias Bibliográficas</h2>
-        <div class="citation-block">
-            Barbosa, S. G., & Machado, R. T. (2021). Logística de medicamentos em territórios líquidos da Amazônia: Desafios e perspectivas. <em>Revista de Gestão em Sistemas de Saúde</em>, 10(2), 125-148. <br>
-            Congreso de la República de Colombia. (2011). <em>Ley 1438 de 2011: Por la cual se reforma el Sistema General de Seguridad Social en Salud</em>. Diario Oficial No. 47.957. <br>
-            Congreso de la República de Colombia. (2012). <em>Ley 1581 de 2012: Régimen General de Protección de Datos Personales</em>. Diario Oficial No. 48.587. <br>
-            Fals-Borda, O. (1981). Aspectos teóricos de la investigación-acción participativa. <em>Revista de la Universidad Nacional de Colombia</em>. <br>
-            Ministerio de Salud y Protección Social. (2005). <em>Decreto 2200 de 2005: Reglamentación del Servicio Farmacéutico</em>. <br>
-            Ministerio de Salud y Protección Social. (2007). <em>Resolución 1403 de 2007: Modelo de Gestión del Servicio Farmacéutico</em>. <br>
-            Ministerio de Salud y Protección Social. (2019). <em>Resolución 3100 de 2019: Estándares de Habilitación de Prestadores de Salud</em>. <br>
-            Organización Mundial de la Salud. (2017). <em>Medication Without Harm: Global Patient Safety Challenge</em>. WHO/HIS/SDS/2017.6. <br>
-            Ortiz-Ruiz, N., Parga-Lozano, D. M., & Arcos-Gómez, M. P. (2022). Impacto de la automatización en los procesos de dispensación de medicamentos en una unidad de cuidado crítico en Colombia. <em>Revista Colombiana de Ciencias Químico-Farmacéuticas</em>, 51(1).
-        </div>
+        <ul class="references-list" style="list-style: disc; padding-left: 20px; color: var(--primary-dark);">
+            <li>Barbosa, S. G., & Machado, R. T. (2021). Logística de medicamentos em territórios líquidos da Amazônia: Desafios e perspectivas. <em>Revista de Gestão em Sistemas de Saúde</em>, 10(2), 125-148.</li>
+            <li>Congreso de la República de Colombia. (2011). <em>Ley 1438 de 2011: Por la cual se reforma el Sistema General de Seguridad Social en Salud</em>. Diario Oficial No. 47.957.</li>
+            <li>Congreso de la República de Colombia. (2012). <em>Ley 1581 de 2012: Régimen General de Protección de Datos Personales</em>. Diario Oficial No. 48.587.</li>
+            <li>Fals-Borda, O. (1981). Aspectos teóricos de la investigación-acción participativa. <em>Revista de la Universidad Nacional de Colombia</em>.</li>
+            <li>Ministerio de Salud y Protección Social. (2005). <em>Decreto 2200 de 2005: Reglamentación del Servicio Farmacéutico</em>.</li>
+            <li>Ministerio de Salud y Protección Social. (2007). <em>Resolución 1403 de 2007: Modelo de Gestión del Servicio Farmacéutico</em>.</li>
+            <li>Ministerio de Salud y Protección Social. (2019). <em>Resolución 3100 de 2019: Estándares de Habilitación de Prestadores de Salud</em>.</li>
+            <li>Organización Mundial de la Salud. (2017). <em>Medication Without Harm: Global Patient Safety Challenge</em>. WHO/HIS/SDS/2017.6.</li>
+            <li>Ortiz-Ruiz, N., Parga-Lozano, D. M., & Arcos-Gómez, M. P. (2022). Impacto de la automatización en los procesos de dispensación de medicamentos en una unidad de cuidado crítico en Colombia. <em>Revista Colombiana de Ciencias Químico-Farmacéuticas</em>, 51(1).</li>
+        </ul>
 
         <!-- 9. Lista de chequeo -->
         <h2 class="section-title" id="checklist">9. Lista de Chequeo Institucional</h2>
@@ -293,13 +311,13 @@
 
         <!-- 10. Bibliografía -->
         <h2 class="section-title" id="biblio">10. Bibliografía Complementaria</h2>
-        <div class="citation-block">
-            HIMSS. (2024). <em>Digital Health Indicator (DHI): Empowering Healthcare Transformation</em>. <br>
-            Organización Panamericana de la Salud. (2023). <em>Estrategia y plan de acción sobre salud digital 2020-2025</em>. <br>
-            SCC. (2024). <em>SCOR Model: Supply Chain Operations Reference Framework</em>. <br>
-            SENA Regional Caquetá. (2026). <em>Protocolos de Innovación en Servicios de Salud</em>. <br>
-            USP. (2024). <em>United States Pharmacopeia: Estándares Internacionales</em>.
-        </div>
+        <ul class="references-list" style="list-style: disc; padding-left: 20px; color: var(--primary-dark);">
+            <li>HIMSS. (2024). <em>Digital Health Indicator (DHI): Empowering Healthcare Transformation</em>.</li>
+            <li>Organización Panamericana de la Salud. (2023). <em>Estrategia y plan de acción sobre salud digital 2020-2025</em>.</li>
+            <li>SCC. (2024). <em>SCOR Model: Supply Chain Operations Reference Framework</em>.</li>
+            <li>SENA Regional Caquetá. (2026). <em>Protocolos de Innovación en Servicios de Salud</em>.</li>
+            <li>USP. (2024). <em>United States Pharmacopeia: Estándares Internacionales</em>.</li>
+        </ul>
 
         <!-- 11. Recomendaciones Generales (Movidas al Final) -->
         <section class="recommendations-panel" id="recomendaciones">

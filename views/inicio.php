@@ -46,7 +46,7 @@ foreach($inventory as $item) {
         <?php include '../includes/sidebar.php'; ?>
 
         <main class="content-area">
-            <!-- Header Institucional Elite 7.0 -->
+            <!-- Header Institucional ESEFJL 7.0 -->
             <header class="flex flex-col lg:flex-row items-center justify-between mb-12 fade-in-institutional">
                 <div class="flex items-center gap-6 text-center lg:text-left">
                     <img src="../img/logoesefjl.jpg" alt="Logo ESEFJL" class="w-16 h-16 rounded-2xl shadow-lg border border-slate-100">

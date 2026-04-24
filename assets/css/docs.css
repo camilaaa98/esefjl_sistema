@@ -184,6 +184,12 @@ p {
     margin-bottom: 25px;
     text-align: justify;
     text-indent: 1.5em;
+    hyphens: auto;
+}
+
+li {
+    text-align: justify;
+    margin-bottom: 10px;
 }
 
 ul, ol {
