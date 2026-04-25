@@ -7,6 +7,7 @@
   <meta name="description" content="Plan de Negocios FLORACAMPO — Centro de Acopio para Campesinos en Florencia, Caquetá. Análisis doctoral de viabilidad comercial, financiera y operacional." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     /* ═══════════════ TOKENS ═══════════════ */
     :root {
@@ -301,11 +302,11 @@
     .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: var(--radio); box-shadow: var(--sombra); }
     table { width: 100%; border-collapse: collapse; font-size: .85rem; }
     thead tr { background: var(--verde-1); color: var(--blanco); }
-    thead th { padding: 12px 16px; text-align: center; font-weight: 600; font-size: .8rem; letter-spacing: .04em; }
+    thead th { padding: 16px 20px; text-align: center; font-weight: 600; font-size: .85rem; letter-spacing: .04em; }
     tbody tr { border-bottom: 1px solid #e0e0e0; }
     tbody tr:nth-child(even) { background: var(--verde-6); }
     tbody tr:hover { background: var(--verde-5); transition: background .15s; }
-    td { padding: 10px 16px; color: var(--gris-2); text-align: center; }
+    td { padding: 16px 24px; color: var(--gris-2); text-align: center; }
     td.num { text-align: center; font-family: 'Fira Code', monospace; font-weight: 500; }
     td.bold { font-weight: 700; color: var(--verde-1); }
     tr.total-row { background: var(--naranja-lt) !important; }
@@ -317,17 +318,28 @@
     .portada-header {
       display: flex;
       align-items: center;
-      gap: 30px;
-      margin-bottom: 20px;
+      gap: 35px;
+      margin-bottom: 30px;
       justify-content: center;
     }
     .logo-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50px;
-      object-fit: cover;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      border: 4px solid var(--amarillo);
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: contain;
+      background-color: #FFFFFF;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      border: 6px solid var(--amarillo);
+    }
+
+    /* Gráficas */
+    .chart-container {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: var(--sombra);
+      border: 1px solid var(--verde-5);
     }
 
     /* ═══════════════ DOFA MATRIX ═══════════════ */
@@ -968,6 +980,9 @@
           </tbody>
         </table>
       </div>
+      <div class="chart-container">
+        <canvas id="ventasChart"></canvas>
+      </div>
     </section>
 
     <!-- ── SECCIÓN 5: PLAN ESTRATÉGICO ────────────────────────── -->
@@ -1475,6 +1490,9 @@
       <div class="highlight">
         <strong>Total financiación requerida año 1:</strong> $549.500.000 COP · 64 % recursos externos no reembolsables o blandos · 27 % capital propio · Tasa efectiva promedio ponderada (WACC): 6,2 %
       </div>
+      <div class="chart-container">
+        <canvas id="financiacionChart"></canvas>
+      </div>
     </section>
 
     <!-- ── SECCIÓN ANEXOS ──────────────────────────────────────── -->
@@ -1572,6 +1590,60 @@
     });
   }, { rootMargin: '-30% 0px -60% 0px' });
   sections.forEach(s => obs.observe(s));
+
+  // Gráfica de Ventas
+  const ctxVentas = document.getElementById('ventasChart').getContext('2d');
+  new Chart(ctxVentas, {
+    type: 'line',
+    data: {
+      labels: ['2025', '2026', '2027', '2028', '2029'],
+      datasets: [{
+        label: 'Ventas Totales (COP)',
+        data: [900000000, 1020726000, 1157593901, 1312461297, 1488621655],
+        borderColor: '#2E7D32',
+        backgroundColor: 'rgba(46, 125, 50, 0.1)',
+        fill: true,
+        tension: 0.4,
+        borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: { display: true, text: 'Proyección de Ventas (2025-2029)', font: { size: 20, family: 'Merriweather' } },
+        legend: { position: 'bottom' }
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            callback: function(value) { return '$' + value.toLocaleString(); }
+          }
+        }
+      }
+    }
+  });
+
+  // Gráfica de Financiación
+  const ctxFin = document.getElementById('financiacionChart').getContext('2d');
+  new Chart(ctxFin, {
+    type: 'doughnut',
+    data: {
+      labels: ['Fondo Emprender', 'Recursos propios', 'Crédito Finagro', 'ONG/Cooperación', 'Gobernación/Alcaldía'],
+      datasets: [{
+        data: [200000000, 150000000, 100000000, 60000000, 49500000],
+        backgroundColor: ['#1B5E20', '#F9A825', '#1976D2', '#388E3C', '#E65100'],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: { display: true, text: 'Estructura de Financiación Inicial', font: { size: 20, family: 'Merriweather' } },
+        legend: { position: 'bottom' }
+      }
+    }
+  });
 </script>
 </body>
 </html>
