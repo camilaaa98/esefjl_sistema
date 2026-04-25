@@ -299,15 +299,15 @@
     .alert-box strong { color: var(--naranja); }
 
     /* ═══════════════ TABLAS ═══════════════ */
-    .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: var(--radio); box-shadow: var(--sombra); }
-    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: var(--radio); box-shadow: var(--sombra); width: 100%; }
+    table { width: 100%; border-collapse: collapse; font-size: .78rem; }
     thead tr { background: var(--verde-1); color: var(--blanco); }
-    thead th { padding: 16px 20px; text-align: center; font-weight: 600; font-size: .85rem; letter-spacing: .04em; }
+    thead th { padding: 10px 12px; text-align: center; font-weight: 600; font-size: .78rem; letter-spacing: .02em; }
     tbody tr { border-bottom: 1px solid #e0e0e0; }
     tbody tr:nth-child(even) { background: var(--verde-6); }
     tbody tr:hover { background: var(--verde-5); transition: background .15s; }
-    td { padding: 16px 24px; color: var(--gris-2); text-align: center; }
-    td.num { text-align: center; font-family: 'Fira Code', monospace; font-weight: 500; }
+    td { padding: 10px 12px; color: var(--gris-2); text-align: center; }
+    td.num { text-align: center; font-family: 'Fira Code', monospace; font-weight: 500; font-size: .75rem; }
     td.bold { font-weight: 700; color: var(--verde-1); }
     tr.total-row { background: var(--naranja-lt) !important; }
     tr.total-row td { font-weight: 700; color: var(--naranja); }
@@ -323,13 +323,11 @@
       justify-content: center;
     }
     .logo-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
+      width: 130px;
+      height: 130px;
+      border-radius: 50px;
       object-fit: contain;
-      background-color: #FFFFFF;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      border: 6px solid var(--amarillo);
+      mix-blend-mode: multiply;
     }
 
     /* Gráficas */
