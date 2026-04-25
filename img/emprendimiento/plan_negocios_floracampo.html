@@ -184,8 +184,11 @@
 
     /* ═══════════════ CONTENIDO ═══════════════ */
     .content {
-      padding: 48px 56px;
-      max-width: 900px;
+      padding: 48px 64px;
+      flex-grow: 1;
+      max-width: 1400px;
+      background: var(--blanco);
+      min-width: 0;
     }
 
     /* ═══════════════ SECCIONES ═══════════════ */
@@ -312,11 +315,12 @@
     /* Estilo para el logo */
     .portada-header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 35px;
-      margin-bottom: 30px;
-      justify-content: center;
+      gap: 24px;
+      margin-bottom: 35px;
       width: 100%;
+      text-align: center;
     }
     .logo-img {
       width: 130px;
@@ -324,6 +328,7 @@
       border-radius: 50px;
       object-fit: contain;
       mix-blend-mode: multiply;
+      margin: 0 auto;
     }
 
     /* Gráficas */
