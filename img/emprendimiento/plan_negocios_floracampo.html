@@ -325,12 +325,12 @@
     .logo-img {
       width: 150px;
       height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      background-color: #FFFFFF;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      border: 6px solid var(--naranja);
+      border-radius: 50px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
       margin: 0 auto;
+      border: 5px solid var(--amarillo);
+      padding: 5px;
     }
 
     /* Gráficas */
@@ -472,9 +472,13 @@
       color: var(--verde-1);
       border: 1px solid var(--verde-5);
       border-radius: 99px;
-      padding: 4px 14px;
+      padding: 6px 14px;
       font-size: .78rem;
-      font-weight: 500;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
     .chip.orange { background: var(--naranja-lt); color: var(--naranja); border-color: #ffcc80; }
     .chip.blue   { background: #e3f2fd; color: #1565C0; border-color: #90caf9; }
