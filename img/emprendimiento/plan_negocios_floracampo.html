@@ -301,17 +301,34 @@
     .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: var(--radio); box-shadow: var(--sombra); }
     table { width: 100%; border-collapse: collapse; font-size: .85rem; }
     thead tr { background: var(--verde-1); color: var(--blanco); }
-    thead th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: .8rem; letter-spacing: .04em; }
+    thead th { padding: 12px 16px; text-align: center; font-weight: 600; font-size: .8rem; letter-spacing: .04em; }
     tbody tr { border-bottom: 1px solid #e0e0e0; }
     tbody tr:nth-child(even) { background: var(--verde-6); }
     tbody tr:hover { background: var(--verde-5); transition: background .15s; }
-    td { padding: 10px 16px; color: var(--gris-2); }
-    td.num { text-align: right; font-family: 'Fira Code', monospace; font-weight: 500; }
+    td { padding: 10px 16px; color: var(--gris-2); text-align: center; }
+    td.num { text-align: center; font-family: 'Fira Code', monospace; font-weight: 500; }
     td.bold { font-weight: 700; color: var(--verde-1); }
     tr.total-row { background: var(--naranja-lt) !important; }
     tr.total-row td { font-weight: 700; color: var(--naranja); }
     tr.subtotal-row { background: var(--verde-5) !important; }
     tr.subtotal-row td { font-weight: 600; color: var(--verde-2); }
+
+    /* Estilo para el logo */
+    .portada-header {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    .logo-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50px;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      border: 4px solid var(--amarillo);
+    }
 
     /* ═══════════════ DOFA MATRIX ═══════════════ */
     .dofa-grid {
@@ -544,7 +561,10 @@
 ════════════════════════════════════════════════════════════ -->
 <section class="portada" id="portada">
   <div class="portada-badge">Plan de Negocios · 2025</div>
-  <div class="portada-logo">FLOR<span>CAMPO</span></div>
+  <div class="portada-header">
+    <img src="floracampo.jpeg" alt="Logo Floracampo" class="logo-img">
+    <div class="portada-logo">FLOR<span>CAMPO</span></div>
+  </div>
   <p class="portada-sub">Centro de Acopio para Campesinos — Florencia, Caquetá<br>Transformando la cadena agrícola del Amazonas colombiano</p>
 
   <div class="portada-meta">
@@ -558,7 +578,7 @@
     </div>
     <div class="portada-meta-item">
       <div class="label">Inversión Inicial</div>
-      <div class="value">$549.5 M COP</div>
+      <div class="value">$549.500.000 COP</div>
     </div>
     <div class="portada-meta-item">
       <div class="label">Horizonte</div>
@@ -625,11 +645,11 @@
 
       <div class="fin-kpi-grid">
         <div class="fin-kpi">
-          <span class="kpi-val">$900 M</span>
+          <span class="kpi-val">$900.000.000</span>
           <div class="kpi-label">Ingresos año 1 (COP)</div>
         </div>
         <div class="fin-kpi orange">
-          <span class="kpi-val">$549.5 M</span>
+          <span class="kpi-val">$549.500.000</span>
           <div class="kpi-label">Inversión inicial</div>
         </div>
         <div class="fin-kpi blue">
@@ -637,8 +657,8 @@
           <div class="kpi-label">Personal (año 1 → año 5)</div>
         </div>
         <div class="fin-kpi">
-          <span class="kpi-val">120 T</span>
-          <div class="kpi-label">kg/año Frutas (año 1)</div>
+          <span class="kpi-val">120.000 kg</span>
+          <div class="kpi-label">Frutas / año (año 1)</div>
         </div>
       </div>
 
@@ -647,7 +667,7 @@
       <p>La evidencia empírica disponible demuestra que más del 40 % de la producción agrícola del Caquetá se pierde antes de llegar al consumidor final, producto de la ausencia de infraestructura pos-cosecha, la intermediación especulativa y la volatilidad campal de los precios. FLORACAMPO ataca estos tres cuellos de botella de manera simultánea mediante: (i) infraestructura de almacenamiento refrigerado; (ii) una plataforma digital de trazabilidad —FLOR-Net—; y (iii) alianzas comerciales preacordadas con instituciones educativas, supermercados y programas de seguridad alimentaria de la Alcaldía y la Gobernación.</p>
 
       <div class="highlight">
-        <strong>Proyección financiera clave:</strong> Para el año 2025 se proyectan ingresos de $900 millones COP con una tasa de crecimiento compuesta anual (CAGR) del 13,5 % hasta 2029, alcanzando $1.488 millones COP. El punto de equilibrio operacional se estima en el tercer año de operación, beneficiando directamente a más de 200 familias campesinas.
+        <strong>Proyección financiera clave:</strong> Para el año 2025 se proyectan ingresos de $900.000.000 COP con una tasa de crecimiento compuesta anual (CAGR) del 13,5 % hasta 2029, alcanzando $1.488.621.655 COP. El punto de equilibrio operacional se estima en el tercer año de operación, beneficiando directamente a más de 200 familias campesinas.
       </div>
     </section>
 
@@ -1420,7 +1440,7 @@
       <p style="font-size:.78rem;color:var(--gris-3);margin-top:-12px;">* Exención Ley 1429/2010 para nuevas empresas creadas en municipios PDET (años 1 y 2). Tasa aplicada desde año 3: 20 % sobre utilidad operacional positiva.</p>
 
       <div class="alert-box">
-        <strong>⚠️ Nota sobre el resultado del año 1:</strong> La utilidad operacional positiva de $124 M en el primer año no cubre la inversión inicial de $549 M. El retorno de la inversión se estima en el <strong>año 4</strong>, cuando la utilidad acumulada supera el capital invertido. Se recomienda complementar con financiación no reembolsable (Fondo Emprender + ONG) para reducir la presión sobre el flujo de caja.
+        <strong>⚠️ Nota sobre el resultado del año 1:</strong> La utilidad operacional positiva de $124.233.900 en el primer año no cubre la inversión inicial de $549.500.000. El retorno de la inversión se estima en el <strong>año 4</strong>, cuando la utilidad acumulada supera el capital invertido. Se recomienda complementar con financiación no reembolsable (Fondo Emprender + ONG) para reducir la presión sobre el flujo de caja.
       </div>
 
       <!-- 9.5 FUENTES DE FINANCIACIÓN -->
