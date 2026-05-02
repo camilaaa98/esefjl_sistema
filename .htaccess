@@ -1,5 +1,5 @@
 # Configuración de Seguridad ESEFJL
-Options -Indexes
+# Options -Indexes (Comentado para evitar Error 500 en Render si AllowOverride no lo permite)
 
 # Bloquear acceso a archivos sensibles
 <FilesMatch "\.(db|sql|env|py|sh|docx|xlsx|zip)$">
