@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 $db = Database::getInstance();
 
@@ -27,7 +27,7 @@ foreach ($ips_users as $username => $info) {
         $db->prepare("UPDATE usuarios SET rol_id=?, sede_id=?, password=? WHERE id=?")->execute(
             [$ips_rol, $info['sede_id'], $password_hash, $uid]
         );
-        echo "  ✅ ACTUALIZADO: $username → sede={$info['nombre']}\n";
+        echo "  ✅ ACTUALIZADO: $username â†’ sede={$info['nombre']}\n";
     } else {
         // Verificar si el documento ya existe y eliminarlo primero si es de un usuario fantasma
         $db->prepare("DELETE FROM usuarios WHERE documento = ? AND username IS NULL")->execute([$info['doc']]);
@@ -45,11 +45,11 @@ foreach ($ips_users as $username => $info) {
             $info['sede_id'],
             "$username@esefjl.gov.co"
         ]);
-        echo "  ✅ CREADO: $username → sede={$info['nombre']}\n";
+        echo "  ✅ CREADO: $username â†’ sede={$info['nombre']}\n";
     }
 }
 
-echo "\n=== VERIFICACIÓN FINAL ===\n";
+echo "\n=== VERIFICACIí“N FINAL ===\n";
 $veri = $db->query("
     SELECT u.username, r.nombre as rol, s.nombre as sede, u.sede_id
     FROM usuarios u
@@ -65,5 +65,5 @@ foreach ($veri as $v) {
 
 echo "\n✅ ACCESO LISTO:\n";
 foreach ($ips_users as $u => $info) {
-    echo "  $u / ips2025 → " . $info['nombre'] . "\n";
+    echo "  $u / ips2025 â†’ " . $info['nombre'] . "\n";
 }

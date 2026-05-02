@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once 'core/Database.php';
 $db = Database::getInstance();
 $tables = $db->query("SELECT name FROM sqlite_master WHERE type='table'")->fetchAll();

@@ -1,21 +1,21 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
     $db = Database::getInstance();
     $db->beginTransaction();
 
-    echo "⚙️ ACTUALIZANDO ESQUEMA DE PRODUCTOS...\n";
+    echo "âš™ï¸ ACTUALIZANDO ESQUEMA DE PRODUCTOS...\n";
     $db->exec("ALTER TABLE productos ADD COLUMN IF NOT EXISTS concentracion_presentacion TEXT;");
     $db->exec("ALTER TABLE productos ADD COLUMN IF NOT EXISTS laboratorio TEXT;");
 
-    echo "💊 CARGANDO CATÁLOGO FARMACÉUTICO PROFESIONAL...\n";
+    echo "ðŸ’Š CARGANDO CATíLOGO FARMACí‰UTICO PROFESIONAL...\n";
 
     // 1. Limpiar inventario y productos previos
     $db->exec("DELETE FROM inventario; DELETE FROM entregas; DELETE FROM productos; DELETE FROM categorias;");
 
     // 2. Insertar Categorías Profesionales
-    $cats = ['ANALGÉSICOS Y AINES', 'ANTIBIÓTICOS', 'CARDIOVASCULAR', 'DISPOSITIVOS MÉDICOS', 'PROTECCIÓN'];
+    $cats = ['ANALGí‰SICOS Y AINES', 'ANTIBIí“TICOS', 'CARDIOVASCULAR', 'DISPOSITIVOS Mí‰DICOS', 'PROTECCIí“N'];
     $stmtCat = $db->prepare("INSERT INTO categorias (nombre) VALUES (?) ON CONFLICT DO NOTHING RETURNING id");
     $catMap = [];
     foreach ($cats as $c) {
@@ -29,14 +29,14 @@ try {
 
     // 3. Definición profesional de medicamentos
     $productos = [
-        ['Ibuprofeno 400mg Tabletas', 'ANALGÉSICOS Y AINES', 'Caja x 20', 'MK'],
-        ['Ibuprofeno 400mg Tabletas', 'ANALGÉSICOS Y AINES', 'Caja x 30', 'GENFAR'],
-        ['Ibuprofeno 600mg Tabletas', 'ANALGÉSICOS Y AINES', 'Frasco x 50', 'BAYER'],
-        ['Acetaminofén 500mg Tabletas', 'ANALGÉSICOS Y AINES', 'Caja x 100', 'LAPROFF'],
-        ['Amoxicilina 500mg Cápsulas', 'ANTIBIÓTICOS', 'Caja x 30', 'MK'],
+        ['Ibuprofeno 400mg Tabletas', 'ANALGí‰SICOS Y AINES', 'Caja x 20', 'MK'],
+        ['Ibuprofeno 400mg Tabletas', 'ANALGí‰SICOS Y AINES', 'Caja x 30', 'GENFAR'],
+        ['Ibuprofeno 600mg Tabletas', 'ANALGí‰SICOS Y AINES', 'Frasco x 50', 'BAYER'],
+        ['Acetaminofén 500mg Tabletas', 'ANALGí‰SICOS Y AINES', 'Caja x 100', 'LAPROFF'],
+        ['Amoxicilina 500mg Cápsulas', 'ANTIBIí“TICOS', 'Caja x 30', 'MK'],
         ['Losartán 50mg Tabletas', 'CARDIOVASCULAR', 'Caja x 30', 'HUMAX'],
-        ['Jeringa 5cc con aguja 21G', 'DISPOSITIVOS MÉDICOS', 'Unidad estéril', 'BD'],
-        ['Guantes de látex Talle M', 'PROTECCIÓN', 'Caja x 100', 'TOP GLOVE']
+        ['Jeringa 5cc con aguja 21G', 'DISPOSITIVOS Mí‰DICOS', 'Unidad estéril', 'BD'],
+        ['Guantes de látex Talle M', 'PROTECCIí“N', 'Caja x 100', 'TOP GLOVE']
     ];
 
     $stmtProd = $db->prepare("INSERT INTO productos (nombre_generico, categoria_id, concentracion_presentacion, laboratorio) VALUES (?, ?, ?, ?)");
@@ -66,9 +66,9 @@ try {
     }
 
     $db->commit();
-    echo "✅ ÉXITO: Catálogo profesional cargado y distribuido.\n";
+    echo "✅ í‰XITO: Catálogo profesional cargado y distribuido.\n";
 
 } catch (Exception $e) {
     if (isset($db)) $db->rollBack();
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    echo "âŒ ERROR: " . $e->getMessage() . "\n";
 }

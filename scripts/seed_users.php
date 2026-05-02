@@ -1,41 +1,49 @@
-<?php
-require_once __DIR__ . '/core/Database.php';
+﻿<?php
+require_once 'app/config/Database.php';
+
+$db = Database::getInstance();
+
+$nombres = ['Juan', 'Maria', 'Carlos', 'Ana', 'Luis', 'Luisa', 'Pedro', 'Marta', 'Jorge', 'Elena', 'Diego', 'Lucia', 'Roberto', 'Sofia', 'Andres', 'Paula', 'Fernando', 'Carmen', 'Ricardo', 'Isabel'];
+$apellidos = ['Garcia', 'Rodriguez', 'Lopez', 'Martinez', 'Sanchez', 'Perez', 'Gomez', 'Martin', 'Jimenez', 'Ruiz', 'Hernandez', 'Diaz', 'Moreno', 'Muñoz', 'Alvarez', 'Romero', 'Alonso', 'Gutierrez', 'Navarro', 'Torres'];
+
+echo "Generando 500 usuarios...\n";
+
+$db->beginTransaction();
 
 try {
-    $db = Database::getInstance();
-    
-    // 1. Obtener IDs de roles y sedes
-    $stmtSede = $db->query("SELECT id FROM sedes WHERE nombre LIKE 'Florencia%' LIMIT 1");
-    $sedeAdmin = $stmtSede->fetchColumn();
-    
-    $stmtSedeSolita = $db->query("SELECT id FROM sedes WHERE nombre = 'Solita' LIMIT 1");
-    $sedeSolita = $stmtSedeSolita->fetchColumn();
-    
-    $stmtRolAdmin = $db->query("SELECT id FROM roles WHERE nombre = 'Administrador' LIMIT 1");
-    $rolAdmin = $stmtRolAdmin->fetchColumn();
-    
-    $stmtRolRegente = $db->query("SELECT id FROM roles WHERE nombre = 'Regente Farmacia' LIMIT 1");
-    $rolRegente = $stmtRolRegente->fetchColumn();
+    for ($i = 0; $i < 500; $i++) {
+        $nombre = $nombres[array_rand($nombres)];
+        $apellido = $apellidos[array_rand($apellidos)];
+        $username = strtolower($nombre . "." . $apellido . rand(100, 999));
+        $password = password_hash('123456', PASSWORD_DEFAULT);
+        $documento = rand(10000000, 99999999);
+        
+        // Distribución: 
+        // 1-5: Gerentes (1%)
+        // 6-30: Regentes (5%)
+        // 31-80: Admins (10%)
+        // 81-500: IPS (84%)
+        
+        $rand = rand(1, 100);
+        if ($rand <= 1) $rol_id = 1;
+        elseif ($rand <= 6) $rol_id = 2;
+        elseif ($rand <= 16) $rol_id = 3;
+        else $rol_id = 4;
+        
+        // Sedes: 1-6 (1 es Florencia, el resto municipios)
+        if ($rol_id == 4) {
+            $sede_id = rand(2, 6); // Municipios
+        } else {
+            $sede_id = 1; // Florencia
+        }
 
-    // 2. Insertar Admin
-    $passAdmin = password_hash('Admin2026*', PASSWORD_DEFAULT);
-    $db->prepare("INSERT INTO usuarios (documento, nombres, apellidos, username, password, rol_id, sede_id) 
-                  VALUES ('123456', 'Administrador', 'General', 'admin', ?, ?, ?)
-                  ON CONFLICT (username) DO UPDATE SET password = EXCLUDED.password")
-       ->execute([$passAdmin, $rolAdmin, $sedeAdmin]);
-
-    // 3. Insertar Jefe de IPS Solita
-    $passSolita = password_hash('Solita2026*', PASSWORD_DEFAULT);
-    $db->prepare("INSERT INTO usuarios (documento, nombres, apellidos, username, password, rol_id, sede_id) 
-                  VALUES ('789012', 'Jefe IPS', 'Solita', 'jefe_solita', ?, ?, ?)
-                  ON CONFLICT (username) DO UPDATE SET password = EXCLUDED.password")
-       ->execute([$passSolita, $rolRegente, $sedeSolita]);
-
-    echo "✅ ÉXITO: Usuarios iniciales creados exitosamente.\n";
-    echo "🔑 Admin: admin / Admin2026*\n";
-    echo "🔑 IPS: jefe_solita / Solita2026*\n";
-
+        $stmt = $db->prepare("INSERT INTO usuarios (username, password, nombres, apellidos, documento, rol_id, sede_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$username, $password, $nombre, $apellido, $documento, $rol_id, $sede_id]);
+    }
+    $db->commit();
+    echo "Â¡í‰xito! 500 usuarios creados y distribuidos.\n";
 } catch (Exception $e) {
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    $db->rollBack();
+    echo "ERROR: " . $e->getMessage() . "\n";
 }
 ?>

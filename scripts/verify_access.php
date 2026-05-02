@@ -1,5 +1,5 @@
-<?php
-// Simulación de Login Técnico SISFARMA PRO
+﻿<?php
+// Simulación de Login Técnico FARMACIA ESEFJL
 require_once __DIR__ . '/core/Database.php';
 
 function simulate_login($username, $password) {
@@ -18,16 +18,16 @@ function simulate_login($username, $password) {
         $user = $stmt->fetch();
 
         if (!$user) {
-            return "❌ ERROR: Usuario no encontrado en la base de datos.";
+            return "âŒ ERROR: Usuario no encontrado en la base de datos.";
         }
 
         if (password_verify($password, $user['password'])) {
-            return "✅ ÉXITO: Autenticación confirmada. Rol: {$user['rol_nombre']} | Sede: {$user['sede_nombre']}";
+            return "✅ í‰XITO: Autenticación confirmada. Rol: {$user['rol_nombre']} | Sede: {$user['sede_nombre']}";
         } else {
-            return "❌ ERROR: Contraseña incorrecta para este usuario.";
+            return "âŒ ERROR: Contraseña incorrecta para este usuario.";
         }
     } catch (Exception $e) {
-        return "❌ ERROR DE SISTEMA: " . $e->getMessage();
+        return "âŒ ERROR DE SISTEMA: " . $e->getMessage();
     }
 }
 

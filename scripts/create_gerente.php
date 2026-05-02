@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
@@ -9,7 +9,7 @@ try {
     $sede = $db->query("SELECT id FROM sedes WHERE tipo = 'PRINCIPAL'")->fetchColumn();
 
     if (!$rol || !$sede) {
-        die("❌ Error: No se encontró el rol de Gerente o la Sede Principal.\n");
+        die("âŒ Error: No se encontró el rol de Gerente o la Sede Principal.\n");
     }
 
     // 2. Crear o actualizar Gerente
@@ -24,6 +24,6 @@ try {
     echo "✅ USUARIO g_gerente CREADO/ACTUALIZADO EXITOSAMENTE.\n";
 
 } catch (Exception $e) {
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    echo "âŒ ERROR: " . $e->getMessage() . "\n";
 }
 ?>

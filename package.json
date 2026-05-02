@@ -1,0 +1,27 @@
+{
+  "name": "esefjl",
+  "version": "1.0.0",
+  "description": "Sistema institucional de alto rendimiento diseñado para la gestión de inventarios, monitoreo de vencimientos y vinculación de pacientes en la red hospitalaria.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i ./public/css/input.css -o ./public/css/tailwind.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camilaaa98/esefjl_sistema.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camilaaa98/esefjl_sistema/issues"
+  },
+  "homepage": "https://github.com/camilaaa98/esefjl_sistema#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.2.4"
+  }
+}

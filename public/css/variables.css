@@ -1,0 +1,93 @@
+:root {
+    /* === PALETA DE COLORES PREMIUM ESEFJL v3.0 === */
+    /* Colores principales con más profundidad */
+    --primary-medical: #0f172a;        /* Azul noche profundo (casi negro) */
+    --primary-soft: #1e293b;           /* Azul pizarra */
+    --primary-accent: #334155;         /* Gris azulado */
+    
+    /* Dorado sofisticado con variaciones */
+    --accent-gold: #d4af37;            /* Oro clásico */
+    --accent-gold-light: #e8d5a3;      /* Champagne */
+    --accent-gold-dark: #b8941d;       /* Oro antiguo */
+    --accent-gold-muted: #c9b896;      /* Beige dorado */
+    
+    /* Nuevos acentos médicos */
+    --medical-teal: #0d9488;           /* Teal médico */
+    --medical-teal-light: #5eead4;     /* Turquesa claro */
+    --medical-teal-dark: #0f766e;      /* Teal profundo */
+    --medical-blue: #0369a1;           /* Azul médico */
+    --medical-blue-light: #38bdf8;     /* Azul cielo */
+    --medical-royal: #1e40af;          /* Azul royal */
+    
+    /* Grises sofisticados (no solo gris básico) */
+    --gray-50: #f8fafc;               /* Blanco hueso */
+    --gray-100: #f1f5f9;              /* Gris muy claro */
+    --gray-200: #e2e8f0;              /* Gris claro */
+    --gray-300: #cbd5e1;              /* Gris platino */
+    --gray-400: #94a3b8;              /* Gris acero */
+    --gray-500: #64748b;              /* Gris medio */
+    --gray-600: #475569;              /* Gris pizarra */
+    --gray-700: #334155;              /* Gris oscuro */
+    --gray-800: #1e293b;              /* Gris azabache */
+    --gray-900: #0f172a;              /* Casi negro */
+    
+    /* Fondos con gradientes sutiles */
+    --bg-base: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+    --bg-surface: #ffffff;
+    --bg-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    --bg-elevated: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+    --bg-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    
+    /* Textos con jerarquía */
+    --text-primary: #0f172a;          /* Títulos importantes */
+    --text-secondary: #334155;      /* Texto normal */
+    --text-tertiary: #64748b;         /* Texto secundario */
+    --text-muted: #94a3b8;            /* Placeholders, hints */
+    --text-inverse: #f8fafc;          /* Texto sobre fondo oscuro */
+    
+    /* Bordes elegantes */
+    --border-subtle: #e2e8f0;
+    --border-light: #cbd5e1;
+    --border-medium: #94a3b8;
+    --border-accent: #d4af37;
+    
+    /* Sombras sofisticadas con capas */
+    --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+    --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+    --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+    --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    --shadow-gold: 0 10px 40px -10px rgba(212, 175, 55, 0.3);
+    --shadow-teal: 0 10px 40px -10px rgba(13, 148, 136, 0.3);
+    
+    /* Estados de semáforo más refinados */
+    --status-critical: #dc2626;       /* Rojo profundo */
+    --status-critical-light: #fee2e2;
+    --status-warning: #ea580c;        /* Naranja quemado */
+    --status-warning-light: #ffedd5;
+    --status-caution: #d97706;      /* Ámbar */
+    --status-caution-light: #fef3c7;
+    --status-success: #059669;       /* Verde esmeralda */
+    --status-success-light: #d1fae5;
+    --status-info: #0369a1;          /* Azul info */
+    --status-info-light: #e0f2fe;
+    --status-neutral: #475569;       /* Gris estado */
+    --status-neutral-light: #f1f5f9;
+    
+    /* Tipografía */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Radios más variados */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
+    --radius-full: 9999px;
+    
+    /* Transiciones */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}

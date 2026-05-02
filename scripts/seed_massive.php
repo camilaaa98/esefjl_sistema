@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
     $db = Database::getInstance();
     $db->beginTransaction();
 
-    echo "📊 Iniciando carga masiva de datos (1,500 registros)...\n";
+    echo "ðŸ“Š Iniciando carga masiva de datos (1,500 registros)...\n";
 
     // 1. Obtener IDs de referencia
     $sedes = $db->query("SELECT id, tipo FROM sedes")->fetchAll();
@@ -21,7 +21,7 @@ try {
     $regimenes = ['CONTRIBUTIVO', 'SUBSIDIADO'];
 
     // 2. Generar 1,000 Pacientes
-    echo "👥 Generando 1,000 pacientes...\n";
+    echo "ðŸ‘¥ Generando 1,000 pacientes...\n";
     $stmtPac = $db->prepare("INSERT INTO pacientes (documento, nombres, apellidos, eps, regimen, es_desplazado, sisben) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT DO NOTHING");
     
     for($i = 1; $i <= 1000; $i++) {
@@ -37,7 +37,7 @@ try {
     }
 
     // 3. Generar 500 Funcionarios
-    echo "💼 Generando 500 funcionarios...\n";
+    echo "ðŸ’¼ Generando 500 funcionarios...\n";
     $stmtUser = $db->prepare("INSERT INTO usuarios (documento, nombres, apellidos, username, password, rol_id, sede_id) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT DO NOTHING");
     $pass = password_hash('Ese2026*', PASSWORD_DEFAULT);
 
@@ -69,6 +69,6 @@ try {
 
 } catch (Exception $e) {
     if (isset($db)) $db->rollBack();
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    echo "âŒ ERROR: " . $e->getMessage() . "\n";
 }
 ?>

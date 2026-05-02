@@ -1,23 +1,33 @@
-# Sistema de Gestión Farmacéutica ESEFJL v7.5 Premium
+﻿# 🏥 Sistema de Gestión Farmacéutica ESE Fabio Jaramillo (ESEFJL)
 
-## Arquitectura de Software
-Este sistema ha sido diseñado bajo estándares de ingeniería de software de alto nivel, aplicando principios **SOLID** y una arquitectura de capas desacoplada.
+Sistema institucional de alto rendimiento diseñado para la gestión de inventarios, monitoreo de vencimientos y vinculación de pacientes en la red hospitalaria.
 
-### Estructura de Directorios (Organización Profesional)
-- **`/assets`**: Recursos estáticos (CSS con variables, JS modular, Animaciones).
-- **`/core`**: Núcleo lógico del sistema.
-  - **`/Controllers`**: Orquestadores de la lógica de negocio. Implementan Inyección de Dependencias (DIP).
-  - **`/Infrastructure`**: Capa de persistencia y utilidades base (Database, Auth, ViewHelpers).
-  - **`/Repositories`**: Capa de acceso a datos pura. Separa las consultas SQL de la lógica del controlador (SRP).
-- **`/docs`**: Documentación técnica y científica profesional (Normas APA 7).
-- **`/views`**: Interfaces de usuario responsivas y optimizadas.
-- **`/includes`**: Componentes reutilizables de UI (Sidebar, Headers).
+## 🚀 Despliegue en Render / Linux
 
-### Principios Implementados
-1.  **S (Single Responsibility)**: Cada repositorio se encarga exclusivamente de una entidad de la base de datos.
-2.  **O (Open/Closed)**: Sistema de repositorios extensible mediante `BaseRepository`.
-3.  **D (Dependency Inversion)**: Los controladores dependen de abstracciones de datos, facilitando pruebas y escalabilidad.
-4.  **Responsividad**: Diseño adaptable mediante CSS Grid y Flexbox para operación en tablets y dispositivos móviles.
+Este sistema está optimizado para ejecutarse en entornos Linux con PostgreSQL (Supabase).
 
----
-*Desarrollado para la Excelencia Institucional — ESE Fabio Jaramillo Londoño*
+### Requisitos Técnicos
+- PHP 8.1+
+- Extensión pdo_pgsql habilitada.
+- Base de datos PostgreSQL (Producción) o SQLite (Desarrollo).
+
+### Configuración de Variables de Entorno
+Crea un archivo .env en la raíz (o configura las variables en el panel de Render):
+
+`env
+DATABASE_URL=postgresql://user:pass@host:5432/dbname
+APP_ENV=production
+`
+
+### Estructura de Directorios
+- pp/: Lógica de negocio (Controladores, Repositorios, Configuración).
+- public/: Punto de entrada y recursos públicos (CSS, JS).
+- esources/views/: Interfaces de usuario.
+- database/: Esquemas SQL y base de datos local.
+- img/: Activos visuales institucionales.
+
+## 🛡️ Seguridad
+Los scripts de diagnóstico y mantenimiento han sido movidos a /scripts/ y están protegidos por .htaccess.
+
+## 📄 Licencia
+Propiedad institucional - ESE Fabio Jaramillo.

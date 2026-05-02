@@ -1,4 +1,4 @@
-<?php return array(
+﻿<?php return array(
     'root' => array(
         'name' => 'camilaaa98/esefjl-sistema',
         'pretty_version' => 'dev-main',

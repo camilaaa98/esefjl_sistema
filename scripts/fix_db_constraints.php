@@ -1,9 +1,9 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
     $db = Database::getInstance();
-    echo "🛠️ AÑADIENDO RESTRICCIÓN DE UNICIDAD A INVENTARIO...\n";
+    echo "ðŸ› ï¸ AÑADIENDO RESTRICCIí“N DE UNICIDAD A INVENTARIO...\n";
     
     // 1. Eliminar duplicados si existen (manteniendo el que tenga más stock)
     $db->exec("
@@ -19,5 +19,5 @@ try {
     echo "✅ Restricción 'unique_sede_producto' añadida con éxito.\n";
 
 } catch (Exception $e) {
-    echo "⚠️ AVISO: " . $e->getMessage() . " (Posiblemente ya existe)\n";
+    echo "âš ï¸ AVISO: " . $e->getMessage() . " (Posiblemente ya existe)\n";
 }

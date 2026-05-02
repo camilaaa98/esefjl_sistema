@@ -1,4 +1,4 @@
--- Esquema SQL Completo para PostgreSQL - SISFARMA PRO
+-- Esquema SQL Completo para PostgreSQL - FARMACIA ESEFJL
 -- ESE Fabio Jaramillo Londoño
 
 -- 1. Municipios / Sedes

@@ -1,0 +1,504 @@
+/* FadeInUp con easing natural (no lineal) */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px) scale(0.98); }
+    60% { transform: translateY(-4px) scale(1.01); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Variante más suave para elementos secundarios */
+@keyframes fadeInUpSoft {
+    0% { opacity: 0; transform: translateY(20px); }
+    70% { transform: translateY(-2px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    0% { opacity: 0; transform: translateX(-30px) scale(0.98); }
+    55% { transform: translateX(4px) scale(1.01); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes fadeInRight {
+    0% { opacity: 0; transform: translateX(30px) scale(0.98); }
+    55% { transform: translateX(-4px) scale(1.01); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* FadeIn con blur sutil para elegancia */
+@keyframes fadeIn {
+    0% { opacity: 0; filter: blur(2px); }
+    100% { opacity: 1; filter: blur(0); }
+}
+
+/* ScaleIn con efecto elástico sutil */
+@keyframes scaleIn {
+    0% { opacity: 0; transform: scale(0.92) translateY(10px); }
+    50% { transform: scale(1.02); }
+    70% { transform: scale(0.995); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* SlideDown con aceleración natural */
+@keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    40% { transform: translateY(4px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse glow orgánico (no simétrico) */
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    35% { box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.15); }
+    60% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0.08); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+/* Shimmer más lento y orgánico */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Spin con aceleración variable */
+@keyframes spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Bounce más orgánico (no simétrico) */
+@keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-8px); }
+    50% { transform: translateY(-4px); }
+    75% { transform: translateY(-6px); }
+}
+
+/* Border pulse irregular */
+@keyframes borderPulse {
+    0% { border-color: var(--accent-gold, #d4af37); opacity: 1; }
+    40% { border-color: transparent; opacity: 0.6; }
+    70% { border-color: var(--accent-gold, #d4af37); opacity: 0.8; }
+    100% { border-color: var(--accent-gold, #d4af37); opacity: 1; }
+}
+
+/* Nueva animación: float sutil para cards */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-6px) rotate(0.3deg); }
+    66% { transform: translateY(-3px) rotate(-0.2deg); }
+}
+
+/* Nueva animación: morphing de sombras */
+@keyframes shadowMorph {
+    0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    50% { box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12); }
+}
+
+/* Nueva animación: reveal desde centro */
+@keyframes revealCenter {
+    0% { clip-path: inset(0 50% 0 50%); opacity: 0; }
+    100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+/* ─── 2. TRANSICIONES GENERALES CON EASING NATURAL ─── */
+
+/* Easing functions personalizados para movimiento orgánico */
+:root {
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.68, -0.15, 0.265, 1.25);
+    --ease-dramatic: cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+/* Todos los elementos interactivos tienen transición suave */
+a,
+button,
+input,
+select,
+textarea,
+.btn-institutional,
+.btn-gold,
+.card-clinical,
+.content-card,
+.toc-item a,
+.step,
+.sidebar-medical nav a,
+.manual-nav a,
+.tech-tag,
+.checklist-table tr {
+    transition:
+        background-color 0.35s var(--ease-out-expo),
+        color 0.35s var(--ease-out-expo),
+        border-color 0.4s var(--ease-in-out-smooth),
+        box-shadow 0.4s var(--ease-out-expo),
+        transform 0.35s var(--ease-spring),
+        opacity 0.3s var(--ease-out-expo);
+}
+
+/* Links con transición de underline animada */
+a:not(.btn-institutional):not(.btn-gold) {
+    position: relative;
+    text-decoration: none;
+}
+
+a:not(.btn-institutional):not(.btn-gold)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-gold, #d4af37);
+    transition: width 0.4s var(--ease-out-expo);
+}
+
+a:not(.btn-institutional):not(.btn-gold):hover::after {
+    width: 100%;
+}
+
+/* ─── 3. ANIMACIÓN DE ENTRADA — SECCIONES ORGÁNICAS ─── */
+
+/* Las secciones del sistema aparecen con fade-in al cargar - variación orgánica */
+section,
+.content-card,
+.card-clinical {
+    animation: fadeInUp 0.65s var(--ease-out-expo) both;
+}
+
+/* Cabecera aparece desde arriba con timing orgánico */
+header,
+.manual-header {
+    animation: slideDown 0.7s var(--ease-out-expo) both;
+}
+
+/* Sidebar aparece desde la izquierda */
+.sidebar-medical,
+.manual-nav {
+    animation: fadeInLeft 0.55s var(--ease-out-expo) both;
+}
+
+/* Tablas entran con scale y timing variable */
+table,
+.checklist-table,
+.table-clinical-wrapper {
+    animation: scaleIn 0.6s var(--ease-out-expo) both;
+}
+
+/* Delays escalonados no-lineales para cards */
+section:nth-child(1) { animation-delay: 0.04s; }
+section:nth-child(2) { animation-delay: 0.12s; }
+section:nth-child(3) { animation-delay: 0.22s; }
+section:nth-child(4) { animation-delay: 0.36s; }
+section:nth-child(5) { animation-delay: 0.50s; }
+section:nth-child(6) { animation-delay: 0.66s; }
+
+/* ─── 4. TRANSFORMACIONES 3D Y HOVER INTERACTIVO ─── */
+
+/* Cards del sistema con efecto 3D orgánico */
+.card-clinical,
+.content-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-clinical:hover,
+.content-card:hover {
+    transform: translateY(-8px) scale(1.015) rotateX(2deg);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.12),
+        0 8px 16px rgba(212, 175, 55, 0.08);
+}
+
+/* Botones con efecto lift y glow */
+.btn-institutional:hover,
+.btn-gold:hover,
+button[type="submit"]:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 12px 28px rgba(212, 175, 55, 0.25),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones: efecto active (presionado) */
+.btn-institutional:active,
+.btn-gold:active,
+button[type="submit"]:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    transition-duration: 0.1s;
+}
+
+/* Links de tabla de contenidos con deslizamiento elástico */
+.toc-item a:hover {
+    transform: translateX(8px);
+    transition-timing-function: var(--ease-spring);
+}
+
+/* Filas de tabla — highlight con gradiente */
+.checklist-table tbody tr,
+.table-clinical tbody tr {
+    position: relative;
+    overflow: hidden;
+}
+
+.checklist-table tbody tr::before,
+.table-clinical tbody tr::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);
+    transition: width 0.4s var(--ease-out-expo);
+    z-index: 0;
+}
+
+.checklist-table tbody tr:hover::before,
+.table-clinical tbody tr:hover::before {
+    width: 100%;
+}
+
+/* Nav lateral — items se deslizan con padding animado */
+.manual-nav a,
+.sidebar-medical nav a {
+    position: relative;
+    overflow: hidden;
+}
+
+.manual-nav a::before,
+.sidebar-medical nav a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: var(--accent-gold, #d4af37);
+    transition: height 0.35s var(--ease-out-expo);
+}
+
+.manual-nav a:hover::before,
+.sidebar-medical nav a:hover::before {
+    height: 100%;
+}
+
+.manual-nav a:hover,
+.sidebar-medical nav a:hover {
+    transform: translateX(8px);
+    padding-left: calc(1rem + 8px);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+/* Tech tags con bounce y glow */
+.tech-tag {
+    transition: all 0.35s var(--ease-spring);
+}
+
+.tech-tag:hover {
+    transform: translateY(-4px) scale(1.12) rotate(-2deg);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+    animation: pulse-glow 2s infinite;
+}
+
+/* Semáforo / alertas — entrance animada con variación */
+.alert,
+.alert-important,
+.alert-info,
+[style*="border: 2px solid #ef5350"],
+[style*="border: 2px solid #ffca28"],
+[style*="border: 2px solid #66bb6a"] {
+    animation: fadeIn 0.75s var(--ease-out-expo) both;
+    transition: transform 0.35s var(--ease-spring), box-shadow 0.4s var(--ease-out-expo);
+}
+
+[style*="border: 2px solid #ef5350"]:hover,
+[style*="border: 2px solid #ffca28"]:hover,
+[style*="border: 2px solid #66bb6a"]:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+/* ─── 5. INPUTS Y FORMULARIOS CON ANIMACIÓN ─── */
+
+input,
+select,
+textarea {
+    transition: 
+        all 0.35s var(--ease-out-expo),
+        box-shadow 0.4s var(--ease-out-expo);
+    border: 1px solid transparent;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 
+        0 4px 16px rgba(212, 175, 55, 0.15),
+        0 0 0 3px rgba(212, 175, 55, 0.2);
+    border-color: var(--accent-gold, #d4af37) !important;
+}
+
+/* Label flotante effect */
+input:focus + label,
+select:focus + label,
+textarea:focus + label {
+    transform: translateY(-20px) scale(0.85);
+    color: var(--accent-gold, #d4af37);
+}
+
+/* ─── 6. SCROLL-DRIVEN Y REVEAL PROGRESSIVO ─── */
+
+/* Elementos que entran al hacer scroll — usando animation-timeline */
+@supports (animation-timeline: scroll()) {
+    .section-title {
+        animation: fadeInLeft var(--ease-out-expo) both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 25%;
+    }
+
+    .content-card {
+        animation: fadeInUp var(--ease-out-expo) both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 20%;
+    }
+    
+    .card-clinical:nth-child(odd) {
+        animation: fadeInLeft var(--ease-out-expo) both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 25%;
+    }
+    
+    .card-clinical:nth-child(even) {
+        animation: fadeInRight var(--ease-out-expo) both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 25%;
+    }
+}
+
+/* ─── 7. DELAYS ESCALONADOS ORGÁNICOS ─── */
+
+/* Delays no uniformes para efecto natural */
+.toc-item:nth-child(1)  { animation: fadeInLeft 0.45s 0.08s var(--ease-out-expo) both; }
+.toc-item:nth-child(2)  { animation: fadeInLeft 0.45s 0.14s var(--ease-out-expo) both; }
+.toc-item:nth-child(3)  { animation: fadeInLeft 0.45s 0.22s var(--ease-out-expo) both; }
+.toc-item:nth-child(4)  { animation: fadeInLeft 0.45s 0.30s var(--ease-out-expo) both; }
+.toc-item:nth-child(5)  { animation: fadeInLeft 0.45s 0.38s var(--ease-out-expo) both; }
+.toc-item:nth-child(6)  { animation: fadeInLeft 0.45s 0.48s var(--ease-out-expo) both; }
+.toc-item:nth-child(7)  { animation: fadeInLeft 0.45s 0.56s var(--ease-out-expo) both; }
+.toc-item:nth-child(8)  { animation: fadeInLeft 0.45s 0.64s var(--ease-out-expo) both; }
+.toc-item:nth-child(9)  { animation: fadeInLeft 0.45s 0.72s var(--ease-out-expo) both; }
+.toc-item:nth-child(10) { animation: fadeInLeft 0.45s 0.82s var(--ease-out-expo) both; }
+.toc-item:nth-child(11) { animation: fadeInLeft 0.45s 0.92s var(--ease-out-expo) both; }
+
+/* Grid items staggered */
+.grid > *:nth-child(1) { animation-delay: 0.05s; }
+.grid > *:nth-child(2) { animation-delay: 0.15s; }
+.grid > *:nth-child(3) { animation-delay: 0.28s; }
+.grid > *:nth-child(4) { animation-delay: 0.42s; }
+.grid > *:nth-child(5) { animation-delay: 0.58s; }
+.grid > *:nth-child(6) { animation-delay: 0.75s; }
+
+/* ─── 8. CLASES DE UTILIDAD EXPANDIDAS ─── */
+
+.anim-fade-in       { animation: fadeIn 0.7s var(--ease-out-expo) both; }
+.anim-fade-up       { animation: fadeInUp 0.7s var(--ease-out-expo) both; }
+.anim-fade-up-soft  { animation: fadeInUpSoft 0.6s var(--ease-out-expo) both; }
+.anim-fade-left     { animation: fadeInLeft 0.7s var(--ease-out-expo) both; }
+.anim-fade-right    { animation: fadeInRight 0.7s var(--ease-out-expo) both; }
+.anim-scale         { animation: scaleIn 0.6s var(--ease-out-expo) both; }
+.anim-bounce        { animation: bounce-subtle 2.5s infinite; }
+.anim-pulse-glow    { animation: pulse-glow 2s infinite; }
+.anim-float         { animation: float 6s ease-in-out infinite; }
+.anim-shadow-morph  { animation: shadowMorph 4s ease-in-out infinite; }
+.anim-reveal        { animation: revealCenter 0.6s var(--ease-out-expo) both; }
+.anim-shimmer       { 
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+}
+
+/* Hover utilities */
+.hover-lift {
+    transition: transform 0.35s var(--ease-spring), box-shadow 0.4s var(--ease-out-expo);
+}
+.hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+.hover-scale {
+    transition: transform 0.35s var(--ease-spring);
+}
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-glow {
+    transition: box-shadow 0.4s var(--ease-out-expo);
+}
+.hover-glow:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* ─── 9. MICRO-INTERACCIONES ESPECIALES ─── */
+
+/* Ripple effect en botones */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s var(--ease-out-expo), height 0.6s var(--ease-out-expo);
+}
+
+.btn-ripple:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Magnetic hover effect placeholder */
+.magnetic {
+    transition: transform 0.3s var(--ease-out-expo);
+}
+
+/* Skeleton loading animation */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* Toast notification slide */
+.toast-enter {
+    animation: fadeInRight 0.4s var(--ease-out-back) both;
+}
+
+.toast-exit {
+    animation: fadeInRight 0.3s var(--ease-in-out-smooth) reverse both;
+}
+
+/* ─── 10. PREFERENCIAS DE MOVIMIENTO REDUCIDO ─── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

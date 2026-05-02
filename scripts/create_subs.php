@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
@@ -31,6 +31,6 @@ try {
     echo "✅ SUBGERENTES CREADOS.\n";
 
 } catch (Exception $e) {
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    echo "âŒ ERROR: " . $e->getMessage() . "\n";
 }
 ?>

@@ -1,9 +1,9 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 $db = Database::getInstance();
 
-echo "=== DIAGNÓSTICO ACTUAL ===\n";
+echo "=== DIAGNí“STICO ACTUAL ===\n";
 $stmt = $db->query("
     SELECT u.id, u.usuario, u.rol, u.sede_id, s.nombre as sede_nombre 
     FROM usuarios u 
@@ -47,7 +47,7 @@ $password_hash = password_hash('ips2025', PASSWORD_DEFAULT);
 foreach ($ips_map as $username => $sede_nombre) {
     $sede_id = $sede_ids[$sede_nombre] ?? null;
     if (!$sede_id) {
-        echo "  ⚠️  Sede no encontrada: $sede_nombre\n";
+        echo "  âš ï¸  Sede no encontrada: $sede_nombre\n";
         continue;
     }
 
@@ -66,7 +66,7 @@ foreach ($ips_map as $username => $sede_nombre) {
         ");
         $nombre_sede = strtoupper($sede_nombre);
         $upd->execute([$password_hash, $sede_id, "Jefe $sede_nombre", $existing]);
-        echo "  ✅ ACTUALIZADO: $username → Sede: $sede_nombre (ID=$sede_id)\n";
+        echo "  ✅ ACTUALIZADO: $username â†’ Sede: $sede_nombre (ID=$sede_id)\n";
     } else {
         // Insertar nuevo
         $ins = $db->prepare("
@@ -80,11 +80,11 @@ foreach ($ips_map as $username => $sede_nombre) {
             "$username@esefjl.gov.co",
             $sede_id
         ]);
-        echo "  ✅ CREADO: $username → Sede: $sede_nombre (ID=$sede_id)\n";
+        echo "  ✅ CREADO: $username â†’ Sede: $sede_nombre (ID=$sede_id)\n";
     }
 }
 
-echo "\n=== VERIFICACIÓN FINAL ===\n";
+echo "\n=== VERIFICACIí“N FINAL ===\n";
 $final = $db->query("
     SELECT u.usuario, u.rol, u.activo, s.nombre as sede, s.id as sede_id
     FROM usuarios u 

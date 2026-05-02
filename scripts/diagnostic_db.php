@@ -1,9 +1,9 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
     $db = Database::getInstance();
-    echo "🔍 Verificando Esquema...\n";
+    echo "ðŸ” Verificando Esquema...\n";
 
     // 1. Crear tabla de detalles si no existe
     $db->exec("
@@ -25,10 +25,10 @@ try {
     $t1 = microtime(true);
     $db->query("SELECT COUNT(*) FROM inventario")->fetch();
     $t2 = microtime(true);
-    echo "⚡ Velocidad DB: " . round(($t2 - $t1) * 1000, 2) . "ms\n";
+    echo "âš¡ Velocidad DB: " . round(($t2 - $t1) * 1000, 2) . "ms\n";
 
     echo "✅ Todo operativo.";
 
 } catch (Exception $e) {
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    echo "âŒ ERROR: " . $e->getMessage() . "\n";
 }

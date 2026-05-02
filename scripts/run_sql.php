@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
@@ -7,6 +7,6 @@ try {
     $db->exec($sql);
     echo "✅ SQL ejecutado correctamente.\n";
 } catch (Exception $e) {
-    echo "❌ Error SQL: " . $e->getMessage();
+    echo "âŒ Error SQL: " . $e->getMessage();
 }
 ?>

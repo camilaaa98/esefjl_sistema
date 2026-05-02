@@ -1,0 +1,19 @@
+# Configuración de Seguridad ESEFJL
+Options -Indexes
+
+# Bloquear acceso a archivos sensibles
+<FilesMatch "\.(db|sql|env|py|sh|docx|xlsx|zip)$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear acceso a carpetas de sistema
+RedirectMatch 403 ^/(app|resources|database|scripts)/
+
+# Motor de Reescritura para URLs Amigables
+RewriteEngine On
+RewriteBase /YUDI_CONSTANZA/farmacia/esefjl/
+
+# Redirigir todo a public/index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/index.php [L,QSA]

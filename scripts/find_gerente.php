@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 try {
     $db = Database::getInstance();
@@ -6,9 +6,9 @@ try {
     if($user) {
         echo "✅ USUARIO ENCONTRADO: {$user['username']} con rol de {$user['rol']}\n";
     } else {
-        echo "❌ USUARIO NO ENCONTRADO: El gerente no está en la base de datos.\n";
+        echo "âŒ USUARIO NO ENCONTRADO: El gerente no está en la base de datos.\n";
     }
 } catch (Exception $e) {
-    echo "❌ Error: " . $e->getMessage();
+    echo "âŒ Error: " . $e->getMessage();
 }
 ?>

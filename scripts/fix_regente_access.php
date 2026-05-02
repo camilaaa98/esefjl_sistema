@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
@@ -29,5 +29,5 @@ try {
     echo "✅ Acceso Regente Reparado: regente_flo / Ese2026*\n";
 
 } catch (Exception $e) {
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    echo "âŒ ERROR: " . $e->getMessage() . "\n";
 }

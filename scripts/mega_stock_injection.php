@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
     $db = Database::getInstance();
     $db->beginTransaction();
 
-    echo "📦 INICIANDO INYECCIÓN MASIVA DE STOCK (100,000 UND POR PRODUCTO CRÍTICO)...\n";
+    echo "ðŸ“¦ INICIANDO INYECCIí“N MASIVA DE STOCK (100,000 UND POR PRODUCTO CRíTICO)...\n";
 
     // 1. Obtener IDs de los productos especializados inyectados recientemente
     $productos_nombres = [
@@ -44,9 +44,9 @@ try {
     }
 
     $db->commit();
-    echo "✅ ÉXITO: Se han inyectado 1,000,000 de unidades totales (100k por ítem) en el Almacén Central.\n";
+    echo "✅ í‰XITO: Se han inyectado 1,000,000 de unidades totales (100k por ítem) en el Almacén Central.\n";
 
 } catch (Exception $e) {
     if (isset($db)) $db->rollBack();
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    echo "âŒ ERROR: " . $e->getMessage() . "\n";
 }

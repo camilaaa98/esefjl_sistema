@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/core/Database.php';
 
 try {
     $db = Database::getInstance();
     $db->beginTransaction();
 
-    echo "📊 RE-INICIANDO CARGA MASIVA (Versión Corregida)...\n";
+    echo "ðŸ“Š RE-INICIANDO CARGA MASIVA (Versión Corregida)...\n";
 
     // 1. Obtener IDs exactos
     $rolesData = $db->query("SELECT id, nombre FROM roles")->fetchAll(PDO::FETCH_KEY_PAIR);
@@ -23,7 +23,7 @@ try {
     $db->exec("DELETE FROM usuarios WHERE username NOT IN ('admin', 'jefe_solita');");
 
     // 2. Generar 1,000 Pacientes
-    echo "👥 Creando 1,000 pacientes...\n";
+    echo "ðŸ‘¥ Creando 1,000 pacientes...\n";
     $stmtPac = $db->prepare("INSERT INTO pacientes (documento, nombres, apellidos, eps, regimen, es_desplazado, sisben) VALUES (?, ?, ?, ?, ?, ?, ?)");
     
     for($i = 1; $i <= 1000; $i++) {
@@ -38,7 +38,7 @@ try {
     }
 
     // 3. Generar 500 Funcionarios
-    echo "💼 Creando 500 funcionarios jerárquicos...\n";
+    echo "ðŸ’¼ Creando 500 funcionarios jerárquicos...\n";
     $stmtUser = $db->prepare("INSERT INTO usuarios (documento, nombres, apellidos, username, password, rol_id, sede_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $pass = password_hash('Ese2026*', PASSWORD_DEFAULT);
 
@@ -76,10 +76,10 @@ try {
     }
 
     $db->commit();
-    echo "✅ ÉXITO TOTAL: 1.500 registros operativos cargados.\n";
+    echo "✅ í‰XITO TOTAL: 1.500 registros operativos cargados.\n";
 
 } catch (Exception $e) {
     if (isset($db)) $db->rollBack();
-    echo "❌ ERROR: " . $e->getMessage() . "\n";
+    echo "âŒ ERROR: " . $e->getMessage() . "\n";
 }
 ?>
