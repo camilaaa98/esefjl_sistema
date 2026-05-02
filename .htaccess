@@ -11,7 +11,7 @@ RedirectMatch 403 ^/(app|resources|database|scripts)/
 
 # Motor de Reescritura para URLs Amigables
 RewriteEngine On
-RewriteBase /YUDI_CONSTANZA/farmacia/esefjl/
+# RewriteBase eliminado para compatibilidad multiplataforma (Render/WAMP)
 
 # Redirigir todo a public/index.php
 RewriteCond %{REQUEST_FILENAME} !-f
