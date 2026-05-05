@@ -1,4 +1,4 @@
-﻿# Dependencias y temporales
+# Dependencias y temporales
 node_modules/
 scratch/
 vendor/
@@ -12,7 +12,7 @@ database/sqlite_*.db
 database/esefjl.db
 
 # Configuración sensible
-app/config/config.php
+# app/config/config.php (Removed from ignore to allow Render deployment)
 app/config/env.php
 .env
 
