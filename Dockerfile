@@ -7,11 +7,13 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_pgsql \
     && a2enmod rewrite
 
-# Configurar Apache para permitir .htaccess (AllowOverride All)
-RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+# Configurar Apache para apuntar a la carpeta public (Mejor seguridad y URLs limpias)
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Configurar ServerName para evitar warnings
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+# Habilitar mod_rewrite
+RUN a2enmod rewrite
 
 # Copiamos todos los archivos del proyecto
 COPY . /var/www/html/
