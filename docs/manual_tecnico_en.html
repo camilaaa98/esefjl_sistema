@@ -41,13 +41,14 @@
             <h2>1. General Architecture and Technology Stack</h2>
             <p>The <strong>ESEFJL Pharmacy</strong> ecosystem has been structured under a <strong>"Robust Simplicity"</strong> philosophy. The system allows efficient execution on both local servers (WAMP) and distributed cloud infrastructures, optimizing performance under limited hardware conditions.</p>
             
-            <h3>Core Technology Stack:</h3>
+            <h3>ESEFJL Pharmacy Technology Stack:</h3>
             <ul>
                 <li><strong>Processing:</strong> PHP 8.2+ with optimized Zend engine.</li>
                 <li><strong>Persistence:</strong> Data Abstraction Layer (PDO) compatible with SQLite and PostgreSQL.</li>
                 <li><strong>Frontend:</strong> "Native-Web" architecture (ES2022 + CSS Custom Properties). No heavy external dependencies to ensure instant loading in limited connectivity zones (2G/3G).</li>
                 <li><strong>Visual Identity:</strong> Design system based on medical color psychology (Forest Green & Ivory White).</li>
             </ul>
+            <img src="../img/screenshots/dashboard_view.png" alt="Architecture Dashboard" class="responsive-img">
         </section>
 
         <section id="patrones" class="content-card container">
@@ -120,6 +121,7 @@
 
             <h3>Transactional Logic:</h3>
             <p>Each medication output recorded in the <code>entregas</code> table triggers a logical process (trigger or repository method) that updates the stock in the <code>inventario</code> table, guaranteeing the integrity of balances by <code>sede_id</code>.</p>
+            <img src="../img/screenshots/sedes_view.png" alt="Multi-Branch Structure" class="responsive-img">
         </section>
 
         <section id="seguridad" class="content-card container">
@@ -177,5 +179,6 @@
         </footer>
     </main>
     <script src="../assets/js/animations.js" defer></script>
+    <script src="../assets/js/docs_animations.js" defer></script>
 </body>
 </html>

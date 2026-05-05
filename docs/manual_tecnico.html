@@ -21,7 +21,8 @@
             <li><a href="#db">3. Diccionario de Datos</a></li>
             <li><a href="#seguridad">4. Protocolos de Ciberseguridad</a></li>
             <li><a href="#despliegue">5. Despliegue y Escalabilidad</a></li>
-            <li><a href="#mantenimiento">6. Optimización y Backups</a></li>
+            <li><a href="#frontend">6. Vistas del Frontend</a></li>
+            <li><a href="#mantenimiento">7. Optimización y Backups</a></li>
         </ul>
     </nav>
     <main class="manual-main">
@@ -31,22 +32,23 @@
             <p style="font-style: italic; color: #555;">Diseño Basado en Principios de Alta Disponibilidad y Resiliencia en Territorios de Baja Conectividad</p>
             <div style="margin-top: 20px;">
                 <span class="tech-tag">PHP 8.2</span>
-                <span class="tech-tag">MVC Architecture</span>
-                <span class="tech-tag">PDO Layer</span>
-                <span class="tech-tag">Mobile-First UI</span>
+                <span class="tech-tag">Arquitectura MVC</span>
+                <span class="tech-tag">Capa PDO</span>
+                <span class="tech-tag">Diseño Responsivo Móvil</span>
             </div>
         </header>
-
+        <section id="arquitectura" class="content-card container">
             <h2>1. Arquitectura General y Stack Tecnológico</h2>
             <p>El ecosistema <strong>Farmacia ESEFJL</strong> ha sido estructurado bajo una filosofía de <strong>"Simplicidad Robusta"</strong>. El sistema permite una ejecución eficiente tanto en servidores locales (WAMP) como en infraestructuras distribuidas en la nube, optimizando el rendimiento en condiciones de hardware limitadas.</p>
             
-            <h3>Core Tecnológico:</h3>
+            <h3>Núcleo Tecnológico de Farmacia ESEFJL:</h3>
             <ul>
                 <li><strong>Procesamiento:</strong> PHP 8.2+ con motor Zend optimizado.</li>
                 <li><strong>Persistencia:</strong> Capa de abstracción de datos (PDO) compatible con SQLite y PostgreSQL.</li>
                 <li><strong>Frontend:</strong> Arquitectura "Native-Web" (ES2022 + CSS Custom Properties). Sin dependencias externas pesadas para garantizar carga instantánea en zonas de conectividad limitada (2G/3G).</li>
                 <li><strong>Identidad Visual:</strong> Sistema de diseño basado en la psicología del color médico (Forest Green & Ivory White).</li>
             </ul>
+            <img src="../img/screenshots/dashboard_view.png" alt="Arquitectura Dashboard" class="responsive-img">
         </section>
 
         <section id="patrones" class="content-card container">
@@ -119,6 +121,7 @@
 
             <h3>Lógica Transaccional:</h3>
             <p>Cada salida de medicamento registrada en la tabla <code>entregas</code> activa un proceso lógico (trigger o método de repositorio) que actualiza el stock en la tabla <code>inventario</code>, garantizando la integridad de los saldos por <code>sede_id</code>.</p>
+            <img src="../img/screenshots/sedes_view.png" alt="Estructura Multi-Sede" class="responsive-img">
         </section>
 
         <section id="seguridad" class="content-card container">
@@ -157,10 +160,35 @@
             </ol>
         </section>
 
+        <section id="frontend" class="content-card container">
+            <h2>6. Interfaz de Usuario — Vistas del Frontend Real</h2>
+            <p>El frontend de <strong>Farmacia ESEFJL</strong> fue construido con tecnología nativa (HTML5, CSS3 + Custom Properties, JavaScript ES2022) bajo un principio de <strong>diseño médico responsivo</strong>, optimizado para pantallas de escritorio, tabletas y móviles. A continuación se presentan las vistas reales del sistema en producción.</p>
+
+            <h3>Vista 1: Panel de Control Principal (Dashboard)</h3>
+            <p>El tablero central concentra los indicadores clave: stock crítico por sede, semáforos de vencimiento y puntos de reorden activos. La paleta institucional verde-dorada facilita la lectura rápida en entornos clínicos de alta demanda.</p>
+            <img src="../img/screenshots/dashboard_view.png" alt="Dashboard Principal — Vista real Farmacia ESEFJL" class="responsive-img">
+
+            <h3>Vista 2: Gestión Multi-Sede</h3>
+            <p>La arquitectura multi-sede permite que cada IPS municipal opere con su propio inventario aislado. El administrador central puede alternar entre sedes desde un único panel sin cerrar sesión, respetando los controles de acceso por rol (RBAC).</p>
+            <img src="../img/screenshots/sedes_view.png" alt="Gestión Multi-Sede — Vista real Farmacia ESEFJL" class="responsive-img">
+
+            <h3>Vista 3: Control de Medicamentos Próximos a Vencer</h3>
+            <p>La vista de farmacovigilancia aplica el sistema de semaforización automática cada 24 horas. Los medicamentos se clasifican visualmente por color (rojo, naranja, verde) según su proximidad al vencimiento, permitiendo acciones preventivas inmediatas.</p>
+            <img src="../img/screenshots/vencidos_view.png" alt="Control de Vencidos — Vista real Farmacia ESEFJL" class="responsive-img">
+
+            <h3>Vista 4: Historial de Entregas y Trazabilidad</h3>
+            <p>Cada despacho queda registrado en el log de auditoría con sello de usuario, fecha, sede, lote y cantidad. Esta trazabilidad completa es el respaldo documental ante cualquier glosa administrativa o revisión de ente de control.</p>
+            <img src="../img/screenshots/historial_view.png" alt="Historial de Entregas — Vista real Farmacia ESEFJL" class="responsive-img">
+
+            <div class="alert alert-important" style="background: #e8f5e9; border-left: 5px solid #2e7d32; padding: 20px; border-radius: 10px; margin-top: 30px;">
+                <strong>Nota de Diseño:</strong> Todas las vistas siguen el estándar <em>Mobile-First</em> con breakpoints en 480px, 768px y 1024px, garantizando operabilidad en dispositivos móviles de bajo costo usados por el personal de las IPS municipales del Caquetá.
+            </div>
+        </section>
+
         <section id="mantenimiento" class="content-card container">
-            <h2>6. Protocolo de Mantenimiento y Backups</h2>
+            <h2>7. Protocolo de Mantenimiento y Backups</h2>
             <p>La integridad de la información es el activo más valioso de la organización.</p>
-            
+
             <h3>Políticas de Respaldo:</h3>
             <ul>
                 <li><strong>Copia Fría:</strong> Respaldo diario del archivo <code>core/esefjl.db</code> (En caso de usar SQLite).</li>
@@ -176,5 +204,6 @@
         </footer>
     </main>
     <script src="../assets/js/animations.js" defer></script>
+    <script src="../assets/js/docs_animations.js" defer></script>
 </body>
 </html>
