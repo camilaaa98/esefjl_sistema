@@ -2,7 +2,7 @@
 // 1. Configuración de errores GLOBAL y Buffer de salida
 ob_start();
 header('Content-Type: text/html; charset=utf-8');
-require_once '../app/config/config.php';
+require_once __DIR__ . '/../app/config/config.php';
 
 if (defined('APP_ENV') && APP_ENV === 'production') {
     ini_set('display_errors', 0);
@@ -13,11 +13,11 @@ if (defined('APP_ENV') && APP_ENV === 'production') {
 }
 
 // 2. Cargar Dependencias
-require_once '../app/Middleware/SecurityHeaders.php';
-require_once '../app/Middleware/SessionManager.php';
-require_once '../app/Middleware/CsrfMiddleware.php';
-require_once '../app/Middleware/RateLimiter.php';
-require_once '../app/config/Database.php';
+require_once __DIR__ . '/../app/Middleware/SecurityHeaders.php';
+require_once __DIR__ . '/../app/Middleware/SessionManager.php';
+require_once __DIR__ . '/../app/Middleware/CsrfMiddleware.php';
+require_once __DIR__ . '/../app/Middleware/RateLimiter.php';
+require_once __DIR__ . '/../app/config/Database.php';
 
 // 3. Aplicar Seguridad
 SecurityHeaders::apply();
