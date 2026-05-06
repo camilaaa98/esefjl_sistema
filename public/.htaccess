@@ -1,7 +1,0 @@
-# Configuración de Seguridad para la carpeta PUBLIC
-RewriteEngine On
-
-# Evitar bucles de redirección
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php [L,QSA]
