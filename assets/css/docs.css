@@ -1,0 +1,305 @@
+/* =====================================================================
+   DOCUMENTACIÓN PROFESIONAL ESEFJL - MANUALES TÉCNICO & USUARIO
+   Diseño APA 7ma Edición / Responsive / Institucional
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700;900&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+    --primary-color: #0d6e4e;
+    --primary-dark: #064e3b;
+    --secondary-color: #0d6e4e;
+    --accent-gold: #d4af37;
+    --text-body: #1e293b;
+    --text-light: #64748b;
+    --bg-body: #f8f9fa;
+    --bg-card: #ffffff;
+    --border-light: #e2e8f0;
+    --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'Consolas', monospace;
+    --max-width: 900px;
+    --nav-width: 240px;
+}
+
+/* === RESET & BASE === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text-body);
+    background: var(--bg-body);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* === LAYOUT CON SIDEBAR DE NAVEGACIÓN === */
+.manual-nav-body {
+    display: flex;
+    min-height: 100vh;
+}
+
+.manual-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--nav-width);
+    height: 100vh;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-light);
+    padding: 30px 20px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.manual-nav h2 {
+    font-family: var(--font-serif);
+    font-size: 1.1em;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+}
+
+.manual-nav p {
+    font-size: 0.75em;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.manual-nav hr {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin-bottom: 20px;
+}
+
+.manual-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.manual-nav li {
+    margin-bottom: 2px;
+}
+
+.manual-nav a {
+    display: block;
+    padding: 8px 12px;
+    font-size: 0.82em;
+    font-weight: 600;
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 8px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.manual-nav a:hover,
+.manual-nav a.active {
+    color: var(--primary-color);
+    background: rgba(13, 110, 78, 0.05);
+    border-left-color: var(--primary-color);
+}
+
+.manual-main {
+    margin-left: var(--nav-width);
+    flex: 1;
+    max-width: calc(100% - var(--nav-width));
+    padding: 50px 60px 80px;
+}
+
+/* === HEADER PRINCIPAL === */
+.manual-header {
+    text-align: center;
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+}
+
+.manual-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.2em;
+    font-weight: 900;
+    color: var(--primary-dark);
+    line-height: 1.25;
+    margin: 15px 0;
+}
+
+/* === SECCIONES DE CONTENIDO === */
+.content-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 40px 45px;
+    margin-bottom: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.content-card h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.content-card h3 {
+    font-family: var(--font-sans);
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 25px 0 12px;
+}
+
+.content-card p {
+    text-align: justify;
+    text-indent: 2em;
+    margin-bottom: 16px;
+    line-height: 1.8;
+}
+
+.content-card ul, .content-card ol {
+    padding-left: 2em;
+    margin-bottom: 16px;
+}
+
+.content-card li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+/* === TABLAS PROFESIONALES === */
+.tech-table, .checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 30px;
+    font-size: 0.9em;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.tech-table thead, .checklist-table thead {
+    background: var(--primary-dark);
+    color: white;
+}
+
+.tech-table th, .checklist-table th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tech-table td, .checklist-table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+}
+
+.tech-table tbody tr:nth-child(even),
+.checklist-table tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.tech-table tbody tr:hover,
+.checklist-table tbody tr:hover {
+    background: rgba(13, 110, 78, 0.04);
+}
+
+.tech-table code, .checklist-table code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+/* === CODE BLOCKS === */
+.code-block {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px 24px;
+    border-radius: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    overflow-x: auto;
+    margin: 20px 0;
+    border-left: 5px solid var(--secondary-color);
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* === TECH TAGS === */
+.tech-tag {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.72em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 2px;
+}
+
+/* === ALERTAS === */
+.alert {
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.alert-important {
+    background: #fdeded;
+    border-left: 5px solid #d32f2f;
+}
+
+/* === FOOTER === */
+footer {
+    text-align: center;
+    color: #888;
+    font-size: 0.85em;
+    margin-top: 80px;
+    padding: 40px 60px;
+    border-top: 2px solid #eee;
+    background: #fafafa;
+    border-radius: 0 0 16px 16px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .manual-nav {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+    }
+    .manual-nav-body {
+        flex-direction: column;
+    }
+    .manual-main {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 30px 20px;
+    }
+    .content-card {
+        padding: 25px 20px;
+    }
+}
+
+@media print {
+    .manual-nav { display: none; }
+    .manual-main { margin-left: 0; max-width: 100%; padding: 0; }
+    .content-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+}

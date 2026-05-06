@@ -137,74 +137,63 @@ $all_sedes = $is_directivo ? $db->query("SELECT id, nombre FROM sedes ORDER BY n
             <?php else: ?>
                 <div style="background:#fff; border-radius:2rem; box-shadow:0 20px 40px -10px rgba(15,23,42,.1); border:1px solid #fecaca; overflow:hidden;">
                     <!-- CABECERA -->
-                    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr 0.9fr; background:#1a202c; border-bottom:2px solid #d4af37;">
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:left;">Insumo / Detalle Técnico</div>
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:center;">Sede Origen</div>
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:center;">Stock Actual</div>
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:center;">Fecha Vencimiento</div>
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:center;">Acción</div>
+                    <div class="table-clinical-wrapper">
+                        <table class="table-clinical">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Insumo / Lote Crítico</th>
+                                    <th class="text-center">Sede Origen</th>
+                                    <th class="text-center">Stock Vencido</th>
+                                    <th class="text-center">Vencimiento</th>
+                                    <th class="text-center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($vencidos as $item): 
+                                    $img = $item['imagen_url'];
+                                    if (!$img) $img = 'https://img.icons8.com/color/96/pill.png';
+                                    $dateStr = $item['fecha_vencimiento'] ? date('d/m/Y', strtotime($item['fecha_vencimiento'])) : 'N/A';
+                                    $daysAgo = $item['fecha_vencimiento'] ? floor((time() - strtotime($item['fecha_vencimiento'])) / 86400) : 0;
+                                ?>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell-detail">
+                                            <div class="product-img-container" onclick="openPreview('<?= BASE_URL . '/' . $img ?>', '<?= htmlspecialchars($item['nombre_generico']) ?>')">
+                                                <img src="<?= BASE_URL . '/' . $img ?>" onerror="this.src='https://img.icons8.com/color/96/pill.png'">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <p class="text-sm font-black text-red-600 uppercase italic leading-none mb-1"><?= htmlspecialchars($item['nombre_generico']) ?></p>
+                                                <p class="text-[10px] text-slate-400 font-bold mb-2">LOTE: <?= htmlspecialchars($item['lote']) ?> — RETIRO REQUERIDO</p>
+                                                
+                                                <div class="product-info-grid">
+                                                    <span class="info-tag tag-perishable">💊 <?= htmlspecialchars($item['presentacion'] ?? 'N/A') ?></span>
+                                                    <span class="info-tag tag-perishable">📏 <?= htmlspecialchars($item['tamano'] ?? 'N/A') ?></span>
+                                                    <span class="info-tag tag-perishable">👨‍👩‍👧 <?= htmlspecialchars($item['target_audience'] ?? 'N/A') ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="px-3 py-1 bg-slate-900 text-[#fca5a5] text-[10px] font-black rounded-lg italic"><?= htmlspecialchars($item['sede_nombre']) ?></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="text-xl font-black text-red-600 italic"><?= number_format($item['stock_actual']) ?></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="bg-red-50 border border-red-200 rounded-lg p-2 inline-block">
+                                            <p class="text-sm font-black text-red-600 leading-none"><?= $dateStr ?></p>
+                                            <p class="text-[8px] font-bold text-red-400 uppercase mt-1">Hace <?= $daysAgo ?> días</p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn-institutional !bg-red-600 hover:!bg-red-700 !text-white !px-4 !py-2 !text-[9px]">Dar de Baja</button>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- FILAS -->
-                    <?php foreach ($vencidos as $item):
-                        $img = isset($item['imagen_url']) ? $item['imagen_url'] : null;
-                        if (!$img || strpos($img, 'unsplash') !== false || strpos($img, 'icons8') !== false) {
-                            $name = strtolower($item['nombre_generico']);
-                            if (strpos($name, 'acetaminofen') !== false) $img = BASE_URL . '/img/productos/acetaminofen.png';
-                            elseif (strpos($name, 'loratadina') !== false) $img = BASE_URL . '/img/productos/loratadina.png';
-                            elseif (strpos($name, 'salina') !== false) $img = BASE_URL . '/img/productos/solucion_salina.png';
-                            elseif (strpos($name, 'amoxicilina') !== false) $img = BASE_URL . '/img/productos/amoxicilina.png';
-                            elseif (strpos($name, 'aciclovir') !== false) {
-                                if (strpos($name, 'crema') !== false || strpos($name, 'ungüento') !== false) {
-                                    $img = 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&q=80&w=400';
-                                } else {
-                                    $img = 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=400';
-                                }
-                            }
-                            else $img = 'https://img.icons8.com/color/96/pill.png';
-                        }
-                        // Fecha coloreada — siempre es vencido en esta vista
-                        $dateStr = $item['fecha_vencimiento'] ? date('d/m/Y', strtotime($item['fecha_vencimiento'])) : 'N/A';
-                        $daysAgo = $item['fecha_vencimiento'] ? floor((time() - strtotime($item['fecha_vencimiento'])) / 86400) : 0;
-                    ?>
-                    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr 0.9fr; border-bottom:1px solid #fef2f2; align-items:center;" onmouseover="this.style.background='#fff5f5'" onmouseout="this.style.background='#fff'">
-                        <!-- COLUMNA 1: INSUMO -->
-                        <div style="padding:10px 12px; display:flex; align-items:center; gap:10px;">
-                            <img src="<?= $img ?>" onerror="this.src='https://img.icons8.com/color/96/pill.png'" style="width:48px; height:48px; border-radius:10px; object-fit:cover; flex-shrink:0; border:1px solid #fecaca; box-shadow:0 2px 8px rgba(220,38,38,.1);">
-                            <div style="min-width:0; flex:1;">
-                                <p style="font-size:11px; font-weight:900; color:#dc2626; text-transform:uppercase; font-style:italic; margin:0 0 3px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= $item['nombre_generico'] ?></p>
-                                <p style="font-size:9px; color:#94a3b8; margin:0 0 5px 0;">Lote vencido — retiro inmediato requerido.</p>
-                                <div style="display:flex; gap:5px; flex-wrap:wrap;">
-                                    <span style="font-size:8px; font-weight:900; color:#fff; background:#ef4444; padding:2px 6px; border-radius:4px; text-transform:uppercase;"><?= $item['laboratorio'] ?></span>
-                                    <span style="font-size:8px; font-weight:900; color:#dc2626; background:#fef2f2; border:1px solid #fecaca; padding:2px 6px; border-radius:4px; text-transform:uppercase;">LOTE: <?= $item['lote'] ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- COLUMNA 2: SEDE -->
-                        <div style="padding:10px 12px; text-align:center;">
-                            <div style="background:#1e293b; border-radius:8px; padding:6px 10px; display:inline-block;">
-                                <p style="font-size:10px; font-weight:900; color:#fca5a5; text-transform:uppercase; font-style:italic; margin:0; letter-spacing:.05em;"><?= $item['sede_nombre'] ?></p>
-                            </div>
-                        </div>
-                        <!-- COLUMNA 3: STOCK -->
-                        <div style="padding:10px 12px; text-align:center;">
-                            <span style="font-size:20px; font-weight:900; color:#dc2626; font-style:italic;"><?= number_format($item['stock_actual']) ?></span>
-                            <p style="font-size:8px; color:#fca5a5; text-transform:uppercase; font-weight:700; margin:2px 0 0 0;">Uds. Vencidas</p>
-                        </div>
-                        <!-- COLUMNA 4: FECHA VENCIMIENTO -->
-                        <div style="padding:10px 12px; text-align:center;">
-                            <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:6px 10px; display:inline-block; min-width:90px;">
-                                <p style="font-size:13px; font-weight:900; color:#dc2626; margin:0; letter-spacing:-.02em;"><?= $dateStr ?></p>
-                                <p style="font-size:8px; font-weight:900; color:#ef4444; text-transform:uppercase; margin:2px 0 0 0;">VENCIDO · <?= $daysAgo ?>d atrás</p>
-                            </div>
-                        </div>
-                        <!-- COLUMNA 5: ACCIÓN -->
-                        <div style="padding:10px 12px; text-align:center;">
-                            <button style="background:#dc2626; color:#fff; border:none; padding:8px 14px; border-radius:10px; font-size:10px; font-weight:900; text-transform:uppercase; cursor:pointer; transition:background .2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#dc2626'">Dar de Baja</button>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
                 </div>
-
 
                     <!-- Paginación Centrada -->
                     <div class="px-8 py-8 bg-[#111111] border-t border-[#d4af37]/20">
@@ -240,6 +229,28 @@ $all_sedes = $is_directivo ? $db->query("SELECT id, nombre FROM sedes ORDER BY n
             <?php endif; ?>
         </main>
     </div>
+
+    <!-- MODAL DE PREVIEW -->
+    <div id="imageModal" class="modal-preview">
+        <span class="modal-close" onclick="closePreview()">&times;</span>
+        <img class="modal-preview-content" id="modalImg">
+        <div id="modalCaption" class="text-center mt-4 text-white font-bold uppercase tracking-widest text-sm"></div>
+    </div>
+
+    <script>
+        function openPreview(src, title) {
+            document.getElementById('imageModal').style.display = "block";
+            document.getElementById('modalImg').src = src;
+            document.getElementById('modalCaption').innerHTML = title;
+        }
+        function closePreview() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+        window.onclick = function(event) {
+            let modal = document.getElementById('imageModal');
+            if (event.target == modal) closePreview();
+        }
+    </script>
     <script src="<?= BASE_URL ?>/public/js/inicio.js"></script>
 </body>
 </html>

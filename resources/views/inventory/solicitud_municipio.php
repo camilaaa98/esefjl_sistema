@@ -128,7 +128,7 @@ $productos_todos = $db->query("SELECT * FROM productos ORDER BY nombre_generico 
                         </div>
 
                         <button type="submit" name="btnSolicitudManual" class="w-full py-3 bg-slate-800 text-white font-semibold rounded-lg shadow-md transition-all hover:bg-slate-700 hover:scale-[1.02] active:scale-95 uppercase text-xs tracking-wider">
-                            ðŸ“¦ Enviar Solicitud al CEDIS
+                            📦 Enviar Solicitud al CEDIS
                         </button>
                     </form>
 

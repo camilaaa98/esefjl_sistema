@@ -1,11 +1,11 @@
-<?php
+ï»¿<?php
 require_once __DIR__ . '/BaseRepository.php';
 
 class InventoryRepository extends BaseRepository {
     
     public function getFilteredStock($filters = [], $limit = 10, $offset = 0) {
         $sql = "SELECT p.id, p.nombre_generico, p.nombre_comercial, p.concentracion_presentacion, p.laboratorio,
-                       p.requiere_frio, p.es_delicado, p.imagen_url, p.valor_unitario, p.descripcion_breve,
+                       p.requiere_frio, p.es_delicado, p.imagen_url, p.valor_unitario, p.descripcion_breve, p.presentacion, p.tamano, p.target_audience, p.perecedero,
                        i.stock_actual, i.stock_minimo, i.fecha_vencimiento, i.lote, s.nombre as sede_nombre, s.stock_minimo_referencia,
                        s.id as sede_id
                 FROM productos p 
@@ -32,7 +32,7 @@ class InventoryRepository extends BaseRepository {
         $driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
         $today = ($driver === 'sqlite') ? "DATE('now')" : "CURRENT_DATE";
 
-        // EXCLUSIí“N AUTOMíTICA DE VENCIDOS (Regla ESEFJL)
+        // EXCLUSIÃ­â€œN AUTOMÃ­ÂTICA DE VENCIDOS (Regla ESEFJL)
         $where[] = "(i.fecha_vencimiento IS NULL OR i.fecha_vencimiento >= $today)";
 
         if ($where) {
@@ -67,7 +67,7 @@ class InventoryRepository extends BaseRepository {
         $driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
         $today = ($driver === 'sqlite') ? "DATE('now')" : "CURRENT_DATE";
 
-        // EXCLUSIí“N AUTOMíTICA DE VENCIDOS
+        // EXCLUSIÃ­â€œN AUTOMÃ­ÂTICA DE VENCIDOS
         $where[] = "(i.fecha_vencimiento IS NULL OR i.fecha_vencimiento >= $today)";
 
         if ($where) {
@@ -79,7 +79,7 @@ class InventoryRepository extends BaseRepository {
     public function getExpiringSoon($days = 90, $sede_id = null) {
         $driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
         
-        // Lógica de cálculo de días compatible con ambos motores
+        // LÃ³gica de cÃ¡lculo de dÃ­as compatible con ambos motores
         if ($driver === 'sqlite') {
             $diffSql = "(julianday(i.fecha_vencimiento) - julianday('now'))";
         } else {
@@ -120,7 +120,7 @@ class InventoryRepository extends BaseRepository {
         $driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
         $today = ($driver === 'sqlite') ? "DATE('now')" : "CURRENT_DATE";
 
-        $sql = "SELECT i.*, p.nombre_generico, p.laboratorio, s.nombre as sede_nombre, prov.razon_social as proveedor_nombre
+        $sql = "SELECT i.*, p.nombre_generico, p.laboratorio, s.nombre as sede_nombre, prov.razon_social as proveedor_nombre, p.presentacion, p.tamano, p.target_audience, p.perecedero
                 FROM inventario i
                 JOIN productos p ON i.producto_id = p.id
                 JOIN sedes s ON i.sede_id = s.id
@@ -131,7 +131,7 @@ class InventoryRepository extends BaseRepository {
     }
 
     public function getFaltantesMunicipales() {
-        // Corrección de MAX() anidado: Usar CASE WHEN para compatibilidad universal
+        // CorrecciÃ³n de MAX() anidado: Usar CASE WHEN para compatibilidad universal
         $sql = "SELECT i.producto_id, 
                        SUM(CASE WHEN i.stock_actual < i.stock_minimo THEN i.stock_minimo - i.stock_actual ELSE 0 END) as total_faltante
                 FROM inventario i
@@ -147,4 +147,5 @@ class InventoryRepository extends BaseRepository {
         return $this->query($sql, [$id]);
     }
 }
+
 

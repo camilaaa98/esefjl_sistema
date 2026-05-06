@@ -19,12 +19,12 @@
     --medical-blue-light: #38bdf8;     /* Azul cielo */
     --medical-royal: #1e40af;          /* Azul royal */
     
-    /* Temática Amazónica Caquetá - Puerta de Oro */
-    --amazon-jungle: #16a34a;          /* Verde selva */
-    --amazon-dark: #0a1a0f;            /* Verde noche profunda */
-    --amazon-leaf: #22c55e;            /* Verde hoja */
-    --amazon-mist: rgba(22, 163, 74, 0.1);
-    --amazon-firefly: #a8d867;         /* Amarillo luciérnaga */
+    /* Temática Amazónica Caquetá - Puerta de Oro (Luxury Corporate) */
+    --amazon-jungle: #064e3b;          /* Verde esmeralda profundo */
+    --amazon-dark: #022c22;            /* Verde bosque noche */
+    --amazon-leaf: #059669;            /* Verde institucional */
+    --amazon-mist: rgba(6, 78, 59, 0.1);
+    --amazon-firefly: #fbbf24;         /* Oro luciérnaga */
     
     /* Grises sofisticados (no solo gris básico) */
     --gray-50: #f8fafc;               /* Blanco hueso */
@@ -43,8 +43,8 @@
     --bg-surface: #ffffff;
     --bg-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
     --bg-elevated: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
-    --bg-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    --bg-amazon: linear-gradient(160deg, #071a0e 0%, #0a2818 30%, #0d1f15 60%, #091a10 100%);
+    --bg-dark: linear-gradient(135deg, #022c22 0%, #0f172a 100%);
+    --bg-amazon: linear-gradient(160deg, #022c22 0%, #064e3b 40%, #022c22 100%);
     
     /* Textos con jerarquía */
     --text-primary: #0f172a;          /* Títulos importantes */

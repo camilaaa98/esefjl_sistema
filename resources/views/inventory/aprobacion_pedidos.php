@@ -53,7 +53,7 @@ $pedidos = $db->query("
             <div class="space-y-6">
                 <?php if (empty($pedidos)): ?>
                     <div class="py-32 text-center bg-white rounded-[2.5rem] border border-slate-100 shadow-xl">
-                        <div class="opacity-10 text-7xl mb-6">ðŸ“¦</div>
+                        <div class="opacity-10 text-7xl mb-6">📦</div>
                         <p class="text-slate-300 text-xs font-black italic tracking-[0.2em] uppercase">No hay solicitudes de reabastecimiento en cola.</p>
                     </div>
                 <?php endif; ?>

@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <option value="" class="text-slate-300 italic">--- SELECCIONAR BENEFICIARIO ---</option>
                             <?php foreach ($pacientes as $p): ?>
                                 <?php 
-                                    $info_regimen = $p['regimen'] ?? 'SIN Rí‰GIMEN';
+                                    $info_regimen = $p['regimen'] ?? 'SIN RÉGIMEN';
                                     if ($p['es_desplazado'] ?? false) $info_regimen = "EXENTO (Ley 1448)";
                                     else if ($info_regimen == 'SUBSIDIADO') $info_regimen = "EXENTO (Subsidiado)";
                                 ?>
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if ($resultado_entrega): ?>
                     <div class="mt-12 p-8 bg-slate-50 rounded-[2rem] border border-slate-100 relative group overflow-hidden">
                         <div class="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity">
-                            <span class="text-6xl text-[#111111]">ðŸ“±</span>
+                            <span class="text-6xl text-[#111111]">📱</span>
                         </div>
                         <span class="block text-[8px] font-black text-[#d4af37] uppercase tracking-[0.4em] mb-4 italic">Log de Comunicación Central</span>
                         <p class="text-[10px] font-bold text-slate-500 leading-relaxed italic border-l-4 border-l-[#d4af37] pl-6 py-2 group-hover:text-slate-800 transition-colors uppercase"><?php echo $resultado_entrega['preview'] ?? 'Mensajero SISFARMA en espera...'; ?></p>

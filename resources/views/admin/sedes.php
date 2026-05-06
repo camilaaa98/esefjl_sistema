@@ -115,7 +115,7 @@ $img_map = [
                 <div class="bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 overflow-hidden">
                     <div class="px-10 py-8 bg-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
                         <div>
-                            <h3 class="text-xl font-black text-[#d4af37] uppercase italic tracking-tighter">ðŸ“¦ Sede: <?= $selected_sede_data['nombre'] ?></h3>
+                            <h3 class="text-xl font-black text-[#d4af37] uppercase italic tracking-tighter">📦 Sede: <?= $selected_sede_data['nombre'] ?></h3>
                             <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Inventario Maestro Filtrado</p>
                         </div>
                     </div>

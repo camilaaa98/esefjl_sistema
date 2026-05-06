@@ -135,7 +135,7 @@ if ($end_page - $start_page < 2) $start_page = max(1, $end_page - 2);
                     <a href="sedes?sede_id=<?= $summary['id'] ?>" class="bg-white p-5 rounded-[2rem] shadow-lg border border-slate-100 hover:border-[#d4af37] transition-all group text-center relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-1 bg-[#d4af37]/10 group-hover:bg-[#d4af37] transition-all"></div>
                         <div class="flex justify-center items-start mb-3 relative">
-                            <span class="text-[10px] font-black text-[#111111] uppercase italic border-b-2 border-[#d4af37] tracking-tighter leading-none pb-1"><?= $summary['nombre'] ?></span>
+                            <span class="text-[10px] font-black text-[#111111] uppercase italic border-b-2 border-[#d4af37] tracking-tighter leading-none pb-1"><?= htmlspecialchars($summary['nombre']) ?></span>
                             <?php if ($summary['items_criticos'] > 0): ?>
                                 <span class="absolute -top-3 -right-2 w-5 h-5 flex items-center justify-center bg-red-600 text-white text-[9px] font-black rounded-full animate-pulse shadow-lg shadow-red-200">!</span>
                             <?php endif; ?>
@@ -183,96 +183,90 @@ if ($end_page - $start_page < 2) $start_page = max(1, $end_page - 2);
                     </form>
                 </header>
 
-                <div style="background:#fff; border-radius:2rem; box-shadow:0 20px 40px -10px rgba(15,23,42,.08); border:1px solid #e2e8f0; overflow:hidden;">
-                    <!-- CABECERA FIJA -->
-                    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr 0.9fr; background:#1a202c; border-bottom:2px solid #d4af37;">
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:left;">Insumo / Detalle Técnico</div>
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:center;">Valor Unitario</div>
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:center;">Stock Disponible</div>
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:center;">Vigilancia Sanitaria</div>
-                        <div style="padding:14px 12px; font-size:10px; font-weight:900; color:#d4af37; text-transform:uppercase; letter-spacing:.15em; text-align:center;">Acción</div>
+                    <div class="table-clinical-wrapper">
+                        <table class="table-clinical">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Insumo / Clasificación Técnica</th>
+                                    <th class="text-center">Valor Red</th>
+                                    <th class="text-center">Stock</th>
+                                    <th class="text-center">Vigilancia</th>
+                                    <th class="text-center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($all_ips_data as $item): 
+                                    $img = $item['imagen_url'];
+                                    // Validar si la primera letra es mayúscula o minúscula según el archivo real
+                                    if (!$img) $img = 'https://img.icons8.com/color/96/pill.png';
+                                ?>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell-detail">
+                                            <div class="product-img-container" onclick="openPreview('<?= BASE_URL . '/' . $img ?>', '<?= htmlspecialchars($item['nombre_generico']) ?>')">
+                                                <img src="<?= BASE_URL . '/' . $img ?>" onerror="this.src='https://img.icons8.com/color/96/pill.png'">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <p class="text-sm font-black text-slate-900 uppercase italic leading-none mb-1"><?= htmlspecialchars($item['nombre_generico']) ?></p>
+                                                <p class="text-[10px] text-slate-400 font-medium line-clamp-1 mb-2"><?= htmlspecialchars($item['descripcion_breve'] ?: 'Sin descripción adicional.') ?></p>
+                                                
+                                                <div class="product-info-grid">
+                                                    <span class="info-tag tag-gold">💊 <?= htmlspecialchars($item['presentacion'] ?? 'N/A') ?></span>
+                                                    <span class="info-tag tag-blue">📏 <?= htmlspecialchars($item['tamano'] ?? 'N/A') ?></span>
+                                                    
+                                                    <?php $audience = $item['target_audience'] ?? 'N/A'; ?>
+                                                    <?php if($audience == 'Mujeres'): ?>
+                                                        <span class="info-tag tag-pink">👩 <?= $audience ?></span>
+                                                    <?php elseif($audience == 'Niños'): ?>
+                                                        <span class="info-tag tag-blue">👶 <?= $audience ?></span>
+                                                    <?php elseif($audience == 'Hombres'): ?>
+                                                        <span class="info-tag tag-blue">👨 <?= $audience ?></span>
+                                                    <?php else: ?>
+                                                        <span class="info-tag tag-green">👥 <?= $audience ?></span>
+                                                    <?php endif; ?>
+
+                                                    <?php if(!empty($item['requiere_frio'])): ?>
+                                                        <span class="info-tag tag-blue">❄️ Refrigeración</span>
+                                                    <?php endif; ?>
+
+                                                    <?php if(!empty($item['es_delicado'])): ?>
+                                                        <span class="info-tag tag-perishable">⚠️ Delicado</span>
+                                                    <?php endif; ?>
+
+                                                    <?php if(!empty($item['perecedero'])): ?>
+                                                        <span class="info-tag tag-perishable">⏳ Perecedero</span>
+                                                    <?php else: ?>
+                                                        <span class="info-tag tag-green">🛡️ No Perecedero</span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center font-bold text-slate-900">$<?= number_format($item['valor_unitario'] ?: 0) ?></td>
+                                    <td class="text-center">
+                                        <?php
+                                            $stk = intval($item['stock_actual'] ?? 0);
+                                            $min = intval($item['stock_minimo'] ?? 25);
+                                            if ($stk >= $min) $badge = 'badge-success';
+                                            elseif ($stk >= $min * 0.5) $badge = 'badge-warning';
+                                            else $badge = 'badge-critical';
+                                        ?>
+                                        <div class="flex flex-col items-center">
+                                            <span class="text-xl font-black text-slate-900"><?= number_format($stk) ?></span>
+                                            <span class="badge <?= $badge ?> scale-75">Uds</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <?= InventoryController::getExpiryBadge($item) ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <button onclick="window.location.href='inventario-central?q=<?= urlencode($item['nombre_generico']) ?>'" class="btn-institutional !px-4 !py-2 !text-[9px]">Gestionar</button>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- FILAS -->
-                    <?php foreach ($all_ips_data as $item):
-                        $img = $item['imagen_url'];
-                        if (!$img || strpos($img, 'unsplash') !== false || strpos($img, 'icons8') !== false) {
-                            $name = strtolower($item['nombre_generico']);
-                            if (strpos($name, 'acetaminofen') !== false) $img = BASE_URL . '/img/productos/acetaminofen.png';
-                            elseif (strpos($name, 'loratadina') !== false) $img = BASE_URL . '/img/productos/loratadina.png';
-                            elseif (strpos($name, 'salina') !== false) $img = BASE_URL . '/img/productos/solucion_salina.png';
-                            elseif (strpos($name, 'amoxicilina') !== false) $img = BASE_URL . '/img/productos/amoxicilina.png';
-                            elseif (strpos($name, 'aciclovir') !== false) {
-                                if (strpos($name, 'crema') !== false || strpos($name, 'ungüento') !== false) {
-                                    $img = 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&q=80&w=400';
-                                } else {
-                                    $img = 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=400';
-                                }
-                            }
-                            else $img = 'https://img.icons8.com/color/96/pill.png';
-                        }
-                    ?>
-                    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr 0.9fr; border-bottom:1px solid #f1f5f9; align-items:center;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#fff'">
-                        <!-- COLUMNA 1: INSUMO -->
-                        <div style="padding:10px 12px; display:flex; align-items:center; gap:10px;">
-                            <img src="<?= $img ?>" onerror="this.src='https://img.icons8.com/color/96/pill.png'" style="width:48px; height:48px; border-radius:10px; object-fit:cover; flex-shrink:0; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,.06);">
-                            <div style="min-width:0; flex:1;">
-                                <p style="font-size:11px; font-weight:900; color:#111; text-transform:uppercase; font-style:italic; margin:0 0 3px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= $item['nombre_generico'] ?></p>
-                                <p style="font-size:9px; color:#94a3b8; margin:0 0 5px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= $item['descripcion_breve'] ?: 'Sin descripción técnica.' ?></p>
-                                <div style="display:flex; gap:5px; flex-wrap:wrap;">
-                                    <span style="font-size:8px; font-weight:900; color:#fff; background:#94a3b8; padding:2px 6px; border-radius:4px; text-transform:uppercase;"><?= $item['laboratorio'] ?></span>
-                                    <span style="font-size:8px; font-weight:900; color:#d4af37; background:#111; padding:2px 6px; border-radius:4px; text-transform:uppercase;">LOTE: <?= $item['lote'] ?></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- COLUMNA 2: VALOR -->
-                        <div style="padding:10px 12px; text-align:center;">
-                            <span style="font-size:14px; font-weight:700; color:#1e293b;">$<?= number_format($item['valor_unitario'] ?: 0, 0) ?></span>
-                            <p style="font-size:9px; color:#94a3b8; text-transform:uppercase; margin:2px 0 0 0;">Precio Red</p>
-                        </div>
-                        <!-- COLUMNA 3: STOCK -->
-                        <div style="padding:10px 12px; text-align:center;">
-                            <?php
-                                $stk = intval($item['stock_actual'] ?? 0);
-                                $min = intval($item['stock_minimo'] ?? 25);
-                                // Verde = en nivel o superior | í mbar = entre 50%-99% del mínimo | Rojo = crítico (<50%)
-                                if ($stk >= $min)              { $stkColor = '#16a34a'; } // verde óptimo
-                                elseif ($stk >= $min * 0.5)   { $stkColor = '#d97706'; } // ámbar advertencia
-                                else                           { $stkColor = '#dc2626'; } // rojo crítico
-                            ?>
-                            <span style="font-size:22px; font-weight:900; color:<?= $stkColor ?>; letter-spacing:-.03em;"><?= number_format($stk) ?></span>
-                            <p style="font-size:8px; color:#94a3b8; text-transform:uppercase; font-weight:700; margin:2px 0 0 0; letter-spacing:.08em;">Unidades</p>
-                        </div>
-                        <!-- COLUMNA 4: VIGILANCIA -->
-                        <div style="padding:10px 12px; text-align:center;">
-                            <?php
-                                $expiry = $item['fecha_vencimiento'] ?? null;
-                                $today  = date('Y-m-d');
-                                $warn   = date('Y-m-d', strtotime('+3 months'));
-                                if (!empty($item['requiere_frio'])) {
-                                    $bg='#1d4ed8'; $fg='#fff'; $label='Cadena de Frío'; $dateStr='❄️';
-                                } elseif (!empty($item['es_delicado'])) {
-                                    $bg='#7f1d1d'; $fg='#fff'; $label='Alta Complejidad'; $dateStr='⚠️';
-                                } elseif (!$expiry) {
-                                    $bg='#f1f5f9'; $fg='#64748b'; $label='Sin Vencimiento'; $dateStr='—';
-                                } elseif ($expiry < $today) {
-                                    $bg='#fef2f2'; $fg='#dc2626'; $label='VENCIDO'; $dateStr=date('d/m/Y', strtotime($expiry));
-                                } elseif ($expiry < $warn) {
-                                    $bg='#fffbeb'; $fg='#d97706'; $label='Por Vencer'; $dateStr=date('d/m/Y', strtotime($expiry));
-                                } else {
-                                    $bg='#f0fdf4'; $fg='#16a34a'; $label='Vigente'; $dateStr=date('d/m/Y', strtotime($expiry));
-                                }
-                            ?>
-                            <div style="background:<?= $bg ?>; border-radius:8px; padding:6px 10px; display:inline-block; min-width:90px;">
-                                <p style="font-size:12px; font-weight:900; color:<?= $fg ?>; margin:0; letter-spacing:-.02em;"><?= $dateStr ?></p>
-                                <p style="font-size:8px; font-weight:900; color:<?= $fg ?>; text-transform:uppercase; margin:2px 0 0 0; opacity:.85;"><?= $label ?></p>
-                            </div>
-                        </div>
-                        <!-- COLUMNA 5: ACCIÓN -->
-                        <div style="padding:10px 12px; text-align:center;">
-                            <button onclick="window.location.href='inventario_central?q=<?= urlencode($item['nombre_generico']) ?>'" style="background:#1e293b; color:#fff; border:none; padding:8px 14px; border-radius:10px; font-size:10px; font-weight:900; text-transform:uppercase; cursor:pointer; transition:background .2s;" onmouseover="this.style.background='#d4af37';this.style.color='#111'" onmouseout="this.style.background='#1e293b';this.style.color='#fff'">Ver Lote</button>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
                 </div>
 
 
@@ -311,7 +305,28 @@ if ($end_page - $start_page < 2) $start_page = max(1, $end_page - 2);
                 </div>
             </section>
         </main>
+    <!-- MODAL DE PREVIEW -->
+    <div id="imageModal" class="modal-preview">
+        <span class="modal-close" onclick="closePreview()">&times;</span>
+        <img class="modal-preview-content" id="modalImg">
+        <div id="modalCaption" class="text-center mt-4 text-white font-bold uppercase tracking-widest text-sm"></div>
     </div>
+
+    <script>
+        function openPreview(src, title) {
+            document.getElementById('imageModal').style.display = "block";
+            document.getElementById('modalImg').src = src;
+            document.getElementById('modalCaption').innerHTML = title;
+        }
+        function closePreview() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+        // Cerrar al clickear fuera
+        window.onclick = function(event) {
+            let modal = document.getElementById('imageModal');
+            if (event.target == modal) closePreview();
+        }
+    </script>
     <script src="<?= BASE_URL ?>/public/js/inicio.js"></script>
 </body>
 </html>

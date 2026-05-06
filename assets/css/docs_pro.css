@@ -1,0 +1,321 @@
+/* =====================================================================
+   ARTÍCULO CIENTÍFICO ESEFJL - ESTILO APA 7ma EDICIÓN
+   CSS Profesional para Publicación Académica
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700;900&display=swap');
+
+:root {
+    --primary-color: #0d6e4e;
+    --primary-dark: #064e3b;
+    --secondary-color: #0d6e4e;
+    --accent-gold: #d4af37;
+    --text-body: #1e293b;
+    --text-light: #64748b;
+    --bg-body: #f0f0f0;
+    --bg-paper: #ffffff;
+    --border-light: #e2e8f0;
+    --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+    --max-width: 850px;
+}
+
+/* === RESET === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+/* === CUERPO ACADÉMICO === */
+.academic-body {
+    font-family: var(--font-serif);
+    color: var(--text-body);
+    background: var(--bg-body);
+    line-height: 2;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* === CONTENEDOR PRINCIPAL (PAPEL) === */
+.container {
+    max-width: var(--max-width);
+    margin: 40px auto;
+    background: var(--bg-paper);
+    padding: 60px 70px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    border-radius: 4px;
+}
+
+/* === ENCABEZADO === */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--border-light);
+}
+
+header h1 {
+    font-family: var(--font-serif);
+    font-size: 1.8em;
+    font-weight: 900;
+    color: var(--primary-dark);
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+header h2 {
+    font-size: 0.8em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* === AUTORES === */
+.authors {
+    font-family: var(--font-sans);
+    font-size: 0.9em;
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-top: 15px;
+}
+
+.authors strong {
+    color: var(--text-body);
+    font-weight: 700;
+}
+
+/* === RESUMEN / ABSTRACT === */
+.abstract-container {
+    background: var(--bg-paper);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 30px 35px;
+    margin-bottom: 40px;
+}
+
+.abstract-text {
+    font-size: 0.92em;
+    text-align: justify;
+    line-height: 1.9;
+    color: var(--text-body);
+}
+
+.keywords {
+    font-family: var(--font-sans);
+    font-size: 0.82em;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+}
+
+/* === TABLA DE CONTENIDO === */
+.toc-container {
+    background: #fafbfc;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 25px 30px;
+    margin-bottom: 40px;
+}
+
+.toc-title {
+    font-family: var(--font-sans);
+    font-size: 0.95em;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+.toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.toc-item a {
+    display: block;
+    padding: 6px 12px;
+    font-family: var(--font-sans);
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.toc-item a:hover {
+    background: rgba(13, 110, 78, 0.06);
+    color: var(--primary-dark);
+}
+
+.toc-number {
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-right: 6px;
+}
+
+/* === TÍTULOS DE SECCIÓN === */
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-gold);
+    text-align: center;
+}
+
+/* === PÁRRAFOS APA === */
+p {
+    text-align: justify;
+    text-indent: 2em;
+    margin-bottom: 18px;
+    line-height: 2;
+    font-size: 0.95em;
+}
+
+/* === TABLAS ACADÉMICAS === */
+.checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0 30px;
+    font-family: var(--font-sans);
+    font-size: 0.88em;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.checklist-table thead {
+    background: var(--primary-dark);
+    color: white;
+}
+
+.checklist-table th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.82em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.checklist-table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+    line-height: 1.6;
+}
+
+.checklist-table tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.checklist-table tbody tr:hover {
+    background: rgba(13, 110, 78, 0.04);
+}
+
+/* === LISTAS === */
+ul, ol {
+    padding-left: 2em;
+    margin-bottom: 18px;
+}
+
+li {
+    margin-bottom: 8px;
+    line-height: 1.8;
+    font-size: 0.95em;
+    text-indent: 0;
+}
+
+/* === REFERENCIAS BIBLIOGRÁFICAS === */
+.references-list {
+    list-style: disc;
+    padding-left: 30px;
+}
+
+.references-list li {
+    font-size: 0.88em;
+    margin-bottom: 12px;
+    padding-left: 10px;
+    text-indent: -2em;
+    padding-left: 2em;
+    line-height: 1.7;
+}
+
+/* === PANEL DE RECOMENDACIONES === */
+.recommendations-panel {
+    background: #fafbfc;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 35px 40px;
+    margin-top: 40px;
+}
+
+.recommendations-panel h2 {
+    font-family: var(--font-serif);
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.recommendations-panel h3 {
+    font-family: var(--font-sans);
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--secondary-color);
+    border-bottom: 1px solid var(--accent-gold);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.recommendations-panel ul {
+    list-style: disc;
+    padding-left: 1.5em;
+}
+
+.recommendations-panel li {
+    text-align: justify;
+    font-size: 0.9em;
+}
+
+/* === FOOTER === */
+footer {
+    text-align: center;
+    color: #888;
+    font-size: 0.82em;
+    margin-top: 60px;
+    padding-top: 25px;
+    border-top: 2px solid var(--border-light);
+    font-family: var(--font-sans);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .container {
+        margin: 15px;
+        padding: 30px 25px;
+    }
+    header h1 {
+        font-size: 1.4em;
+    }
+    .section-title {
+        font-size: 1.2em;
+    }
+    .recommendations-panel div[style*="grid"] {
+        display: block !important;
+    }
+}
+
+@media print {
+    .academic-body { background: white; }
+    .container { box-shadow: none; margin: 0; padding: 40px; max-width: 100%; }
+    .toc-container { page-break-after: always; }
+    .section-title { page-break-before: always; }
+    .checklist-table { page-break-inside: avoid; }
+}

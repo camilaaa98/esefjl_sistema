@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login');
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'entidad_salud' => $_POST['eps'] ?? '',
         'sede_id' => $_SESSION['sede_id']
     ]);
-    $mensaje = ($result['status'] === 'success') ? "✅â€¦ " : "í¢ÂÅ’ ";
+    $mensaje = ($result['status'] === 'success') ? "✅ " : "í¢ÂÅ’ ";
     $mensaje .= $result['message'];
 }
 ?>
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="space-y-2">
                             <label class="block text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Apellidos Consanguíneos</label>
-                            <input type="text" name="apellidos" placeholder="Ej: Pí‰REZ GARCíA" oninput="this.value = this.value.toUpperCase().replace(/[^A-Zíí‰íí“íšÑ ]/g, '')"
+                            <input type="text" name="apellidos" placeholder="Ej: PÉREZ GARCíA" oninput="this.value = this.value.toUpperCase().replace(/[^A-Zíí‰íí“íšÑ ]/g, '')"
                                 class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl outline-none focus:ring-4 focus:ring-[#d4af37]/20 focus:border-[#d4af37] transition-all text-sm font-bold text-slate-800 placeholder:text-slate-400 hover:border-slate-300" required>
                         </div>
                     </div>
@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <option value="CONTRIBUTIVO">CONTRIBUTIVO (Copago)</option>
                                 <option value="SUBSIDIADO">SUBSIDIADO (Sin copago)</option>
                                 <option value="VINCULADO">VINCULADO</option>
-                                <option value="ESPECIAL">Rí‰GIMEN ESPECIAL</option>
+                                <option value="ESPECIAL">RÉGIMEN ESPECIAL</option>
                                 <option value="PARTICULAR">PARTICULAR</option>
                             </select>
                         </div>
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </svg>
                             </div>
                             <div>
-                                <span class="block text-[10px] font-black text-slate-600 uppercase tracking-[0.15em]">Â¿Población Desplazada / Víctima del Conflicto?</span>
+                                <span class="block text-[10px] font-black text-slate-600 uppercase tracking-[0.15em]">¿Población Desplazada / Víctima del Conflicto?</span>
                                 <span class="text-[9px] text-[#d4af37] font-semibold">Exención de pagos según Ley 1448 de 2011</span>
                             </div>
                         </label>
